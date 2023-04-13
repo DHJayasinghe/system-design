@@ -12,21 +12,21 @@ using System.Text;
 
 namespace UrlShortnerService;
 
-public static class ShortenUrlFunction
+public static class UrlShortenFunction
 {
     private const int ShortUrlLength = 7;
 
-    [FunctionName(nameof(ShortenUrlFunction))]
+    [FunctionName(nameof(UrlShortenFunction))]
     public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "post", Route = "shorten")] HttpRequest req,
         ILogger log)
     {
-        log.LogInformation("{0} function processed a request.", nameof(ShortenUrlFunction));
-
         string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
         dynamic data = JsonConvert.DeserializeObject(requestBody);
-
         string url = data?.url;
+
+        log.LogInformation("{0} function processed a request for url: {1}.", nameof(UrlShortenFunction), url);
+
         if (string.IsNullOrEmpty(url))
             return new BadRequestObjectResult("Pass a URL in the request body to return a shorten URL.");
 
