@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
@@ -9,28 +8,34 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Security.Cryptography;
 using System.Text;
+using UrlShortenerService.Models;
 
-namespace UrlShortnerService;
+namespace UrlShortenerService;
 
 public static class UrlShortenFunction
 {
     private const int ShortUrlLength = 7;
 
     [FunctionName(nameof(UrlShortenFunction))]
-    public static async Task<IActionResult> Run(
+    public static IActionResult Run(
         [HttpTrigger(AuthorizationLevel.Function, "post", Route = "shorten")] HttpRequest req,
+        [CosmosDB(databaseName: "url-shortener-service", containerName: "shorten-url", Connection = "CosmosDBConnection", PartitionKey = "/id",CreateIfNotExists = true)] out dynamic document,
         ILogger log)
     {
-        string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+        string requestBody = new StreamReader(req.Body).ReadToEnd();
         dynamic data = JsonConvert.DeserializeObject(requestBody);
         string url = data?.url;
 
         log.LogInformation("{0} function processed a request for url: {1}.", nameof(UrlShortenFunction), url);
 
+        document = null;
+
         if (string.IsNullOrEmpty(url))
             return new BadRequestObjectResult("Pass a URL in the request body to return a shorten URL.");
 
         string shortenedUrl = GenerateShortUrl(url);
+
+        document = new ShortenedUrl { Id = shortenedUrl, Value = url };
 
         return new OkObjectResult($"{GetAppHostUrl(req)}/{shortenedUrl}");
     }
