@@ -19,8 +19,8 @@ The purpose of this service is to shorten long URL and keep track of the user tr
 ![image](https://github.com/DHJayasinghe/system-design/blob/features/url-shorten-service/UrlShortnerService/URL_ShortenerService.png)
 
 To achieve the functional requirement we will have 2 seperate functions.
-1. UrlShortenFunction (POST '/shorten') This function will take an input of the longer URL and use a simple algorithm to generate a short URL and return it.
-2. UrlRedirectFunction (GET '/{url}') This function will accept short URL requests come to our applications and find the related long URL, do the redirection.
+1. UrlShortenFunction `POST /shorten` This function will take an input of the longer URL and use a simple algorithm to generate a short URL and return it.
+2. UrlRedirectFunction `GET /{url}` This function will accept short URL requests come to our applications and find the related long URL, do the redirection.
     
  ## Considerations
  In order to decide the length of the short URL, we should consider below factors;
@@ -59,4 +59,11 @@ Also, this Azure Function app will run on **Consumption Plan** which will give u
 
 ## Database
 For the database we have selected Azure CosmosDB **NoSQL** database as the persistent storage to store these short URL and related long URL in a **Key-Attribute datastore model**. We could use Relational databases as well, but considering the Facebook, Twitter scale traffic, we need a **geo-distributed database** that could scale horizontally and can handle high read/write throughput. Relational database also could handle high throughput on read/write but it could be slower in long run when the data size is growing and doing querying on them. Which could affect our latency non-functional requirement. Also, having a flexible data model is good for future changing data requirement, specially when comes to applying migrations on changing schema. Considering that we could use cheap NoSQL Azure table storage with Key-Attribute data model as well for the requirment. But it won't give geo-distributed database requriment on the scale we are looking at.
+
+When picking partition key we for the CosmosDB we have to be careful on avoiding **Hot Spot** situation where traffic is distributed to just one physical partition, which can lead to a performance bottleneck, that gonna affect the **availability** of our system. Example is using a date as a partition key, which gonna lead all the traffic to one partition. In our case, we are using ShortUrl as our partition key, so the traffic gonna evently distribute across other partitions.
+
+## Security
+We need to protect the `POST /shorten` endpoint cause we should not allow anonymous users to consume this. Only our backend applications should consume this. For that, we gonna use Azure Functions built-in security for the HTTP Trigger. This will provide us an Key to call this particular endpoint when deployed to Azure environment. This will achieve our **Security** non-functional requirement.
+
+![image](https://user-images.githubusercontent.com/26274468/232023018-b60c4e29-7a64-4ca9-a27e-39c2cb299521.png)
     
