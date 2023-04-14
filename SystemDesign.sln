@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("***REMOVED***9A19103F-16F7-4668-BE54-9A1E7A4F7556***REMOVED***") = "UrlShortenerService", "UrlShortnerService\UrlShortenerService.csproj", "***REMOVED***23315D24-7B98-4DEB-B966-33E160B71E35***REMOVED***"
+EndProject
+Project("***REMOVED***2150E333-8FDC-42A3-9474-1A3956D46DE8***REMOVED***") = "Solution Items", "Solution Items", "***REMOVED***819536A1-7D95-4CD2-9189-ACF90C311AEB***REMOVED***"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yaml = docker-compose.yaml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		***REMOVED***23315D24-7B98-4DEB-B966-33E160B71E35***REMOVED***.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		***REMOVED***23315D24-7B98-4DEB-B966-33E160B71E35***REMOVED***.Debug|Any CPU.Build.0 = Debug|Any CPU
+		***REMOVED***23315D24-7B98-4DEB-B966-33E160B71E35***REMOVED***.Release|Any CPU.ActiveCfg = Release|Any CPU
+		***REMOVED***23315D24-7B98-4DEB-B966-33E160B71E35***REMOVED***.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = ***REMOVED***0DF83925-0942-497F-BA27-4F22C7B65EBE***REMOVED***
+	EndGlobalSection
+EndGlobal
