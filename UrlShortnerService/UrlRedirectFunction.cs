@@ -11,7 +11,7 @@ public static class UrlRedirectFunction
 {
     [FunctionName(nameof(UrlRedirectFunction))]
     public static IActionResult Run(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "{url}")] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "{url}")] HttpRequest req,
         [CosmosDB(databaseName: "url-shortener-service", containerName: "shorten-url", Connection = "CosmosDBConnection", Id = "{url}", PartitionKey = "{url}")] ShortenedUrl document,
         string url,
         ILogger log)
