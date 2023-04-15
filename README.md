@@ -1,6 +1,6 @@
 # FaceBook System Design
 
-This repository is about Facebook system design on core functionalities using Azure.
+This repository is about Facebook system design on core functionalities using Azure technologies.
 
 ## Functional Requirements
 1. Post (Text + Image + Video) - Should be able to do a Post with a Video or Image
