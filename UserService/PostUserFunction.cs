@@ -34,7 +34,7 @@ public static class PostUserFunction
             Email = data?.email,
             PhoneNumber = data?.phoneNumber
         };
-        var entitiy = user.ToTableEntity();
+        var entitiy = user.ToEntity();
 
         if (RecordExist(existingProfiles, entitiy))
             return new BadRequestObjectResult($"User account already exist with username: {entitiy.Username}");
@@ -57,5 +57,4 @@ public static class PostUserFunction
             return true;
         }
     }
-
 }

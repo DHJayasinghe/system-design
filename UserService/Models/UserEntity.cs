@@ -49,7 +49,7 @@ public class UserEntity : BaseTableEntity
 
 public static class Mappings
 {
-    public static UserEntity ToTableEntity(this User todo)
+    public static UserEntity ToEntity(this User todo)
     {
         string username = todo.Email ?? todo.PhoneNumber;
         string id = User.HashData(username);
@@ -69,7 +69,7 @@ public static class Mappings
         };
     }
 
-    public static User ToTodo(this UserEntity todo)
+    public static User ToUser(this UserEntity todo)
     {
         return new User()
         {
