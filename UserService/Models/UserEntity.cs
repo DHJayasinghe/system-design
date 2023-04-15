@@ -57,7 +57,7 @@ public static class Mappings
         return new UserEntity()
         {
             PartitionKey = id,
-            RowKey = Guid.NewGuid().ToString(),
+            RowKey = id,
             CreatedDateTime = todo.CreatedDateTime,
             FirstName = todo.FirstName,
             Surname = todo.Surname,

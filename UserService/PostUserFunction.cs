@@ -7,6 +7,8 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using UserService.Models;
 using System.Threading.Tasks;
+using Azure.Data.Tables;
+using Azure;
 
 namespace UserService;
 
@@ -15,7 +17,8 @@ public static class PostUserFunction
     [FunctionName(nameof(PostUserFunction))]
     public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "post", Route = "user")] HttpRequest req,
-        [Table("user", Connection = "AzureWebJobsStorage")] IAsyncCollector<UserEntity> profile,
+        [Table("user")] IAsyncCollector<UserEntity> profile,
+        [Table("user")] TableClient existingProfiles,
         ILogger log)
     {
         string requestBody = new StreamReader(req.Body).ReadToEnd();
@@ -33,9 +36,26 @@ public static class PostUserFunction
         };
         var entitiy = user.ToTableEntity();
 
+        if (RecordExist(existingProfiles, entitiy))
+            return new BadRequestObjectResult($"User account already exist with username: {entitiy.Username}");
 
         await profile.AddAsync(entitiy);
 
         return new OkObjectResult(entitiy.PartitionKey);
     }
+
+    private static bool RecordExist(TableClient existingProfiles, UserEntity entitiy)
+    {
+        try
+        {
+            _ = existingProfiles.GetEntity<UserEntity>(entitiy.PartitionKey, entitiy.PartitionKey);
+            return true;
+        }
+        catch (RequestFailedException ex)
+        {
+            if (ex.ErrorCode == "ResourceNotFound") return false;
+            return true;
+        }
+    }
+
 }
