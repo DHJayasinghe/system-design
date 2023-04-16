@@ -10,6 +10,8 @@ Project("***REMOVED***2150E333-8FDC-42A3-9474-1A3956D46DE8***REMOVED***") = "Sol
 		docker-compose.yaml = docker-compose.yaml
 	EndProjectSection
 EndProject
+Project("***REMOVED***9A19103F-16F7-4668-BE54-9A1E7A4F7556***REMOVED***") = "UserService", "UserService\UserService.csproj", "***REMOVED***AED95450-A1AF-430A-81B2-EEDA3E209AEA***REMOVED***"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		***REMOVED***23315D24-7B98-4DEB-B966-33E160B71E35***REMOVED***.Debug|Any CPU.Build.0 = Debug|Any CPU
 		***REMOVED***23315D24-7B98-4DEB-B966-33E160B71E35***REMOVED***.Release|Any CPU.ActiveCfg = Release|Any CPU
 		***REMOVED***23315D24-7B98-4DEB-B966-33E160B71E35***REMOVED***.Release|Any CPU.Build.0 = Release|Any CPU
+		***REMOVED***AED95450-A1AF-430A-81B2-EEDA3E209AEA***REMOVED***.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		***REMOVED***AED95450-A1AF-430A-81B2-EEDA3E209AEA***REMOVED***.Debug|Any CPU.Build.0 = Debug|Any CPU
+		***REMOVED***AED95450-A1AF-430A-81B2-EEDA3E209AEA***REMOVED***.Release|Any CPU.ActiveCfg = Release|Any CPU
+		***REMOVED***AED95450-A1AF-430A-81B2-EEDA3E209AEA***REMOVED***.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
