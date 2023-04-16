@@ -7,7 +7,7 @@ namespace UrlShortenerService;
 public class KeepAppWarmUpFunction
 {
     [FunctionName(nameof(KeepAppWarmUpFunction))]
-    public static void Run([TimerTrigger("0 */15 * * * *")] TimerInfo myTimer, ILogger log)
+    public static void Run([TimerTrigger("0 */15 * * * *",UseMonitor = false)] TimerInfo myTimer, ILogger log)
     {
         log.LogInformation("{0} function executed at: {1}", nameof(KeepAppWarmUpFunction), DateTime.UtcNow);
     }
