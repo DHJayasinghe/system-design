@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "UrlShortnerService": {
+    "LikeService": {
       "commandName": "Project",
-      "commandLineArgs": "--port 8080",
+      "commandLineArgs": "--port 8082",
       "launchBrowser": false
     }
   }
