@@ -1,22 +1,26 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Text.RegularExpressions;
 
 namespace LikeService.Models
 {
-    public record PostLike
+    public record Reaction
     {
+        private static readonly Regex regex = new("[^a-zA-Z0-9]");
+
         [JsonProperty("id")]
-        public Guid Id { get; set; }
-        public Guid PostId { get; set; }
-        public Guid? CommentId { get; set; }
+        public string Id { get; set; }
+        public string PostId { get; set; }
+        public string CommentId { get; set; }
         public string UserId { get; set; }
         public LikeType LikeType { get; set; }
         public DateTime Timestamp { get; set; }
 
-        public void AddDefaults()
+        public Reaction WithDefaults()
         {
-            Id = PostId;
+            Id = regex.Replace($"{PostId}{UserId}", string.Empty);
             Timestamp = DateTime.UtcNow;
+            return this;
         }
     }
 

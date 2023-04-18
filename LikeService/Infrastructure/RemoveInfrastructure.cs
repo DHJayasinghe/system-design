@@ -18,12 +18,12 @@ public class RemoveInfrastructure
     [FunctionName(nameof(RemoveInfrastructure))]
     public async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "delete", Route = "infrastructure")] HttpRequest req,
+        [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient client,
         ILogger log)
     {
         log.LogInformation("C# HTTP trigger function processed a request.");
 
-        var client = new CosmosClient(_configuration.GetConnectionString("CosmosDBConnection"));
-        await client.GetDatabase("like-service").DeleteAsync();
+        await client.GetDatabase(CosmosDbConfigs.DatabaseName).DeleteAsync();
 
         return new OkResult();
     }

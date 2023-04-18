@@ -6,6 +6,9 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Microsoft.Azure.Cosmos;
+using LikeService.Models;
+using System;
 
 namespace LikeService;
 
@@ -14,20 +17,26 @@ public static class RemoveReactionFunction
     [FunctionName(nameof(RemoveReactionFunction))]
     public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "delete", Route = "reaction")] HttpRequest req,
+        [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
     {
-        log.LogInformation("C# HTTP trigger function processed a request.");
+        string requestBody = new StreamReader(req.Body).ReadToEnd();
+        var data = JsonConvert.DeserializeObject<Reaction>(requestBody).WithDefaults();
 
-        string name = req.Query["name"];
+        log.LogInformation("{0} function processed a request for post: {1} from user: {2}.", nameof(RemoveReactionFunction), data.PostId, data.UserId);
 
-        string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-        dynamic data = JsonConvert.DeserializeObject(requestBody);
-        name = name ?? data?.name;
+        try
+        {
+            var result = await cosmosClient
+               .GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.ContainerName)
+               .DeleteItemAsync<Reaction>(data.Id, new PartitionKey(data.PostId.ToString()));
+        }
+        catch (Exception ex)
+        {
+            if (ex.Message.Contains("NotFound (404)")) return new BadRequestObjectResult("Reaction does not exist");
+            throw;
+        }
 
-        string responseMessage = string.IsNullOrEmpty(name)
-            ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-            : $"Hello, {name}. This HTTP triggered function executed successfully.";
-
-        return new OkObjectResult(responseMessage);
+        return new OkResult();
     }
 }

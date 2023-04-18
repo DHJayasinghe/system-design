@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
+using LikeService.Models;
 
 namespace LikeService.Infrastructure;
 
@@ -18,16 +19,16 @@ public class CreateInfrastructure
     [FunctionName(nameof(CreateInfrastructure))]
     public async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "post", Route = "infrastructure")] HttpRequest req,
+        [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient client,
         ILogger log)
     {
         log.LogInformation("C# HTTP trigger function processed a request.");
 
-        var client = new CosmosClient(_configuration.GetConnectionString("CosmosDBConnection"));
-        await client.CreateDatabaseIfNotExistsAsync("like-service");
-        await client.GetDatabase("like-service")
-            .DefineContainer(name: "reaction", partitionKeyPath: "/postId")
+        await client.CreateDatabaseIfNotExistsAsync(CosmosDbConfigs.DatabaseName);
+        await client.GetDatabase(CosmosDbConfigs.DatabaseName)
+            .DefineContainer(name:CosmosDbConfigs.ContainerName, partitionKeyPath: $"/{nameof(Reaction.PostId)}")
             .WithUniqueKey()
-                .Path("/userId")
+                .Path($"/{nameof(Reaction.UserId)}")
             .Attach()
             .CreateIfNotExistsAsync();
         return new OkResult();
