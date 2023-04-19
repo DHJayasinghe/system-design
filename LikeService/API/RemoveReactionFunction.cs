@@ -9,6 +9,8 @@ using Newtonsoft.Json;
 using Microsoft.Azure.Cosmos;
 using LikeService.Models;
 using System;
+using Microsoft.Azure.WebJobs.ServiceBus;
+using Azure.Messaging.ServiceBus;
 
 namespace LikeService;
 
@@ -18,6 +20,7 @@ public static class RemoveReactionFunction
     public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "delete", Route = "reaction")] HttpRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
+        [ServiceBus(ServiceBusConfigs.TopicName, Connection =ServiceBusConfigs.ConnectionName, EntityType = ServiceBusEntityType.Topic)] IAsyncCollector<ServiceBusMessage> serviceBusClient,
         ILogger log)
     {
         string requestBody = new StreamReader(req.Body).ReadToEnd();

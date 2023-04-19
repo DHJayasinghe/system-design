@@ -29,7 +29,7 @@ public class RemoveInfrastructure
         tasksToProcess.Add(client.GetDatabase(CosmosDbConfigs.DatabaseName).DeleteAsync());
 
         var serviceBusClient = new ServiceBusAdministrationClient(_configuration.GetConnectionString(ServiceBusConfigs.ConnectionName));
-        if (!await serviceBusClient.TopicExistsAsync(ServiceBusConfigs.TopicName))
+        if (await serviceBusClient.TopicExistsAsync(ServiceBusConfigs.TopicName))
             tasksToProcess.Add(serviceBusClient.DeleteTopicAsync(ServiceBusConfigs.TopicName));
 
         await Task.WhenAll(tasksToProcess);

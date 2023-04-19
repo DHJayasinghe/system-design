@@ -8,6 +8,9 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using LikeService.Models;
 using Microsoft.Azure.Cosmos;
+using Microsoft.Azure.WebJobs.ServiceBus;
+using Azure.Messaging.ServiceBus;
+using System;
 
 namespace LikeService;
 
@@ -17,6 +20,7 @@ public static class AddReactionFunction
     public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "put", Route = "reaction")] HttpRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
+        [ServiceBus(ServiceBusConfigs.TopicName, Connection = ServiceBusConfigs.ConnectionName, EntityType = ServiceBusEntityType.Topic)] IAsyncCollector<ServiceBusMessage> serviceBusClient,
         ILogger log)
     {
         string requestBody = new StreamReader(req.Body).ReadToEnd();
@@ -28,6 +32,18 @@ public static class AddReactionFunction
             .GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.ContainerName)
             .UpsertItemAsync(data, new PartitionKey(data.PostId.ToString()));
 
+        await RaiseIntegrationEvent(serviceBusClient, data);
+
         return new OkResult();
+    }
+
+    private static async Task RaiseIntegrationEvent(IAsyncCollector<ServiceBusMessage> serviceBusClient, Reaction data)
+    {
+        await serviceBusClient.AddAsync(new ServiceBusMessage(JsonConvert.SerializeObject(data))
+        {
+            CorrelationId = Guid.NewGuid().ToString(),
+            ContentType = "application/json",
+            SessionId = data.PostId
+        });
     }
 }

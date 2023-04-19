@@ -8,6 +8,7 @@ using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
 using LikeService.Models;
 using Azure.Messaging.ServiceBus.Administration;
+using System.Collections.Generic;
 
 namespace LikeService.Infrastructure;
 
@@ -25,14 +26,24 @@ public class CreateInfrastructure
     {
         log.LogInformation("C# HTTP trigger function processed a request.");
 
+        var tasks = new List<Task>();
         await cosmosClient.CreateDatabaseIfNotExistsAsync(CosmosDbConfigs.DatabaseName);
-        await cosmosClient.GetDatabase(CosmosDbConfigs.DatabaseName)
+        tasks.Add(cosmosClient.GetDatabase(CosmosDbConfigs.DatabaseName)
             .DefineContainer(name: CosmosDbConfigs.ContainerName, partitionKeyPath: $"/{nameof(Reaction.PostId)}")
             .WithUniqueKey()
                 .Path($"/{nameof(Reaction.UserId)}")
                 .Path($"/{nameof(Reaction.CommentId)}")
             .Attach()
-            .CreateIfNotExistsAsync();
+            .CreateIfNotExistsAsync());
+        tasks.Add(cosmosClient.GetDatabase(CosmosDbConfigs.DatabaseName)
+           .DefineContainer(name: CosmosDbConfigs.ContainerName2, partitionKeyPath: $"/{nameof(ReactionCount.PostId)}")
+           .WithUniqueKey()
+               .Path($"/{nameof(ReactionCount.CommentId)}")
+               .Path($"/{nameof(ReactionCount.LikeType)}")
+           .Attach()
+           .CreateIfNotExistsAsync());
+
+        await Task.WhenAll(tasks);
 
         var serviceBusClient = new ServiceBusAdministrationClient(_configuration.GetConnectionString(ServiceBusConfigs.ConnectionName));
         if (!await serviceBusClient.TopicExistsAsync(ServiceBusConfigs.TopicName))
@@ -41,7 +52,7 @@ public class CreateInfrastructure
                 DefaultMessageTimeToLive = System.TimeSpan.FromDays(7),
 
             });
-        if (!await serviceBusClient.SubscriptionExistsAsync(ServiceBusConfigs.TopicName, ServiceBusConfigs.TopicName))
+        if (!await serviceBusClient.SubscriptionExistsAsync(ServiceBusConfigs.TopicName, ServiceBusConfigs.SubscriptionName))
         {
             await serviceBusClient.CreateSubscriptionAsync(new CreateSubscriptionOptions(ServiceBusConfigs.TopicName, ServiceBusConfigs.SubscriptionName)
             {

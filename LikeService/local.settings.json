@@ -5,6 +5,7 @@
     "FUNCTIONS_WORKER_RUNTIME": "dotnet"
   },
   "ConnectionStrings": {
-    "CosmosDBConnection": "COSMOSDB_CONNECTION_STRING"
+    "CosmosDB": "CONNECTION_STRING",
+    "ServiceBus": "CONNECTION_STRING"
   }
 }
