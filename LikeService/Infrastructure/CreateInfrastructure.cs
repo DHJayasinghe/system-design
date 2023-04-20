@@ -39,7 +39,7 @@ public class CreateInfrastructure
            .DefineContainer(name: CosmosDbConfigs.ContainerName2, partitionKeyPath: $"/{nameof(ReactionCount.PostId)}")
            .WithUniqueKey()
                .Path($"/{nameof(ReactionCount.CommentId)}")
-               .Path($"/{nameof(ReactionCount.LikeType)}")
+               .Path($"/{nameof(ReactionCount.ReactionType)}")
            .Attach()
            .CreateIfNotExistsAsync());
 

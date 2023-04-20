@@ -13,18 +13,18 @@ public record Reaction
     public string PostId { get; set; }
     public string CommentId { get; set; }
     public string UserId { get; set; }
-    public LikeType LikeType { get; set; }
+    public ReactionType ReactionType { get; set; }
     public DateTime Timestamp { get; set; }
 
     public Reaction WithDefaults()
     {
-        Id = regex.Replace($"{PostId}{CommentId ?? ""}{UserId}", string.Empty);
+        Id = regex.Replace($"{CommentId ?? PostId}{UserId}", string.Empty);
         Timestamp = DateTime.UtcNow;
         return this;
     }
 }
 
-public enum LikeType
+public enum ReactionType
 {
     LIKE = 0,
     HEART = 1,
