@@ -6,12 +6,8 @@ namespace LikeService.Models;
 
 public record ReactionCount
 {
+    [JsonProperty("id")]
     public string Id { get; set; }
-    public string id
-    {
-        get { return Id; }
-        set { Id = value; }
-    }
     public string PostId { get; init; }
     public string CommentId { get; init; }
     public ReactionType ReactionType { get; init; }
