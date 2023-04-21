@@ -14,6 +14,10 @@ Project("***REMOVED***9A19103F-16F7-4668-BE54-9A1E7A4F7556***REMOVED***") = "Use
 EndProject
 Project("***REMOVED***9A19103F-16F7-4668-BE54-9A1E7A4F7556***REMOVED***") = "LikeService", "LikeService\LikeService.csproj", "***REMOVED***2925CAF9-4DA3-467F-888F-53A9F81BC262***REMOVED***"
 EndProject
+Project("***REMOVED***2150E333-8FDC-42A3-9474-1A3956D46DE8***REMOVED***") = "IntegrationTests", "IntegrationTests", "***REMOVED***481BB67A-8038-45BA-B759-1B66A877CCA4***REMOVED***"
+EndProject
+Project("***REMOVED***FAE04EC0-301F-11D3-BF4B-00C04F79EFBC***REMOVED***") = "LikeServiceIntegrationTest", "LikeServiceIntegrationTest\LikeServiceIntegrationTest.csproj", "***REMOVED***576A7794-1C20-475F-97D8-B6B7C26E3AB2***REMOVED***"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,9 +36,16 @@ Global
 		***REMOVED***2925CAF9-4DA3-467F-888F-53A9F81BC262***REMOVED***.Debug|Any CPU.Build.0 = Debug|Any CPU
 		***REMOVED***2925CAF9-4DA3-467F-888F-53A9F81BC262***REMOVED***.Release|Any CPU.ActiveCfg = Release|Any CPU
 		***REMOVED***2925CAF9-4DA3-467F-888F-53A9F81BC262***REMOVED***.Release|Any CPU.Build.0 = Release|Any CPU
+		***REMOVED***576A7794-1C20-475F-97D8-B6B7C26E3AB2***REMOVED***.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		***REMOVED***576A7794-1C20-475F-97D8-B6B7C26E3AB2***REMOVED***.Debug|Any CPU.Build.0 = Debug|Any CPU
+		***REMOVED***576A7794-1C20-475F-97D8-B6B7C26E3AB2***REMOVED***.Release|Any CPU.ActiveCfg = Release|Any CPU
+		***REMOVED***576A7794-1C20-475F-97D8-B6B7C26E3AB2***REMOVED***.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		***REMOVED***576A7794-1C20-475F-97D8-B6B7C26E3AB2***REMOVED*** = ***REMOVED***481BB67A-8038-45BA-B759-1B66A877CCA4***REMOVED***
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = ***REMOVED***0DF83925-0942-497F-BA27-4F22C7B65EBE***REMOVED***
