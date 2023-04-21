@@ -1,0 +1,11 @@
+***REMOVED***
+  "IsEncrypted": false,
+  "Values": ***REMOVED***
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+  ***REMOVED***,
+  "ConnectionStrings": ***REMOVED***
+    "CosmosDB": "CONNECTION_STRING",
+    "ServiceBus": "CONNECTION_STRING"
+  ***REMOVED***
+***REMOVED***
