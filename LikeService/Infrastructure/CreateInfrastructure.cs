@@ -9,6 +9,7 @@ using Microsoft.Azure.Cosmos;
 using LikeService.Models;
 using Azure.Messaging.ServiceBus.Administration;
 ***REMOVED***
+using LikeService.Configs;
 
 namespace LikeService.Infrastructure;
 
@@ -39,7 +40,6 @@ public class CreateInfrastructure
            .DefineContainer(name: CosmosDbConfigs.ContainerName2, partitionKeyPath: $"/***REMOVED***nameof(ReactionCount.PostId)***REMOVED***")
            .WithUniqueKey()
                .Path($"/***REMOVED***nameof(ReactionCount.CommentId)***REMOVED***")
-               .Path($"/***REMOVED***nameof(ReactionCount.ReactionType)***REMOVED***")
            .Attach()
            .CreateIfNotExistsAsync());
 

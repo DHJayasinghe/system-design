@@ -7,21 +7,22 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.Cosmos;
 using LikeService.Models;
 ***REMOVED***
+using LikeService.Configs;
 
 namespace LikeService.API;
 
-public static class GetReactionCountFunction
+public static class GetReactionFunction
 ***REMOVED***
-    [FunctionName(nameof(GetReactionCountFunction))]
+    [FunctionName(nameof(GetReactionFunction))]
     public static async Task<IActionResult> Run(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "reaction/count")] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "reactions")] HttpRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName2, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
     ***REMOVED***
         string postId = req.Query[nameof(postId)].ToString();
         string commentId = req.Query[nameof(commentId)].ToString();
 
-        log.LogInformation("***REMOVED***0***REMOVED*** function processed a request for post: ***REMOVED***1***REMOVED***.", nameof(GetReactionCountFunction), postId);
+        log.LogInformation("***REMOVED***0***REMOVED*** function processed a request for post: ***REMOVED***1***REMOVED***.", nameof(GetReactionFunction), postId);
 
         var feed = GetReactionCountByPostIdAndCommentId(cosmosClient, postId, commentId);
 
@@ -45,12 +46,12 @@ public static class GetReactionCountFunction
         if (!string.IsNullOrEmpty(commentId))
             query += $" AND p.***REMOVED***nameof(ReactionCount.CommentId)***REMOVED*** = @commentId";
 
-       return  container.GetItemQueryIterator<ReactionCount>(
-                    queryDefinition: new QueryDefinition(
-            query: query
-        )
-        .WithParameter("@partitionKey", postId)
-        .WithParameter("@commentId", commentId));
+        return container.GetItemQueryIterator<ReactionCount>(
+                     queryDefinition: new QueryDefinition(
+             query: query
+         )
+         .WithParameter("@partitionKey", postId)
+         .WithParameter("@commentId", commentId));
 ***REMOVED***
 ***REMOVED***
 
@@ -59,8 +60,13 @@ public record ReactionCountDto
     public string Id ***REMOVED*** get; init; ***REMOVED***
     public string PostId ***REMOVED*** get; init; ***REMOVED***
     public string CommentId ***REMOVED*** get; set; ***REMOVED***
-    public ReactionType ReactionType ***REMOVED*** get; init; ***REMOVED***
-    public int Count ***REMOVED*** get; init; ***REMOVED*** = 0;
+    public int LikeCount ***REMOVED*** get; set; ***REMOVED*** = 0;
+    public int HeartCount ***REMOVED*** get; set; ***REMOVED*** = 0;
+    public int WowCount ***REMOVED*** get; set; ***REMOVED*** = 0;
+    public int CareCount ***REMOVED*** get; set; ***REMOVED*** = 0;
+    public int LaughCount ***REMOVED*** get; set; ***REMOVED*** = 0;
+    public int SadCount ***REMOVED*** get; set; ***REMOVED*** = 0;
+    public int AngryCount ***REMOVED*** get; set; ***REMOVED*** = 0;
     public static ReactionCountDto Map(ReactionCount data)
     ***REMOVED***
         return new ReactionCountDto
@@ -68,8 +74,13 @@ public record ReactionCountDto
             Id = data.Id,
             PostId = data.PostId,
             CommentId = data.CommentId,
-            Count = data.Count,
-            ReactionType = data.ReactionType
+            LikeCount = data.LikeCount,
+            HeartCount = data.HeartCount,
+            WowCount = data.WowCount,
+            CareCount = data.CareCount,
+            LaughCount = data.LaughCount,
+            SadCount = data.SadCount,
+            AngryCount = data.AngryCount
     ***REMOVED***;
 ***REMOVED***
 ***REMOVED***

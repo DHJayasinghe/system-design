@@ -1,9 +1,7 @@
-using System.IO;
 ***REMOVED***
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-***REMOVED***
 ***REMOVED***
 using Newtonsoft.Json;
 using LikeService.Models;
@@ -12,25 +10,24 @@ using Microsoft.Azure.WebJobs.ServiceBus;
 using Azure.Messaging.ServiceBus;
 ***REMOVED***
 using LikeService.Events;
+using LikeService.Configs;
 
-namespace LikeService;
+namespace LikeService.API;
 
 public static class AddReactionFunction
 ***REMOVED***
     [FunctionName(nameof(AddReactionFunction))]
     public static async Task<IActionResult> Run(
-        [HttpTrigger(AuthorizationLevel.Function, "put", Route = "reaction")] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Function, "put", Route = "reactions")] AddReactionRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         [ServiceBus(ServiceBusConfigs.TopicName, Connection = ServiceBusConfigs.ConnectionName, EntityType = ServiceBusEntityType.Topic)] IAsyncCollector<ServiceBusMessage> serviceBusClient,
         ILogger log)
     ***REMOVED***
-        string requestBody = new StreamReader(req.Body).ReadToEnd();
-        var currentReaction = JsonConvert.DeserializeObject<Reaction>(requestBody).WithDefaults();
+        var currentReaction = req.Map().WithDefaults();
+        log.LogInformation("***REMOVED***0***REMOVED*** function processed a request for post: ***REMOVED***1***REMOVED*** from user: ***REMOVED***2***REMOVED***.", nameof(AddReactionFunction), currentReaction.PostId, currentReaction.UserId);
 
         if (!Enum.IsDefined(currentReaction.ReactionType))
             return new BadRequestObjectResult("Provided reaction type is not valid");
-
-        log.LogInformation("***REMOVED***0***REMOVED*** function processed a request for post: ***REMOVED***1***REMOVED*** from user: ***REMOVED***2***REMOVED***.", nameof(AddReactionFunction), currentReaction.PostId, currentReaction.UserId);
 
         var existingReaction = await GetReactionByIdAsync(cosmosClient, currentReaction);
 
@@ -80,4 +77,12 @@ public static class AddReactionFunction
             SessionId = curentState.PostId
     ***REMOVED***);
 ***REMOVED***
+***REMOVED***
+
+public record AddReactionRequest
+***REMOVED***
+    public string PostId ***REMOVED*** get; init; ***REMOVED***
+    public string CommentId ***REMOVED*** get; init; ***REMOVED***
+    public string UserId ***REMOVED*** get; init; ***REMOVED***
+    public int ReactionType ***REMOVED*** get; init; ***REMOVED***
 ***REMOVED***
