@@ -7,21 +7,22 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Azure.Cosmos;
 using LikeService.Models;
 using System.Collections.Generic;
+using LikeService.Configs;
 
 namespace LikeService.API;
 
-public static class GetReactionCountFunction
+public static class GetReactionFunction
 {
-    [FunctionName(nameof(GetReactionCountFunction))]
+    [FunctionName(nameof(GetReactionFunction))]
     public static async Task<IActionResult> Run(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "reaction/count")] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "reactions")] HttpRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName2, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
     {
         string postId = req.Query[nameof(postId)].ToString();
         string commentId = req.Query[nameof(commentId)].ToString();
 
-        log.LogInformation("{0} function processed a request for post: {1}.", nameof(GetReactionCountFunction), postId);
+        log.LogInformation("{0} function processed a request for post: {1}.", nameof(GetReactionFunction), postId);
 
         var feed = GetReactionCountByPostIdAndCommentId(cosmosClient, postId, commentId);
 
@@ -45,12 +46,12 @@ public static class GetReactionCountFunction
         if (!string.IsNullOrEmpty(commentId))
             query += $" AND p.{nameof(ReactionCount.CommentId)} = @commentId";
 
-       return  container.GetItemQueryIterator<ReactionCount>(
-                    queryDefinition: new QueryDefinition(
-            query: query
-        )
-        .WithParameter("@partitionKey", postId)
-        .WithParameter("@commentId", commentId));
+        return container.GetItemQueryIterator<ReactionCount>(
+                     queryDefinition: new QueryDefinition(
+             query: query
+         )
+         .WithParameter("@partitionKey", postId)
+         .WithParameter("@commentId", commentId));
     }
 }
 
@@ -59,8 +60,13 @@ public record ReactionCountDto
     public string Id { get; init; }
     public string PostId { get; init; }
     public string CommentId { get; set; }
-    public ReactionType ReactionType { get; init; }
-    public int Count { get; init; } = 0;
+    public int LikeCount { get; set; } = 0;
+    public int HeartCount { get; set; } = 0;
+    public int WowCount { get; set; } = 0;
+    public int CareCount { get; set; } = 0;
+    public int LaughCount { get; set; } = 0;
+    public int SadCount { get; set; } = 0;
+    public int AngryCount { get; set; } = 0;
     public static ReactionCountDto Map(ReactionCount data)
     {
         return new ReactionCountDto
@@ -68,8 +74,13 @@ public record ReactionCountDto
             Id = data.Id,
             PostId = data.PostId,
             CommentId = data.CommentId,
-            Count = data.Count,
-            ReactionType = data.ReactionType
+            LikeCount = data.LikeCount,
+            HeartCount = data.HeartCount,
+            WowCount = data.WowCount,
+            CareCount = data.CareCount,
+            LaughCount = data.LaughCount,
+            SadCount = data.SadCount,
+            AngryCount = data.AngryCount
         };
     }
 }

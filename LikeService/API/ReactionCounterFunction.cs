@@ -1,3 +1,4 @@
+using LikeService.Configs;
 using LikeService.Events;
 using LikeService.Models;
 using Microsoft.Azure.Cosmos;
@@ -7,56 +8,36 @@ using System.Threading.Tasks;
 
 namespace LikeService.API;
 
-public class ReactionCounterFunction
+public static class ReactionCounterFunction
 {
     [FunctionName(nameof(ReactionCounterFunction))]
-    public async Task Run([ServiceBusTrigger(ServiceBusConfigs.TopicName, ServiceBusConfigs.SubscriptionName, Connection = ServiceBusConfigs.ConnectionName, IsSessionsEnabled = true)] ReactionChangedIntegrationEvent @event,
+    public static async Task Run([ServiceBusTrigger(ServiceBusConfigs.TopicName, ServiceBusConfigs.SubscriptionName, Connection = ServiceBusConfigs.ConnectionName, IsSessionsEnabled = true)] ReactionChangedIntegrationEvent @event,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName2, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
     {
         log.LogInformation("{0} function processed a request for post: {1}.", nameof(ReactionCounterFunction), @event.PostId);
 
+        var reactionCountForCurrentReaction = await GetReactionCountByIdAsync(cosmosClient, ReactionCount.Map(@event));
+
         if (@event.State != State.Removed)
         {
-            await IncrementCurrentReactionCounter(@event, cosmosClient);
-            await DecrementPreviousReactionCounterIfAny(@event, cosmosClient);
+            reactionCountForCurrentReaction.Increment(@event.ReactionType);
+            if (@event.PreviousReactionType.HasValue)
+                reactionCountForCurrentReaction.Decrement(@event.PreviousReactionType.Value);
+            await SaveChanges(@event, cosmosClient, reactionCountForCurrentReaction);
         }
         if (@event.State == State.Removed)
         {
-            await DecrementCurrentReactionCounter(@event, cosmosClient);
+            reactionCountForCurrentReaction.Decrement(@event.ReactionType);
+            await SaveChanges(@event, cosmosClient, reactionCountForCurrentReaction);
         }
     }
 
-    private static async Task IncrementCurrentReactionCounter(ReactionChangedIntegrationEvent @event, CosmosClient cosmosClient)
+    private static async Task SaveChanges(ReactionChangedIntegrationEvent @event, CosmosClient cosmosClient, ReactionCount reactionCountForCurrentReaction)
     {
-        var reactionCountForCurrentReaction = await GetReactionCountByIdAsync(cosmosClient, ReactionCount.Map(@event));
-        reactionCountForCurrentReaction.Count++;
-
         await cosmosClient
-          .GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.ContainerName2)
-          .UpsertItemAsync(reactionCountForCurrentReaction, new PartitionKey(@event.PostId.ToString()));
-    }
-
-    private static async Task DecrementCurrentReactionCounter(ReactionChangedIntegrationEvent @event, CosmosClient cosmosClient)
-    {
-        var reactionCountForCurrentReaction = await GetReactionCountByIdAsync(cosmosClient, ReactionCount.Map(@event));
-        reactionCountForCurrentReaction.Count--;
-
-        await cosmosClient
-          .GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.ContainerName2)
-          .UpsertItemAsync(reactionCountForCurrentReaction, new PartitionKey(@event.PostId.ToString()));
-    }
-
-    private static async Task DecrementPreviousReactionCounterIfAny(ReactionChangedIntegrationEvent @event, CosmosClient cosmosClient)
-    {
-        if (!@event.PreviousReactionType.HasValue) return;
-
-        var reactionCountForPreviousReaction = await GetReactionCountByIdAsync(cosmosClient, ReactionCount.Map(@event, @event.PreviousReactionType));
-        reactionCountForPreviousReaction.Count--;
-
-        await cosmosClient
-         .GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.ContainerName2)
-         .UpsertItemAsync(reactionCountForPreviousReaction, new PartitionKey(reactionCountForPreviousReaction.PostId.ToString()));
+                    .GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.ContainerName2)
+                    .UpsertItemAsync(reactionCountForCurrentReaction, new PartitionKey(@event.PostId.ToString()));
     }
 
     private static async Task<ReactionCount> GetReactionCountByIdAsync(CosmosClient cosmosClient, ReactionCount reactionCount)
