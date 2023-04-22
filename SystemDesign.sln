@@ -16,7 +16,7 @@ Project("***REMOVED***9A19103F-16F7-4668-BE54-9A1E7A4F7556***REMOVED***") = "Lik
 EndProject
 Project("***REMOVED***2150E333-8FDC-42A3-9474-1A3956D46DE8***REMOVED***") = "IntegrationTests", "IntegrationTests", "***REMOVED***481BB67A-8038-45BA-B759-1B66A877CCA4***REMOVED***"
 EndProject
-Project("***REMOVED***FAE04EC0-301F-11D3-BF4B-00C04F79EFBC***REMOVED***") = "LikeServiceIntegrationTest", "LikeServiceIntegrationTest\LikeServiceIntegrationTest.csproj", "***REMOVED***576A7794-1C20-475F-97D8-B6B7C26E3AB2***REMOVED***"
+Project("***REMOVED***9A19103F-16F7-4668-BE54-9A1E7A4F7556***REMOVED***") = "LikeServiceIntegrationTest", "LikeServiceIntegrationTest\LikeServiceIntegrationTest.csproj", "***REMOVED***576A7794-1C20-475F-97D8-B6B7C26E3AB2***REMOVED***"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
