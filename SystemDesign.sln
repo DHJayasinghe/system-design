@@ -16,7 +16,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LikeService", "LikeService\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "IntegrationTests", "{481BB67A-8038-45BA-B759-1B66A877CCA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LikeServiceIntegrationTest", "LikeServiceIntegrationTest\LikeServiceIntegrationTest.csproj", "{576A7794-1C20-475F-97D8-B6B7C26E3AB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LikeServiceIntegrationTest", "LikeServiceIntegrationTest\LikeServiceIntegrationTest.csproj", "{576A7794-1C20-475F-97D8-B6B7C26E3AB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
