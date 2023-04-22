@@ -35,17 +35,24 @@ PartitionKey - /PostId
 
 
 ### FR #2 - <br>
-To get the reaction count we could simply get all the items (documents) in the partition (postId) and count it. But it could be very slow and CPU intensive, cause there could millions of items (Reaction entries) per post in a partition. Which could break our **NFR #1 - Latency**. So we need a seperate container named **ReactionCount** to store those stats and increment the count for each reaction. 
+To get the reaction count we could simply get all the items (documents) in the partition (postId) and count it. But it could be very slow and CPU intensive, cause there could millions of items (Reaction entries) per post in a partition. Which could break our **NFR #1 - Latency**. So we need a seperate container named **reaction-count** to store those count of every reaction type of a post. This container items will have one-to-one relationship with a post (one item per post). Which is more denormalized version of reaction container items. <br>
+
+This is how our denormalized reaction-count data model looks like.
 ```
 public record ReactionCount
 ***REMOVED***
     [JsonProperty("id")]
     public string Id ***REMOVED*** get; set; ***REMOVED***
-    public string PostId ***REMOVED*** get; set; ***REMOVED***
-    public string CommentId ***REMOVED*** get; set; ***REMOVED***
-    public LikeType LikeType ***REMOVED*** get; set; ***REMOVED***
+    public string PostId ***REMOVED*** get; init; ***REMOVED***
+    public string CommentId ***REMOVED*** get; init; ***REMOVED***
+    public int LikeCount ***REMOVED*** get; set; ***REMOVED*** = 0;
+    public int HeartCount ***REMOVED*** get; set; ***REMOVED*** = 0;
+    public int WowCount ***REMOVED*** get; set; ***REMOVED*** = 0;
+    public int CareCount ***REMOVED*** get; set; ***REMOVED*** = 0;
+    public int LaughCount ***REMOVED*** get; set; ***REMOVED*** = 0;
+    public int SadCount ***REMOVED*** get; set; ***REMOVED*** = 0;
+    public int AngryCount ***REMOVED*** get; set; ***REMOVED*** = 0;
     public DateTime Timestamp ***REMOVED*** get; set; ***REMOVED***
-    public int Count ***REMOVED*** get; set; ***REMOVED*** = 0;
 ***REMOVED***
 ```
 
