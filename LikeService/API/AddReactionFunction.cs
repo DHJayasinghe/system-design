@@ -1,9 +1,7 @@
-using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using LikeService.Models;
@@ -12,25 +10,24 @@ using Microsoft.Azure.WebJobs.ServiceBus;
 using Azure.Messaging.ServiceBus;
 using System;
 using LikeService.Events;
+using LikeService.Configs;
 
-namespace LikeService;
+namespace LikeService.API;
 
 public static class AddReactionFunction
 {
     [FunctionName(nameof(AddReactionFunction))]
     public static async Task<IActionResult> Run(
-        [HttpTrigger(AuthorizationLevel.Function, "put", Route = "reaction")] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Function, "put", Route = "reactions")] AddReactionRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         [ServiceBus(ServiceBusConfigs.TopicName, Connection = ServiceBusConfigs.ConnectionName, EntityType = ServiceBusEntityType.Topic)] IAsyncCollector<ServiceBusMessage> serviceBusClient,
         ILogger log)
     {
-        string requestBody = new StreamReader(req.Body).ReadToEnd();
-        var currentReaction = JsonConvert.DeserializeObject<Reaction>(requestBody).WithDefaults();
+        var currentReaction = req.Map().WithDefaults();
+        log.LogInformation("{0} function processed a request for post: {1} from user: {2}.", nameof(AddReactionFunction), currentReaction.PostId, currentReaction.UserId);
 
         if (!Enum.IsDefined(currentReaction.ReactionType))
             return new BadRequestObjectResult("Provided reaction type is not valid");
-
-        log.LogInformation("{0} function processed a request for post: {1} from user: {2}.", nameof(AddReactionFunction), currentReaction.PostId, currentReaction.UserId);
 
         var existingReaction = await GetReactionByIdAsync(cosmosClient, currentReaction);
 
@@ -80,4 +77,12 @@ public static class AddReactionFunction
             SessionId = curentState.PostId
         });
     }
+}
+
+public record AddReactionRequest
+{
+    public string PostId { get; init; }
+    public string CommentId { get; init; }
+    public string UserId { get; init; }
+    public int ReactionType { get; init; }
 }

@@ -1,4 +1,4 @@
-﻿namespace LikeService;
+﻿namespace LikeService.Configs;
 
 public static class CosmosDbConfigs
 {
@@ -6,11 +6,4 @@ public static class CosmosDbConfigs
     public const string ContainerName = "reaction";
     public const string ContainerName2 = "reaction-count";
     public const string ConnectionName = "CosmosDB";
-}
-
-public static class ServiceBusConfigs
-{
-    public const string TopicName = "reaction";
-    public const string ConnectionName = "ServiceBus";
-    public const string SubscriptionName = "like-service";
 }

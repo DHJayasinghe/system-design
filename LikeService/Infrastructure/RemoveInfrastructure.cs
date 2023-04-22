@@ -8,6 +8,7 @@ using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
 using Azure.Messaging.ServiceBus.Administration;
 using System.Collections.Generic;
+using LikeService.Configs;
 
 namespace LikeService.Infrastructure;
 
