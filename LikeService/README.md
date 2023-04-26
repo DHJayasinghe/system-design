@@ -68,18 +68,27 @@ To achieve this we need to maintain a unique constraint on `/UserId` and `/Comme
 
 
 ## Solution #1 - CosmosDB Change Feed Processor (Polling)
-![Change Feed Processor](LikeService.drawio.png)
+![Change Feed Processor](Solution1.png)
 
 In this solutin, we can use the Azure Cosmos DB **Change Feed** core feature which available with NoSQL API and enable by default for all the accounts. This change feed feature is an Event Sourcing store, which simply track changes (Insert/Update) to a logical partition as an Event objects, and store them seperately in sequence (in-ordered) where they were applied. Which then we can use and replay them to restore the state to where they were in during a particular time.  
 
 We can utilize this feature using an Azure Functions CosmosDB trigger, which implements using the Change Feed Processor, which periodically poll for changes of a container (by default it's 5 secs). Also, this feature is capable of distributing traffic accross multiple consumers (Multiple threads or machines), based on the **physical partitions**. This way we could use these information to create total reaction count materialized view.
 
 ### Problems with this approach
-1. Item Delete actions are not captured in ChangeFeed - Need seperate soft delete approach, where we gonna toggle Active state column to false during Delete action. And then use a CosmosDB Trigger to actually remove it based on that soft state. That way we would have an entry to capture Deletion in ChangeFeed. 
-2. Compute is distributed based on Physical Partition - This way we gonna have huge load on one Function to iterate through all changes happen during a one physical partition. If we have huge amount of reactions (1M) per post for a short period (Let's say 5sec), then all those reactions would need to be process by one Function. Which may result in Function timeout in consumption plan. Which is not ideal. We need more flexible scaling to handle such huge load. Maybe scale based on logical partition instead of physical partition.
-3. Handling Reaction Type change - If a user change his reaction to a different one, this change feed may not contain the previous reaction type to decrement previous reaction total count. Ex: Post have 10 Likes & 15 Hearts. A user change his reaction from Like to Heart should result in 9 Likes, 16 Hearts. This require additional implementation to handle such scenario.
+1. Item Delete actions are not captured in ChangeFeed - Need seperate soft delete approach, where we gonna toggle Active state column to false during Delete action. 
+And then use a CosmosDB Trigger to actually remove it based on that soft state. That way we would have an entry to capture Deletion in ChangeFeed. 
+2. Compute is distributed based on Physical Partition - This way we gonna have huge load on one Function to iterate through all changes happen during a one physical partition. 
+If we have huge amount of reactions (1M) per post for a short period (Let's say 5sec), then all those reactions would need to be process by one Function. 
+Which may result in Function timeout in consumption plan. Which is not ideal. We need more flexible scaling to handle such huge load. Maybe scale based on logical partition instead of physical partition.
+3. Handling Reaction Type change - If a user change his reaction to a different one, this change feed may not contain the previous reaction type to decrement previous reaction total count. 
+Ex: Post have 10 Likes & 15 Hearts. A user change his reaction from Like to Heart should result in 9 Likes, 16 Hearts. This require additional implementation to handle such scenario.
 
 
 ## Solution #2 - Events Publish to Service Bus Topic (Pushing)
+![Service Bus Topic](Solution2.png)
 
-In this solution, what we can do is instead rely on CosmosDB Event Sourcing store (the Change Feed) we manually maintain and publish our changes as Events to some store, where we can utilized this later by our Reaction Counting function. To store that, we can **Azure Service Bus Topics**, which implements Pub/Sub messaging model. In this case, using Pub/Sub model we could scale our applications to react to these events not just by one consumer but by multiple consumers. For example, today it's just the ReactionCounter function listen to these events, But tomorrow it gonna be another Service named Notification Service which gonna listen to those events and sending push notifications to the author of the post about reactions. And this model will push the data to it's consumers instead of pulling which greatly increase the responding time for the events. Also, we gonna use sessions, when crea
+In this solution, what we can do is instead rely on CosmosDB Event Sourcing store (the Change Feed) we manually maintain and publish our changes as Events to some store, where we can utilized this later by our Reaction Counting function. To store that, we can **Azure Service Bus Topics**, which implements Pub/Sub messaging model. 
+In this case, using Pub/Sub model we could scale our applications to react to these events not just by one consumer but by multiple consumers. For example, today it's just the ReactionCounter function listen to these events, But tomorrow it gonna be another Service named Notification Service which gonna listen to those events and sending push notifications to the author of the post about reactions. 
+And this model will push the data to it's consumers instead of pulling frequently, which greatly increase the responding time for those events. 
+Also, we gonna use sessions, when creating a subscription to this topic, to make sure the producer will send the same events related to the same post/comment to the same consumer. 
+This will make sure, there will be no update conflicts that could happen during two consumers try to update the reaction count for the same post/comment. Which could break our **NR# 4**.
