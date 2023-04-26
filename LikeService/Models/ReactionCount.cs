@@ -70,4 +70,13 @@ public record ReactionCount
             CommentId = @event.CommentId,
         }.WithDefaults();
     }
+
+    public static ReactionCount Map(Reaction reaction)
+    {
+        return new ReactionCount()
+        {
+            PostId = reaction.PostId,
+            CommentId = reaction.CommentId,
+        }.WithDefaults();
+    }
 }
