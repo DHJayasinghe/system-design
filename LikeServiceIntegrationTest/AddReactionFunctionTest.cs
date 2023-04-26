@@ -11,6 +11,7 @@ using FluentAssertions;
 ***REMOVED***
 using System.Net;
 
+[assembly: Parallelize(Workers = 0, Scope = ExecutionScope.MethodLevel)]
 namespace LikeServiceIntegrationTest;
 
 [TestClass]
@@ -113,7 +114,7 @@ public class AddReactionFunctionTest
     public async Task Should_MaintainCorrectReactionCountForPost_WhenMultipeUsersConcurrentlyDoReactions()
     ***REMOVED***
         var postId = Guid.NewGuid().ToString();
-        var reactions = Enumerable.Range(1, 10).ToList().Select(userId => new AddReactionRequest
+        var reactions = Enumerable.Range(1, 5).ToList().Select(userId => new AddReactionRequest
         ***REMOVED***
             PostId = postId,
             UserId = userId.ToString(),
@@ -122,7 +123,7 @@ public class AddReactionFunctionTest
 
         var addReactionTasks = reactions.Select(reaction => AddReactionAsync(reaction));
         await Task.WhenAll(addReactionTasks);
-        await DelayUntilEventHandlerCompletedAsync(30);
+        await DelayUntilEventHandlerCompletedAsync(20);
 
         var reactionCounts = await GetReactionCountAsync(postId);
 

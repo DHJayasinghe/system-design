@@ -70,4 +70,13 @@ public record ReactionCount
             CommentId = @event.CommentId,
     ***REMOVED***.WithDefaults();
 ***REMOVED***
+
+    public static ReactionCount Map(Reaction reaction)
+    ***REMOVED***
+        return new ReactionCount()
+        ***REMOVED***
+            PostId = reaction.PostId,
+            CommentId = reaction.CommentId,
+    ***REMOVED***.WithDefaults();
+***REMOVED***
 ***REMOVED***
