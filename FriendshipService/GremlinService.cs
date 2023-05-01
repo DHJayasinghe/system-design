@@ -39,4 +39,7 @@ public class GremlinService
     }
 
     public GraphTraversalSource G => g;
+
+    public string UpsertPersonQuery => "g.V().hasLabel('person').has('userId','{0}').fold().coalesce(unfold().property('name','{1}').property('email','{2}'), addV('person').property('userId','{0}').property('name','{1}').property('email','{2}').property('id','" + Guid.NewGuid() + "'))";
+    public string AddFriendshipQuery => "g.V().hasLabel('person').has('userId','{0}').addE('friends').to(g.V().hasLabel('person').has('userId','{1}'))";
 }
