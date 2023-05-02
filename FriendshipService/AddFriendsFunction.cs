@@ -31,14 +31,15 @@ public class AddFriendsFunction
         var persons = new string[]
         {
             string.Format(_gremlinService.UpsertPersonQuery,request.UserId,request.UserName,request.UserEmail),
-            string.Format(_gremlinService.UpsertPersonQuery,request.FriendId,request.FriendName,request.FriendEmail),
-            string.Format(_gremlinService.AddFriendshipQuery,request.UserId,request.FriendId),
+            string.Format(_gremlinService.UpsertPersonQuery,request.FriendId,request.FriendName,request.FriendEmail)
         };
+        var friendship = string.Format(_gremlinService.AddFriendshipQuery, request.UserId, request.FriendId);
 
         using (var gremlinClient = _gremlinService.CreateClient())
         {
             var requests = persons.Select(query => gremlinClient.SubmitAsync<dynamic>(query));
             await Task.WhenAll(requests);
+            await gremlinClient.SubmitAsync<dynamic>(friendship);
         }
 
         return req.OkResult();
