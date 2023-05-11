@@ -27,7 +27,7 @@ public class GetFriendsFunction
         var friends = new List<FriendsResponse>();
         using (var gremlinClient = _gremlinService.CreateClient())
         {
-            var results = await gremlinClient.SubmitAsync<dynamic>("g.V().hasLabel('person').has('userId', '" + userId + "').bothE('friends').inV().hasLabel('person').valueMap('name','email','userId').fold()");
+            var results = await gremlinClient.SubmitAsync<dynamic>("g.V().hasLabel('person').has('userId', '" + userId + "').both('friends').valueMap('name','email','userId').fold()");
 
             foreach (var result in results)
             {
