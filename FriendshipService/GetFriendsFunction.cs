@@ -24,6 +24,7 @@ public class GetFriendsFunction
     {
         _logger.LogInformation("C# HTTP trigger function processed a {0} request.", nameof(GetFriendsFunction));
         var userId = req.Query.Get("userId");
+
         var friends = new List<FriendsResponse>();
         using (var gremlinClient = _gremlinService.CreateClient())
         {
@@ -31,22 +32,27 @@ public class GetFriendsFunction
 
             foreach (var result in results)
             {
-                foreach (var item in result)
-                {
-                    Dictionary<string, string> expanedItem = GetItems(item);
-                    if (expanedItem["name"] is null) break;
-
-                    friends.Add(new FriendsResponse
-                    {
-                        Name = expanedItem["name"],
-                        Email = expanedItem["email"],
-                        UserId = expanedItem["userId"]
-                    });
-                }
+                GetFriend(friends, result);
             }
         }
 
         return req.OkObjectResult(friends);
+    }
+
+    private void GetFriend(List<FriendsResponse> friends, dynamic result)
+    {
+        foreach (var item in result)
+        {
+            Dictionary<string, string> expanedItem = GetItems(item);
+            if (expanedItem["name"] is null) break;
+
+            friends.Add(new FriendsResponse
+            {
+                Name = expanedItem["name"],
+                Email = expanedItem["email"],
+                UserId = expanedItem["userId"]
+            });
+        }
     }
 
     private static string GetValue(dynamic item)
@@ -68,7 +74,6 @@ public class GetFriendsFunction
         return itemsExpanded;
     }
 }
-
 
 public record FriendsResponse
 {

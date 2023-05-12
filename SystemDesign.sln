@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UrlShortenerService", "UrlS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{819536A1-7D95-4CD2-9189-ACF90C311AEB}"
 	ProjectSection(SolutionItems) = preProject
+		docker-compose-windows.yml = docker-compose-windows.yml
 		docker-compose.yaml = docker-compose.yaml
 	EndProjectSection
 EndProject
@@ -17,6 +18,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "IntegrationTests", "{481BB67A-8038-45BA-B759-1B66A877CCA4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LikeServiceIntegrationTest", "LikeServiceIntegrationTest\LikeServiceIntegrationTest.csproj", "{576A7794-1C20-475F-97D8-B6B7C26E3AB2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FriendshipService", "FriendshipService\FriendshipService.csproj", "{43EB4F1B-9D36-4C33-A5DF-FB99B89F0AF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +43,10 @@ Global
 		{576A7794-1C20-475F-97D8-B6B7C26E3AB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{576A7794-1C20-475F-97D8-B6B7C26E3AB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{576A7794-1C20-475F-97D8-B6B7C26E3AB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43EB4F1B-9D36-4C33-A5DF-FB99B89F0AF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43EB4F1B-9D36-4C33-A5DF-FB99B89F0AF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43EB4F1B-9D36-4C33-A5DF-FB99B89F0AF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43EB4F1B-9D36-4C33-A5DF-FB99B89F0AF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
