@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "FriendshipService": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 8083",
+      "launchBrowser": false
+    }
+  }
+}
