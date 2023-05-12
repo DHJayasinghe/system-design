@@ -1,4 +1,4 @@
-# FaceBook System Design
+# Facebook System Design
 
 This repository is about Facebook system design on core functionalities using Azure technologies.
 
