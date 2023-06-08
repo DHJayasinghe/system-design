@@ -1,0 +1,31 @@
+.new-post {
+      width: 500px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px;
+      background-color: #f7f7f7;
+    }
+
+    .post-form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .post-form input[type="text"],
+    .post-form textarea,
+    .post-form input[type="file"] {
+      margin-bottom: 10px;
+      padding: 5px;
+    }
+
+    .post-form button {
+      padding: 8px 12px;
+      background-color: #4e69a2;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    .post-form button:hover {
+      background-color: #314980;
+    }
