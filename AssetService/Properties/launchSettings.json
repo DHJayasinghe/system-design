@@ -2,7 +2,7 @@
   "profiles": {
     "AssetService": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7245",
+      "commandLineArgs": "--port 8083",
       "launchBrowser": false
     }
   }

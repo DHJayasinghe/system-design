@@ -28,7 +28,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnds", "FrontEnds", "{
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "facebook-spa", "facebook-spa\facebook-spa.esproj", "{98989A7D-B741-4F08-91F1-DD55F9B490E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetService", "AssetService\AssetService.csproj", "{ACC6E4A4-A4FD-4A77-8E06-D5434BA77A81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssetService", "AssetService\AssetService.csproj", "{ACC6E4A4-A4FD-4A77-8E06-D5434BA77A81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

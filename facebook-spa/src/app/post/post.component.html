@@ -1,8 +1,10 @@
 <div class="new-post">
   <form class="post-form">
     <textarea placeholder="Write your post"></textarea>
-    <input type="file" multiple (input)="onFileChange($event)">
-    <button type="submit"
-      id="fileInput">Post</button>
+    <input type="file"
+      multiple
+      (input)="onFileChange($event)">
+    <button type="button"
+      (click)="savePost()">Post</button>
   </form>
 </div>

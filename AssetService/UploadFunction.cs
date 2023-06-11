@@ -14,22 +14,24 @@ public class UploadFunction
 {
     private readonly string storageAccountName = "";
     private readonly string storageAccountKey = "";
+    public const string tempContainerName = "temp";
 
     public UploadFunction(IConfiguration configuration)
     {
         storageAccountName = configuration.GetValue<string>("StorageAccountName");
         storageAccountKey = configuration.GetValue<string>("StorageAccountKey");
     }
+
     [FunctionName(nameof(UploadFunction))]
     public IActionResult Run(
         [HttpTrigger(AuthorizationLevel.Function, "get", Route = "assets/upload-link")] HttpRequest req,
         ILogger log)
     {
-        log.LogInformation("C# HTTP trigger function processed a request.");
-        var containerName = "sample";
+        log.LogInformation("{0} HTTP trigger processed a request.", nameof(UploadFunction));
+
         var blobSasBuilder = new BlobSasBuilder()
         {
-            BlobContainerName = containerName,
+            BlobContainerName = tempContainerName,
             ExpiresOn = DateTime.UtcNow.AddMinutes(10)
         };
         blobSasBuilder.SetPermissions(BlobSasPermissions.Write);
@@ -38,7 +40,7 @@ public class UploadFunction
 
         return new OkObjectResult(new
         {
-            Container = containerName,
+            Container = tempContainerName,
             SasToken = $"https://{storageAccountName}.blob.core.windows.net?{sasToken}"
         });
     }
