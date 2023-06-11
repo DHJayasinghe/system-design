@@ -1,9 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { BlobServiceClient } from '@azure/storage-blob';
+import { BlobServiceClient, BlockBlobClient, BlockBlobStageBlockOptions } from '@azure/storage-blob';
 import { v4 as uuidv4 } from 'uuid';
-
-
 
 @Component({
   selector: 'app-post',
@@ -14,6 +12,7 @@ export class PostComponent implements OnInit {
   private sasToken: string = "";
   private container: string = "";
   private assetsToUpload: string[] = [];
+  public progress: number = 0;
 
   constructor(private http: HttpClient) { }
 
@@ -22,38 +21,61 @@ export class PostComponent implements OnInit {
   }
 
   async onFileChange($event: any) {
-    console.log('im here');
-    const files = $event.target.files;
+    const files = $event.target.files as File[];
 
     const blobServiceClient = new BlobServiceClient(this.sasToken);
     const containerClient = blobServiceClient.getContainerClient(this.container);
-
+    
     if (files && files.length > 0) {
       const file = files[0];
       const fileName = `${uuidv4()}.${file.name.split('.').pop()}`;
-      console.log(fileName);
       const blockBlobClient = containerClient.getBlockBlobClient(fileName);
-      await blockBlobClient.uploadData(file);
+      await this.uploadAsChunksAsync(file, blockBlobClient);
       this.assetsToUpload.push(fileName);
       console.log('File uploaded successfully.');
     }
-
-    // Process other form data and post content here
   }
 
+  private async uploadAsChunksAsync(file: File, blockBlobClient: BlockBlobClient) {
+    let uploadedBytes = 0;
+    const blockIDs: string[] = [];
+    const chunkSize = 1024 * 1024; // 1MB chunk size (adjust as needed)
+    const uploadOptions: BlockBlobStageBlockOptions = {
+      onProgress: () => {
+        const progress = Math.round((uploadedBytes / file.size) * 100);
+        this.progress = progress > 100 ? 100 : progress;
+      }
+    };
+
+    let offset = 0;
+    let blockNum = 0;
+
+    while (offset < file.size) {
+      uploadedBytes += chunkSize;
+      const chunk = file.slice(offset, offset + chunkSize);
+      const blockId = btoa(`block-${blockNum}`);
+      await blockBlobClient.stageBlock(
+        blockId,
+        chunk,
+        chunk.size,
+        uploadOptions
+      );
+      blockIDs.push(blockId);
+
+      offset += chunkSize;
+      blockNum++;
+    }
+    await blockBlobClient.commitBlockList(blockIDs);
+  }
 
   private getUploadLink(): void {
     const baseUrl: string = "http://localhost:8083";
     this.http.get<any>(`${baseUrl}/assets/upload-link`)
       .subscribe(
         (response: { container: string, sasToken: string }) => {
-          // Handle the response data
           const { container, sasToken } = response;
-          console.log('Container:', container);
-          console.log('SasToken:', sasToken);
           this.sasToken = sasToken;
           this.container = container;
-          // Further process the data as needed
         }
       );
   }
@@ -71,9 +93,12 @@ export class PostComponent implements OnInit {
     this.http.post<any>(`${baseUrl}/posts`, body, { headers })
       .subscribe(
         (response) => {
-
-          console.log('save');
+          this.assetsToUpload = [];
         }
       );
+  }
+
+  public disabled(): boolean {
+    return this.assetsToUpload.length === 0;
   }
 }
