@@ -18,7 +18,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "Integra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LikeServiceIntegrationTest", "LikeServiceIntegrationTest\LikeServiceIntegrationTest.csproj", "{576A7794-1C20-475F-97D8-B6B7C26E3AB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectingAzureFunctionsWithOnPrem", "ConnectingAzureFunctionsWithOnPrem\ConnectingAzureFunctionsWithOnPrem.csproj", "{200C5F10-DF96-4837-9FA7-A4D31B7EFC4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConnectingAzureFunctionsWithOnPrem", "ConnectingAzureFunctionsWithOnPrem\ConnectingAzureFunctionsWithOnPrem.csproj", "{200C5F10-DF96-4837-9FA7-A4D31B7EFC4E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostService", "PostService\PostService.csproj", "{F30D4FB3-2BB1-41AA-A713-7CF647B85B98}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{45345C67-3148-40BF-9C6C-5473D1DB28A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnds", "FrontEnds", "{8F0613D7-C87B-4ECC-9B83-139160ADB79B}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "facebook-spa", "facebook-spa\facebook-spa.esproj", "{98989A7D-B741-4F08-91F1-DD55F9B490E3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssetService", "AssetService\AssetService.csproj", "{ACC6E4A4-A4FD-4A77-8E06-D5434BA77A81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,12 +56,32 @@ Global
 		{200C5F10-DF96-4837-9FA7-A4D31B7EFC4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{200C5F10-DF96-4837-9FA7-A4D31B7EFC4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{200C5F10-DF96-4837-9FA7-A4D31B7EFC4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F30D4FB3-2BB1-41AA-A713-7CF647B85B98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F30D4FB3-2BB1-41AA-A713-7CF647B85B98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F30D4FB3-2BB1-41AA-A713-7CF647B85B98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F30D4FB3-2BB1-41AA-A713-7CF647B85B98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98989A7D-B741-4F08-91F1-DD55F9B490E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98989A7D-B741-4F08-91F1-DD55F9B490E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98989A7D-B741-4F08-91F1-DD55F9B490E3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{98989A7D-B741-4F08-91F1-DD55F9B490E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98989A7D-B741-4F08-91F1-DD55F9B490E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98989A7D-B741-4F08-91F1-DD55F9B490E3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{ACC6E4A4-A4FD-4A77-8E06-D5434BA77A81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACC6E4A4-A4FD-4A77-8E06-D5434BA77A81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACC6E4A4-A4FD-4A77-8E06-D5434BA77A81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACC6E4A4-A4FD-4A77-8E06-D5434BA77A81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{23315D24-7B98-4DEB-B966-33E160B71E35} = {45345C67-3148-40BF-9C6C-5473D1DB28A5}
+		{AED95450-A1AF-430A-81B2-EEDA3E209AEA} = {45345C67-3148-40BF-9C6C-5473D1DB28A5}
+		{2925CAF9-4DA3-467F-888F-53A9F81BC262} = {45345C67-3148-40BF-9C6C-5473D1DB28A5}
 		{576A7794-1C20-475F-97D8-B6B7C26E3AB2} = {481BB67A-8038-45BA-B759-1B66A877CCA4}
+		{F30D4FB3-2BB1-41AA-A713-7CF647B85B98} = {45345C67-3148-40BF-9C6C-5473D1DB28A5}
+		{98989A7D-B741-4F08-91F1-DD55F9B490E3} = {8F0613D7-C87B-4ECC-9B83-139160ADB79B}
+		{ACC6E4A4-A4FD-4A77-8E06-D5434BA77A81} = {45345C67-3148-40BF-9C6C-5473D1DB28A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0DF83925-0942-497F-BA27-4F22C7B65EBE}

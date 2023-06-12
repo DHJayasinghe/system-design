@@ -1,0 +1,20 @@
+<div class="new-post">
+  <form class="post-form">
+    <textarea placeholder="Write your post"></textarea>
+    <div class="file-upload">
+      <input type="file"
+        id="fileInput"
+        (input)="onFileChange($event)"
+        class="file-input">
+      <label for="fileInput"
+        class="file-label"> Choose File </label>
+      <div class="progress-bar">
+        <div class="progress"
+          [style.width.%]="progress"></div>
+      </div>
+    </div>
+    <br>
+    <button (click)="savePost()"
+      [disabled]="disabled()">Post</button>
+  </form>
+</div>

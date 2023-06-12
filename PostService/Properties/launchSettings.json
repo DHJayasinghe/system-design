@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "PostService": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 8084",
+      "launchBrowser": false
+    }
+  }
+}
