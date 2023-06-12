@@ -1,0 +1,109 @@
+***REMOVED***
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": ***REMOVED***
+    "analytics": "884a021c-4a95-49ef-9ce5-011f765aa07c"
+  ***REMOVED***,
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": ***REMOVED***
+    "facebook-spa": ***REMOVED***
+      "projectType": "***REMOVED***lication",
+      "schematics": ***REMOVED***
+        "@schematics/angular:***REMOVED***lication": ***REMOVED***
+          "strict": true
+    ***REMOVED***
+  ***REMOVED***,
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "***REMOVED***",
+      "architect": ***REMOVED***
+        "build": ***REMOVED***
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": ***REMOVED***
+            "outputPath": "dist/facebook-spa",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.***REMOVED***.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+      ***REMOVED***,
+          "configurations": ***REMOVED***
+            "production": ***REMOVED***
+              "budgets": [
+                ***REMOVED***
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+            ***REMOVED***,
+                ***REMOVED***
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+            ***REMOVED***
+              ],
+              "fileReplacements": [
+                ***REMOVED***
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+            ***REMOVED***
+              ],
+              "outputHashing": "all"
+        ***REMOVED***,
+            "development": ***REMOVED***
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+        ***REMOVED***
+      ***REMOVED***,
+          "defaultConfiguration": "production"
+    ***REMOVED***,
+        "serve": ***REMOVED***
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": ***REMOVED***
+            "production": ***REMOVED***
+              "browserTarget": "facebook-spa:build:production"
+        ***REMOVED***,
+            "development": ***REMOVED***
+              "browserTarget": "facebook-spa:build:development"
+        ***REMOVED***
+      ***REMOVED***,
+          "defaultConfiguration": "development"
+    ***REMOVED***,
+        "extract-i18n": ***REMOVED***
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": ***REMOVED***
+            "browserTarget": "facebook-spa:build"
+      ***REMOVED***
+    ***REMOVED***,
+        "test": ***REMOVED***
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": ***REMOVED***
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+      ***REMOVED***
+    ***REMOVED***
+  ***REMOVED***
+***REMOVED***
+  ***REMOVED***,
+  "defaultProject": "facebook-spa"
+***REMOVED***

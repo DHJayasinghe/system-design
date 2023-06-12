@@ -1,0 +1,70 @@
+***REMOVED***
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": ***REMOVED***
+    "resourceGroupName": ***REMOVED***
+      "type": "string",
+      "defaultValue": "azure-relay-function***REMOVED***-test",
+      "metadata": ***REMOVED***
+        "_parameterType": "resourceGroup",
+        "description": "Name of the resource group for the resource. It is recommended to put resources under same resource group for better tracking."
+  ***REMOVED***
+***REMOVED***,
+    "resourceGroupLocation": ***REMOVED***
+      "type": "string",
+      "defaultValue": "australiaeast",
+      "metadata": ***REMOVED***
+        "_parameterType": "location",
+        "description": "Location of the resource group. Resource groups could have different location than resources."
+  ***REMOVED***
+***REMOVED***,
+    "resourceLocation": ***REMOVED***
+      "type": "string",
+      "defaultValue": "[parameters('resourceGroupLocation')]",
+      "metadata": ***REMOVED***
+        "_parameterType": "location",
+        "description": "Location of the resource. By default use resource group's location, unless the resource provider is not supported there."
+  ***REMOVED***
+***REMOVED***
+  ***REMOVED***,
+  "resources": [
+    ***REMOVED***
+      "type": "Microsoft.Resources/resourceGroups",
+      "name": "[parameters('resourceGroupName')]",
+      "location": "[parameters('resourceGroupLocation')]",
+      "apiVersion": "2019-10-01"
+***REMOVED***,
+    ***REMOVED***
+      "type": "Microsoft.Resources/deployments",
+      "name": "[concat(parameters('resourceGroupName'), 'Deployment', uniqueString(concat('azrelayfunc***REMOVED***test', subscription().subscriptionId)))]",
+      "resourceGroup": "[parameters('resourceGroupName')]",
+      "apiVersion": "2019-10-01",
+      "dependsOn": [
+        "[parameters('resourceGroupName')]"
+      ],
+      "properties": ***REMOVED***
+        "mode": "Incremental",
+        "template": ***REMOVED***
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            ***REMOVED***
+              "sku": ***REMOVED***
+                "name": "Standard_LRS",
+                "tier": "Standard"
+          ***REMOVED***,
+              "kind": "StorageV2",
+              "name": "azrelayfunc***REMOVED***test",
+              "type": "Microsoft.Storage/storageAccounts",
+              "location": "[parameters('resourceLocation')]",
+              "apiVersion": "2017-10-01"
+        ***REMOVED***
+          ]
+    ***REMOVED***
+  ***REMOVED***
+***REMOVED***
+  ],
+  "metadata": ***REMOVED***
+    "_dependencyType": "storage.azure"
+  ***REMOVED***
+***REMOVED***

@@ -1,0 +1,8 @@
+***REMOVED***
+  "dependencies": ***REMOVED***
+    "storage1": ***REMOVED***
+      "type": "storage.emulator",
+      "connectionId": "AzureWebJobsStorage"
+***REMOVED***
+  ***REMOVED***
+***REMOVED***

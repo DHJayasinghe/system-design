@@ -1,0 +1,175 @@
+***REMOVED***
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": ***REMOVED***
+    "_dependencyType": "compute.function.windows.***REMOVED***Service"
+  ***REMOVED***,
+  "parameters": ***REMOVED***
+    "resourceGroupName": ***REMOVED***
+      "type": "string",
+      "defaultValue": "azure-relay-function***REMOVED***-test",
+      "metadata": ***REMOVED***
+        "description": "Name of the resource group for the resource. It is recommended to put resources under same resource group for better tracking."
+  ***REMOVED***
+***REMOVED***,
+    "resourceGroupLocation": ***REMOVED***
+      "type": "string",
+      "defaultValue": "australiaeast",
+      "metadata": ***REMOVED***
+        "description": "Location of the resource group. Resource groups could have different location than resources, however by default we use API versions from latest hybrid profile which support all locations for resource types we support."
+  ***REMOVED***
+***REMOVED***,
+    "resourceName": ***REMOVED***
+      "type": "string",
+      "defaultValue": "azure-relay-function***REMOVED***-test",
+      "metadata": ***REMOVED***
+        "description": "Name of the main resource to be created by this template."
+  ***REMOVED***
+***REMOVED***,
+    "resourceLocation": ***REMOVED***
+      "type": "string",
+      "defaultValue": "[parameters('resourceGroupLocation')]",
+      "metadata": ***REMOVED***
+        "description": "Location of the resource. By default use resource group's location, unless the resource provider is not supported there."
+  ***REMOVED***
+***REMOVED***
+  ***REMOVED***,
+  "resources": [
+    ***REMOVED***
+      "type": "Microsoft.Resources/resourceGroups",
+      "name": "[parameters('resourceGroupName')]",
+      "location": "[parameters('resourceGroupLocation')]",
+      "apiVersion": "2019-10-01"
+***REMOVED***,
+    ***REMOVED***
+      "type": "Microsoft.Resources/deployments",
+      "name": "[concat(parameters('resourceGroupName'), 'Deployment', uniqueString(concat(parameters('resourceName'), subscription().subscriptionId)))]",
+      "resourceGroup": "[parameters('resourceGroupName')]",
+      "apiVersion": "2019-10-01",
+      "dependsOn": [
+        "[parameters('resourceGroupName')]"
+      ],
+      "properties": ***REMOVED***
+        "mode": "Incremental",
+        "expressionEvaluationOptions": ***REMOVED***
+          "scope": "inner"
+    ***REMOVED***,
+        "parameters": ***REMOVED***
+          "resourceGroupName": ***REMOVED***
+            "value": "[parameters('resourceGroupName')]"
+      ***REMOVED***,
+          "resourceGroupLocation": ***REMOVED***
+            "value": "[parameters('resourceGroupLocation')]"
+      ***REMOVED***,
+          "resourceName": ***REMOVED***
+            "value": "[parameters('resourceName')]"
+      ***REMOVED***,
+          "resourceLocation": ***REMOVED***
+            "value": "[parameters('resourceLocation')]"
+      ***REMOVED***
+    ***REMOVED***,
+        "template": ***REMOVED***
+          "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": ***REMOVED***
+            "resourceGroupName": ***REMOVED***
+              "type": "string"
+        ***REMOVED***,
+            "resourceGroupLocation": ***REMOVED***
+              "type": "string"
+        ***REMOVED***,
+            "resourceName": ***REMOVED***
+              "type": "string"
+        ***REMOVED***,
+            "resourceLocation": ***REMOVED***
+              "type": "string"
+        ***REMOVED***
+      ***REMOVED***,
+          "variables": ***REMOVED***
+            "storage_name": "[toLower(concat('storage', uniqueString(concat(parameters('resourceName'), subscription().subscriptionId))))]",
+            "***REMOVED***ServicePlan_name": "[concat('Plan', uniqueString(concat(parameters('resourceName'), subscription().subscriptionId)))]",
+            "storage_ResourceId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', parameters('resourceGroupName'), '/providers/Microsoft.Storage/storageAccounts/', variables('storage_name'))]",
+            "***REMOVED***ServicePlan_ResourceId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', parameters('resourceGroupName'), '/providers/Microsoft.Web/serverFarms/', variables('***REMOVED***ServicePlan_name'))]",
+            "function_ResourceId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', parameters('resourceGroupName'), '/providers/Microsoft.Web/sites/', parameters('resourceName'))]"
+      ***REMOVED***,
+          "resources": [
+            ***REMOVED***
+              "location": "[parameters('resourceLocation')]",
+              "name": "[parameters('resourceName')]",
+              "type": "Microsoft.Web/sites",
+              "apiVersion": "2015-08-01",
+              "tags": ***REMOVED***
+                "[concat('hidden-related:', variables('***REMOVED***ServicePlan_ResourceId'))]": "empty"
+          ***REMOVED***,
+              "dependsOn": [
+                "[variables('***REMOVED***ServicePlan_ResourceId')]",
+                "[variables('storage_ResourceId')]"
+              ],
+              "kind": "function***REMOVED***",
+              "properties": ***REMOVED***
+                "name": "[parameters('resourceName')]",
+                "kind": "function***REMOVED***",
+                "httpsOnly": true,
+                "reserved": false,
+                "serverFarmId": "[variables('***REMOVED***ServicePlan_ResourceId')]",
+                "siteConfig": ***REMOVED***
+                  "alwaysOn": true
+            ***REMOVED***
+          ***REMOVED***,
+              "identity": ***REMOVED***
+                "type": "SystemAssigned"
+          ***REMOVED***,
+              "resources": [
+                ***REMOVED***
+                  "name": "***REMOVED***settings",
+                  "type": "config",
+                  "apiVersion": "2015-08-01",
+                  "dependsOn": [
+                    "[variables('function_ResourceId')]"
+                  ],
+                  "properties": ***REMOVED***
+                    "AzureWebJobsDashboard": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storage_name'), ';AccountKey=', listKeys(variables('storage_ResourceId'), '2017-10-01').keys[0].value, ';EndpointSuffix=', 'core.windows.net')]",
+                    "AzureWebJobsStorage": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storage_name'), ';AccountKey=', listKeys(variables('storage_ResourceId'), '2017-10-01').keys[0].value, ';EndpointSuffix=', 'core.windows.net')]",
+                    "FUNCTIONS_EXTENSION_VERSION": "~3",
+                    "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+              ***REMOVED***
+            ***REMOVED***
+              ]
+        ***REMOVED***,
+            ***REMOVED***
+              "location": "[parameters('resourceGroupLocation')]",
+              "name": "[variables('storage_name')]",
+              "type": "Microsoft.Storage/storageAccounts",
+              "apiVersion": "2017-10-01",
+              "tags": ***REMOVED***
+                "[concat('hidden-related:', concat('/providers/Microsoft.Web/sites/', parameters('resourceName')))]": "empty"
+          ***REMOVED***,
+              "properties": ***REMOVED***
+                "supportsHttpsTrafficOnly": true
+          ***REMOVED***,
+              "sku": ***REMOVED***
+                "name": "Standard_LRS"
+          ***REMOVED***,
+              "kind": "Storage"
+        ***REMOVED***,
+            ***REMOVED***
+              "location": "[parameters('resourceGroupLocation')]",
+              "name": "[variables('***REMOVED***ServicePlan_name')]",
+              "type": "Microsoft.Web/serverFarms",
+              "apiVersion": "2015-08-01",
+              "sku": ***REMOVED***
+                "name": "S1",
+                "tier": "Standard",
+                "family": "S",
+                "size": "S1"
+          ***REMOVED***,
+              "properties": ***REMOVED***
+                "name": "[variables('***REMOVED***ServicePlan_name')]"
+          ***REMOVED***
+        ***REMOVED***
+          ]
+    ***REMOVED***
+  ***REMOVED***
+***REMOVED***
+  ]
+***REMOVED***

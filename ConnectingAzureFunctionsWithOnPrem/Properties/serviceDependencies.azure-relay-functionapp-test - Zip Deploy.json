@@ -1,0 +1,9 @@
+***REMOVED***
+  "dependencies": ***REMOVED***
+    "storage1": ***REMOVED***
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/azrelayfunc***REMOVED***test",
+      "type": "storage.azure",
+      "connectionId": "AzureWebJobsStorage"
+***REMOVED***
+  ***REMOVED***
+***REMOVED***

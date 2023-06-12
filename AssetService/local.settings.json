@@ -1,0 +1,12 @@
+***REMOVED***
+  "IsEncrypted": false,
+  "Values": ***REMOVED***
+    "AzureWebJobsStorage": "STORAGE_ACCOUNT_KEY",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "StorageAccountName": "STORAGE_ACCOUNT_NAME",
+    "StorageAccountKey": "STORAGE_ACCOUNT_KEY"
+  ***REMOVED***,
+  "Host": ***REMOVED***
+    "CORS": "*"
+  ***REMOVED***
+***REMOVED***

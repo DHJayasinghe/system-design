@@ -1,0 +1,16 @@
+***REMOVED***
+  "version": "2.0",
+  "logging": ***REMOVED***
+    "***REMOVED***licationInsights": ***REMOVED***
+      "samplingSettings": ***REMOVED***
+        "isEnabled": true,
+        "excludedTypes": "Request"
+  ***REMOVED***
+***REMOVED***
+  ***REMOVED***,
+  "extensions": ***REMOVED***
+    "http": ***REMOVED***
+      "routePrefix": ""
+***REMOVED***
+  ***REMOVED***
+***REMOVED***
