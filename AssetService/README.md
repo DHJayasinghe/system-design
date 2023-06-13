@@ -26,7 +26,16 @@ The Assets Storage Account Blob Storage will have 3 containers.
 3. Videos - Storage container for videos
 
 The service will container 3 functions with there own resposibiltiy.
-1. Upload Function - This HTTP trigger function will responsible for generating SAS token with Write Permission to **Temp** Blob container. The function will generate a SAS token URL which is valid for 10mins, which can be consumed by the frontend to upload the assets as Chunks to Storage Accounts directly, to offload the traffic from the backend service. Which gonna cover our **NFR #4** and **NRF #3**.
+1. Upload Function - This HTTP trigger function will responsible for generating SAS token with Write Permission to **Temp** Blob container. The function will generate a SAS token URL which is valid for 10mins, which can be consumed by the frontend to upload the assets as Chunks to Storage Accounts directly, to offload the traffic from the backend service. Which gonna cover **NRF #3**. Having a SAS token valid for small time frame with just write permission to specific container, adhere a good security practice on Least Priviledge Principal, covers our NFR #4. 
 2. Save Function - This HTTP trigger function will responsible for copying the assets from **Temp** container to a original container based on the asset type. If the asset is an image, will get copied to **Images** container. If the asset is a video, will get copied to a **Videos** container. This service will be called by a backend service (the post service when the user save the post with links of the saved assets). The copy operation will happen on the Storage Account side, so there is no BLOB download upload operation happens on our backend service.
-3. Resize Function - This is a BLOB triggered function which gonna fires when there is an blob uploaded to Images container, and do resizing on them and saved to AssetsOptimized storage account.
+3. Resize Function - This is a BLOB triggered function which gonna fires when there is an blob uploaded to **Images** container, and do resizing on them to multiple resolutions and saved to **AssetsOptimized** storage account. This will cover our NFR #2.
+
+### Blob Lifecycle Management Policy
+Note: To put BLOB lifecycle policy you need to have StorageAccount v2 and **Enable access tracking** option checked on **Lifecycle management** section. 
+1. RemoveTemporaryBlobs Policy - This policy will delete all the assets on **Temp** container which have Last access time older than 1 day. This way our Temp container won't get grown with Temporary assets files. 
+2. MoveToColdStorage - This policy will move all the assets which have not accessed for 30 days to Cold storage. And back to Hot if it's accessed again. This will address our NFR #5 on storage & cost. So we won't have excessive storage cost for non-frequent acccess data. This will apply for both Storage Accounts according to the diagram.
+
+### Content Delivery Network (CDN)
+All the assets on **Assets** & **AssetsOptimized** storage accounts will be delivered to users via Azure CDN profile. Which will gonna cache our content on edge servers in point-of-presence (POP) locations close to the users. That way, users will have minimize latency on downloading content to their devices. Which gonna cover our NFR #1.
+
 
