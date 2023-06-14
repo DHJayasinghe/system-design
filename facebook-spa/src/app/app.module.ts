@@ -5,13 +5,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { PostComponent } from './post/post.component';
+import { CreatePostComponent } from './post/create-post.component';
 import { FormsModule } from '@angular/forms';
+import { DisplayPostComponent } from './display-post/display-post.component';
+import { TimelineComponent } from './timeline/timeline.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [			
     AppComponent,
-      PostComponent
+      CreatePostComponent,
+      DisplayPostComponent,
+      TimelineComponent
    ],
   imports: [
     BrowserModule,

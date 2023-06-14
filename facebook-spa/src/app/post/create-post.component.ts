@@ -5,10 +5,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css']
+  templateUrl: './create-post.component.html',
+  styleUrls: ['./create-post.component.css']
 })
-export class PostComponent implements OnInit {
+export class CreatePostComponent implements OnInit {
   private sasToken: string = "";
   private container: string = "";
   private assetsToUpload: string[] = [];

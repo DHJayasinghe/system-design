@@ -14,21 +14,21 @@ using PostService.Models;
 
 namespace PostService;
 
-public class AddPostFunction
+public class AddPostsFunction
 {
     private readonly IHttpClientFactory _httpClientFactory;
-    public AddPostFunction(IHttpClientFactory httpClientFactory)
+    public AddPostsFunction(IHttpClientFactory httpClientFactory)
     {
         _httpClientFactory = httpClientFactory;
     }
 
-    [FunctionName(nameof(AddPostFunction))]
+    [FunctionName(nameof(AddPostsFunction))]
     public async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "post", Route = "posts")] PostRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
     {
-        log.LogInformation("{0} HTTP trigger processed a request.", nameof(AddPostFunction));
+        log.LogInformation("{0} HTTP trigger processed a request.", nameof(AddPostsFunction));
 
         HttpContent content = new StringContent(JsonConvert.SerializeObject(new
         {

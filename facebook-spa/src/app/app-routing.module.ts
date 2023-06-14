@@ -1,9 +1,11 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { PostComponent } from "./post/post.component";
+import { CreatePostComponent } from "./post/create-post.component";
+import { TimelineComponent } from "./timeline/timeline.component";
 
 const routes: Routes = [
-    { path: 'post', component: PostComponent }
+    { path: '', component: CreatePostComponent },
+    { path: 'timeline', component: TimelineComponent }
 ];
 
 @NgModule({

@@ -1,0 +1,78 @@
+.post {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.post-author h4 {
+  margin: 0;
+  color: #333333;
+}
+
+.post-content p {
+  margin: 0;
+  color: #555555;
+}
+
+.post-actions {
+  margin-top: 15px;
+}
+
+.likes {
+  font-weight: bold;
+  margin-right: 10px;
+  color: #4a90e2;
+}
+
+.like-button,
+.comment-button {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-right: 10px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.like-button:hover,
+.comment-button:hover {
+  background-color: #3a7ac6;
+}
+
+.comment {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.comments img.avatar {
+  margin-right: 10px;
+}
+
+.comments h5 {
+  margin: 0;
+  color: #333333;
+}
+
+.comments p {
+  margin: 0;
+  color: #555555;
+}
