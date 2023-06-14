@@ -12,6 +12,7 @@ export class PostComponent implements OnInit {
   private sasToken: string = "";
   private container: string = "";
   private assetsToUpload: string[] = [];
+  public description: string = "";
   public progress: number = 0;
 
   constructor(private http: HttpClient) { }
@@ -25,7 +26,7 @@ export class PostComponent implements OnInit {
 
     const blobServiceClient = new BlobServiceClient(this.sasToken);
     const containerClient = blobServiceClient.getContainerClient(this.container);
-    
+
     if (files && files.length > 0) {
       const file = files[0];
       const fileName = `${uuidv4()}.${file.name.split('.').pop()}`;
@@ -83,7 +84,7 @@ export class PostComponent implements OnInit {
   public savePost() {
     const baseUrl: string = "http://localhost:8084";
     const body = {
-      description: 'Sample description',
+      description: this.description,
       assets: this.assetsToUpload
     };
     const headers = new HttpHeaders({

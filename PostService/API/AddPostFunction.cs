@@ -7,23 +7,29 @@ using System.Collections.Generic;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using PostService.Configs;
+using Microsoft.Azure.Cosmos;
+using System;
+using PostService.Models;
 
 namespace PostService;
 
-public class PostFunction
+public class AddPostFunction
 {
     private readonly IHttpClientFactory _httpClientFactory;
-    public PostFunction(IHttpClientFactory httpClientFactory)
+    public AddPostFunction(IHttpClientFactory httpClientFactory)
     {
         _httpClientFactory = httpClientFactory;
     }
 
-    [FunctionName(nameof(PostFunction))]
+    [FunctionName(nameof(AddPostFunction))]
     public async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "post", Route = "posts")] PostRequest req,
+        [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
     {
-        log.LogInformation("{0} HTTP trigger processed a request.", nameof(PostFunction));
+        log.LogInformation("{0} HTTP trigger processed a request.", nameof(AddPostFunction));
+
         HttpContent content = new StringContent(JsonConvert.SerializeObject(new
         {
             Assets = req.Assets
@@ -32,13 +38,22 @@ public class PostFunction
         using var httpClient = _httpClientFactory.CreateClient();
         content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
         var response = await httpClient.PostAsync("http://localhost:8083/assets", content);
-        var assets = response.Content.ReadAsAsync<HashSet<string>>();
+        var assets = await response.Content.ReadAsAsync<List<string>>();
+
+        var entity = Post.Map(req);
+        entity.Assets = assets;
+
+        var result = await cosmosClient
+          .GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.ContainerName)
+          .UpsertItemAsync(entity, new PartitionKey(entity.PostId));
+
         return new OkResult();
     }
 }
 
 public record PostRequest
 {
+    public Guid PostId { get; private init; } = Guid.NewGuid();
     public string Description { get; init; }
     public List<string> Assets { get; init; }
 }
