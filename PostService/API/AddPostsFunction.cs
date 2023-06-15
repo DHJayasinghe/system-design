@@ -54,6 +54,6 @@ public class AddPostsFunction
 public record PostRequest
 {
     public Guid PostId { get; private init; } = Guid.NewGuid();
-    public string Description { get; init; }
+    public string Content { get; init; }
     public List<string> Assets { get; init; }
 }

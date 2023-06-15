@@ -8,6 +8,7 @@ using PostService.Configs;
 using Microsoft.Azure.Cosmos;
 using PostService.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PostService.API;
 
@@ -22,17 +23,15 @@ public static class GetPostsFunction
         log.LogInformation("C# HTTP trigger function processed a request.");
 
         var feed = GetRecentPosts(cosmosClient);
-        var reactions = new List<Post>();
+        var posts = new List<Post>();
         while (feed.HasMoreResults)
         {
             var response = await feed.ReadNextAsync();
-            foreach (var item in response)
-            {
-                reactions.Add(item);
-            }
+            foreach (var post in response) posts.Add(post);
         }
+        posts.ForEach(post => post.Assets = post.Assets.Select(asset => "https://simadfutilityfuncaue.blob.core.windows.net/" + asset).ToList());
 
-        return new OkObjectResult(reactions);
+        return new OkObjectResult(posts.OrderByDescending(post => post.CreatedAt));
     }
 
 

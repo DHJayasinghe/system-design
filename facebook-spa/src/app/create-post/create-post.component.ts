@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BlobServiceClient, BlockBlobClient, BlockBlobStageBlockOptions } from '@azure/storage-blob';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -9,11 +9,16 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./create-post.component.css']
 })
 export class CreatePostComponent implements OnInit {
+  @Output() posted = new EventEmitter<boolean>();
   private sasToken: string = "";
   private container: string = "";
   private assetsToUpload: string[] = [];
-  public description: string = "";
-  public progress: number = 0;
+
+
+  content: string = "";
+  progress: number = 0;
+  saving: boolean = false;
+
 
   constructor(private http: HttpClient) { }
 
@@ -33,7 +38,6 @@ export class CreatePostComponent implements OnInit {
       const blockBlobClient = containerClient.getBlockBlobClient(fileName);
       await this.uploadAsChunksAsync(file, blockBlobClient);
       this.assetsToUpload.push(fileName);
-      console.log('File uploaded successfully.');
     }
   }
 
@@ -82,9 +86,13 @@ export class CreatePostComponent implements OnInit {
   }
 
   public savePost() {
+    if (this.saving) return;
+
+    this.saving = true;
+
     const baseUrl: string = "http://localhost:8084";
     const body = {
-      description: this.description,
+      content: this.content,
       assets: this.assetsToUpload
     };
     const headers = new HttpHeaders({
@@ -93,13 +101,27 @@ export class CreatePostComponent implements OnInit {
 
     this.http.post<any>(`${baseUrl}/posts`, body, { headers })
       .subscribe(
-        (response) => {
-          this.assetsToUpload = [];
+        {
+          next: (response) => {
+            console.log(response);
+            this.newPost();
+          },
+          error: (error) => {
+
+          }
         }
       );
   }
 
+  public newPost() {
+    this.posted.emit(true);
+    this.saving = false;
+    this.assetsToUpload = [];
+    this.content = "";
+    this.progress = 0;
+  }
+
   public disabled(): boolean {
-    return this.assetsToUpload.length === 0;
+    return this.assetsToUpload.length === 0 || this.saving;
   }
 }

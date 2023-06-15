@@ -31,7 +31,7 @@ public class CreateInfrastructure
         tasks.Add(cosmosClient.GetDatabase(CosmosDbConfigs.DatabaseName)
             .DefineContainer(name: CosmosDbConfigs.ContainerName, partitionKeyPath: $"/{nameof(Post.PostId)}")
             .WithUniqueKey()
-                .Path($"/{nameof(Post.UserId)}")
+                .Path($"/{nameof(Post.AuthorId)}")
             .Attach()
             .CreateIfNotExistsAsync());
 

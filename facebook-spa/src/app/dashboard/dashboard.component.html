@@ -1,2 +1,2 @@
-<app-create-post></app-create-post>
-<app-timeline></app-timeline>
+<app-create-post (posted)="refreshTimeline()"></app-create-post>
+<app-timeline [version]="timelineVersion"></app-timeline>

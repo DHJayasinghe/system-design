@@ -1,17 +1,20 @@
-<div class="post">
+<div class="post"
+  *ngIf="post">
   <div class="post-header">
-    <img src="user_avatar.jpg"
+    <img src="https://ui-avatars.com/api/?name={{post.authorName}}&background=random&rounded=true&format=png"
       alt="User Avatar"
       class="avatar">
     <div class="post-author">
-      <h4>John Doe</h4>
-      <p>Posted on June 14, 2023</p>
+      <h4>{{post.authorName}}</h4>
+      <p>Posted {{getPostedTime(post.createdAt)}}</p>
     </div>
   </div>
   <div class="post-content">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla faucibus lorem nec fringilla. Sed sed faucibus ex.
-      In non risus mattis, efficitur tellus ac, suscipit nulla. Sed malesuada, nisi ac sollicitudin luctus, justo lacus
-      lacinia sem, id rutrum purus dolor ut libero.</p>
+    <img *ngFor="let asset of post.assets"
+      [src]="asset"
+      alt="Posted Asset"
+      class="post-asset">
+    <p>{{post.content}}</p>
   </div>
   <div class="post-actions">
     <span class="likes">100 likes</span>
@@ -20,12 +23,12 @@
   </div>
   <div class="comments">
     <div class="comment">
-      <img src="commenter_avatar.jpg"
+      <img src="https://ui-avatars.com/api/?name=John+Doe&background=random&rounded=true&format=png"
         alt="Commenter Avatar"
         class="avatar">
       <div class="comment-content">
-        <h5>Jane Smith</h5>
-        <p>Great post! Keep it up!</p>
+        <h5>John Doe</h5>
+        <p>My Comment</p>
       </div>
     </div>
     <!-- Additional comments -->

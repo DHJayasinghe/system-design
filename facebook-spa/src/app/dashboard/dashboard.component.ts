@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  timelineVersion = 1;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  public refreshTimeline(){
+    this.timelineVersion = new Date().getTime();
+  }
 }

@@ -1,9 +1,8 @@
 .post {
-  background-color: #ffffff;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 15px;
+  padding: 10px;
   margin-bottom: 20px;
+  background-color: #fff;
 }
 
 .post-header {
@@ -19,42 +18,61 @@
   margin-right: 10px;
 }
 
-.post-author h4 {
-  margin: 0;
-  color: #333333;
+.post-author {
+  flex: 1;
 }
 
-.post-content p {
-  margin: 0;
-  color: #555555;
+.post-content {
+  margin-bottom: 10px;
 }
 
 .post-actions {
-  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .likes {
   font-weight: bold;
   margin-right: 10px;
-  color: #4a90e2;
 }
 
 .like-button,
 .comment-button {
-  background-color: #4a90e2;
-  color: white;
   border: none;
-  padding: 8px 15px;
-  border-radius: 20px;
+  background-color: transparent;
   cursor: pointer;
   margin-right: 10px;
   font-weight: bold;
-  transition: background-color 0.3s;
+  color: #385898;
+  display: flex;
+  align-items: center;
 }
 
 .like-button:hover,
 .comment-button:hover {
-  background-color: #3a7ac6;
+  text-decoration: underline;
+}
+
+.like-button .icon,
+.comment-button .icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  fill: #385898;
+}
+
+@media screen and (max-width: 768px) {
+  .like-button,
+  .comment-button {
+    font-size: 14px;
+  }
+}
+
+
+.comments {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
 }
 
 .comment {
@@ -63,16 +81,40 @@
   margin-bottom: 10px;
 }
 
-.comments img.avatar {
+.comment-content {
+  margin-left: 10px;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
   margin-right: 10px;
 }
 
-.comments h5 {
-  margin: 0;
-  color: #333333;
+@media screen and (max-width: 768px) {
+  .post-header {
+    flex-wrap: wrap;
+  }
+
+  .post-content,
+  .post-actions {
+    margin-left: 50px;
+  }
+
+  .comments {
+    padding-left: 40px;
+  }
+
+  .avatar {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
 }
 
-.comments p {
-  margin: 0;
-  color: #555555;
+.post-asset {
+  width: auto;
+  max-height: 400px;
+  margin-top: 10px;
 }

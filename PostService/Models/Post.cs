@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace PostService.Models
@@ -8,9 +9,12 @@ namespace PostService.Models
         [JsonProperty("id")]
         public string Id { get; set; }
         public string PostId { get; set; }
-        public string UserId { get; set; }
-        public string Description { get; set; }
+        public string AuthorId { get; set; }
+        public string AuthorName { get; set; } = "Dhanuka Jayasinghe";
+        public string Content { get; set; }
         public List<string> Assets { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
 
         public static Post Map(PostRequest request)
         {
@@ -18,7 +22,7 @@ namespace PostService.Models
             {
                 Id = request.PostId.ToString(),
                 PostId = request.PostId.ToString(),
-                Description = request.Description,
+                Content = request.Content,
                 Assets = request.Assets,
             };
         }
