@@ -4,7 +4,7 @@ import { BlobServiceClient, BlockBlobClient, BlockBlobStageBlockOptions } from '
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
-  selector: 'app-post',
+  selector: 'app-create-post',
   templateUrl: './create-post.component.html',
   styleUrls: ['./create-post.component.css']
 })

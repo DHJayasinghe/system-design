@@ -5,17 +5,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { CreatePostComponent } from './post/create-post.component';
+import { CreatePostComponent } from './create-post/create-post.component';
 import { FormsModule } from '@angular/forms';
 import { DisplayPostComponent } from './display-post/display-post.component';
 import { TimelineComponent } from './timeline/timeline.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [			
+  declarations: [				
     AppComponent,
       CreatePostComponent,
       DisplayPostComponent,
-      TimelineComponent
+      TimelineComponent,
+      DashboardComponent
    ],
   imports: [
     BrowserModule,
