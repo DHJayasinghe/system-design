@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-timeline',
@@ -19,8 +20,7 @@ export class TimelineComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes['version'].currentValue);
-    const baseUrl: string = "http://localhost:8084";
-    this.http.get<Post[]>(`${baseUrl}/posts`)
+    this.http.get<Post[]>(`${environment.baseUrl}/posts`)
       .subscribe(
         (posts) => {
           this.posts = posts;

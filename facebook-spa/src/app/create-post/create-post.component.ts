@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BlobServiceClient, BlockBlobClient, BlockBlobStageBlockOptions } from '@azure/storage-blob';
+import { environment } from 'src/environments/environment';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -74,8 +75,7 @@ export class CreatePostComponent implements OnInit {
   }
 
   private getUploadLink(): void {
-    const baseUrl: string = "http://localhost:8083";
-    this.http.get<any>(`${baseUrl}/assets/upload-link`)
+    this.http.get<any>(`${environment.baseUrl}/assets/upload-link`)
       .subscribe(
         (response: { container: string, sasToken: string }) => {
           const { container, sasToken } = response;
@@ -90,7 +90,6 @@ export class CreatePostComponent implements OnInit {
 
     this.saving = true;
 
-    const baseUrl: string = "http://localhost:8084";
     const body = {
       content: this.content,
       assets: this.assetsToUpload
@@ -99,7 +98,7 @@ export class CreatePostComponent implements OnInit {
       'Content-Type': 'application/json'
     });
 
-    this.http.post<any>(`${baseUrl}/posts`, body, { headers })
+    this.http.post<any>(`${environment.baseUrl}/posts`, body, { headers })
       .subscribe(
         {
           next: (response) => {

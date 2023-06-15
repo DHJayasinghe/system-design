@@ -30,6 +30,8 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "facebook-spa", "facebook-sp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssetService", "AssetService\AssetService.csproj", "{ACC6E4A4-A4FD-4A77-8E06-D5434BA77A81}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiGateway", "WebApiGateway\WebApiGateway.csproj", "{7ED228EC-2FB4-4052-B5A0-81F39543E27D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,6 +72,10 @@ Global
 		{ACC6E4A4-A4FD-4A77-8E06-D5434BA77A81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACC6E4A4-A4FD-4A77-8E06-D5434BA77A81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACC6E4A4-A4FD-4A77-8E06-D5434BA77A81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7ED228EC-2FB4-4052-B5A0-81F39543E27D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ED228EC-2FB4-4052-B5A0-81F39543E27D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ED228EC-2FB4-4052-B5A0-81F39543E27D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ED228EC-2FB4-4052-B5A0-81F39543E27D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +88,7 @@ Global
 		{F30D4FB3-2BB1-41AA-A713-7CF647B85B98} = {45345C67-3148-40BF-9C6C-5473D1DB28A5}
 		{98989A7D-B741-4F08-91F1-DD55F9B490E3} = {8F0613D7-C87B-4ECC-9B83-139160ADB79B}
 		{ACC6E4A4-A4FD-4A77-8E06-D5434BA77A81} = {45345C67-3148-40BF-9C6C-5473D1DB28A5}
+		{7ED228EC-2FB4-4052-B5A0-81F39543E27D} = {45345C67-3148-40BF-9C6C-5473D1DB28A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0DF83925-0942-497F-BA27-4F22C7B65EBE}
