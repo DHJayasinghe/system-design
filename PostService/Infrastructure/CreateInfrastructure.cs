@@ -20,7 +20,7 @@ public class CreateInfrastructure
 
     [FunctionName(nameof(CreateInfrastructure))]
     public async Task<IActionResult> Run(
-        [HttpTrigger(AuthorizationLevel.Function, "post", Route = "infrastructure")] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "infrastructure")] HttpRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
     {

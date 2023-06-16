@@ -8,9 +8,9 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using PostService.Configs;
-using Microsoft.Azure.Cosmos;
 using System;
 using PostService.Models;
+using Microsoft.Azure.Cosmos;
 
 namespace PostService;
 
@@ -24,7 +24,7 @@ public class AddPostsFunction
 
     [FunctionName(nameof(AddPostsFunction))]
     public async Task<IActionResult> Run(
-        [HttpTrigger(AuthorizationLevel.Function, "post", Route = "posts")] PostRequest req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "posts")] PostRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
     {

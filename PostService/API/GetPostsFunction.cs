@@ -16,7 +16,7 @@ public static class GetPostsFunction
 {
     [FunctionName("GetPostsFunction")]
     public static async Task<IActionResult> Run(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "posts")] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "posts")] HttpRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
     {
