@@ -7,8 +7,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": "8083"
+          "Host": "asset.service",
+          "Port": "80"
         }
       ]
     },
@@ -19,8 +19,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": "8084"
+          "Host": "post.service",
+          "Port": "80"
         }
       ]
     },
@@ -31,8 +31,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": "8084"
+          "Host": "post.service",
+          "Port": "80"
         }
       ]
     },
@@ -43,8 +43,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": "8082"
+          "Host": "reaction.service",
+          "Port": "80"
         }
       ]
     }

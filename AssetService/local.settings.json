@@ -1,9 +1,9 @@
 {
-  "IsEncrypted": false,
+    "IsEncrypted": false,
   "Values": {
-    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=simadfutilityfuncaue;AccountKey=S3a3RBEnzDqPv/IWYy2njQB5TXIOnvnQbSLw1WK4oaM3c8qG4cfA8g+ub5glW2qClVMGT5izM5tz+ASt3MqyyQ==;EndpointSuffix=core.windows.net",
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-    "StorageAccountName": "simadfutilityfuncaue",
-    "StorageAccountKey": "S3a3RBEnzDqPv/IWYy2njQB5TXIOnvnQbSLw1WK4oaM3c8qG4cfA8g+ub5glW2qClVMGT5izM5tz+ASt3MqyyQ=="
+    "StorageAccountName": "STORAGE_ACCOUNT_NAME",
+    "StorageAccountKey": "STORAGE_ACCOUNT_KEY"
   }
 }
