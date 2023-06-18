@@ -9,7 +9,7 @@ services:
     networks: 
       - system-design
     environment:
-      - ConnectionStrings__CosmosDB=AccountEndpoint=https://dev-jrc-bna-cosmos-db-aue.documents.azure.com:443/;AccountKey=7rn1L01xPCmbKs2u8hNyNH2qWk3yQGQTb4gN7FJJrE4mZAGJQcE7wx8FbF1RMLrbdaJgGyQN2pNWaAWNUaNnUw==
+      - ConnectionStrings__CosmosDB=AccountEndpoint=CONNECTION_STRING
       - AssetService=http://web.apigateway/assets
 
   asset.service:
@@ -21,9 +21,9 @@ services:
     networks: 
       - system-design
     environment:
-      - AzureWebJobsStorage=DefaultEndpointsProtocol=https;AccountName=simadfutilityfuncaue;AccountKey=S3a3RBEnzDqPv/IWYy2njQB5TXIOnvnQbSLw1WK4oaM3c8qG4cfA8g+ub5glW2qClVMGT5izM5tz+ASt3MqyyQ==;EndpointSuffix=core.windows.net
-      - StorageAccountName=simadfutilityfuncaue
-      - StorageAccountKey=S3a3RBEnzDqPv/IWYy2njQB5TXIOnvnQbSLw1WK4oaM3c8qG4cfA8g+ub5glW2qClVMGT5izM5tz+ASt3MqyyQ==
+      - AzureWebJobsStorage=CONNECTION_STRING
+      - StorageAccountName=
+      - StorageAccountKey=
 
   reaction.service:
     container_name: reaction.service
@@ -34,8 +34,8 @@ services:
     networks: 
       - system-design
     environment:
-      - ConnectionStrings__CosmosDB=AccountEndpoint=https://dev-jrc-bna-cosmos-db-aue.documents.azure.com:443/;AccountKey=7rn1L01xPCmbKs2u8hNyNH2qWk3yQGQTb4gN7FJJrE4mZAGJQcE7wx8FbF1RMLrbdaJgGyQN2pNWaAWNUaNnUw==
-      - ConnectionStrings__ServiceBus=Endpoint=sb://staging-jrc-bna-services-aue.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=w/uUf0Ta/UBao4jxjci4SvYEVBdxH/z/L8nrregrNq0=
+      - ConnectionStrings__CosmosDB=AccountEndpoint=CONNECTION_STRING
+      - ConnectionStrings__ServiceBus=CONNECTION_STRING
 
   web.apigateway:
     container_name: web.apigateway
