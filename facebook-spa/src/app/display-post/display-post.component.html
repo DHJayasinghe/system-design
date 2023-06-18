@@ -19,18 +19,10 @@
   <div class="post-actions">
     <span class="likes">100 likes</span>
     <button class="like-button">Like</button>
-    <button class="comment-button">Comment</button>
-  </div>
-  <div class="comments">
-    <div class="comment">
-      <img src="https://ui-avatars.com/api/?name=John+Doe&background=random&rounded=true&format=png"
-        alt="Commenter Avatar"
-        class="avatar">
-      <div class="comment-content">
-        <h5>John Doe</h5>
-        <p>My Comment</p>
-      </div>
-    </div>
-    <!-- Additional comments -->
+    <button class="comment-button"
+      (click)="showCommentSection=true">Comment</button>
   </div>
 </div>
+<app-view-comments *ngIf="showCommentSection"
+  [postId]="post?.id"
+  (dismissed)="showCommentSection=false"></app-view-comments>

@@ -14,26 +14,20 @@ export class TimelineComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-  
-    
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes['version'].currentValue);
     this.http.get<Post[]>(`${environment.baseUrl}/posts`)
       .subscribe(
         (posts) => {
           this.posts = posts;
         }
       );
-  }
-
+  } 
 }
 
-
-
 export interface Post {
-  id: number;
+  id: string;
   content: string;
   authorName: string;
   createdAt: Date;

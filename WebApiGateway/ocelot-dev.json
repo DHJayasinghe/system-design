@@ -1,0 +1,70 @@
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/assets",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamPathTemplate": "/assets",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8083"
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/assets/{catchAll}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamPathTemplate": "/assets/{catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8083"
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/posts",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamPathTemplate": "/posts",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8084"
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/posts/{catchAll}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamPathTemplate": "/posts/{catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8084"
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/reactions/{catchAll}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamPathTemplate": "/reactions/{catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "reaction.service",
+          "Port": "80"
+        }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "RateLimitOptions": {
+      "DisableRateLimitHeaders": false,
+      "QuotaExceededMessage": "API calls quota exceeded. Please try again later."
+    }
+  }
+}

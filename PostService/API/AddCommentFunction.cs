@@ -1,35 +1,48 @@
 using System;
-using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+using PostService.Configs;
+using Microsoft.Azure.Cosmos;
+using System.Net.Http;
+using Microsoft.Extensions.Configuration;
+using PostService.Models;
 
-namespace PostService.API
+namespace PostService.API;
+
+public class AddCommentFunction
 {
-    public static class AddCommentFunction
+    private readonly IHttpClientFactory _httpClientFactory;
+    private readonly IConfiguration _configuration;
+
+    public AddCommentFunction(IHttpClientFactory httpClientFactory, IConfiguration configuration)
     {
-        [FunctionName("AddCommentFunction")]
-        public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "comments")] HttpRequest req,
-            ILogger log)
-        {
-            log.LogInformation("C# HTTP trigger function processed a request.");
-
-            string name = req.Query["name"];
-
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name = name ?? data?.name;
-
-            string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
-
-            return new OkObjectResult(responseMessage);
-        }
+        _httpClientFactory = httpClientFactory;
+        _configuration = configuration;
     }
+
+    [FunctionName(nameof(AddCommentFunction))]
+    public async Task<IActionResult> Run(
+        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "posts/{postId}/comments")] AddCommentRequest req,
+        Guid postId,
+        [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: nameof(Comment), Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
+        ILogger log)
+    {
+        log.LogInformation("{0} HTTP trigger processed a request.", nameof(AddPostsFunction));
+
+        var entity = Comment.Map(postId, req);
+
+        var result = await cosmosClient
+          .GetContainer(CosmosDbConfigs.DatabaseName, nameof(Comment))
+          .CreateItemAsync(entity, new PartitionKey(entity.PostId));
+
+        return new OkObjectResult(new { Id = result.Resource.Id });
+    }
+}
+
+public record AddCommentRequest
+{
+    public string Content { get; init; }
 }

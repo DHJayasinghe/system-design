@@ -20,7 +20,7 @@ public class CreateInfrastructure
 
     [FunctionName(nameof(CreateInfrastructure))]
     public async Task<IActionResult> Run(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "infrastructure")] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "posts/infrastructure")] HttpRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
     {
@@ -32,6 +32,12 @@ public class CreateInfrastructure
             .DefineContainer(name: CosmosDbConfigs.ContainerName, partitionKeyPath: $"/{nameof(Post.PostId)}")
             .WithUniqueKey()
                 .Path($"/{nameof(Post.AuthorId)}")
+            .Attach()
+            .CreateIfNotExistsAsync());
+        tasks.Add(cosmosClient.GetDatabase(CosmosDbConfigs.DatabaseName)
+            .DefineContainer(name: nameof(Comment), partitionKeyPath: $"/{nameof(Comment.PostId)}")
+            .WithUniqueKey()
+                .Path($"/{nameof(Comment.CommentId)}")
             .Attach()
             .CreateIfNotExistsAsync());
 

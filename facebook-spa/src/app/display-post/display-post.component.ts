@@ -8,12 +8,14 @@ import { Post } from '../timeline/timeline.component';
 })
 export class DisplayPostComponent implements OnInit {
   @Input() post?: Post;
+  showCommentSection = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  getPostedTime(date:Date) {
+  getPostedTime(date: Date) {
     const now = new Date();
     const postedDate = new Date(date);
 
@@ -35,5 +37,4 @@ export class DisplayPostComponent implements OnInit {
       return `${days} days ago`;
     }
   }
-
 }

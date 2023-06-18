@@ -1,0 +1,95 @@
+.comment-popup {
+  /* display: none; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.comment-popup-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.comment-popup-content h3 {
+  margin-top: 0;
+}
+
+.comments-list {
+  list-style: none;
+  padding: 0;
+}
+
+.comment {
+  margin-bottom: 10px;
+}
+
+.comment-user {
+  font-weight: bold;
+}
+
+.comment-content {
+  margin-left: 10px;
+}
+
+.comment-form {
+  margin-top: 10px;
+}
+
+.comment-input {
+  width: 100%;
+  height: 60px;
+  resize: none;
+}
+
+.comment-submit-button {
+  margin-top: 10px;
+}
+
+.comment-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comment-bar .comment-input {
+  width: calc(100% - 100px);
+  height: 30px;
+  resize: none;
+  padding: 5px;
+}
+
+.comment-bar .comment-submit-button {
+  width: 80px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+/* Additional styles for responsiveness */
+@media (max-width: 600px) {
+  .comment-popup-content {
+    width: 90%;
+  }
+  
+  .comment-bar .comment-input {
+    width: calc(100% - 90px);
+  }
+  
+  .comment-bar .comment-submit-button {
+    width: 80px;
+    margin-left: 10px;
+  }
+}

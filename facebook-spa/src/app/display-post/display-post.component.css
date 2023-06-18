@@ -102,10 +102,6 @@
     margin-left: 50px;
   }
 
-  .comments {
-    padding-left: 40px;
-  }
-
   .avatar {
     width: 20px;
     height: 20px;
@@ -118,3 +114,6 @@
   max-height: 400px;
   margin-top: 10px;
 }
+
+
+

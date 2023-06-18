@@ -8,7 +8,6 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using PostService.Configs;
-using System;
 using PostService.Models;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +18,7 @@ public class AddPostsFunction
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly IConfiguration _configuration;
+
     public AddPostsFunction(IHttpClientFactory httpClientFactory, IConfiguration configuration)
     {
         _httpClientFactory = httpClientFactory;
@@ -33,14 +33,15 @@ public class AddPostsFunction
     {
         log.LogInformation("{0} HTTP trigger processed a request.", nameof(AddPostsFunction));
 
-        HttpContent content = new StringContent(JsonConvert.SerializeObject(new
+        var content = new StringContent(JsonConvert.SerializeObject(new
         {
             Assets = req.Assets
         }));
 
-        Console.WriteLine(_configuration.GetValue<string>("AssetService"));
+
         using var httpClient = _httpClientFactory.CreateClient();
         content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
         var response = await httpClient.PostAsync(_configuration.GetValue<string>("AssetService"), content);
         var assets = await response.Content.ReadAsAsync<List<string>>();
 
@@ -49,15 +50,14 @@ public class AddPostsFunction
 
         var result = await cosmosClient
           .GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.ContainerName)
-          .UpsertItemAsync(entity, new PartitionKey(entity.PostId));
+          .CreateItemAsync(entity, new PartitionKey(entity.PostId));
 
-        return new OkResult();
+        return new OkObjectResult(result.Resource.PostId);
     }
 }
 
 public record PostRequest
 {
-    public Guid PostId { get; private init; } = Guid.NewGuid();
     public string Content { get; init; }
     public List<string> Assets { get; init; }
 }

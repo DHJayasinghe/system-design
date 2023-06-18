@@ -6,23 +6,26 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { CreatePostComponent } from './create-post/create-post.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DisplayPostComponent } from './display-post/display-post.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ViewCommentsComponent } from './view-comments/view-comments.component';
 
 @NgModule({
-  declarations: [				
+  declarations: [					
     AppComponent,
       CreatePostComponent,
       DisplayPostComponent,
       TimelineComponent,
-      DashboardComponent
+      DashboardComponent,
+      ViewCommentsComponent
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [],
