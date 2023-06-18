@@ -17,12 +17,12 @@
     <p>{{post.content}}</p>
   </div>
   <div class="post-actions">
-    <span class="likes">100 likes</span>
+    <span class="likes" *ngIf="reactionCount?.totalReactions">{{reactionCount?.totalReactions}} likes</span>
     <button class="like-button" (click)="showReactionButtons=!showReactionButtons">Like</button>
     <button class="comment-button"
       (click)="showCommentSection=true">Comment</button>
   </div>
-  <app-add-reaction [postId]="post.id" *ngIf="showReactionButtons"></app-add-reaction>
+  <app-add-reaction [postId]="post.id" *ngIf="showReactionButtons" (changed)="getReactionCount()"></app-add-reaction>
 </div>
 <app-view-comments *ngIf="showCommentSection"
   [postId]="post?.id"

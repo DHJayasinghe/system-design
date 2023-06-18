@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -8,8 +8,10 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./add-reaction.component.css']
 })
 export class AddReactionComponent implements OnInit {
-  @Input() postId = "";
-  @Input() commentId = "";
+  @Input() postId?:string;
+  @Input() commentId?: string;
+  @Output() changed = new EventEmitter<boolean>();
+
   reactionType = ReactionType;
 
   constructor(private http: HttpClient) { }
@@ -19,7 +21,7 @@ export class AddReactionComponent implements OnInit {
 
   react(reactionType: ReactionType) {
     this.http.put(`${environment.baseUrl}/reactions`, { postId: this.postId, commentId: this.commentId, reactionType: reactionType, userId: 1 }).subscribe({
-      next: () => { },
+      next: () => { this.changed.emit(true); },
       error: (error) => {
         console.log(error);
       }
