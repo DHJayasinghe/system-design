@@ -21,7 +21,7 @@ public record ReactionCount
 
     public ReactionCount WithDefaults()
     {
-        Id = $"{CommentId ?? PostId}";
+        Id = string.IsNullOrEmpty(CommentId) ? PostId : CommentId;
         Timestamp = DateTime.UtcNow;
         return this;
     }

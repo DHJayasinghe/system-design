@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { ReactionCount } from '../display-post/display-post.component';
 
 @Component({
   selector: 'app-view-comments',
@@ -13,6 +14,7 @@ export class ViewCommentsComponent implements OnInit {
   @Output() dismissed = new EventEmitter<boolean>(false);
 
   comments: Comment[] = [];
+  reactionCounts: ReactionCount[] = [];
 
   placeCommentForm = new FormGroup({
     content: new FormControl('', [
@@ -58,9 +60,21 @@ export class ViewCommentsComponent implements OnInit {
     this.dismissed.emit(true);
   }
 
-  likeComment(){
-
+  public getReactionCount() {
+    this.http.get<ReactionCount[]>(`${environment.baseUrl}/reactions?postId=${this.postId}`).subscribe(result => {
+      this.reactionCounts = result;
+      this.mapReactionCount();
+    });
   }
+
+  private mapReactionCount() {
+    this.reactionCounts.filter(reaction => reaction.commentId != null).forEach(reaction => {
+      var comment = this.comments.filter(comment => comment.id == reaction.commentId)[0];
+      comment.totalReactions = reaction.totalReactions;
+    });
+  }
+
+
 }
 
 export interface Comment {
@@ -69,5 +83,6 @@ export interface Comment {
   authorName: string;
   content: string;
   createdAt: string;
-  showReactionButtons:boolean;
+  showReactionButtons: boolean;
+  totalReactions: number;
 }

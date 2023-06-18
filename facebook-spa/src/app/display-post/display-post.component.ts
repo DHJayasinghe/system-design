@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Post } from '../timeline/timeline.component';
 
 @Component({
@@ -10,10 +12,12 @@ export class DisplayPostComponent implements OnInit {
   @Input() post?: Post;
   showCommentSection = false;
   showReactionButtons = false;
+  reactionCount?: ReactionCount;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.getReactionCount();
   }
 
   getPostedTime(date: Date) {
@@ -38,4 +42,26 @@ export class DisplayPostComponent implements OnInit {
       return `${days} days ago`;
     }
   }
+
+  public getReactionCount() {
+    this.http.get<ReactionCount[]>(`${environment.baseUrl}/reactions?postId=${this.post?.id}`).subscribe(result => {
+      console.log(result);
+      this.reactionCount = result.filter(d => d.postId == this.post?.id && d.commentId == null)[0];
+      console.log(this.reactionCount);
+    });
+  }
+}
+
+export interface ReactionCount {
+  id: string,
+  postId: string,
+  commentId: string,
+  likeCount: number,
+  heartCount: number,
+  wowCount: number,
+  careCount: number,
+  laughCount: number,
+  sadCount: number,
+  angryCount: number,
+  totalReactions: number
 }

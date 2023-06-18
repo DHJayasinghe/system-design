@@ -14,9 +14,13 @@
         <p>{{comment.content}}</p>
       </div>
       <div class="comment-footer">
+        <span class="likes"
+          *ngIf="comment?.totalReactions">{{comment?.totalReactions}} likes</span>
         <button class="like-button"
           (click)="comment.showReactionButtons=!comment.showReactionButtons">Like</button>
-      <app-add-reaction [postId]="comment.postId" [commentId]="comment.id"
+        <app-add-reaction [postId]="comment.postId"
+          [commentId]="comment.id"
+          (changed)="getReactionCount()"
           *ngIf="comment.showReactionButtons"></app-add-reaction>
         <!-- <span class="like-count">{{ likeCount }}</span> -->
       </div>
