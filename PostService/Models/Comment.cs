@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using PostService.API;
+using PostService.API.Models;
 ***REMOVED***
 
 namespace PostService.Models;

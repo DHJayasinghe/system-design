@@ -12,6 +12,8 @@ export class ViewCommentsComponent implements OnInit ***REMOVED***
   @Input() postId?: string;
   @Output() dismissed = new EventEmitter<boolean>(false);
 
+  comments: Comment[] = [];
+
   placeCommentForm = new FormGroup(***REMOVED***
     content: new FormControl('', [
       Validators.required,
@@ -20,9 +22,10 @@ export class ViewCommentsComponent implements OnInit ***REMOVED***
     ])
   ***REMOVED***);
 
-  constructor(private http: HttpClient, private formBuilder: FormBuilder) ***REMOVED*** ***REMOVED***
+  constructor(private http: HttpClient) ***REMOVED*** ***REMOVED***
 
   ngOnInit() ***REMOVED***
+    this.getComments();
   ***REMOVED***
 
   addComment() ***REMOVED***
@@ -31,6 +34,19 @@ export class ViewCommentsComponent implements OnInit ***REMOVED***
       .subscribe(***REMOVED***
         next: () => ***REMOVED***
           this.placeCommentForm.reset();
+          this.getComments();
+    ***REMOVED***,
+        error: (err) => ***REMOVED***
+          console.error(err);
+    ***REMOVED***
+  ***REMOVED***);
+  ***REMOVED***
+
+  private getComments() ***REMOVED***
+    this.http.get<Comment[]>(`$***REMOVED***environment.baseUrl***REMOVED***/posts/$***REMOVED***this.postId***REMOVED***/comments`)
+      .subscribe(***REMOVED***
+        next: (result) => ***REMOVED***
+          this.comments = result;
     ***REMOVED***,
         error: (err) => ***REMOVED***
           console.error(err);
@@ -41,4 +57,12 @@ export class ViewCommentsComponent implements OnInit ***REMOVED***
   dismiss() ***REMOVED***
     this.dismissed.emit(true);
   ***REMOVED***
+***REMOVED***
+
+export interface Comment ***REMOVED***
+  id: string;
+  postId: string;
+  authorName: string;
+  content: string;
+  createdAt: string;
 ***REMOVED***

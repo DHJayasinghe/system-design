@@ -14,13 +14,13 @@ namespace PostService.API;
 
 public static class GetPostsFunction
 ***REMOVED***
-    [FunctionName("GetPostsFunction")]
+    [FunctionName(nameof(GetPostsFunction))]
     public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "posts")] HttpRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
     ***REMOVED***
-        log.LogInformation("C# HTTP trigger function processed a request.");
+        log.LogInformation("***REMOVED***0***REMOVED*** HTTP trigger processed a request.", nameof(GetPostsFunction));
 
         var feed = GetRecentPosts(cosmosClient);
         var posts = new List<Post>();
