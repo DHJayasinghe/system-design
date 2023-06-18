@@ -9,6 +9,7 @@ import { Post } from '../timeline/timeline.component';
 export class DisplayPostComponent implements OnInit {
   @Input() post?: Post;
   showCommentSection = false;
+  showReactionButtons = false;
 
   constructor() { }
 

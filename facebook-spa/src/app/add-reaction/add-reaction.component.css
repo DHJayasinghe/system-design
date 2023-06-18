@@ -1,0 +1,75 @@
+
+.reaction-button {
+  display: flex;
+  gap: 10px;
+}
+
+.reaction-button button {
+  padding: 5px 6px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.reaction-button .like {
+  background-color: #3b5998;
+  color: #fff;
+}
+
+.reaction-button .heart {
+  background-color: #ff395e;
+  color: #fff;
+}
+
+.reaction-button .care {
+  background-color: #ffad03;
+  color: #fff;
+}
+
+.reaction-button .laugh {
+  background-color: #ffec03;
+  color: #000;
+}
+
+.reaction-button .wow {
+  background-color: #f8a100;
+  color: #fff;
+}
+
+.reaction-button .sad {
+  background-color: #ff6c03;
+  color: #fff;
+}
+
+.reaction-button .angry {
+  background-color: #dc2618;
+  color: #fff;
+}
+
+.fa-facebook-square:before {
+  content: '\f09a';
+}
+
+.fa-heart:before {
+  content: '\f004';
+}
+
+.fa-grin-hearts:before {
+  content: '\f584';
+}
+
+.fa-laugh-beam:before {
+  content: '\f59a';
+}
+
+.fa-surprise:before {
+  content: '\f5c2';
+}
+
+.fa-sad-cry:before {
+  content: '\f5b3';
+}
+
+.fa-angry:before {
+  content: '\f556';
+}
