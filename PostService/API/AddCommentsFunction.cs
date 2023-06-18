@@ -9,28 +9,29 @@ using Microsoft.Azure.Cosmos;
 using System.Net.Http;
 using Microsoft.Extensions.Configuration;
 using PostService.Models;
+using PostService.API.Models;
 
 namespace PostService.API;
 
-public class AddCommentFunction
+public class AddCommentsFunction
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly IConfiguration _configuration;
 
-    public AddCommentFunction(IHttpClientFactory httpClientFactory, IConfiguration configuration)
+    public AddCommentsFunction(IHttpClientFactory httpClientFactory, IConfiguration configuration)
     {
         _httpClientFactory = httpClientFactory;
         _configuration = configuration;
     }
 
-    [FunctionName(nameof(AddCommentFunction))]
+    [FunctionName(nameof(AddCommentsFunction))]
     public async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "posts/{postId}/comments")] AddCommentRequest req,
         Guid postId,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: nameof(Comment), Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
     {
-        log.LogInformation("{0} HTTP trigger processed a request.", nameof(AddPostsFunction));
+        log.LogInformation("{0} HTTP trigger processed a request.", nameof(AddCommentsFunction));
 
         var entity = Comment.Map(postId, req);
 
@@ -40,9 +41,4 @@ public class AddCommentFunction
 
         return new OkObjectResult(new { Id = result.Resource.Id });
     }
-}
-
-public record AddCommentRequest
-{
-    public string Content { get; init; }
 }

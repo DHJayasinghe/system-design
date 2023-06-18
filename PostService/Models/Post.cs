@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PostService.API.Models;
 using System;
 using System.Collections.Generic;
 
@@ -16,7 +17,7 @@ public record Post
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime? UpdatedAt { get; set; }
 
-    public static Post Map(PostRequest request)
+    public static Post Map(AddPostRequest request)
     {
         var id = Guid.NewGuid().ToString();
         return new()

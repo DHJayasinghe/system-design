@@ -3,13 +3,9 @@
   <div class="comment-popup-content">
     <h3>Comments</h3>
     <ul class="comments-list">
-      <li class="comment">
-        <span class="comment-user">John Doe:</span>
-        <span class="comment-content">Great post!</span>
-      </li>
-      <li class="comment">
-        <span class="comment-user">Jane Smith:</span>
-        <span class="comment-content">I totally agree!</span>
+      <li class="comment" *ngFor="let comment of comments">
+        <span class="comment-user">{{comment.authorName}}:</span>
+        <span class="comment-content">{{comment.content}}</span>
       </li>
       <!-- Add more comments dynamically using JavaScript/Angular -->
     </ul>
