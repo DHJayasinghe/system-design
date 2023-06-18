@@ -12,6 +12,8 @@ export class ViewCommentsComponent implements OnInit {
   @Input() postId?: string;
   @Output() dismissed = new EventEmitter<boolean>(false);
 
+  comments: Comment[] = [];
+
   placeCommentForm = new FormGroup({
     content: new FormControl('', [
       Validators.required,
@@ -20,9 +22,10 @@ export class ViewCommentsComponent implements OnInit {
     ])
   });
 
-  constructor(private http: HttpClient, private formBuilder: FormBuilder) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.getComments();
   }
 
   addComment() {
@@ -31,6 +34,19 @@ export class ViewCommentsComponent implements OnInit {
       .subscribe({
         next: () => {
           this.placeCommentForm.reset();
+          this.getComments();
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });
+  }
+
+  private getComments() {
+    this.http.get<Comment[]>(`${environment.baseUrl}/posts/${this.postId}/comments`)
+      .subscribe({
+        next: (result) => {
+          this.comments = result;
         },
         error: (err) => {
           console.error(err);
@@ -41,4 +57,12 @@ export class ViewCommentsComponent implements OnInit {
   dismiss() {
     this.dismissed.emit(true);
   }
+}
+
+export interface Comment {
+  id: string;
+  postId: string;
+  authorName: string;
+  content: string;
+  createdAt: string;
 }

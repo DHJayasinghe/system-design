@@ -3,10 +3,12 @@ using Ocelot.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var environment = builder.Environment.EnvironmentName;
+
 builder.Services
     .AddOcelot(builder.Configuration);
 builder.Configuration
-    .AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
+    .AddJsonFile(environment == "Development" ? "ocelot-dev.json" : "ocelot.json", optional: false, reloadOnChange: true);
 
 builder.Services.AddCors(options =>
 {

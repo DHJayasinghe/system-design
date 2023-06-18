@@ -11,6 +11,7 @@ using PostService.Configs;
 using PostService.Models;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
+using PostService.API.Models;
 
 namespace PostService;
 
@@ -27,7 +28,7 @@ public class AddPostsFunction
 
     [FunctionName(nameof(AddPostsFunction))]
     public async Task<IActionResult> Run(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "posts")] PostRequest req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "posts")] AddPostRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
     {
@@ -54,10 +55,4 @@ public class AddPostsFunction
 
         return new OkObjectResult(result.Resource.PostId);
     }
-}
-
-public record PostRequest
-{
-    public string Content { get; init; }
-    public List<string> Assets { get; init; }
 }
