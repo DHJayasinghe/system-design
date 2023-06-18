@@ -11,15 +11,18 @@ using PostService.Configs;
 using System;
 using PostService.Models;
 using Microsoft.Azure.Cosmos;
+using Microsoft.Extensions.Configuration;
 
 namespace PostService;
 
 public class AddPostsFunction
 {
     private readonly IHttpClientFactory _httpClientFactory;
-    public AddPostsFunction(IHttpClientFactory httpClientFactory)
+    private readonly IConfiguration _configuration;
+    public AddPostsFunction(IHttpClientFactory httpClientFactory, IConfiguration configuration)
     {
         _httpClientFactory = httpClientFactory;
+        _configuration = configuration;
     }
 
     [FunctionName(nameof(AddPostsFunction))]
@@ -35,9 +38,10 @@ public class AddPostsFunction
             Assets = req.Assets
         }));
 
+        Console.WriteLine(_configuration.GetValue<string>("AssetService"));
         using var httpClient = _httpClientFactory.CreateClient();
         content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        var response = await httpClient.PostAsync("http://localhost:8083/assets", content);
+        var response = await httpClient.PostAsync(_configuration.GetValue<string>("AssetService"), content);
         var assets = await response.Content.ReadAsAsync<List<string>>();
 
         var entity = Post.Map(req);
