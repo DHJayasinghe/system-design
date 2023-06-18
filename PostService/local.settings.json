@@ -2,10 +2,10 @@
   "IsEncrypted": false,
   "Values": {
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-    "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "AssetService": "http://localhost:8083/assets"
   },
   "ConnectionStrings": {
-    "CosmosDB": "COSMOSDB_CONNECTION",
-    "ServiceBus": "SERVICEBUS_CONNECTION"
+    "CosmosDB": ""
   }
 }

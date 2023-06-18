@@ -1,12 +1,9 @@
 {
   "IsEncrypted": false,
   "Values": {
-    "AzureWebJobsStorage": "STORAGE_ACCOUNT_KEY",
+    "AzureWebJobsStorage": "",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-    "StorageAccountName": "STORAGE_ACCOUNT_NAME",
-    "StorageAccountKey": "STORAGE_ACCOUNT_KEY"
-  },
-  "Host": {
-    "CORS": "*"
+    "StorageAccountName": "",
+    "StorageAccountKey": ""
   }
 }

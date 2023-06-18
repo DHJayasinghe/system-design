@@ -1,9 +1,11 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { PostComponent } from "./post/post.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { TimelineComponent } from "./timeline/timeline.component";
 
 const routes: Routes = [
-    { path: 'post', component: PostComponent }
+    { path: '', component: DashboardComponent },
+    { path: 'timeline', component: TimelineComponent }
 ];
 
 @NgModule({

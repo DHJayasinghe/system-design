@@ -1,18 +1,25 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BlobServiceClient, BlockBlobClient, BlockBlobStageBlockOptions } from '@azure/storage-blob';
+import { environment } from 'src/environments/environment';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css']
+  selector: 'app-create-post',
+  templateUrl: './create-post.component.html',
+  styleUrls: ['./create-post.component.css']
 })
-export class PostComponent implements OnInit {
+export class CreatePostComponent implements OnInit {
+  @Output() posted = new EventEmitter<boolean>();
   private sasToken: string = "";
   private container: string = "";
   private assetsToUpload: string[] = [];
-  public progress: number = 0;
+
+
+  content: string = "";
+  progress: number = 0;
+  saving: boolean = false;
+
 
   constructor(private http: HttpClient) { }
 
@@ -25,14 +32,13 @@ export class PostComponent implements OnInit {
 
     const blobServiceClient = new BlobServiceClient(this.sasToken);
     const containerClient = blobServiceClient.getContainerClient(this.container);
-    
+
     if (files && files.length > 0) {
       const file = files[0];
       const fileName = `${uuidv4()}.${file.name.split('.').pop()}`;
       const blockBlobClient = containerClient.getBlockBlobClient(fileName);
       await this.uploadAsChunksAsync(file, blockBlobClient);
       this.assetsToUpload.push(fileName);
-      console.log('File uploaded successfully.');
     }
   }
 
@@ -69,8 +75,7 @@ export class PostComponent implements OnInit {
   }
 
   private getUploadLink(): void {
-    const baseUrl: string = "http://localhost:8083";
-    this.http.get<any>(`${baseUrl}/assets/upload-link`)
+    this.http.get<any>(`${environment.baseUrl}/assets/upload-link`)
       .subscribe(
         (response: { container: string, sasToken: string }) => {
           const { container, sasToken } = response;
@@ -81,24 +86,41 @@ export class PostComponent implements OnInit {
   }
 
   public savePost() {
-    const baseUrl: string = "http://localhost:8084";
+    if (this.saving) return;
+
+    this.saving = true;
+
     const body = {
-      description: 'Sample description',
+      content: this.content,
       assets: this.assetsToUpload
     };
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
 
-    this.http.post<any>(`${baseUrl}/posts`, body, { headers })
+    this.http.post<any>(`${environment.baseUrl}/posts`, body, { headers })
       .subscribe(
-        (response) => {
-          this.assetsToUpload = [];
+        {
+          next: (response) => {
+            console.log(response);
+            this.newPost();
+          },
+          error: (error) => {
+
+          }
         }
       );
   }
 
+  public newPost() {
+    this.posted.emit(true);
+    this.saving = false;
+    this.assetsToUpload = [];
+    this.content = "";
+    this.progress = 0;
+  }
+
   public disabled(): boolean {
-    return this.assetsToUpload.length === 0;
+    return this.assetsToUpload.length === 0 || this.saving;
   }
 }

@@ -1,0 +1,119 @@
+.post {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.post-author {
+  flex: 1;
+}
+
+.post-content {
+  margin-bottom: 10px;
+}
+
+.post-actions {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.likes {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.like-button,
+.comment-button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-right: 10px;
+  font-weight: bold;
+  color: #385898;
+  display: flex;
+  align-items: center;
+}
+
+.like-button:hover,
+.comment-button:hover {
+  text-decoration: underline;
+}
+
+.like-button .icon,
+.comment-button .icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  fill: #385898;
+}
+
+@media screen and (max-width: 768px) {
+  .like-button,
+  .comment-button {
+    font-size: 14px;
+  }
+}
+
+
+.comments {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.comment {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.comment-content {
+  margin-left: 10px;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-header {
+    flex-wrap: wrap;
+  }
+
+  .post-content,
+  .post-actions {
+    margin-left: 50px;
+  }
+
+  .avatar {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+}
+
+.post-asset {
+  width: auto;
+  max-height: 400px;
+  margin-top: 10px;
+}
+
+
+

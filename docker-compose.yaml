@@ -1,10 +1,61 @@
 version: "3.9"
 services:
-  azurite:
-    image: mcr.microsoft.com/azure-storage/azurite
-    container_name: azurite
-    command: "azurite --loose --blobHost 0.0.0.0 --blobPort 10000 --queueHost 0.0.0.0 --queuePort 10001 --tableHost 0.0.0.0 --tablePort 10002 --location /workspace --debug /workspace/debug.log"
+  post.service:
+    container_name: post.service
+    image: ${DOCKER_REGISTRY-}postservice
+    build:
+      context: .
+      dockerfile: PostService/Dockerfile
+    networks: 
+      - system-design
+    environment:
+      - ConnectionStrings__CosmosDB=AccountEndpoint=CONNECTION_STRING
+      - AssetService=http://web.apigateway/assets
+
+  asset.service:
+    container_name: asset.service
+    image: ${DOCKER_REGISTRY-}assetservice
+    build:
+      context: .
+      dockerfile: AssetService/Dockerfile
+    networks: 
+      - system-design
+    environment:
+      - AzureWebJobsStorage=CONNECTION_STRING
+      - StorageAccountName=
+      - StorageAccountKey=
+
+  reaction.service:
+    container_name: reaction.service
+    image: ${DOCKER_REGISTRY-}reactionservice
+    build:
+      context: .
+      dockerfile: LikeService/Dockerfile
+    networks: 
+      - system-design
+    environment:
+      - ConnectionStrings__CosmosDB=AccountEndpoint=CONNECTION_STRING
+      - ConnectionStrings__ServiceBus=CONNECTION_STRING
+
+  web.apigateway:
+    container_name: web.apigateway
+    image: ${DOCKER_REGISTRY-}webapigateway
+    build:
+      context: .
+      dockerfile: WebApiGateway/Dockerfile
+    environment: 
+      - ASPNETCORE_URLS=http://+:80
     ports:
-      - 10000:10000
-      - 10001:10001
-      - 10002:10002
+      - 8082:80
+    networks: 
+      - system-design
+    mem_limit: 100M
+    mem_reservation: 50M
+
+volumes:
+  data01:
+    driver: local
+
+networks: 
+  system-design:
+    driver: bridge
