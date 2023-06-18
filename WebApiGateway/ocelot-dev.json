@@ -49,14 +49,26 @@
       ]
     },
     {
+      "UpstreamPathTemplate": "/reactions",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamPathTemplate": "/reactions",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8085"
+        }
+      ]
+    },
+    {
       "UpstreamPathTemplate": "/reactions/{catchAll}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
       "DownstreamPathTemplate": "/reactions/{catchAll}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "reaction.service",
-          "Port": "80"
+          "Host": "localhost",
+          "Port": "8085"
         }
       ]
     }

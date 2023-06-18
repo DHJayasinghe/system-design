@@ -57,6 +57,10 @@ export class ViewCommentsComponent implements OnInit {
   dismiss() {
     this.dismissed.emit(true);
   }
+
+  likeComment(){
+
+  }
 }
 
 export interface Comment {
@@ -65,4 +69,5 @@ export interface Comment {
   authorName: string;
   content: string;
   createdAt: string;
+  showReactionButtons:boolean;
 }

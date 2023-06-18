@@ -11,15 +11,17 @@ import { DisplayPostComponent } from './display-post/display-post.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ViewCommentsComponent } from './view-comments/view-comments.component';
+import { AddReactionComponent } from './add-reaction/add-reaction.component';
 
 @NgModule({
-  declarations: [					
+  declarations: [						
     AppComponent,
       CreatePostComponent,
       DisplayPostComponent,
       TimelineComponent,
       DashboardComponent,
-      ViewCommentsComponent
+      ViewCommentsComponent,
+      AddReactionComponent
    ],
   imports: [
     BrowserModule,
