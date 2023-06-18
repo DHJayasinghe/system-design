@@ -17,12 +17,12 @@
     <p>***REMOVED******REMOVED***post.content***REMOVED******REMOVED***</p>
   </div>
   <div class="post-actions">
-    <span class="likes">100 likes</span>
+    <span class="likes" *ngIf="reactionCount?.totalReactions">***REMOVED******REMOVED***reactionCount?.totalReactions***REMOVED******REMOVED*** likes</span>
     <button class="like-button" (click)="showReactionButtons=!showReactionButtons">Like</button>
     <button class="comment-button"
       (click)="showCommentSection=true">Comment</button>
   </div>
-  <***REMOVED***-add-reaction [postId]="post.id" *ngIf="showReactionButtons"></***REMOVED***-add-reaction>
+  <***REMOVED***-add-reaction [postId]="post.id" *ngIf="showReactionButtons" (changed)="getReactionCount()"></***REMOVED***-add-reaction>
 </div>
 <***REMOVED***-view-comments *ngIf="showCommentSection"
   [postId]="post?.id"

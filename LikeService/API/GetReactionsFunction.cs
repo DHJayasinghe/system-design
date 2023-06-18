@@ -11,9 +11,9 @@ using LikeService.Configs;
 
 namespace LikeService.API;
 
-public static class GetReactionFunction
+public static class GetReactionsFunction
 ***REMOVED***
-    [FunctionName(nameof(GetReactionFunction))]
+    [FunctionName(nameof(GetReactionsFunction))]
     public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "get", Route = "reactions")] HttpRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName2, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
@@ -22,7 +22,7 @@ public static class GetReactionFunction
         string postId = req.Query[nameof(postId)].ToString();
         string commentId = req.Query[nameof(commentId)].ToString();
 
-        log.LogInformation("***REMOVED***0***REMOVED*** function processed a request for post: ***REMOVED***1***REMOVED***.", nameof(GetReactionFunction), postId);
+        log.LogInformation("***REMOVED***0***REMOVED*** function processed a request for post: ***REMOVED***1***REMOVED***.", nameof(GetReactionsFunction), postId);
 
         var feed = GetReactionCountByPostIdAndCommentId(cosmosClient, postId, commentId);
 
@@ -67,6 +67,8 @@ public record ReactionCountDto
     public int LaughCount ***REMOVED*** get; set; ***REMOVED*** = 0;
     public int SadCount ***REMOVED*** get; set; ***REMOVED*** = 0;
     public int AngryCount ***REMOVED*** get; set; ***REMOVED*** = 0;
+    public int TotalReactions => LikeCount + HeartCount + WowCount + CareCount + LaughCount + SadCount + AngryCount;
+
     public static ReactionCountDto Map(ReactionCount data)
     ***REMOVED***
         return new ReactionCountDto

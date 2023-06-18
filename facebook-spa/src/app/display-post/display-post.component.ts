@@ -1,4 +1,6 @@
+import ***REMOVED*** HttpClient ***REMOVED*** from '@angular/common/http';
 import ***REMOVED*** Component, Input, OnInit ***REMOVED*** from '@angular/core';
+import ***REMOVED*** environment ***REMOVED*** from 'src/environments/environment';
 import ***REMOVED*** Post ***REMOVED*** from '../timeline/timeline.component';
 
 @Component(***REMOVED***
@@ -10,10 +12,12 @@ export class DisplayPostComponent implements OnInit ***REMOVED***
   @Input() post?: Post;
   showCommentSection = false;
   showReactionButtons = false;
+  reactionCount?: ReactionCount;
 
-  constructor() ***REMOVED*** ***REMOVED***
+  constructor(private http: HttpClient) ***REMOVED*** ***REMOVED***
 
   ngOnInit() ***REMOVED***
+    this.getReactionCount();
   ***REMOVED***
 
   getPostedTime(date: Date) ***REMOVED***
@@ -38,4 +42,26 @@ export class DisplayPostComponent implements OnInit ***REMOVED***
       return `$***REMOVED***days***REMOVED*** days ago`;
 ***REMOVED***
   ***REMOVED***
+
+  public getReactionCount() ***REMOVED***
+    this.http.get<ReactionCount[]>(`$***REMOVED***environment.baseUrl***REMOVED***/reactions?postId=$***REMOVED***this.post?.id***REMOVED***`).subscribe(result => ***REMOVED***
+      console.log(result);
+      this.reactionCount = result.filter(d => d.postId == this.post?.id && d.commentId == null)[0];
+      console.log(this.reactionCount);
+***REMOVED***);
+  ***REMOVED***
+***REMOVED***
+
+export interface ReactionCount ***REMOVED***
+  id: string,
+  postId: string,
+  commentId: string,
+  likeCount: number,
+  heartCount: number,
+  wowCount: number,
+  careCount: number,
+  laughCount: number,
+  sadCount: number,
+  angryCount: number,
+  totalReactions: number
 ***REMOVED***

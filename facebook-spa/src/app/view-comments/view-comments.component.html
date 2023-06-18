@@ -14,9 +14,13 @@
         <p>***REMOVED******REMOVED***comment.content***REMOVED******REMOVED***</p>
       </div>
       <div class="comment-footer">
+        <span class="likes"
+          *ngIf="comment?.totalReactions">***REMOVED******REMOVED***comment?.totalReactions***REMOVED******REMOVED*** likes</span>
         <button class="like-button"
           (click)="comment.showReactionButtons=!comment.showReactionButtons">Like</button>
-      <***REMOVED***-add-reaction [postId]="comment.postId" [commentId]="comment.id"
+        <***REMOVED***-add-reaction [postId]="comment.postId"
+          [commentId]="comment.id"
+          (changed)="getReactionCount()"
           *ngIf="comment.showReactionButtons"></***REMOVED***-add-reaction>
         <!-- <span class="like-count">***REMOVED******REMOVED*** likeCount ***REMOVED******REMOVED***</span> -->
       </div>

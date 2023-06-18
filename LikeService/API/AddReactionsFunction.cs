@@ -14,9 +14,9 @@ using LikeService.Configs;
 
 namespace LikeService.API;
 
-public static class AddReactionFunction
+public static class AddReactionsFunction
 ***REMOVED***
-    [FunctionName(nameof(AddReactionFunction))]
+    [FunctionName(nameof(AddReactionsFunction))]
     public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "put", Route = "reactions")] AddReactionRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
@@ -24,7 +24,7 @@ public static class AddReactionFunction
         ILogger log)
     ***REMOVED***
         var currentReaction = req.Map().WithDefaults();
-        log.LogInformation("***REMOVED***0***REMOVED*** function processed a request for post: ***REMOVED***1***REMOVED*** from user: ***REMOVED***2***REMOVED***.", nameof(AddReactionFunction), currentReaction.PostId, currentReaction.UserId);
+        log.LogInformation("***REMOVED***0***REMOVED*** function processed a request for post: ***REMOVED***1***REMOVED*** from user: ***REMOVED***2***REMOVED***.", nameof(AddReactionsFunction), currentReaction.PostId, currentReaction.UserId);
 
         if (!Enum.IsDefined(currentReaction.ReactionType))
             return new BadRequestObjectResult("Provided reaction type is not valid");

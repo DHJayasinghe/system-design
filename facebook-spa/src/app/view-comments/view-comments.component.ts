@@ -2,6 +2,7 @@ import ***REMOVED*** HttpClient ***REMOVED*** from '@angular/common/http';
 import ***REMOVED*** Component, EventEmitter, Input, OnInit, Output ***REMOVED*** from '@angular/core';
 import ***REMOVED*** FormBuilder, FormControl, FormGroup, Validators ***REMOVED*** from '@angular/forms';
 import ***REMOVED*** environment ***REMOVED*** from 'src/environments/environment';
+import ***REMOVED*** ReactionCount ***REMOVED*** from '../display-post/display-post.component';
 
 @Component(***REMOVED***
   selector: '***REMOVED***-view-comments',
@@ -13,6 +14,7 @@ export class ViewCommentsComponent implements OnInit ***REMOVED***
   @Output() dismissed = new EventEmitter<boolean>(false);
 
   comments: Comment[] = [];
+  reactionCounts: ReactionCount[] = [];
 
   placeCommentForm = new FormGroup(***REMOVED***
     content: new FormControl('', [
@@ -58,9 +60,21 @@ export class ViewCommentsComponent implements OnInit ***REMOVED***
     this.dismissed.emit(true);
   ***REMOVED***
 
-  likeComment()***REMOVED***
-
+  public getReactionCount() ***REMOVED***
+    this.http.get<ReactionCount[]>(`$***REMOVED***environment.baseUrl***REMOVED***/reactions?postId=$***REMOVED***this.postId***REMOVED***`).subscribe(result => ***REMOVED***
+      this.reactionCounts = result;
+      this.mapReactionCount();
+***REMOVED***);
   ***REMOVED***
+
+  private mapReactionCount() ***REMOVED***
+    this.reactionCounts.filter(reaction => reaction.commentId != null).forEach(reaction => ***REMOVED***
+      var comment = this.comments.filter(comment => comment.id == reaction.commentId)[0];
+      comment.totalReactions = reaction.totalReactions;
+***REMOVED***);
+  ***REMOVED***
+
+
 ***REMOVED***
 
 export interface Comment ***REMOVED***
@@ -69,5 +83,6 @@ export interface Comment ***REMOVED***
   authorName: string;
   content: string;
   createdAt: string;
-  showReactionButtons:boolean;
+  showReactionButtons: boolean;
+  totalReactions: number;
 ***REMOVED***
