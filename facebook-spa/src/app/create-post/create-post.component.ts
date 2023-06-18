@@ -1,18 +1,25 @@
 import ***REMOVED*** HttpClient, HttpHeaders ***REMOVED*** from '@angular/common/http';
-import ***REMOVED*** Component, OnInit ***REMOVED*** from '@angular/core';
+import ***REMOVED*** Component, EventEmitter, OnInit, Output ***REMOVED*** from '@angular/core';
 import ***REMOVED*** BlobServiceClient, BlockBlobClient, BlockBlobStageBlockOptions ***REMOVED*** from '@azure/storage-blob';
+import ***REMOVED*** environment ***REMOVED*** from 'src/environments/environment';
 import ***REMOVED*** v4 as uuidv4 ***REMOVED*** from 'uuid';
 
 @Component(***REMOVED***
-  selector: '***REMOVED***-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css']
+  selector: '***REMOVED***-create-post',
+  templateUrl: './create-post.component.html',
+  styleUrls: ['./create-post.component.css']
 ***REMOVED***)
-export class PostComponent implements OnInit ***REMOVED***
+export class CreatePostComponent implements OnInit ***REMOVED***
+  @Output() posted = new EventEmitter<boolean>();
   private sasToken: string = "";
   private container: string = "";
   private assetsToUpload: string[] = [];
-  public progress: number = 0;
+
+
+  content: string = "";
+  progress: number = 0;
+  saving: boolean = false;
+
 
   constructor(private http: HttpClient) ***REMOVED*** ***REMOVED***
 
@@ -25,14 +32,13 @@ export class PostComponent implements OnInit ***REMOVED***
 
     const blobServiceClient = new BlobServiceClient(this.sasToken);
     const containerClient = blobServiceClient.getContainerClient(this.container);
-    
+
     if (files && files.length > 0) ***REMOVED***
       const file = files[0];
       const fileName = `$***REMOVED***uuidv4()***REMOVED***.$***REMOVED***file.name.split('.').pop()***REMOVED***`;
       const blockBlobClient = containerClient.getBlockBlobClient(fileName);
       await this.uploadAsChunksAsync(file, blockBlobClient);
       this.assetsToUpload.push(fileName);
-      console.log('File uploaded successfully.');
 ***REMOVED***
   ***REMOVED***
 
@@ -69,8 +75,7 @@ export class PostComponent implements OnInit ***REMOVED***
   ***REMOVED***
 
   private getUploadLink(): void ***REMOVED***
-    const baseUrl: string = "http://localhost:8083";
-    this.http.get<any>(`$***REMOVED***baseUrl***REMOVED***/assets/upload-link`)
+    this.http.get<any>(`$***REMOVED***environment.baseUrl***REMOVED***/assets/upload-link`)
       .subscribe(
         (response: ***REMOVED*** container: string, sasToken: string ***REMOVED***) => ***REMOVED***
           const ***REMOVED*** container, sasToken ***REMOVED*** = response;
@@ -81,24 +86,41 @@ export class PostComponent implements OnInit ***REMOVED***
   ***REMOVED***
 
   public savePost() ***REMOVED***
-    const baseUrl: string = "http://localhost:8084";
+    if (this.saving) return;
+
+    this.saving = true;
+
     const body = ***REMOVED***
-      description: 'Sample description',
+      content: this.content,
       assets: this.assetsToUpload
 ***REMOVED***;
     const headers = new HttpHeaders(***REMOVED***
       'Content-Type': '***REMOVED***lication/json'
 ***REMOVED***);
 
-    this.http.post<any>(`$***REMOVED***baseUrl***REMOVED***/posts`, body, ***REMOVED*** headers ***REMOVED***)
+    this.http.post<any>(`$***REMOVED***environment.baseUrl***REMOVED***/posts`, body, ***REMOVED*** headers ***REMOVED***)
       .subscribe(
-        (response) => ***REMOVED***
-          this.assetsToUpload = [];
+        ***REMOVED***
+          next: (response) => ***REMOVED***
+            console.log(response);
+            this.newPost();
+      ***REMOVED***,
+          error: (error) => ***REMOVED***
+
+      ***REMOVED***
     ***REMOVED***
       );
   ***REMOVED***
 
+  public newPost() ***REMOVED***
+    this.posted.emit(true);
+    this.saving = false;
+    this.assetsToUpload = [];
+    this.content = "";
+    this.progress = 0;
+  ***REMOVED***
+
   public disabled(): boolean ***REMOVED***
-    return this.assetsToUpload.length === 0;
+    return this.assetsToUpload.length === 0 || this.saving;
   ***REMOVED***
 ***REMOVED***

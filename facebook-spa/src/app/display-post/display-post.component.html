@@ -1,0 +1,28 @@
+<div class="post"
+  *ngIf="post">
+  <div class="post-header">
+    <img src="https://ui-avatars.com/api/?name=***REMOVED******REMOVED***post.authorName***REMOVED******REMOVED***&background=random&rounded=true&format=png"
+      alt="User Avatar"
+      class="avatar">
+    <div class="post-author">
+      <h4>***REMOVED******REMOVED***post.authorName***REMOVED******REMOVED***</h4>
+      <p>Posted ***REMOVED******REMOVED***getPostedTime(post.createdAt)***REMOVED******REMOVED***</p>
+    </div>
+  </div>
+  <div class="post-content">
+    <img *ngFor="let asset of post.assets"
+      [src]="asset"
+      alt="Posted Asset"
+      class="post-asset">
+    <p>***REMOVED******REMOVED***post.content***REMOVED******REMOVED***</p>
+  </div>
+  <div class="post-actions">
+    <span class="likes">100 likes</span>
+    <button class="like-button">Like</button>
+    <button class="comment-button"
+      (click)="showCommentSection=true">Comment</button>
+  </div>
+</div>
+<***REMOVED***-view-comments *ngIf="showCommentSection"
+  [postId]="post?.id"
+  (dismissed)="showCommentSection=false"></***REMOVED***-view-comments>

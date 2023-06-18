@@ -28,7 +28,7 @@ public class SaveFunction
 
     [FunctionName(nameof(SaveFunction))]
     public async Task<IActionResult> Run(
-        [HttpTrigger(AuthorizationLevel.Function, "post", Route = "assets")] SaveRequest request,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "assets")] SaveRequest request,
         ILogger log)
     ***REMOVED***
         log.LogInformation("***REMOVED***0***REMOVED*** HTTP trigger processed a request.", nameof(SaveFunction));

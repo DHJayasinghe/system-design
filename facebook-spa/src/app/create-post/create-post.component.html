@@ -1,6 +1,7 @@
 <div class="new-post">
   <form class="post-form">
-    <textarea placeholder="Write your post"></textarea>
+    <textarea placeholder="Write your post"
+      [(ngModel)]="content" name="content"></textarea>
     <div class="file-upload">
       <input type="file"
         id="fileInput"

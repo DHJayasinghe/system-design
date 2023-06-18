@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = ***REMOVED***
-  production: false
+  production: false,
+  baseUrl: "http://localhost:8082"
 ***REMOVED***;
 
 /*

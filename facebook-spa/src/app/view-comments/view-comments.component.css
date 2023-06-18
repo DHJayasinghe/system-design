@@ -1,0 +1,95 @@
+.comment-popup ***REMOVED***
+  /* display: none; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+***REMOVED***
+
+.comment-popup-content ***REMOVED***
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+***REMOVED***
+
+.comment-popup-content h3 ***REMOVED***
+  margin-top: 0;
+***REMOVED***
+
+.comments-list ***REMOVED***
+  list-style: none;
+  padding: 0;
+***REMOVED***
+
+.comment ***REMOVED***
+  margin-bottom: 10px;
+***REMOVED***
+
+.comment-user ***REMOVED***
+  font-weight: bold;
+***REMOVED***
+
+.comment-content ***REMOVED***
+  margin-left: 10px;
+***REMOVED***
+
+.comment-form ***REMOVED***
+  margin-top: 10px;
+***REMOVED***
+
+.comment-input ***REMOVED***
+  width: 100%;
+  height: 60px;
+  resize: none;
+***REMOVED***
+
+.comment-submit-button ***REMOVED***
+  margin-top: 10px;
+***REMOVED***
+
+.comment-bar ***REMOVED***
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+***REMOVED***
+
+.comment-bar .comment-input ***REMOVED***
+  width: calc(100% - 100px);
+  height: 30px;
+  resize: none;
+  padding: 5px;
+***REMOVED***
+
+.comment-bar .comment-submit-button ***REMOVED***
+  width: 80px;
+  height: 30px;
+  margin-left: 10px;
+***REMOVED***
+
+/* Additional styles for responsiveness */
+@media (max-width: 600px) ***REMOVED***
+  .comment-popup-content ***REMOVED***
+    width: 90%;
+  ***REMOVED***
+  
+  .comment-bar .comment-input ***REMOVED***
+    width: calc(100% - 90px);
+  ***REMOVED***
+  
+  .comment-bar .comment-submit-button ***REMOVED***
+    width: 80px;
+    margin-left: 10px;
+  ***REMOVED***
+***REMOVED***

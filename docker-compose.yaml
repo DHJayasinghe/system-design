@@ -1,10 +1,61 @@
 ***REMOVED***
 ***REMOVED***
-  azurite:
-    image: mcr.microsoft.com/azure-storage/azurite
-    container_name: azurite
-    command: "azurite --loose --blobHost 0.0.0.0 --blobPort 10000 --queueHost 0.0.0.0 --queuePort 10001 --tableHost 0.0.0.0 --tablePort 10002 --location /workspace --debug /workspace/debug.log"
 ***REMOVED***
-      - 10000:10000
-      - 10001:10001
-      - 10002:10002
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+      - ConnectionStrings__CosmosDB=AccountEndpoint=CONNECTION_STRING
+***REMOVED***
+
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+      - AzureWebJobsStorage=CONNECTION_STRING
+      - StorageAccountName=
+      - StorageAccountKey=
+
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+      - ConnectionStrings__CosmosDB=AccountEndpoint=CONNECTION_STRING
+      - ConnectionStrings__ServiceBus=CONNECTION_STRING
+
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED*** 
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+***REMOVED***
+***REMOVED***
+***REMOVED***

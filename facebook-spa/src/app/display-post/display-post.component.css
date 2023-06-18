@@ -1,0 +1,119 @@
+.post ***REMOVED***
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #fff;
+***REMOVED***
+
+.post-header ***REMOVED***
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+***REMOVED***
+
+.avatar ***REMOVED***
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+***REMOVED***
+
+.post-author ***REMOVED***
+  flex: 1;
+***REMOVED***
+
+.post-content ***REMOVED***
+  margin-bottom: 10px;
+***REMOVED***
+
+.post-actions ***REMOVED***
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+***REMOVED***
+
+.likes ***REMOVED***
+  font-weight: bold;
+  margin-right: 10px;
+***REMOVED***
+
+.like-button,
+.comment-button ***REMOVED***
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-right: 10px;
+  font-weight: bold;
+  color: #385898;
+  display: flex;
+  align-items: center;
+***REMOVED***
+
+.like-button:hover,
+.comment-button:hover ***REMOVED***
+  text-decoration: underline;
+***REMOVED***
+
+.like-button .icon,
+.comment-button .icon ***REMOVED***
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  fill: #385898;
+***REMOVED***
+
+@media screen and (max-width: 768px) ***REMOVED***
+  .like-button,
+  .comment-button ***REMOVED***
+    font-size: 14px;
+  ***REMOVED***
+***REMOVED***
+
+
+.comments ***REMOVED***
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+***REMOVED***
+
+.comment ***REMOVED***
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+***REMOVED***
+
+.comment-content ***REMOVED***
+  margin-left: 10px;
+***REMOVED***
+
+.avatar ***REMOVED***
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+***REMOVED***
+
+@media screen and (max-width: 768px) ***REMOVED***
+  .post-header ***REMOVED***
+    flex-wrap: wrap;
+  ***REMOVED***
+
+  .post-content,
+  .post-actions ***REMOVED***
+    margin-left: 50px;
+  ***REMOVED***
+
+  .avatar ***REMOVED***
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  ***REMOVED***
+***REMOVED***
+
+.post-asset ***REMOVED***
+  width: auto;
+  max-height: 400px;
+  margin-top: 10px;
+***REMOVED***
+
+
+

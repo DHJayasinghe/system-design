@@ -5,16 +5,27 @@ import ***REMOVED*** HttpClientModule ***REMOVED*** from '@angular/common/http';
 import ***REMOVED*** AppRoutingModule ***REMOVED*** from './***REMOVED***-routing.module';
 
 import ***REMOVED*** AppComponent ***REMOVED*** from './***REMOVED***.component';
-import ***REMOVED*** PostComponent ***REMOVED*** from './post/post.component';
+import ***REMOVED*** CreatePostComponent ***REMOVED*** from './create-post/create-post.component';
+import ***REMOVED*** FormsModule, ReactiveFormsModule ***REMOVED*** from '@angular/forms';
+import ***REMOVED*** DisplayPostComponent ***REMOVED*** from './display-post/display-post.component';
+import ***REMOVED*** TimelineComponent ***REMOVED*** from './timeline/timeline.component';
+import ***REMOVED*** DashboardComponent ***REMOVED*** from './dashboard/dashboard.component';
+import ***REMOVED*** ViewCommentsComponent ***REMOVED*** from './view-comments/view-comments.component';
 
 @NgModule(***REMOVED***
-  declarations: [	
+  declarations: [					
     AppComponent,
-      PostComponent
+      CreatePostComponent,
+      DisplayPostComponent,
+      TimelineComponent,
+      DashboardComponent,
+      ViewCommentsComponent
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [],

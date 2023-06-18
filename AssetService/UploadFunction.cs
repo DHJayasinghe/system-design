@@ -24,7 +24,7 @@ public class UploadFunction
 
     [FunctionName(nameof(UploadFunction))]
     public IActionResult Run(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "assets/upload-link")] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "assets/upload-link")] HttpRequest req,
         ILogger log)
     ***REMOVED***
         log.LogInformation("***REMOVED***0***REMOVED*** HTTP trigger processed a request.", nameof(UploadFunction));

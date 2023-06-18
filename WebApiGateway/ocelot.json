@@ -1,0 +1,70 @@
+***REMOVED***
+  "Routes": [
+    ***REMOVED***
+      "UpstreamPathTemplate": "/assets",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamPathTemplate": "/assets",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        ***REMOVED***
+          "Host": "asset.service",
+          "Port": "80"
+    ***REMOVED***
+      ]
+***REMOVED***,
+    ***REMOVED***
+      "UpstreamPathTemplate": "/assets/***REMOVED***catchAll***REMOVED***",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamPathTemplate": "/assets/***REMOVED***catchAll***REMOVED***",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        ***REMOVED***
+          "Host": "asset.service",
+          "Port": "80"
+    ***REMOVED***
+      ]
+***REMOVED***,
+    ***REMOVED***
+      "UpstreamPathTemplate": "/posts",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamPathTemplate": "/posts",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        ***REMOVED***
+          "Host": "post.service",
+          "Port": "80"
+    ***REMOVED***
+      ]
+***REMOVED***,
+    ***REMOVED***
+      "UpstreamPathTemplate": "/posts/***REMOVED***catchAll***REMOVED***",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamPathTemplate": "/posts/***REMOVED***catchAll***REMOVED***",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        ***REMOVED***
+          "Host": "post.service",
+          "Port": "80"
+    ***REMOVED***
+      ]
+***REMOVED***,
+    ***REMOVED***
+      "UpstreamPathTemplate": "/reactions/***REMOVED***catchAll***REMOVED***",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamPathTemplate": "/reactions/***REMOVED***catchAll***REMOVED***",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        ***REMOVED***
+          "Host": "reaction.service",
+          "Port": "80"
+    ***REMOVED***
+      ]
+***REMOVED***
+  ],
+  "GlobalConfiguration": ***REMOVED***
+    "RateLimitOptions": ***REMOVED***
+      "DisableRateLimitHeaders": false,
+      "QuotaExceededMessage": "API calls quota exceeded. Please ***REMOVED*** again later."
+***REMOVED***
+  ***REMOVED***
+***REMOVED***

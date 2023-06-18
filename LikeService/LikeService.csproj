@@ -4,14 +4,9 @@
     <AzureFunctionsVersion>v4</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Content Remove="C:\Users\DhanukaJayasinghe\.nuget\packages\microsoft.azure.cosmos\3.32.3\contentFiles\any\netstandard2.0\ThirdPartyNotice.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.13.1" />
-    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.32.3" />
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="4.2.0" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="5.9.0" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="5.11.0" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.1.1" />
   </ItemGroup>
   <ItemGroup>
