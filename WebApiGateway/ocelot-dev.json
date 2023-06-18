@@ -49,14 +49,26 @@
       ]
 ***REMOVED***,
     ***REMOVED***
+      "UpstreamPathTemplate": "/reactions",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamPathTemplate": "/reactions",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        ***REMOVED***
+          "Host": "localhost",
+          "Port": "8085"
+    ***REMOVED***
+      ]
+***REMOVED***,
+    ***REMOVED***
       "UpstreamPathTemplate": "/reactions/***REMOVED***catchAll***REMOVED***",
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
       "DownstreamPathTemplate": "/reactions/***REMOVED***catchAll***REMOVED***",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         ***REMOVED***
-          "Host": "reaction.service",
-          "Port": "80"
+          "Host": "localhost",
+          "Port": "8085"
     ***REMOVED***
       ]
 ***REMOVED***

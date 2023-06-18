@@ -57,6 +57,10 @@ export class ViewCommentsComponent implements OnInit ***REMOVED***
   dismiss() ***REMOVED***
     this.dismissed.emit(true);
   ***REMOVED***
+
+  likeComment()***REMOVED***
+
+  ***REMOVED***
 ***REMOVED***
 
 export interface Comment ***REMOVED***
@@ -65,4 +69,5 @@ export interface Comment ***REMOVED***
   authorName: string;
   content: string;
   createdAt: string;
+  showReactionButtons:boolean;
 ***REMOVED***

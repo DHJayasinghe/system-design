@@ -9,6 +9,7 @@ import ***REMOVED*** Post ***REMOVED*** from '../timeline/timeline.component';
 export class DisplayPostComponent implements OnInit ***REMOVED***
   @Input() post?: Post;
   showCommentSection = false;
+  showReactionButtons = false;
 
   constructor() ***REMOVED*** ***REMOVED***
 

@@ -1,14 +1,32 @@
 <div class="comment-popup"
   id="commentPopup">
   <div class="comment-popup-content">
-    <h3>Comments</h3>
-    <ul class="comments-list">
+    <!-- <h3>Comments</h3> -->
+    <div class="comment"
+      *ngFor="let comment of comments">
+      <div class="comment-header">
+        <img class="user-avatar"
+          src="https://ui-avatars.com/api/?name=***REMOVED******REMOVED***comment.authorName***REMOVED******REMOVED***&background=random&rounded=true&format=png"
+          alt="User Avatar">
+        <span class="user-name">***REMOVED******REMOVED***comment.authorName***REMOVED******REMOVED***</span>
+      </div>
+      <div class="comment-content">
+        <p>***REMOVED******REMOVED***comment.content***REMOVED******REMOVED***</p>
+      </div>
+      <div class="comment-footer">
+        <button class="like-button"
+          (click)="comment.showReactionButtons=!comment.showReactionButtons">Like</button>
+      <***REMOVED***-add-reaction [postId]="comment.postId" [commentId]="comment.id"
+          *ngIf="comment.showReactionButtons"></***REMOVED***-add-reaction>
+        <!-- <span class="like-count">***REMOVED******REMOVED*** likeCount ***REMOVED******REMOVED***</span> -->
+      </div>
+    </div>
+    <!-- <ul class="comments-list">
       <li class="comment" *ngFor="let comment of comments">
         <span class="comment-user">***REMOVED******REMOVED***comment.authorName***REMOVED******REMOVED***:</span>
         <span class="comment-content">***REMOVED******REMOVED***comment.content***REMOVED******REMOVED***</span>
       </li>
-      <!-- Add more comments dynamically using JavaScript/Angular -->
-    </ul>
+    </ul> -->
   </div>
   <div class="comment-bar">
     <form (ngSubmit)="addComment()"
@@ -18,7 +36,8 @@
         formControlName="content"
         required></textarea>
       <button class="comment-submit-button"
-        type="submit" [disabled]="!this.placeCommentForm.valid">Post</button>
+        type="submit"
+        [disabled]="!this.placeCommentForm.valid">Post</button>
       <button type="reset"
         (click)="dismiss()">Dismiss</button>
     </form>

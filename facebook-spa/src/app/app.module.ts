@@ -11,15 +11,17 @@ import ***REMOVED*** DisplayPostComponent ***REMOVED*** from './display-post/dis
 import ***REMOVED*** TimelineComponent ***REMOVED*** from './timeline/timeline.component';
 import ***REMOVED*** DashboardComponent ***REMOVED*** from './dashboard/dashboard.component';
 import ***REMOVED*** ViewCommentsComponent ***REMOVED*** from './view-comments/view-comments.component';
+import ***REMOVED*** AddReactionComponent ***REMOVED*** from './add-reaction/add-reaction.component';
 
 @NgModule(***REMOVED***
-  declarations: [					
+  declarations: [						
     AppComponent,
       CreatePostComponent,
       DisplayPostComponent,
       TimelineComponent,
       DashboardComponent,
-      ViewCommentsComponent
+      ViewCommentsComponent,
+      AddReactionComponent
    ],
   imports: [
     BrowserModule,

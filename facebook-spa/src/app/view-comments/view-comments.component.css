@@ -93,3 +93,49 @@
     margin-left: 10px;
   ***REMOVED***
 ***REMOVED***
+
+.comment ***REMOVED***
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+***REMOVED***
+
+.comment-header ***REMOVED***
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+***REMOVED***
+
+.user-avatar ***REMOVED***
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+***REMOVED***
+
+.user-name ***REMOVED***
+  font-weight: bold;
+***REMOVED***
+
+.comment-content ***REMOVED***
+  margin-bottom: 10px;
+***REMOVED***
+
+.comment-footer ***REMOVED***
+  display: flex;
+  align-items: center;
+***REMOVED***
+
+.like-button ***REMOVED***
+  background-color: #3b5998;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+***REMOVED***
+
+.like-count ***REMOVED***
+  margin-left: 5px;
+***REMOVED***
