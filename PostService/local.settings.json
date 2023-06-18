@@ -6,6 +6,6 @@
     "AssetService": "http://localhost:8083/assets"
   },
   "ConnectionStrings": {
-    "CosmosDB": "AccountEndpoint=https://dev-jrc-bna-cosmos-db-aue.documents.azure.com:443/;AccountKey=7rn1L01xPCmbKs2u8hNyNH2qWk3yQGQTb4gN7FJJrE4mZAGJQcE7wx8FbF1RMLrbdaJgGyQN2pNWaAWNUaNnUw=="
+    "CosmosDB": ""
   }
 }
