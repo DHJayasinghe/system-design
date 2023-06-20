@@ -2,10 +2,6 @@
 @model LoginViewModel
 
 <div class="login-page">
-    <div class="text-center">
-        <img src="~/images/app-logo.png" class="mt-5 mb-2" />
-        <p style="font-family: 'Poppins'; font-size: 16px;">The Most Advanced Solution For Property Maintenance.</p>
-    </div>
     <div class="row" style="font-family: 'Poppins'">
 
         @if (Model.EnableLocalLogin)
@@ -52,19 +48,7 @@
 
                                 </div>
                             }
-
-                            <div class="text-below text-start" style="font-size: 12px;">
-                                <p style="font-family: 'Poppins'; font-size: 12px; text-decoration:underline;">Please note if you are an owner or tenant you will need to click the linking email sent to you by your property manager. <a href="https://www.bricksandagent.com/" class="primary-red">Click here</a> to learn more.</p>
-                            </div>
                         </form>
-                        <footer class="text-below text-start text-center mt-4" style="font-size: 12px;">
-                            <p class="mb-1">
-                                <span class="font-poppins font-12">COPYRIGHT &copy; @(DateTime.UtcNow.Year). ALL RIGHTS RESERVED.</span>
-                            </p>
-                            <a href="https://www.bricksandagent.com/blog" class="m-2 font-poppins font-12">BLOG</a>
-                            <a href="https://www.bricksandagent.com/terms-conditions" class="m-2 font-poppins font-12">TERMS</a>
-                            <a href="https://www.bricksandagent.com/privacy-policy" class="m-2 font-poppins font-12">PRIVACY</a>
-                        </footer>
                     </div>
                 </div>
             </div>

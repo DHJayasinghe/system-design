@@ -18,7 +18,9 @@ var builder = WebApplication.CreateBuilder(args);
 var configurations = builder.Configuration;
 var services = builder.Services;
 
-services.AddApplicationInsightsTelemetry(configurations);
+services
+    .AddApplicationInsightsTelemetry(configurations)
+     .AddControllersWithViews();
 services
     .AddApplication(configurations)
     .AddIntegrations(configurations);
@@ -97,7 +99,11 @@ app
     .UseRouting()
     .UseSession()
     .UseIdentityServer()
-    .UseAuthorization();
+    .UseAuthorization()
+    .UseEndpoints(endpoints =>
+    {
+        endpoints.MapDefaultControllerRoute();
+    });
 
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(configurations)

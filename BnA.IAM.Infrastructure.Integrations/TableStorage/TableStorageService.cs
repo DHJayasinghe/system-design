@@ -33,6 +33,7 @@ public sealed class TableStorageService : ITableStorageService
         try
         {
             var tableClient = new TableClient(_connectionString, tableName);
+            tableClient.CreateIfNotExists();
             Pageable<TableEntity> entities = tableClient.Query<TableEntity>(filter: filter);
 
             return await Task.FromResult(entities
@@ -62,6 +63,7 @@ public sealed class TableStorageService : ITableStorageService
         try
         {
             var tableClient = new TableClient(_connectionString, tableName);
+            tableClient.CreateIfNotExists();
             var response = await tableClient.UpsertEntityAsync(tableEntity, TableUpdateMode.Replace);
 
             return response.Status;

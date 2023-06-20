@@ -15,26 +15,26 @@ public sealed class ClientStore : IClientStore
         new Client()
         {
             ClientId = "144e251b-30ff-4027-be96-0623e40cbc19",
-            ClientName= "BnA PM SPA",
-        RequireConsent = false,
-        RequireClientSecret = false,
-        RequirePkce = false,
-        AllowedGrantTypes = new[]{ "authorization_code" },
-    AllowOfflineAccess = true,
-    AllowedScopes = new[]{
+            ClientName = "BnA PM SPA",
+            RequireConsent = false,
+            RequireClientSecret = false,
+            RequirePkce = false,
+            AllowedGrantTypes = new[] { "authorization_code" },
+            AllowOfflineAccess = true,
+            AllowedScopes = new List<string>{
       "https://bricksandagent.com/maintenance.api"
     },
-    RefreshTokenUsage = TokenUsage.OneTimeOnly,
-    AbsoluteRefreshTokenLifetime = 86400,
-    SlidingRefreshTokenLifetime =14400,
-    AccessTokenLifetime = 1800,
-    AlwaysIncludeUserClaimsInIdToken = true,
-    RedirectUris = new[]{ "http://localhost:4200/sign-in" },
-    AllowedCorsOrigins =new[]{ "http://localhost:4200" },
-    FrontChannelLogoutUri = "http://localhost:4200/sign-out",
-    PostLogoutRedirectUris = new[]{"http://localhost:4200/sign-out" },
-    UpdateAccessTokenClaimsOnRefresh =true,
-    Enabled = true
+            RefreshTokenUsage = TokenUsage.OneTimeOnly,
+            AbsoluteRefreshTokenLifetime = 86400,
+            SlidingRefreshTokenLifetime = 14400,
+            AccessTokenLifetime = 1800,
+            AlwaysIncludeUserClaimsInIdToken = true,
+            RedirectUris = new[] { "http://localhost:4200/sign-in" },
+            AllowedCorsOrigins = new[] { "http://localhost:4200" },
+            FrontChannelLogoutUri = "http://localhost:4200/sign-out",
+            PostLogoutRedirectUris = new[] { "http://localhost:4200/sign-out" },
+            UpdateAccessTokenClaimsOnRefresh = true,
+            Enabled = true
         }
     };
     static readonly string[] allowedDefaultScopes =
