@@ -18,7 +18,7 @@ public sealed class ClientStore : IClientStore
             ClientName= "BnA PM SPA",
         RequireConsent = false,
         RequireClientSecret = false,
-        RequirePkce = true,
+        RequirePkce = false,
         AllowedGrantTypes = new[]{ "authorization_code" },
     AllowOfflineAccess = true,
     AllowedScopes = new[]{

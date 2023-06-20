@@ -10,41 +10,17 @@ namespace BnA.IAM.Application.Stores;
 
 public sealed class SigninCredentialStore : ISigningCredentialStore
 {
-    private readonly IKeyVaultService _keyVaultService;
-
-    public SigninCredentialStore(IKeyVaultService keyVaultService) =>
-        _keyVaultService = keyVaultService ?? throw new ArgumentNullException(nameof(keyVaultService));
-
     public async Task<SigningCredentials> GetSigningCredentialsAsync()
     {
-        var response = await _keyVaultService.GetKeyAsync("idp-token-signing-ec-key");
-
-        AsymmetricSecurityKey key;
-        string algorithm;
-
-        if (response.KeyType == KeyType.Ec)
-        {
-            ECDsa ecDsa = response.Key.ToECDsa();
-            key = new ECDsaSecurityKey(ecDsa) { KeyId = response.Properties.Version };
-
-            // parse from curve
-            if (response.Key.CurveName == KeyCurveName.P256) algorithm = "ES256";
-            else if (response.Key.CurveName == KeyCurveName.P384) algorithm = "ES384";
-            else if (response.Key.CurveName == KeyCurveName.P521) algorithm = "ES521";
-            else throw new NotSupportedException();
-        }
-        else if (response.KeyType == KeyType.Rsa)
-        {
-            RSA rsa = response.Key.ToRSA();
-            key = new RsaSecurityKey(rsa) { KeyId = response.Properties.Version };
-
-            // you define
-            algorithm = "PS256";
-        }
-        else
-        {
-            throw new NotSupportedException();
-        }
-        return new SigningCredentials(key, algorithm);
+        RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+        rsa.ImportFromPem(@"-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCuw3YiUgHZGaCIPaErtGA156k1
+EjjuDvXwrbT3rqlnlAZ2wcfEM3T59wbLQdZFwq5QdMbhi4vCUOZ4P0vX6zdGtUjU
+HohukXLT9rmrbtHIjJI4lYT7wrct+UQmntCKrJwJGeut5p0VC3Cl8CHNKX5ToX7h
+ZgJEjya3DQAnpJCvRwIDAQAB
+-----END PUBLIC KEY-----
+");
+        RsaSecurityKey rsaSecurityKey = new RsaSecurityKey(rsa);
+        return new SigningCredentials(rsaSecurityKey, "PS256");
     }
 }

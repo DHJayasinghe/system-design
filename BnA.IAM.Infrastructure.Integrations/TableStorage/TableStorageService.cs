@@ -1,6 +1,5 @@
 ﻿using Azure;
 using Azure.Data.Tables;
-using Azure.Identity;
 using BnA.IAM.Application.Common.Exceptions;
 using BnA.IAM.Application.Common.Interfaces.Services;
 using BnA.IAM.Infrastructure.Integrations.TableStorage;
@@ -15,15 +14,11 @@ namespace BnA.IAM.Infrastructure.Integrations.TableStorage;
 public sealed class TableStorageService : ITableStorageService
 {
     private readonly ILogger<TableStorageService> _logger;
-    private readonly ChainedTokenCredential _credentials;
     private readonly string _accountName;
+    private readonly string _connectionString = "DefaultEndpointsProtocol=https;AccountName=simadfutilityfuncaue;AccountKey=S3a3RBEnzDqPv/IWYy2njQB5TXIOnvnQbSLw1WK4oaM3c8qG4cfA8g+ub5glW2qClVMGT5izM5tz+ASt3MqyyQ==;EndpointSuffix=core.windows.net";
 
-    public TableStorageService(
-        ChainedTokenCredential credentials,
-        ILogger<TableStorageService> logger)
+    public TableStorageService(ILogger<TableStorageService> logger)
     {
-        //_accountName = (storageAccountsConfig ?? throw new ArgumentNullException(nameof(storageAccountsConfig))).IdpStorage;
-        _credentials = credentials ?? throw new ArgumentNullException(nameof(credentials));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
@@ -37,7 +32,7 @@ public sealed class TableStorageService : ITableStorageService
 
         try
         {
-            var tableClient = new TableClient(new Uri(tableEndpoint), tableName, _credentials);
+            var tableClient = new TableClient(_connectionString, tableName);
             Pageable<TableEntity> entities = tableClient.Query<TableEntity>(filter: filter);
 
             return await Task.FromResult(entities
@@ -66,7 +61,7 @@ public sealed class TableStorageService : ITableStorageService
 
         try
         {
-            var tableClient = new TableClient(new Uri(tableEndpoint), tableName, _credentials);
+            var tableClient = new TableClient(_connectionString, tableName);
             var response = await tableClient.UpsertEntityAsync(tableEntity, TableUpdateMode.Replace);
 
             return response.Status;
@@ -85,7 +80,7 @@ public sealed class TableStorageService : ITableStorageService
         try
         {
             string _partitionKey = partitionKey.ClearKey();
-            var tableClient = new TableClient(new Uri(tableEndpoint), tableName, _credentials);
+            var tableClient = new TableClient(_connectionString, tableName);
             var resonse = await tableClient.DeleteEntityAsync(partitionKey.ClearKey(), _partitionKey);
 
             return resonse.Status;

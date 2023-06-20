@@ -1,6 +1,5 @@
 ﻿using Azure.Identity;
 using BnA.IAM.Application.Common.Interfaces.Services;
-using BnA.IAM.Infrastructure.Integrations.KeyVault;
 using BnA.IAM.Infrastructure.Integrations.TableStorage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,9 +17,7 @@ public static class DependencyInjection
 
         services
             .AddSingleton(credentials)
-            .AddSingleton(new KeyVaultConfig { Uri = configuration["KeyVaultUri"] })
-            .AddScoped<ITableStorageService, TableStorageService>()
-            .AddScoped<IKeyVaultService, KeyVaultService>();
+            .AddScoped<ITableStorageService, TableStorageService>();
 
         return services;
     }
