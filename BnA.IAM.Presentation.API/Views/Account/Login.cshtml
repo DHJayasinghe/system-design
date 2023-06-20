@@ -1,0 +1,82 @@
+@using BnA.IAM.Presentation.API.Controllers.Account
+@model LoginViewModel
+
+<div class="login-page">
+    <div class="text-center">
+        <img src="~/images/app-logo.png" class="mt-5 mb-2" />
+        <p style="font-family: 'Poppins'; font-size: 16px;">The Most Advanced Solution For Property Maintenance.</p>
+    </div>
+    <div class="row" style="font-family: 'Poppins'">
+
+        @if (Model.EnableLocalLogin)
+        {
+            <div class="col-sm-6 mx-auto">
+                <div class="card border-0 mt-3">
+                    <div class="card-body">
+                        <form asp-route="Login">
+                            <input type="hidden" asp-for="ReturnUrl" />
+
+                            <div class="form-group mb-2 pb-1">
+                                <label class="d-none" asp-for="Username"></label>
+                                <input class="form-control border-0" placeholder="Email address" asp-for="Username" autofocus>
+                            </div>
+                            <div class="text-right">
+                                <a href="/Account/ForgotPassword" class="font-12 txt-underline" tabindex="5">Forgot your password?</a>
+                            </div>
+                            <div class="form-group">
+                                <label class="d-none" asp-for="Password"></label>
+                                <input type="password" class="form-control border-0" placeholder="Password" asp-for="Password" autocomplete="off">
+                            </div>
+                            <div class="incorrect-pw">
+                                <partial name="_ValidationSummary" />
+                            </div>
+                            <button class="btn btn-danger w-100 mb-4 py-2" name="button" value="login" id="btnSignIn">Sign in</button>
+                            @if (Model.AllowRememberLogin)
+                            {
+                                <div class="form-group">
+                                    <div class="form-check d-flex align-items-center justify-content-between pl-0">
+                                        <div class="d-flex text-left">
+                                            <label class="custom-check">
+                                                <input type="checkbox" asp-for="RememberLogin">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <label class="form-check-label pb-1" asp-for="RememberLogin">
+                                                Remember me
+                                            </label>
+                                        </div>
+
+                                        <div class="text-right">
+                                            <a href="@Model.LandingPage" class="font-12 txt-underline"> &lt; Go back</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            }
+
+                            <div class="text-below text-start" style="font-size: 12px;">
+                                <p style="font-family: 'Poppins'; font-size: 12px; text-decoration:underline;">Please note if you are an owner or tenant you will need to click the linking email sent to you by your property manager. <a href="https://www.bricksandagent.com/" class="primary-red">Click here</a> to learn more.</p>
+                            </div>
+                        </form>
+                        <footer class="text-below text-start text-center mt-4" style="font-size: 12px;">
+                            <p class="mb-1">
+                                <span class="font-poppins font-12">COPYRIGHT &copy; @(DateTime.UtcNow.Year). ALL RIGHTS RESERVED.</span>
+                            </p>
+                            <a href="https://www.bricksandagent.com/blog" class="m-2 font-poppins font-12">BLOG</a>
+                            <a href="https://www.bricksandagent.com/terms-conditions" class="m-2 font-poppins font-12">TERMS</a>
+                            <a href="https://www.bricksandagent.com/privacy-policy" class="m-2 font-poppins font-12">PRIVACY</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+        @if (!Model.EnableLocalLogin && !Model.VisibleExternalProviders.Any())
+        {
+            <div class="alert alert-warning">
+                <strong>Invalid login request</strong>
+                There are no login schemes configured for this request.
+            </div>
+        }
+    </div>
+</div>

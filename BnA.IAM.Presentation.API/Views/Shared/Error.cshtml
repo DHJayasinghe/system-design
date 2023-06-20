@@ -1,0 +1,61 @@
+@using BnA.IAM.Presentation.API.Controllers.Home
+@model ErrorViewModel
+
+@{
+    var error = GetError(Model?.Error?.Error);
+    var errorDescription = Model?.Error?.ErrorDescription ?? GetErrorDescription(Model?.Error?.Error);
+    var errorTitle = GetErrorTitle(error);
+    var request_id = Model?.Error?.RequestId;
+
+    string GetError(string error) => error.Split(":")[0];
+
+    string GetErrorDescription(string error) => error.Split(":").Length > 1 ? error.Split(":")[1] : string.Empty;
+
+    string GetErrorTitle(string error)
+    {
+        if (error == "UnsupportedUserGroup") return "Permission Denied";
+        else if (error == "Suspended" || error == "Deactivated") return "Account is Inactive";
+        else if (error == "PendingApproval") return "Account in Review";
+        return error;
+    }
+}
+<div class="text-center">
+    <img src="~/images/app-logo.png" class="mt-5 mb-2" />
+    <p style="font-family: 'Poppins'; font-size: 16px;">The Most Advanced Solution For Property Maintenance.</p>
+</div>
+<div class="error-unauth d-flex justify-content-center text-center">
+    <div class="error-msg">
+        @*Sorry,*@
+        @if (error != null)
+        {
+            @errorTitle
+            @if (error == "Suspended" || error == "Deactivated")
+            {
+                <div class="error-desc">Hi, your account is inactive.If you have unsubscribed, please click the link that came with the unsubscribe email address.For further assistance, feel free to contact our support team on <a href="mailto:support@bricksandagent.com" class="primary-red">support@bricksandagent.com</a></div>
+            }
+            else if (error == "PendingApproval")
+            {
+                <div class="error-desc">
+                    We are working on setting up your account and expect to complete this within 24 hours (but of course we will do this as soon as we can). If you have any questions in the meantime, please chat with us or send us an email to
+                    <a href="mailto:support@bricksandagent.com" class="primary-red">support@bricksandagent.com</a> We will be back in touch with your shortly. <br><span class="font-light">The team at Bricks + Agent.</span>
+                </div>
+            }
+            else
+            {
+                <div class="error-desc">@errorDescription</div>
+            }
+        }
+        @*@if (request_id != null)
+            {
+            <div class="request-id mt-2">Request Id: @request_id</div>
+            }*@
+    </div>
+</div>
+<div class="text-center mt-4">
+    <form asp-action="Logout" asp-controller="Account" method="post">
+        <input type="hidden" name="postLogoutRedirectUri" value="@Model.PostLogoutRedirectUri" />
+        <div class="form-group">
+            <button class="btn btn-danger w-270">Back to Sign in</button>
+        </div>
+    </form>
+</div>

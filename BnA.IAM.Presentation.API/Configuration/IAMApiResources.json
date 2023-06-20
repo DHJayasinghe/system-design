@@ -1,0 +1,15 @@
+[
+  {
+    "name": "https://bricksandagent.com/maintenance.api",
+    "displayName": "Maintenance API",
+    "description": "Maintenance API",
+    "enabled": true,
+    "userClaims": [
+      "id",
+      "email",
+      "role",
+      "organization_id"
+    ],
+    "scopes": [ "https://bricksandagent.com/maintenance.api" ]
+  }
+]

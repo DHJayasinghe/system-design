@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "BnA.PM.IAM.Presentation.API": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Staging",
+        "USER_IMPERSONATION_ENABLED": "true"
+      },
+      "applicationUrl": "https://localhost:8000"
+    }
+  }
+}
