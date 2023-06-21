@@ -28,7 +28,7 @@ public class SecurityHeadersAttribute : ActionFilterAttribute
 
             // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
             var csp = "default-src 'self'; object-src 'none';";
-            csp += "frame-ancestors 'self' https://login.vaultre.com.au https://pmsimulation.bricksandagent.com https://demo.propertytree.com https://agent.propertytree.com;";
+            csp += "frame-ancestors 'self';";
             csp += "sandbox allow-forms allow-same-origin allow-scripts; base-uri 'self';";
             csp += "font-src 'self' fonts.googleapis.com fonts.gstatic.com;";
             csp += "style-src-elem 'self' fonts.googleapis.com;";

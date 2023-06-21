@@ -178,8 +178,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BnA.IAM.Application\BnA.IAM.Application.csproj" />
-    <ProjectReference Include="..\BnA.IAM.Infrastructure.Integrations\BnA.IAM.Infrastructure.Integrations.csproj" />
+    <ProjectReference Include="..\BnA.IAM.Application\IdentityServer.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

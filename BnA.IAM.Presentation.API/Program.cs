@@ -1,7 +1,6 @@
 using BnA.IAM.Application;
 using BnA.IAM.Application.Services;
 using BnA.IAM.Application.Stores;
-using BnA.IAM.Infrastructure.Integrations;
 using BnA.IAM.Presentation.API.Extensions;
 using IdentityServer4.Configuration;
 using Microsoft.ApplicationInsights.Extensibility;
@@ -22,8 +21,7 @@ services
     .AddApplicationInsightsTelemetry(configurations)
      .AddControllersWithViews();
 services
-    .AddApplication(configurations)
-    .AddIntegrations(configurations);
+    .AddApplication(configurations);
 services // cookie policy to deal with temporary browser incompatibilities
     .AddSameSiteCookiePolicy();
 

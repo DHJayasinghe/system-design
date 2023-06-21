@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BnA.IAM.Application.Common.Interfaces.Services;
+namespace BnA.IAM.Application.Services;
 
 public interface ITableStorageService
 {

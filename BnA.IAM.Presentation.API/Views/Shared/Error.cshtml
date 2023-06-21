@@ -3,21 +3,7 @@
 
 @{
     var error = GetError(Model?.Error?.Error);
-    var errorDescription = Model?.Error?.ErrorDescription ?? GetErrorDescription(Model?.Error?.Error);
-    var errorTitle = GetErrorTitle(error);
-    var request_id = Model?.Error?.RequestId;
-
     string GetError(string error) => error.Split(":")[0];
-
-    string GetErrorDescription(string error) => error.Split(":").Length > 1 ? error.Split(":")[1] : string.Empty;
-
-    string GetErrorTitle(string error)
-    {
-        if (error == "UnsupportedUserGroup") return "Permission Denied";
-        else if (error == "Suspended" || error == "Deactivated") return "Account is Inactive";
-        else if (error == "PendingApproval") return "Account in Review";
-        return error;
-    }
 }
 <div class="text-center">
     <img src="~/images/app-logo.png" class="mt-5 mb-2" />
@@ -28,22 +14,7 @@
         @*Sorry,*@
         @if (error != null)
         {
-            @errorTitle
-            @if (error == "Suspended" || error == "Deactivated")
-            {
-                <div class="error-desc">Hi, your account is inactive.If you have unsubscribed, please click the link that came with the unsubscribe email address.For further assistance, feel free to contact our support team on <a href="mailto:support@bricksandagent.com" class="primary-red">support@bricksandagent.com</a></div>
-            }
-            else if (error == "PendingApproval")
-            {
-                <div class="error-desc">
-                    We are working on setting up your account and expect to complete this within 24 hours (but of course we will do this as soon as we can). If you have any questions in the meantime, please chat with us or send us an email to
-                    <a href="mailto:support@bricksandagent.com" class="primary-red">support@bricksandagent.com</a> We will be back in touch with your shortly. <br><span class="font-light">The team at Bricks + Agent.</span>
-                </div>
-            }
-            else
-            {
-                <div class="error-desc">@errorDescription</div>
-            }
+            <div class="error-desc">@error</div>
         }
         @*@if (request_id != null)
             {

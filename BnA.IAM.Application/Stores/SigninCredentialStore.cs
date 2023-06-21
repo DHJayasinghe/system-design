@@ -1,8 +1,5 @@
-﻿using Azure.Security.KeyVault.Keys;
-using BnA.IAM.Application.Common.Interfaces.Services;
-using IdentityServer4.Stores;
+﻿using IdentityServer4.Stores;
 using Microsoft.IdentityModel.Tokens;
-using System;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 

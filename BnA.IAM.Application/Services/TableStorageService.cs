@@ -1,15 +1,14 @@
 ﻿using Azure;
 using Azure.Data.Tables;
-using BnA.IAM.Application.Common.Exceptions;
-using BnA.IAM.Application.Common.Interfaces.Services;
-using BnA.IAM.Infrastructure.Integrations.TableStorage;
+using BnA.IAM.Application.Exceptions;
+using BnA.IAM.Application.Services;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BnA.IAM.Infrastructure.Integrations.TableStorage;
+namespace BnA.IAM.Application.Services;
 
 public sealed class TableStorageService : ITableStorageService
 {

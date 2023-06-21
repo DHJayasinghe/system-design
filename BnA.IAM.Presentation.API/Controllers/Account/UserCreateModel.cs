@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace BnA.IAM.Presentation.API.Controllers.Account;
 

@@ -12,6 +12,8 @@ public static class DependencyInjection
     public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
     {
         services
+           .AddScoped<ITableStorageService, TableStorageService>();
+        services
             .AddScoped<ISigningCredentialStore, SigninCredentialStore>()
             .AddScoped<IValidationKeysStore, ValidationKeysStore>()
             .AddTransient<ITokenCreationService, TokenCreationService>();

@@ -1,4 +1,4 @@
-﻿using BnA.IAM.Application.Common.Interfaces.Services;
+﻿using BnA.IAM.Application.Services;
 using IdentityServer4.Models;
 using IdentityServer4.Stores;
 using System;

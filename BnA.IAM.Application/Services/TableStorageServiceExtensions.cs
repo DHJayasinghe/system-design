@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
-namespace BnA.IAM.Infrastructure.Integrations.TableStorage;
+namespace BnA.IAM.Application.Services;
 
 internal static class TableStorageServiceExtensions
 {
