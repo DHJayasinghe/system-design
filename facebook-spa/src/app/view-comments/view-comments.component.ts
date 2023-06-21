@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { ReactionCount } from '../display-post/display-post.component';
 
@@ -16,8 +16,8 @@ export class ViewCommentsComponent implements OnInit {
   comments: Comment[] = [];
   reactionCounts: ReactionCount[] = [];
 
-  placeCommentForm = new FormGroup({
-    content: new FormControl('', [
+  placeCommentForm = new UntypedFormGroup({
+    content: new UntypedFormControl('', [
       Validators.required,
       Validators.minLength(1),
       Validators.maxLength(5000)

@@ -14,16 +14,20 @@ import { ViewCommentsComponent } from './view-comments/view-comments.component';
 import { AddReactionComponent } from './add-reaction/add-reaction.component';
 import { AuthModule, LogLevel } from 'angular-auth-oidc-client';
 import { environment } from 'src/environments/environment';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { SignInCheckComponent } from './sign-in-check/sign-in-check.component';
 
 @NgModule({
-  declarations: [						
+  declarations: [								
     AppComponent,
       CreatePostComponent,
       DisplayPostComponent,
       TimelineComponent,
       DashboardComponent,
       ViewCommentsComponent,
-      AddReactionComponent
+      AddReactionComponent,
+      SignInComponent,
+      SignInCheckComponent
    ],
   imports: [
     BrowserModule,
@@ -34,7 +38,7 @@ import { environment } from 'src/environments/environment';
     AuthModule.forRoot({
       config: {
         authority: environment.idp.authority,
-        redirectUrl: window.location.origin,
+        redirectUrl: `${window.location.origin}/sign-in`,
         postLogoutRedirectUri: window.location.origin,
         clientId: environment.idp.clientId,
         scope: environment.idp.scope,
@@ -42,6 +46,8 @@ import { environment } from 'src/environments/environment';
         silentRenew: true,
         useRefreshToken: true,
         logLevel: LogLevel.Debug,
+        disableIdTokenValidation : true,
+        autoUserInfo: false
       },
     })
   ],

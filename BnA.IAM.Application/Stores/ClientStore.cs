@@ -15,15 +15,13 @@ public sealed class ClientStore : IClientStore
         new Client()
         {
             ClientId = "144e251b-30ff-4027-be96-0623e40cbc19",
-            ClientName = "BnA PM SPA",
+            ClientName = "Angular SPA",
             RequireConsent = false,
             RequireClientSecret = false,
-            RequirePkce = false,
+            RequirePkce = true,
             AllowedGrantTypes = new[] { "authorization_code" },
             AllowOfflineAccess = true,
-            AllowedScopes = new List<string>{
-      "https://bricksandagent.com/maintenance.api"
-    },
+            AllowedScopes = new List<string>{ },
             RefreshTokenUsage = TokenUsage.OneTimeOnly,
             AbsoluteRefreshTokenLifetime = 86400,
             SlidingRefreshTokenLifetime = 14400,

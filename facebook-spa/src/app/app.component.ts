@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginResponse, OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Component({
   selector: 'app-root',
