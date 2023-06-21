@@ -4,7 +4,13 @@
 
 export const environment = {
   production: false,
-  baseUrl: "http://localhost:8082"
+  baseUrl: "http://localhost:8082",
+  idp: {
+    authority: "https://localhost:8000",
+    clientId: '144e251b-30ff-4027-be96-0623e40cbc19',
+    scope:
+      'openid offline_access',
+  }
 };
 
 /*
