@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -25,8 +27,10 @@ public class ExternalController : Controller
     private readonly ILogger<ExternalController> _logger;
     private readonly IEventService _events;
     private readonly HttpContext _httpContext;
+    private readonly IHttpClientFactory _httpClientFactory;
 
     public ExternalController(
+        IHttpClientFactory httpClientFactory,
         IIdentityServerInteractionService interaction,
         IClientStore clientStore,
         IEventService events,
@@ -38,6 +42,7 @@ public class ExternalController : Controller
         _logger = logger;
         _events = events;
         _httpContext = httpContextAccessor.HttpContext;
+        _httpClientFactory = httpClientFactory;
     }
 
     /// <summary>
@@ -88,13 +93,8 @@ public class ExternalController : Controller
             _logger.LogDebug("External claims: {@claims}", externalClaims);
         }
 
-        // lookup our user and external provider info
-        var (provider, providerUserId, claims) = await FindUserFromExternalProvider(result);
-        //if (user.HasNoValue)
-        //{
-        // this where we initiate a custom workflow for user registration
-        // user = 
-        AutoProvisionUser(provider, providerUserId, claims);
+        var userAccount = GetUserAccountDetailsFromExternalProvider(result);
+        var userId = await AutoProvisionUser(userAccount);
         //}
 
         // this allows us to collect any additional claims or properties
@@ -105,12 +105,10 @@ public class ExternalController : Controller
         ProcessLoginCallback(result, additionalLocalClaims, localSignInProps);
 
         // issue authentication cookie for user
-        var userId = Guid.NewGuid().ToString();
-        var username = "john.doe@gmail.com";
         var isuser = new IdentityServerUser(userId)
         {
-            DisplayName = username,
-            IdentityProvider = provider,
+            DisplayName = userAccount.Email,
+            IdentityProvider = userAccount.Provider,
             AdditionalClaims = additionalLocalClaims
         };
 
@@ -124,7 +122,7 @@ public class ExternalController : Controller
 
         // check if external login is in the context of an OIDC request
         var context = await _interaction.GetAuthorizationContextAsync(returnUrl);
-        await _events.RaiseAsync(new UserLoginSuccessEvent(provider, providerUserId, userId, username, true, context?.Client.ClientId));
+        await _events.RaiseAsync(new UserLoginSuccessEvent(userAccount.Provider, userAccount.NameIdentifier, userId, userAccount.Email, true, context?.Client.ClientId));
 
         if (context != null)
         {
@@ -139,28 +137,30 @@ public class ExternalController : Controller
         return Redirect(returnUrl);
     }
 
-    private async Task<(string provider, string providerUserId, IEnumerable<Claim> claims)> FindUserFromExternalProvider(AuthenticateResult result)
+    private static UserAccount GetUserAccountDetailsFromExternalProvider(AuthenticateResult result)
     {
         var externalUser = result.Principal;
 
-        // try to determine the unique id of the external user (issued by the provider)
-        var userIdClaim = externalUser.FindFirst(JwtClaimTypes.Subject) ??
+        return new UserAccount
+        {
+            NameIdentifier = (externalUser.FindFirst(JwtClaimTypes.Subject) ??
                           externalUser.FindFirst(ClaimTypes.NameIdentifier) ??
-                          throw new Exception("Unknown userid");
-
-        var claims = externalUser.Claims.ToList();
-        var provider = result.Properties.Items["scheme"];
-        var providerUserId = userIdClaim.Value;
-
-        //var user = await _acountRepo.GetByExternalIdAsync(providerUserId);
-
-        return (provider, providerUserId, claims);
+                          throw new Exception("Unknown userid")).Value,
+            Email = externalUser.FindFirst(ClaimTypes.Email).Value,
+            Name = externalUser.FindFirst(ClaimTypes.Name).Value,
+            GivenName = externalUser.FindFirst(ClaimTypes.GivenName).Value,
+            Surname = externalUser.FindFirst(ClaimTypes.Surname).Value,
+            Provider = result.Properties.Items["scheme"]
+        };
     }
 
-    private static void AutoProvisionUser(string provider, string providerUserId, IEnumerable<Claim> claims)
+    private async Task<string> AutoProvisionUser(UserAccount userAccount)
     {
-        //var user = _acountRepo.AutoProvisionUser(provider, providerUserId, claims.ToList());
-        // return null;
+        var client = _httpClientFactory.CreateClient();
+        var response = await client.PutAsync("http://localhost:8081/users", new StringContent(JsonConvert.SerializeObject(userAccount)));
+        response.EnsureSuccessStatusCode();
+        var userId = await response.Content.ReadAsStringAsync();
+        return userId;
     }
 
     // if the external login is OIDC-based, there are certain things we need to preserve to make logout work
@@ -182,4 +182,14 @@ public class ExternalController : Controller
             localSignInProps.StoreTokens(new[] { new AuthenticationToken { Name = "id_token", Value = idToken } });
         }
     }
+}
+
+public record UserAccount
+{
+    public string NameIdentifier { get; init; }
+    public string Email { get; init; }
+    public string Name { get; init; }
+    public string GivenName { get; init; }
+    public string Surname { get; init; }
+    public string Provider { get; init; }
 }

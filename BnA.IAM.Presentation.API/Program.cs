@@ -2,6 +2,7 @@ using BnA.IAM.Application;
 using BnA.IAM.Application.Services;
 using BnA.IAM.Application.Stores;
 using BnA.IAM.Presentation.API.Extensions;
+using IdentityServer4;
 using IdentityServer4.Configuration;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Builder;
@@ -24,6 +25,7 @@ services
     .AddApplication(configurations);
 services // cookie policy to deal with temporary browser incompatibilities
     .AddSameSiteCookiePolicy();
+services.AddHttpClient();
 
 services
     .AddIdentityServer(options =>
@@ -61,7 +63,17 @@ services
     });
 
 services
-    .AddAuthentication();
+    .AddAuthentication()
+    .AddGoogle(googleOptions =>
+    {
+        googleOptions.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+        googleOptions.ClientId = "1085351065661-1q46g7icejprtfv42ut9gqdo9hs2249a.apps.googleusercontent.com";
+        googleOptions.ClientSecret = "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";
+        googleOptions.Scope.Clear();
+        googleOptions.Scope.Add("openid");
+        googleOptions.Scope.Add("https://www.googleapis.com/auth/userinfo.email");
+        googleOptions.Scope.Add("https://www.googleapis.com/auth/userinfo.profile");
+    });
 
 services
     .AddLocalApiAuthentication();
@@ -82,6 +94,7 @@ builder.Host.UseSerilog((context, services, configuration) => configuration
     .WriteTo.ApplicationInsights(services.GetRequiredService<TelemetryConfiguration>(), TelemetryConverter.Traces));
 
 var app = builder.Build();
+
 app
     .UseForwardedHeaders(new ForwardedHeadersOptions
     {

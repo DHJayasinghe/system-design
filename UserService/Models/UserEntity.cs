@@ -44,28 +44,48 @@ public class UserEntity : BaseTableEntity
     public DateTime? DateOfBirth { get; set; }
     public string Gender { get; set; }
     public DateTime CreatedDateTime { get; set; }
+    public string NameIdentifier { get; internal set; }
+    public string Name { get; internal set; }
 }
 
 
 public static class Mappings
 {
-    public static UserEntity ToEntity(this User todo)
+    public static UserEntity ToEntity(this User user)
     {
-        string username = todo.Email ?? todo.PhoneNumber;
+        string username = user.Email ?? user.PhoneNumber;
         string id = User.HashData(username);
 
         return new UserEntity()
         {
             PartitionKey = id,
             RowKey = id,
-            CreatedDateTime = todo.CreatedDateTime,
-            FirstName = todo.FirstName,
-            Surname = todo.Surname,
-            Gender = todo.Gender,
-            DateOfBirth = todo.DateOfBirth,
-            Email = todo.Email,
-            PhoneNumber = todo.PhoneNumber,
+            CreatedDateTime = user.CreatedDateTime,
+            FirstName = user.FirstName,
+            Surname = user.Surname,
+            Gender = user.Gender,
+            DateOfBirth = user.DateOfBirth,
+            Email = user.Email,
+            PhoneNumber = user.PhoneNumber,
             Username = username,
+        };
+    }
+
+    public static UserEntity ToEntity(this RegisterUserAccountRequest user)
+    {
+        string id = User.HashData(user.Email);
+
+        return new UserEntity()
+        {
+            PartitionKey = id,
+            RowKey = id,
+            CreatedDateTime = DateTime.UtcNow,
+            NameIdentifier = user.NameIdentifier,
+            Name = user.Name,
+            FirstName = user.GivenName,
+            Surname = user.Surname,
+            Email = user.Email,
+            Username = user.Email,
         };
     }
 
