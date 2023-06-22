@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -12,7 +12,7 @@ import { TimelineComponent } from './timeline/timeline.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ViewCommentsComponent } from './view-comments/view-comments.component';
 import { AddReactionComponent } from './add-reaction/add-reaction.component';
-import { AuthModule, LogLevel } from 'angular-auth-oidc-client';
+import { AuthInterceptor, AuthModule, LogLevel } from 'angular-auth-oidc-client';
 import { environment } from 'src/environments/environment';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignInCheckComponent } from './sign-in-check/sign-in-check.component';
@@ -47,11 +47,12 @@ import { SignInCheckComponent } from './sign-in-check/sign-in-check.component';
         useRefreshToken: true,
         logLevel: LogLevel.Debug,
         disableIdTokenValidation : true,
-        autoUserInfo: false
+        autoUserInfo: false,
+        secureRoutes:[environment.baseUrl]
       },
     })
   ],
-  providers: [],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

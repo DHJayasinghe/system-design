@@ -21,7 +21,7 @@ public sealed class ClientStore : IClientStore
             RequirePkce = true,
             AllowedGrantTypes = new[] { "authorization_code" },
             AllowOfflineAccess = true,
-            AllowedScopes = new List<string>{ },
+            AllowedScopes = new List<string> { },
             RefreshTokenUsage = TokenUsage.OneTimeOnly,
             AbsoluteRefreshTokenLifetime = 86400,
             SlidingRefreshTokenLifetime = 14400,
@@ -32,7 +32,8 @@ public sealed class ClientStore : IClientStore
             FrontChannelLogoutUri = "http://localhost:4200/sign-out",
             PostLogoutRedirectUris = new[] { "http://localhost:4200/sign-out" },
             UpdateAccessTokenClaimsOnRefresh = true,
-            Enabled = true
+            Enabled = true,
+            EnableLocalLogin = false
         }
     };
     static readonly string[] allowedDefaultScopes =

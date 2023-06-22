@@ -13,17 +13,15 @@ public sealed class ResourceStore : IResourceStore
     {
         new ApiResource
         {
-            Name = "https://bricksandagent.com/maintenance.api",
-            DisplayName = "Maintenance API",
-            Description = "Maintenance API",
+            Name = "local.api",
+            DisplayName = "Local API",
+            Description = "Local API",
             Enabled = true,
             UserClaims = new[]{
                 "id",
-                "email",
-                "role",
-                "organization_id"
+                "email"
             },
-            Scopes = new[] { "https://bricksandagent.com/maintenance.api" }
+            Scopes = new[] { "https://local.api" }
         }
     };
     public static readonly IEnumerable<IdentityResource> IdentityResources = new IdentityResource[]

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
@@ -28,6 +29,7 @@ public class ExternalController : Controller
     private readonly IEventService _events;
     private readonly HttpContext _httpContext;
     private readonly IHttpClientFactory _httpClientFactory;
+    private readonly string _userServiceBaseUrl;
 
     public ExternalController(
         IHttpClientFactory httpClientFactory,
@@ -35,7 +37,8 @@ public class ExternalController : Controller
         IClientStore clientStore,
         IEventService events,
         ILogger<ExternalController> logger,
-        IHttpContextAccessor httpContextAccessor)
+        IHttpContextAccessor httpContextAccessor,
+        IConfiguration configuration)
     {
         _interaction = interaction;
         _clientStore = clientStore;
@@ -43,6 +46,7 @@ public class ExternalController : Controller
         _events = events;
         _httpContext = httpContextAccessor.HttpContext;
         _httpClientFactory = httpClientFactory;
+        _userServiceBaseUrl = configuration["UserServiceBaseUrl"];
     }
 
     /// <summary>
@@ -157,7 +161,7 @@ public class ExternalController : Controller
     private async Task<string> AutoProvisionUser(UserAccount userAccount)
     {
         var client = _httpClientFactory.CreateClient();
-        var response = await client.PutAsync("http://localhost:8081/users", new StringContent(JsonConvert.SerializeObject(userAccount)));
+        var response = await client.PutAsync($"{_userServiceBaseUrl}/users", new StringContent(JsonConvert.SerializeObject(userAccount)));
         response.EnsureSuccessStatusCode();
         var userId = await response.Content.ReadAsStringAsync();
         return userId;
