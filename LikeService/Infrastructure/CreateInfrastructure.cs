@@ -1,14 +1,14 @@
-***REMOVED***
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 ***REMOVED***
-***REMOVED***
+using Microsoft.Extensions.Logging;
 using Microsoft.Azure.Cosmos;
 ***REMOVED***
 using LikeService.Models;
 using Azure.Messaging.ServiceBus.Administration;
-***REMOVED***
+using System.Collections.Generic;
 using LikeService.Configs;
 
 namespace LikeService.Infrastructure;
@@ -24,7 +24,7 @@ public class CreateInfrastructure
         [HttpTrigger(AuthorizationLevel.Function, "post", Route = "reactions/infrastructure")] HttpRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
-    ***REMOVED***
+***REMOVED***
         log.LogInformation("C# HTTP trigger function processed a request.");
 
         var tasks = new List<Task>();
@@ -48,19 +48,19 @@ public class CreateInfrastructure
         var serviceBusClient = new ServiceBusAdministrationClient(_configuration.GetConnectionString(ServiceBusConfigs.ConnectionName));
         if (!await serviceBusClient.TopicExistsAsync(ServiceBusConfigs.TopicName))
             await serviceBusClient.CreateTopicAsync(new CreateTopicOptions(ServiceBusConfigs.TopicName)
-            ***REMOVED***
+        ***REMOVED***
                 DefaultMessageTimeToLive = System.TimeSpan.FromDays(7),
 
-        ***REMOVED***);
+        ***REMOVED***;
         if (!await serviceBusClient.SubscriptionExistsAsync(ServiceBusConfigs.TopicName, ServiceBusConfigs.SubscriptionName))
-        ***REMOVED***
+    ***REMOVED***
             await serviceBusClient.CreateSubscriptionAsync(new CreateSubscriptionOptions(ServiceBusConfigs.TopicName, ServiceBusConfigs.SubscriptionName)
-            ***REMOVED***
+        ***REMOVED***
                 RequiresSession = true,
                 DefaultMessageTimeToLive = System.TimeSpan.FromDays(7)
-        ***REMOVED***);
-    ***REMOVED***
+        ***REMOVED***;
+        ***REMOVED***
 
         return new OkResult();
-***REMOVED***
+    ***REMOVED***
 ***REMOVED***

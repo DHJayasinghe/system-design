@@ -4,11 +4,11 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 ***REMOVED***
 using System.Net.Http;
-***REMOVED***
+using System.Threading.Tasks;
 using FluentAssertions;
 ***REMOVED***
-***REMOVED***
-***REMOVED***
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 
 [assembly: Parallelize(Workers = 0, Scope = ExecutionScope.MethodLevel)]
@@ -26,24 +26,24 @@ public class AddReactionFunctionTest
 
     [TestInitialize]
     public void Initialize()
-    ***REMOVED***
+***REMOVED***
         var ***REMOVED*** = new ServiceCollection();
         ***REMOVED***.AddHttpClient();
         var serviceProvider = ***REMOVED***.BuildServiceProvider();
 
         _httpClient = serviceProvider.GetService<HttpClient>();
-***REMOVED***
+    ***REMOVED***
 
     [TestMethod]
     public async Task Should_AddReactionEn***REMOVED***ForPost_WhenUserDoReactionOnPost()
-    ***REMOVED***
+***REMOVED***
         // Arrange
         var request = new AddReactionRequest
-        ***REMOVED***
+    ***REMOVED***
             PostId = Guid.NewGuid().ToString(),
             UserId = "1",
             ReactionType = Like
-    ***REMOVED***;
+***REMOVED***
 
         // Act
         var reactionCountsBefore = await GetReactionCountAsync(request.PostId);
@@ -55,17 +55,17 @@ public class AddReactionFunctionTest
         addReactionResponse.StatusCode.Should().Be(HttpStatusCode.OK);
         reactionCountsBefore.Should().BeEmpty();
         reactionCountsAfter.First().LikeCount.Should().Be(One);
-***REMOVED***
+    ***REMOVED***
 
     [TestMethod]
     public async Task Should_RemoveReactionEn***REMOVED***ForPost_WhenUserUndoReactionMade()
-    ***REMOVED***
+***REMOVED***
         var request = new AddReactionRequest
-        ***REMOVED***
+    ***REMOVED***
             PostId = Guid.NewGuid().ToString(),
             UserId = "1",
             ReactionType = Like
-    ***REMOVED***;
+***REMOVED***
 
         await AddReactionAsync(request);
         await DelayUntilEventHandlerCompletedAsync();
@@ -77,24 +77,24 @@ public class AddReactionFunctionTest
         removeReactionResponse.StatusCode.Should().Be(HttpStatusCode.OK);
         reactionCountsBefore.First().LikeCount.Should().Be(One);
         reactionCountsAfter.First().LikeCount.Should().Be(Zero);
-***REMOVED***
+    ***REMOVED***
 
     [TestMethod]
     public async Task Should_ChangeReactionEn***REMOVED***ForPost_WhenUserChangeThenReactionMade()
-    ***REMOVED***
+***REMOVED***
         var postId = Guid.NewGuid().ToString();
         var firstReaction = new AddReactionRequest
-        ***REMOVED***
+    ***REMOVED***
             PostId = postId,
             UserId = "1",
             ReactionType = Like
-    ***REMOVED***;
+***REMOVED***
         var secondReaction = new AddReactionRequest
-        ***REMOVED***
+    ***REMOVED***
             PostId = postId,
             UserId = "1",
             ReactionType = Heart
-    ***REMOVED***;
+***REMOVED***
         var firstReactionResponse = await AddReactionAsync(firstReaction);
         await DelayUntilEventHandlerCompletedAsync();
         var reactionCountsBefore = await GetReactionCountAsync(firstReaction.PostId);
@@ -108,18 +108,18 @@ public class AddReactionFunctionTest
         reactionCountsBefore.First().HeartCount.Should().Be(Zero);
         reactionCountsAfter.First().LikeCount.Should().Be(Zero);
         reactionCountsAfter.First().HeartCount.Should().Be(One);
-***REMOVED***
+    ***REMOVED***
 
     [TestMethod]
     public async Task Should_MaintainCorrectReactionCountForPost_WhenMultipeUsersConcurrentlyDoReactions()
-    ***REMOVED***
+***REMOVED***
         var postId = Guid.NewGuid().ToString();
         var reactions = Enumerable.Range(1, 5).ToList().Select(userId => new AddReactionRequest
-        ***REMOVED***
+    ***REMOVED***
             PostId = postId,
             UserId = userId.ToString(),
             ReactionType = Like
-    ***REMOVED***);
+    ***REMOVED***;
 
         var addReactionTasks = reactions.Select(reaction => AddReactionAsync(reaction));
         await Task.WhenAll(addReactionTasks);
@@ -128,32 +128,32 @@ public class AddReactionFunctionTest
         var reactionCounts = await GetReactionCountAsync(postId);
 
         reactionCounts.First().LikeCount.Should().Be(reactions.Count());
-***REMOVED***
+    ***REMOVED***
 
 
     private async Task<HttpResponseMessage> AddReactionAsync(AddReactionRequest request) => await _httpClient.PutAsync(BaseUrl, ArrangeJsonPayload(request));
     private async Task<HttpResponseMessage> RemoveReactionAsync(AddReactionRequest request)
-    ***REMOVED***
+***REMOVED***
         var payload = ArrangeJsonPayload(request);
         return await _httpClient.SendAsync(
             new HttpRequestMessage
-            ***REMOVED***
+        ***REMOVED***
                 RequestUri = new Uri(BaseUrl),
                 Content = payload,
                 Method = new HttpMethod("DELETE")
-        ***REMOVED***);
-***REMOVED***
+        ***REMOVED***;
+    ***REMOVED***
 
     private static async Task DelayUntilEventHandlerCompletedAsync(int secondsDelay = 3) => await Task.Delay(secondsDelay * 1000);
 
     private async Task<List<ReactionCountDto>> GetReactionCountAsync(string postId)
-    ***REMOVED***
+***REMOVED***
         var reactionCountResponse = await _httpClient.GetAsync($"***REMOVED***BaseUrl***REMOVED***?postId=***REMOVED***postId***REMOVED***");
         return await reactionCountResponse.Content.ReadAsAsync<List<ReactionCountDto>>();
-***REMOVED***
+    ***REMOVED***
 
     private static StringContent ArrangeJsonPayload(AddReactionRequest request) => new(JsonConvert.SerializeObject(request, new JsonSerializerSettings
-    ***REMOVED***
+***REMOVED***
         ContractResolver = new CamelCasePropertyNamesContractResolver()
-***REMOVED***));
+***REMOVED***);
 ***REMOVED***

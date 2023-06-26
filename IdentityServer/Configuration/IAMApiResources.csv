@@ -1,0 +1,2 @@
+PartitionKey,RowKey,Name,DisplayName,Description,Enabled,UserClaims,Scopes
+ApiResources,httpsbricksandagentcommaintenanceapi,https://bricksandagent.com/maintenance.api,Maintenance API,Maintenance API,true,"[""id"",""email"",""role"",""organization_id""]","[""https://bricksandagent.com/maintenance.api""]"

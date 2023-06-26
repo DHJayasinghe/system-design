@@ -12,31 +12,31 @@ public class GremlinService
     private static GraphTraversalSource g = AnonymousTraversalSource.Traversal();
     private readonly GremlinServer gremlinServer;
     private readonly ConnectionPoolSettings connectionPoolSettings = new()
-    ***REMOVED***
+***REMOVED***
         MaxInProcessPerConnection = 10,
         PoolSize = 30,
         ReconnectionAttempts = 3,
         ReconnectionBaseDelay = TimeSpan.FromMilliseconds(500)
-***REMOVED***;
+    ***REMOVED***;
     public GremlinService(IConfiguration configs)
-    ***REMOVED***
+***REMOVED***
         var Primarykey = configs["CosmosDB:PrimaryKey"];
         var ContainerLink = configs["CosmosDB:ContainerLink"];
         var Host = configs["CosmosDB:Host"];
         var Port = int.Parse(configs["CosmosDB:Port"]);
         var EnableSSL = bool.Parse(configs["CosmosDB:EnableSSL"]);
         gremlinServer = new GremlinServer(Host, Port, enableSsl: EnableSSL, username: ContainerLink, password: Primarykey);
-***REMOVED***
+    ***REMOVED***
 
     public GremlinClient CreateClient()
-    ***REMOVED***
+***REMOVED***
         var webSocketConfiguration = new Action<ClientWebSocketOptions>(options =>
-        ***REMOVED***
+    ***REMOVED***
             options.KeepAliveInterval = TimeSpan.FromSeconds(10);
-    ***REMOVED***);
+    ***REMOVED***;
 
         return new GremlinClient(gremlinServer, new GraphSON2MessageSerializer(), connectionPoolSettings, webSocketConfiguration);
-***REMOVED***
+    ***REMOVED***
 
     public GraphTraversalSource G => g;
 

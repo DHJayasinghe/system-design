@@ -1,0 +1,63 @@
+***REMOVED***
+  "compilers": ***REMOVED***
+    "less": ***REMOVED***
+      "autoPrefix": "",
+      "cssComb": "none",
+      "ieCompat": true,
+      "strictMath": false,
+      "strictUnits": false,
+      "relativeUrls": true,
+      "rootPath": "",
+      "sourceMapRoot": "",
+      "sourceMapBasePath": "",
+      "sourceMap": false
+    ***REMOVED***,
+    "sass": ***REMOVED***
+      "autoPrefix": "",
+      "includePath": "",
+      "indentType": "space",
+      "indentWidth": 2,
+      "outputStyle": "nested",
+      "Precision": 5,
+      "relativeUrls": true,
+      "sourceMapRoot": "",
+      "lineFeed": "",
+      "sourceMap": false
+    ***REMOVED***,
+    "stylus": ***REMOVED***
+      "sourceMap": false
+    ***REMOVED***,
+    "babel": ***REMOVED***
+      "sourceMap": false
+    ***REMOVED***,
+    "coffeescript": ***REMOVED***
+      "bare": false,
+      "runtimeMode": "node",
+      "sourceMap": false
+    ***REMOVED***,
+    "handlebars": ***REMOVED***
+      "root": "",
+      "noBOM": false,
+      "name": "",
+      "namespace": "",
+      "knownHelpersOnly": false,
+      "forcePartial": false,
+      "knownHelpers": [],
+      "commonjs": "",
+      "amd": false,
+      "sourceMap": false
+    ***REMOVED***
+  ***REMOVED***,
+  "minifiers": ***REMOVED***
+    "css": ***REMOVED***
+      "enabled": true,
+      "termSemicolons": true,
+      "gzip": false
+    ***REMOVED***,
+    "javascript": ***REMOVED***
+      "enabled": true,
+      "termSemicolons": true,
+      "gzip": false
+    ***REMOVED***
+  ***REMOVED***
+***REMOVED***

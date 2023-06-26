@@ -1,6 +1,6 @@
 import ***REMOVED*** HttpClient ***REMOVED*** from '@angular/common/http';
 import ***REMOVED*** Component, EventEmitter, Input, OnInit, Output ***REMOVED*** from '@angular/core';
-import ***REMOVED*** FormBuilder, FormControl, FormGroup, Validators ***REMOVED*** from '@angular/forms';
+import ***REMOVED*** FormBuilder, UntypedFormControl, UntypedFormGroup, Validators ***REMOVED*** from '@angular/forms';
 import ***REMOVED*** environment ***REMOVED*** from 'src/environments/environment';
 import ***REMOVED*** ReactionCount ***REMOVED*** from '../display-post/display-post.component';
 
@@ -16,8 +16,8 @@ export class ViewCommentsComponent implements OnInit ***REMOVED***
   comments: Comment[] = [];
   reactionCounts: ReactionCount[] = [];
 
-  placeCommentForm = new FormGroup(***REMOVED***
-    content: new FormControl('', [
+  placeCommentForm = new UntypedFormGroup(***REMOVED***
+    content: new UntypedFormControl('', [
       Validators.required,
       Validators.minLength(1),
       Validators.maxLength(5000)
@@ -37,11 +37,11 @@ export class ViewCommentsComponent implements OnInit ***REMOVED***
         next: () => ***REMOVED***
           this.placeCommentForm.reset();
           this.getComments();
-    ***REMOVED***,
+        ***REMOVED***,
         error: (err) => ***REMOVED***
           console.error(err);
-    ***REMOVED***
-  ***REMOVED***);
+        ***REMOVED***
+  ***REMOVED***;
   ***REMOVED***
 
   private getComments() ***REMOVED***
@@ -49,11 +49,11 @@ export class ViewCommentsComponent implements OnInit ***REMOVED***
       .subscribe(***REMOVED***
         next: (result) => ***REMOVED***
           this.comments = result;
-    ***REMOVED***,
+        ***REMOVED***,
         error: (err) => ***REMOVED***
           console.error(err);
-    ***REMOVED***
-  ***REMOVED***);
+        ***REMOVED***
+  ***REMOVED***;
   ***REMOVED***
 
   dismiss() ***REMOVED***
@@ -64,14 +64,14 @@ export class ViewCommentsComponent implements OnInit ***REMOVED***
     this.http.get<ReactionCount[]>(`$***REMOVED***environment.baseUrl***REMOVED***/reactions?postId=$***REMOVED***this.postId***REMOVED***`).subscribe(result => ***REMOVED***
       this.reactionCounts = result;
       this.mapReactionCount();
-***REMOVED***);
+***REMOVED***;
   ***REMOVED***
 
   private mapReactionCount() ***REMOVED***
     this.reactionCounts.filter(reaction => reaction.commentId != null).forEach(reaction => ***REMOVED***
       var comment = this.comments.filter(comment => comment.id == reaction.commentId)[0];
       comment.totalReactions = reaction.totalReactions;
-***REMOVED***);
+***REMOVED***;
   ***REMOVED***
 
 

@@ -20,14 +20,14 @@ public record ReactionCount
     public DateTime Timestamp ***REMOVED*** get; set; ***REMOVED***
 
     public ReactionCount WithDefaults()
-    ***REMOVED***
+***REMOVED***
         Id = string.IsNullOrEmpty(CommentId) ? PostId : CommentId;
         Timestamp = DateTime.UtcNow;
         return this;
-***REMOVED***
+    ***REMOVED***
 
     public void Decrement(ReactionType reaction)
-    ***REMOVED***
+***REMOVED***
         if (reaction == ReactionType.LIKE)
             LikeCount--;
         else if (reaction == ReactionType.HEART)
@@ -42,10 +42,10 @@ public record ReactionCount
             SadCount--;
         else if (reaction == ReactionType.ANGRY)
             AngryCount--;
-***REMOVED***
+    ***REMOVED***
 
     public void Increment(ReactionType reaction)
-    ***REMOVED***
+***REMOVED***
         if (reaction == ReactionType.LIKE)
             LikeCount++;
         else if (reaction == ReactionType.HEART)
@@ -60,23 +60,23 @@ public record ReactionCount
             SadCount++;
         else if (reaction == ReactionType.ANGRY)
             AngryCount++;
-***REMOVED***
+    ***REMOVED***
 
     public static ReactionCount Map(ReactionChangedIntegrationEvent @event)
-    ***REMOVED***
+***REMOVED***
         return new ReactionCount()
-        ***REMOVED***
+    ***REMOVED***
             PostId = @event.PostId,
             CommentId = @event.CommentId,
-    ***REMOVED***.WithDefaults();
-***REMOVED***
+        ***REMOVED***.WithDefaults();
+    ***REMOVED***
 
     public static ReactionCount Map(Reaction reaction)
-    ***REMOVED***
+***REMOVED***
         return new ReactionCount()
-        ***REMOVED***
+    ***REMOVED***
             PostId = reaction.PostId,
             CommentId = reaction.CommentId,
-    ***REMOVED***.WithDefaults();
-***REMOVED***
+        ***REMOVED***.WithDefaults();
+    ***REMOVED***
 ***REMOVED***

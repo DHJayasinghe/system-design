@@ -1,12 +1,12 @@
-***REMOVED***
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 ***REMOVED***
-***REMOVED***
+using Microsoft.Extensions.Logging;
 using Microsoft.Azure.Cosmos;
 using LikeService.Models;
-***REMOVED***
+using System.Collections.Generic;
 using LikeService.Configs;
 
 namespace LikeService.API;
@@ -18,7 +18,7 @@ public static class GetReactionsFunction
         [HttpTrigger(AuthorizationLevel.Function, "get", Route = "reactions")] HttpRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName2, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
-    ***REMOVED***
+***REMOVED***
         string postId = req.Query[nameof(postId)].ToString();
         string commentId = req.Query[nameof(commentId)].ToString();
 
@@ -28,19 +28,19 @@ public static class GetReactionsFunction
 
         var reactions = new List<ReactionCountDto>();
         while (feed.HasMoreResults)
-        ***REMOVED***
+    ***REMOVED***
             var response = await feed.ReadNextAsync();
             foreach (var item in response)
-            ***REMOVED***
-                reactions.Add(ReactionCountDto.Map(item));
         ***REMOVED***
-    ***REMOVED***
+                reactions.Add(ReactionCountDto.Map(item));
+            ***REMOVED***
+        ***REMOVED***
 
         return new OkObjectResult(reactions);
-***REMOVED***
+    ***REMOVED***
 
     private static FeedIterator<ReactionCount> GetReactionCountByPostIdAndCommentId(CosmosClient cosmosClient, string postId, string commentId)
-    ***REMOVED***
+***REMOVED***
         var container = cosmosClient.GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.ContainerName2);
         var query = $"SELECT * FROM ***REMOVED***nameof(CosmosDbConfigs.ContainerName2)***REMOVED*** p WHERE p.***REMOVED***nameof(ReactionCount.PostId)***REMOVED*** = @partitionKey";
         if (!string.IsNullOrEmpty(commentId))
@@ -52,7 +52,7 @@ public static class GetReactionsFunction
          )
          .WithParameter("@partitionKey", postId)
          .WithParameter("@commentId", commentId));
-***REMOVED***
+    ***REMOVED***
 ***REMOVED***
 
 public record ReactionCountDto
@@ -70,9 +70,9 @@ public record ReactionCountDto
     public int TotalReactions => LikeCount + HeartCount + WowCount + CareCount + LaughCount + SadCount + AngryCount;
 
     public static ReactionCountDto Map(ReactionCount data)
-    ***REMOVED***
+***REMOVED***
         return new ReactionCountDto
-        ***REMOVED***
+    ***REMOVED***
             Id = data.Id,
             PostId = data.PostId,
             CommentId = data.CommentId,
@@ -83,6 +83,6 @@ public record ReactionCountDto
             LaughCount = data.LaughCount,
             SadCount = data.SadCount,
             AngryCount = data.AngryCount
-    ***REMOVED***;
 ***REMOVED***
+    ***REMOVED***
 ***REMOVED***

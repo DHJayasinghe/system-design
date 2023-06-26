@@ -1,20 +1,20 @@
 ﻿***REMOVED***
 using Microsoft.Extensions.Hosting;
-***REMOVED***
+using System.Threading.Tasks;
 
 namespace FriendshipService;
 
 public class Program
 ***REMOVED***
     static async Task Main(string[] args)
-    ***REMOVED***
+***REMOVED***
         var host = new HostBuilder()
             .ConfigureFunctionsWorkerDefaults((builderContext, builder) =>
-            ***REMOVED***
+        ***REMOVED***
         ***REMOVED***.Services.AddSingleton<GremlinService>();
-        ***REMOVED***)
+        ***REMOVED***
             .Build();
 
         await host.RunAsync();
-***REMOVED***
+    ***REMOVED***
 ***REMOVED***

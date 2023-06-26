@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 ***REMOVED***
-***REMOVED***
+using Microsoft.Extensions.Logging;
 using Azure.Storage.Sas;
 using Azure.Storage;
 ***REMOVED***
@@ -17,31 +17,31 @@ public class UploadFunction
     public const string tempContainerName = "temp";
 
     public UploadFunction(IConfiguration configuration)
-    ***REMOVED***
+***REMOVED***
         storageAccountName = configuration.GetValue<string>("StorageAccountName");
         storageAccountKey = configuration.GetValue<string>("StorageAccountKey");
-***REMOVED***
+    ***REMOVED***
 
     [FunctionName(nameof(UploadFunction))]
     public IActionResult Run(
         [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "assets/upload-link")] HttpRequest req,
         ILogger log)
-    ***REMOVED***
+***REMOVED***
         log.LogInformation("***REMOVED***0***REMOVED*** HTTP trigger processed a request.", nameof(UploadFunction));
 
         var blobSasBuilder = new BlobSasBuilder()
-        ***REMOVED***
+    ***REMOVED***
             BlobContainerName = tempContainerName,
             ExpiresOn = DateTime.UtcNow.AddMinutes(10)
-    ***REMOVED***;
+***REMOVED***
         blobSasBuilder.SetPermissions(BlobSasPermissions.Write);
 
         var sasToken = blobSasBuilder.ToSasQueryParameters(new StorageSharedKeyCredential(storageAccountName, storageAccountKey)).ToString();
 
         return new OkObjectResult(new
-        ***REMOVED***
+    ***REMOVED***
             Container = tempContainerName,
             SasToken = $"https://***REMOVED***storageAccountName***REMOVED***.blob.core.windows.net?***REMOVED***sasToken***REMOVED***"
-    ***REMOVED***);
-***REMOVED***
+    ***REMOVED***;
+    ***REMOVED***
 ***REMOVED***

@@ -1,15 +1,15 @@
 ***REMOVED***
 using System.IO;
-***REMOVED***
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-***REMOVED***
-***REMOVED***
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using Azure.Storage.Blobs;
 ***REMOVED***
 using Azure.Storage;
-***REMOVED***
+using System.Linq;
 
 namespace AssetService;
 
@@ -21,16 +21,16 @@ public class SaveFunction
     private const string imageContainer = "images";
 
     public SaveFunction(IConfiguration configuration)
-    ***REMOVED***
+***REMOVED***
         storageAccountName = configuration.GetValue<string>("StorageAccountName");
         storageAccountKey = configuration.GetValue<string>("StorageAccountKey");
-***REMOVED***
+    ***REMOVED***
 
     [FunctionName(nameof(SaveFunction))]
     public async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "assets")] SaveRequest request,
         ILogger log)
-    ***REMOVED***
+***REMOVED***
         log.LogInformation("***REMOVED***0***REMOVED*** HTTP trigger processed a request.", nameof(SaveFunction));
 
         var blobServiceClient = new BlobServiceClient(new Uri($"https://***REMOVED***storageAccountName***REMOVED***.blob.core.windows.net"), new StorageSharedKeyCredential(storageAccountName, storageAccountKey));
@@ -38,27 +38,27 @@ public class SaveFunction
 
         var assets = new HashSet<string>();
         foreach (var imageAssetName in request.ImageAssets)
-        ***REMOVED***
+    ***REMOVED***
             await CopyToNewContainerAsync(blobServiceClient, sourceContainerClient, imageAssetName, imageContainer);
             assets.Add($"***REMOVED***imageContainer***REMOVED***/***REMOVED***imageAssetName***REMOVED***");
-    ***REMOVED***
+        ***REMOVED***
 
         foreach (var videoAssetName in request.VideoAssets)
-        ***REMOVED***
+    ***REMOVED***
             await CopyToNewContainerAsync(blobServiceClient, sourceContainerClient, videoAssetName, videoContainer);
             assets.Add($"***REMOVED***videoContainer***REMOVED***/***REMOVED***videoAssetName***REMOVED***");
-    ***REMOVED***
+        ***REMOVED***
 
         return new OkObjectResult(assets);
-***REMOVED***
+    ***REMOVED***
 
     private static async Task CopyToNewContainerAsync(BlobServiceClient blobServiceClient, BlobContainerClient sourceContainerClient, string imageAssetName, string containerName)
-    ***REMOVED***
+***REMOVED***
         var destinationContainerClient = blobServiceClient.GetBlobContainerClient(containerName);
         BlobClient sourceBlobClient = sourceContainerClient.GetBlobClient(imageAssetName);
         BlobClient destinationBlobClient = destinationContainerClient.GetBlobClient(imageAssetName);
         await destinationBlobClient.StartCopyFromUriAsync(sourceBlobClient.Uri);
-***REMOVED***
+    ***REMOVED***
 ***REMOVED***
 
 public record SaveRequest

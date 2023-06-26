@@ -2,10 +2,10 @@
   "dependencies": ***REMOVED***
     "***REMOVED***Insights1": ***REMOVED***
       "type": "***REMOVED***Insights.sdk"
-***REMOVED***,
+    ***REMOVED***,
     "storage1": ***REMOVED***
       "type": "storage.emulator",
       "connectionId": "AzureWebJobsStorage"
-***REMOVED***
+    ***REMOVED***
   ***REMOVED***
 ***REMOVED***

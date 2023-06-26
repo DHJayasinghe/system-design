@@ -1,0 +1,21 @@
+// List Groups
+
+@mixin list-group-item-variant($state, $background, $color) ***REMOVED***
+  .list-group-item-#***REMOVED***$state***REMOVED*** ***REMOVED***
+    color: $color;
+    background-color: $background;
+
+    &.list-group-item-action ***REMOVED***
+      @include hover-focus() ***REMOVED***
+        color: $color;
+        background-color: darken($background, 5%);
+      ***REMOVED***
+
+      &.active ***REMOVED***
+        color: $white;
+        background-color: $color;
+        border-color: $color;
+      ***REMOVED***
+    ***REMOVED***
+  ***REMOVED***
+***REMOVED***

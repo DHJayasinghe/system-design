@@ -1,0 +1,62 @@
+@mixin caret-down() ***REMOVED***
+  border-top: $caret-width solid;
+  border-right: $caret-width solid transparent;
+  border-bottom: 0;
+  border-left: $caret-width solid transparent;
+***REMOVED***
+
+@mixin caret-up() ***REMOVED***
+  border-top: 0;
+  border-right: $caret-width solid transparent;
+  border-bottom: $caret-width solid;
+  border-left: $caret-width solid transparent;
+***REMOVED***
+
+@mixin caret-right() ***REMOVED***
+  border-top: $caret-width solid transparent;
+  border-right: 0;
+  border-bottom: $caret-width solid transparent;
+  border-left: $caret-width solid;
+***REMOVED***
+
+@mixin caret-left() ***REMOVED***
+  border-top: $caret-width solid transparent;
+  border-right: $caret-width solid;
+  border-bottom: $caret-width solid transparent;
+***REMOVED***
+
+@mixin caret($direction: down) ***REMOVED***
+  @if $enable-caret ***REMOVED***
+    &::after ***REMOVED***
+      display: inline-block;
+      margin-left: $caret-spacing;
+      vertical-align: $caret-vertical-align;
+      content: "";
+      @if $direction == down ***REMOVED***
+        @include caret-down();
+      ***REMOVED*** @else if $direction == up ***REMOVED***
+        @include caret-up();
+      ***REMOVED*** @else if $direction == right ***REMOVED***
+        @include caret-right();
+      ***REMOVED***
+    ***REMOVED***
+
+    @if $direction == left ***REMOVED***
+      &::after ***REMOVED***
+        display: none;
+      ***REMOVED***
+
+      &::before ***REMOVED***
+        display: inline-block;
+        margin-right: $caret-spacing;
+        vertical-align: $caret-vertical-align;
+        content: "";
+        @include caret-left();
+      ***REMOVED***
+    ***REMOVED***
+
+    &:empty::after ***REMOVED***
+      margin-left: 0;
+    ***REMOVED***
+  ***REMOVED***
+***REMOVED***

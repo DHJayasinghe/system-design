@@ -1,0 +1,5 @@
+// stylelint-disable declaration-no-important
+
+@each $value in $overflows ***REMOVED***
+  .overflow-#***REMOVED***$value***REMOVED*** ***REMOVED*** overflow: $value !important; ***REMOVED***
+***REMOVED***

@@ -1,82 +1,106 @@
 ***REMOVED***
   "Routes": [
-    ***REMOVED***
+***REMOVED***
       "UpstreamPathTemplate": "/assets",
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
       "DownstreamPathTemplate": "/assets",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        ***REMOVED***
+    ***REMOVED***
           "Host": "localhost",
           "Port": "8083"
-    ***REMOVED***
-      ]
-***REMOVED***,
-    ***REMOVED***
+        ***REMOVED***
+      ],
+      "AuthenticationOptions": ***REMOVED***
+        "AuthenticationProviderKey": "JwtBearer",
+        "AllowedScopes": []
+      ***REMOVED***
+    ***REMOVED***,
+***REMOVED***
       "UpstreamPathTemplate": "/assets/***REMOVED***catchAll***REMOVED***",
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
       "DownstreamPathTemplate": "/assets/***REMOVED***catchAll***REMOVED***",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        ***REMOVED***
+    ***REMOVED***
           "Host": "localhost",
           "Port": "8083"
-    ***REMOVED***
-      ]
-***REMOVED***,
-    ***REMOVED***
+        ***REMOVED***
+      ],
+      "AuthenticationOptions": ***REMOVED***
+        "AuthenticationProviderKey": "JwtBearer",
+        "AllowedScopes": []
+      ***REMOVED***
+    ***REMOVED***,
+***REMOVED***
       "UpstreamPathTemplate": "/posts",
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
       "DownstreamPathTemplate": "/posts",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        ***REMOVED***
+    ***REMOVED***
           "Host": "localhost",
           "Port": "8084"
-    ***REMOVED***
-      ]
-***REMOVED***,
-    ***REMOVED***
+        ***REMOVED***
+      ],
+      "AuthenticationOptions": ***REMOVED***
+        "AuthenticationProviderKey": "JwtBearer",
+        "AllowedScopes": []
+      ***REMOVED***
+    ***REMOVED***,
+***REMOVED***
       "UpstreamPathTemplate": "/posts/***REMOVED***catchAll***REMOVED***",
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
       "DownstreamPathTemplate": "/posts/***REMOVED***catchAll***REMOVED***",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        ***REMOVED***
+    ***REMOVED***
           "Host": "localhost",
           "Port": "8084"
-    ***REMOVED***
-      ]
-***REMOVED***,
-    ***REMOVED***
+        ***REMOVED***
+      ],
+      "AuthenticationOptions": ***REMOVED***
+        "AuthenticationProviderKey": "JwtBearer",
+        "AllowedScopes": []
+      ***REMOVED***
+    ***REMOVED***,
+***REMOVED***
       "UpstreamPathTemplate": "/reactions",
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
       "DownstreamPathTemplate": "/reactions",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        ***REMOVED***
+    ***REMOVED***
           "Host": "localhost",
           "Port": "8085"
-    ***REMOVED***
-      ]
-***REMOVED***,
-    ***REMOVED***
+        ***REMOVED***
+      ],
+      "AuthenticationOptions": ***REMOVED***
+        "AuthenticationProviderKey": "JwtBearer",
+        "AllowedScopes": []
+      ***REMOVED***
+    ***REMOVED***,
+***REMOVED***
       "UpstreamPathTemplate": "/reactions/***REMOVED***catchAll***REMOVED***",
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
       "DownstreamPathTemplate": "/reactions/***REMOVED***catchAll***REMOVED***",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        ***REMOVED***
+    ***REMOVED***
           "Host": "localhost",
           "Port": "8085"
+        ***REMOVED***
+      ],
+      "AuthenticationOptions": ***REMOVED***
+        "AuthenticationProviderKey": "JwtBearer",
+        "AllowedScopes": []
+      ***REMOVED***
     ***REMOVED***
-      ]
-***REMOVED***
   ],
   "GlobalConfiguration": ***REMOVED***
     "RateLimitOptions": ***REMOVED***
       "DisableRateLimitHeaders": false,
       "QuotaExceededMessage": "API calls quota exceeded. Please ***REMOVED*** again later."
-***REMOVED***
+    ***REMOVED***
   ***REMOVED***
 ***REMOVED***

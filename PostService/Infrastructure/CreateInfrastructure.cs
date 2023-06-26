@@ -1,12 +1,12 @@
-***REMOVED***
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 ***REMOVED***
-***REMOVED***
+using Microsoft.Extensions.Logging;
 using Microsoft.Azure.Cosmos;
 ***REMOVED***
-***REMOVED***
+using System.Collections.Generic;
 using PostService.Configs;
 using PostService.Models;
 
@@ -23,7 +23,7 @@ public class CreateInfrastructure
         [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "posts/infrastructure")] HttpRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
-    ***REMOVED***
+***REMOVED***
         log.LogInformation("C# HTTP trigger function processed a request.");
 
         var tasks = new List<Task>();
@@ -44,5 +44,5 @@ public class CreateInfrastructure
         await Task.WhenAll(tasks);
 
         return new OkResult();
-***REMOVED***
+    ***REMOVED***
 ***REMOVED***

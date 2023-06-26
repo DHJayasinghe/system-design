@@ -1,0 +1,214 @@
+﻿.body-container ***REMOVED***
+  height: 100vh;
+  padding-top: 3%;
+  font-family: "Poppins", sans-serif !important;
+***REMOVED***
+.body-container .login-page .btn ***REMOVED***
+  font-size: 14px;
+  height: 45px;
+***REMOVED***
+.body-container .login-page .form-control ***REMOVED***
+  font-size: 12px;
+  font-weight: lighter;
+  height: 45px;
+  background-color: #f8f9fa !important;
+***REMOVED***
+.body-container .login-page .form-check ***REMOVED***
+  font-size: 12px;
+***REMOVED***
+.body-container .login-page .form-check .custom-control-indicator ***REMOVED***
+  background-color: #ddd;
+  margin-top: 1.5px;
+***REMOVED***
+.body-container
+  .login-page
+  .form-check
+  .form-check-input:checked
+  ~ .custom-control-indicator ***REMOVED***
+  color: #fff;
+  background-color: #07a35b !important;
+  box-shadow: none;
+***REMOVED***
+.body-container .login-page .incorrect-pw ***REMOVED***
+  font-size: 12px;
+  margin: 10px 0 25px 0;
+***REMOVED***
+.body-container .login-page .incorrect-pw .validation-summary-errors ul ***REMOVED***
+  list-style: none;
+  margin-left: -40px;
+***REMOVED***
+.body-container .login-page .text-below ***REMOVED***
+  font-size: 12px;
+***REMOVED***
+
+.welcome-page li ***REMOVED***
+  list-style: none;
+  padding: 4px;
+***REMOVED***
+
+.logged-out-page ***REMOVED***
+  font-family: "Poppins", sans-serif !important;
+***REMOVED***
+.logged-out-page iframe ***REMOVED***
+  display: none;
+  width: 0;
+  height: 0;
+***REMOVED***
+.logged-out-page h1 ***REMOVED***
+  font-size: 28px !important;
+  font-weight: 600 !important;
+***REMOVED***
+.logged-out-page p ***REMOVED***
+  font-size: 12px !important;
+  font-weight: 500 !important;
+***REMOVED***
+
+.error-unauth ***REMOVED***
+  font-family: "Poppins", sans-serif !important;
+  margin: 0 50px;
+***REMOVED***
+.error-unauth .error-msg ***REMOVED***
+  color: #eb4c4b;
+  font-size: 25px;
+  background: #f3f3f382;
+  padding: 40px 60px 50px;
+  border-radius: 10px;
+  font-weight: 500;
+  margin: 30px 0;
+***REMOVED***
+.error-unauth .error-msg .error-desc ***REMOVED***
+  font-size: 12px;
+  font-weight: 400;
+  color: black;
+  margin-top: 12px;
+***REMOVED***
+.error-unauth .error-msg .request-id ***REMOVED***
+  color: black;
+  font-size: 10px;
+  font-weight: 400;
+***REMOVED***
+
+.w-270 ***REMOVED***
+  width: 270px !important;
+***REMOVED***
+
+.primary-red ***REMOVED***
+  color: #eb4c4b !important;
+***REMOVED***
+
+.grants-page .card ***REMOVED***
+  margin-top: 20px;
+  border-bottom: 1px solid lightgray;
+***REMOVED***
+.grants-page .card .card-title ***REMOVED***
+  font-size: 120%;
+  font-weight: bold;
+***REMOVED***
+.grants-page .card .card-title img ***REMOVED***
+  width: 100px;
+  height: 100px;
+***REMOVED***
+.grants-page .card label ***REMOVED***
+  font-weight: bold;
+***REMOVED***
+
+.custom-check ***REMOVED***
+  display: block;
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+***REMOVED***
+
+.custom-check input ***REMOVED***
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+***REMOVED***
+
+.checkmark ***REMOVED***
+  border-radius: 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 17px;
+  width: 17px;
+  background-color: #d8d3d3;
+***REMOVED***
+
+.custom-check:hover input ~ .checkmark ***REMOVED***
+  background-color: #d8d3d3;
+***REMOVED***
+
+.custom-check input:checked ~ .checkmark ***REMOVED***
+  background-color: #27b975 !important;
+***REMOVED***
+
+.checkmark:after ***REMOVED***
+  content: "";
+  position: absolute;
+  display: none;
+***REMOVED***
+
+.custom-check input:checked ~ .checkmark:after ***REMOVED***
+  display: block;
+***REMOVED***
+
+.custom-check .checkmark:after ***REMOVED***
+  left: 7px;
+  top: 4px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+***REMOVED***
+
+.font-12 ***REMOVED***
+  font-size: 12px;
+***REMOVED***
+.font-14 ***REMOVED***
+  font-size: 14px;
+***REMOVED***
+.font-16 ***REMOVED***
+  font-size: 16px;
+***REMOVED***
+.txt-underline ***REMOVED***
+  text-decoration: underline;
+***REMOVED***
+.sections ***REMOVED***
+  background: #fff;
+  padding: 20px 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 2px 5px 0px rgb(0 0 0 / 10%);
+***REMOVED***
+.mt-30 ***REMOVED***
+  margin-top: 30px;
+***REMOVED***
+.container-fluid ***REMOVED***
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  min-height: 70vh;
+***REMOVED***
+.btn-ht ***REMOVED***
+  height: 45px;
+***REMOVED***
+.form-input ***REMOVED***
+  font-size: 12px;
+  font-weight: lighter;
+  height: 45px;
+  background-color: #f8f9fa !important;
+***REMOVED***
+.wt-50 ***REMOVED***
+  width: 50px;
+***REMOVED***

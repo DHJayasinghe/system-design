@@ -1,4 +1,4 @@
-﻿***REMOVED***
+﻿using System.Collections.Generic;
 
 namespace PostService.API.Models;
 

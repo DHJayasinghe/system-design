@@ -1,9 +1,9 @@
 ***REMOVED***
-***REMOVED***
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-***REMOVED***
+using Microsoft.Extensions.Logging;
 using PostService.Configs;
 using Microsoft.Azure.Cosmos;
 using System.Net.Http;
@@ -19,10 +19,10 @@ public class AddCommentsFunction
     private readonly IConfiguration _configuration;
 
     public AddCommentsFunction(IHttpClientFactory httpClientFactory, IConfiguration configuration)
-    ***REMOVED***
+***REMOVED***
         _httpClientFactory = httpClientFactory;
         _configuration = configuration;
-***REMOVED***
+    ***REMOVED***
 
     [FunctionName(nameof(AddCommentsFunction))]
     public async Task<IActionResult> Run(
@@ -30,7 +30,7 @@ public class AddCommentsFunction
         Guid postId,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: nameof(Comment), Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
-    ***REMOVED***
+***REMOVED***
         log.LogInformation("***REMOVED***0***REMOVED*** HTTP trigger processed a request.", nameof(AddCommentsFunction));
 
         var entity = Comment.Map(postId, req);
@@ -40,5 +40,5 @@ public class AddCommentsFunction
           .CreateItemAsync(entity, new PartitionKey(entity.PostId));
 
         return new OkObjectResult(new ***REMOVED*** Id = result.Resource.Id ***REMOVED***);
-***REMOVED***
+    ***REMOVED***
 ***REMOVED***

@@ -3,5 +3,5 @@
     "Values": ***REMOVED***
         "AzureWebJobsStorage": "UseDevelopmentStorage=true",
         "FUNCTIONS_WORKER_RUNTIME": "dotnet"
-***REMOVED***
+    ***REMOVED***
 ***REMOVED***

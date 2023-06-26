@@ -5,14 +5,14 @@
       "commandName": "Project",
       "environmentVariables": ***REMOVED***
         "ASPNETCORE_ENVIRONMENT": "Development"
-  ***REMOVED***,
+      ***REMOVED***,
       "***REMOVED***licationUrl": "http://localhost:8082",
       "dotnetRunMessages": true
-***REMOVED***,
+    ***REMOVED***,
     "Docker (1)": ***REMOVED***
       "commandName": "Docker",
       "launchUrl": "***REMOVED***Scheme***REMOVED***://***REMOVED***ServiceHost***REMOVED***:***REMOVED***ServicePort***REMOVED***",
       "publishAllPorts": true
-***REMOVED***
+    ***REMOVED***
   ***REMOVED***
 ***REMOVED***

@@ -1,7 +1,7 @@
 ***REMOVED***
 using System.IO;
 using Microsoft.Azure.WebJobs;
-***REMOVED***
+using Microsoft.Extensions.Logging;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats;
 using SixLabors.ImageSharp.Formats.Bmp;
@@ -24,15 +24,15 @@ public class OptimizeFunction
         [Blob("optimized-images/200x150/***REMOVED***name***REMOVED***", FileAccess.Write, Connection = "AzureWebJobsStorage")] Stream outputImageStream200x150,
         string name,
         ILogger log)
-    ***REMOVED***
+***REMOVED***
         log.LogInformation($"***REMOVED***nameof(OptimizeFunction)***REMOVED*** Blob trigger Processed blob\n Name:***REMOVED***name***REMOVED*** \n Size: ***REMOVED***imageStream.Length***REMOVED*** Bytes");
 
-***REMOVED***
         ***REMOVED***
+    ***REMOVED***
             string extension = Path.GetExtension(name);
 
             IImageEncoder imageEncoder = extension switch
-            ***REMOVED***
+        ***REMOVED***
                 ".jpeg" => new JpegEncoder(),
                 ".jpg" => new JpegEncoder(),
                 ".png" => new PngEncoder(),
@@ -41,7 +41,7 @@ public class OptimizeFunction
                 ".webp" => new WebpEncoder(),
                 ".gif" => new GifEncoder(),
                 _ => throw new ArgumentOutOfRangeException($"unsupported extension ***REMOVED***extension***REMOVED***")
-        ***REMOVED***;
+    ***REMOVED***
             using Image image = Image.Load(imageStream);
             ResizeImage(image, 800, 600);
             image.Save(outputImageStream800x600, imageEncoder);
@@ -51,19 +51,19 @@ public class OptimizeFunction
             image.Save(outputImageStream200x150, imageEncoder);
 
             log.LogInformation($"Image processing complete: ***REMOVED***name***REMOVED***");
-    ***REMOVED***
-***REMOVED***
         ***REMOVED***
-            log.LogError($"Error processing image: ***REMOVED***name***REMOVED***. Error: ***REMOVED***ex.Message***REMOVED***");
+        ***REMOVED***
     ***REMOVED***
-***REMOVED***
+            log.LogError($"Error processing image: ***REMOVED***name***REMOVED***. Error: ***REMOVED***ex.Message***REMOVED***");
+        ***REMOVED***
+    ***REMOVED***
 
     private static void ResizeImage(Image image, int width, int height)
-    ***REMOVED***
+***REMOVED***
         image.Mutate(x => x.Resize(new ResizeOptions
-        ***REMOVED***
+    ***REMOVED***
             Size = new Size(width, height),
             Mode = ResizeMode.Max
-    ***REMOVED***));
-***REMOVED***
+    ***REMOVED***);
+    ***REMOVED***
 ***REMOVED***

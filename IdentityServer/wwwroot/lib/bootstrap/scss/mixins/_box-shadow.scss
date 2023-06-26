@@ -1,0 +1,20 @@
+@mixin box-shadow($shadow...) ***REMOVED***
+  @if $enable-shadows ***REMOVED***
+    $result: ();
+
+    @if (length($shadow) == 1) ***REMOVED***
+      // We can pass `@include box-shadow(none);`
+      $result: $shadow;
+    ***REMOVED*** @else ***REMOVED***
+      // Filter to avoid invalid properties for example `box-shadow: none, 1px 1px black;`
+      @for $i from 1 through length($shadow) ***REMOVED***
+        @if nth($shadow, $i) != "none" ***REMOVED***
+          $result: ***REMOVED***end($result, nth($shadow, $i), "comma");
+        ***REMOVED***
+      ***REMOVED***
+    ***REMOVED***
+    @if (length($result) > 0) ***REMOVED***
+      box-shadow: $result;
+    ***REMOVED***
+  ***REMOVED***
+***REMOVED***

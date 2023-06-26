@@ -1,0 +1,92 @@
+@using BnA.IAM.Presentation.API.Controllers.Account
+@model LoginViewModel
+
+<div class="login-page">
+    <div class="row" style="font-family: 'Poppins'">
+
+        @if (Model.EnableLocalLogin)
+    ***REMOVED***
+            <div class="col-sm-6 mx-auto">
+                <div class="card border-0 mt-3">
+                    <div class="card-body">
+                        <form asp-route="Login">
+                            <input type="hidden" asp-for="ReturnUrl" />
+
+                            <div class="form-group mb-2 pb-1">
+                                <label class="d-none" asp-for="Username"></label>
+                                <input class="form-control border-0" placeholder="Email address" asp-for="Username" autofocus>
+                            </div>
+                            <div class="text-right">
+                                <a href="/Account/ForgotPassword" class="font-12 txt-underline" tabindex="5">Forgot your password?</a>
+                            </div>
+                            <div class="form-group">
+                                <label class="d-none" asp-for="Password"></label>
+                                <input type="password" class="form-control border-0" placeholder="Password" asp-for="Password" autocomplete="off">
+                            </div>
+                            <div class="incorrect-pw">
+                                <partial name="_ValidationSummary" />
+                            </div>
+                            <button class="btn btn-danger w-100 mb-4 py-2" name="button" value="login" id="btnSignIn">Sign in</button>
+                            @if (Model.AllowRememberLogin)
+                        ***REMOVED***
+                                <div class="form-group">
+                                    <div class="form-check d-flex align-items-center justify-content-between pl-0">
+                                        <div class="d-flex text-left">
+                                            <label class="custom-check">
+                                                <input type="checkbox" asp-for="RememberLogin">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <label class="form-check-label pb-1" asp-for="RememberLogin">
+                                                Remember me
+                                            </label>
+                                        </div>
+
+                                        <div class="text-right">
+                                            <a href="@Model.LandingPage" class="font-12 txt-underline"> &lt; Go back</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            ***REMOVED***
+                        </form>
+                    </div>
+                </div>
+            </div>
+        ***REMOVED***
+
+
+        @if (Model.VisibleExternalProviders.Any())
+    ***REMOVED***
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>External Account</h2>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-inline">
+                            @foreach (var provider in Model.VisibleExternalProviders)
+                        ***REMOVED***
+                                <li class="list-inline-item">
+                                    <a class="btn btn-secondary"
+                               asp-controller="External"
+                               asp-action="Challenge"
+                               asp-route-scheme="@provider.AuthenticationScheme"
+                               asp-route-returnUrl="@Model.ReturnUrl">
+                                        @provider.DisplayName
+                                    </a>
+                                </li>
+                            ***REMOVED***
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        ***REMOVED***
+        @if (!Model.EnableLocalLogin && !Model.VisibleExternalProviders.Any())
+    ***REMOVED***
+            <div class="alert alert-warning">
+                <strong>Invalid login request</strong>
+                There are no login schemes configured for this request.
+            </div>
+        ***REMOVED***
+    </div>
+</div>

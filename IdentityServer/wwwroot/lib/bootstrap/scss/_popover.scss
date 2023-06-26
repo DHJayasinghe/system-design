@@ -1,0 +1,170 @@
+.popover ***REMOVED***
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: $zindex-popover;
+  display: block;
+  max-width: $popover-max-width;
+  // Our parent element can be arbitrary since tooltips are by default inserted as a sibling of their target element.
+  // So reset our font and text properties to avoid inheriting weird values.
+  @include reset-text();
+  @include font-size($popover-font-size);
+  // Allow breaking very long words so they don't overflow the popover's bounds
+  word-wrap: break-word;
+  background-color: $popover-bg;
+  background-clip: padding-box;
+  border: $popover-border-width solid $popover-border-color;
+  @include border-radius($popover-border-radius);
+  @include box-shadow($popover-box-shadow);
+
+  .arrow ***REMOVED***
+    position: absolute;
+    display: block;
+    width: $popover-arrow-width;
+    height: $popover-arrow-height;
+    margin: 0 $popover-border-radius;
+
+    &::before,
+    &::after ***REMOVED***
+      position: absolute;
+      display: block;
+      content: "";
+      border-color: transparent;
+      border-style: solid;
+    ***REMOVED***
+  ***REMOVED***
+***REMOVED***
+
+.bs-popover-top ***REMOVED***
+  margin-bottom: $popover-arrow-height;
+
+  > .arrow ***REMOVED***
+    bottom: subtract(-$popover-arrow-height, $popover-border-width);
+
+    &::before ***REMOVED***
+      bottom: 0;
+      border-width: $popover-arrow-height ($popover-arrow-width / 2) 0;
+      border-top-color: $popover-arrow-outer-color;
+    ***REMOVED***
+
+    &::after ***REMOVED***
+      bottom: $popover-border-width;
+      border-width: $popover-arrow-height ($popover-arrow-width / 2) 0;
+      border-top-color: $popover-arrow-color;
+    ***REMOVED***
+  ***REMOVED***
+***REMOVED***
+
+.bs-popover-right ***REMOVED***
+  margin-left: $popover-arrow-height;
+
+  > .arrow ***REMOVED***
+    left: subtract(-$popover-arrow-height, $popover-border-width);
+    width: $popover-arrow-height;
+    height: $popover-arrow-width;
+    margin: $popover-border-radius 0; // make sure the arrow does not touch the popover's rounded corners
+
+    &::before ***REMOVED***
+      left: 0;
+      border-width: ($popover-arrow-width / 2) $popover-arrow-height ($popover-arrow-width / 2) 0;
+      border-right-color: $popover-arrow-outer-color;
+    ***REMOVED***
+
+    &::after ***REMOVED***
+      left: $popover-border-width;
+      border-width: ($popover-arrow-width / 2) $popover-arrow-height ($popover-arrow-width / 2) 0;
+      border-right-color: $popover-arrow-color;
+    ***REMOVED***
+  ***REMOVED***
+***REMOVED***
+
+.bs-popover-bottom ***REMOVED***
+  margin-top: $popover-arrow-height;
+
+  > .arrow ***REMOVED***
+    top: subtract(-$popover-arrow-height, $popover-border-width);
+
+    &::before ***REMOVED***
+      top: 0;
+      border-width: 0 ($popover-arrow-width / 2) $popover-arrow-height ($popover-arrow-width / 2);
+      border-bottom-color: $popover-arrow-outer-color;
+    ***REMOVED***
+
+    &::after ***REMOVED***
+      top: $popover-border-width;
+      border-width: 0 ($popover-arrow-width / 2) $popover-arrow-height ($popover-arrow-width / 2);
+      border-bottom-color: $popover-arrow-color;
+    ***REMOVED***
+  ***REMOVED***
+
+  // This will remove the popover-header's border just below the arrow
+  .popover-header::before ***REMOVED***
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: block;
+    width: $popover-arrow-width;
+    margin-left: -$popover-arrow-width / 2;
+    content: "";
+    border-bottom: $popover-border-width solid $popover-header-bg;
+  ***REMOVED***
+***REMOVED***
+
+.bs-popover-left ***REMOVED***
+  margin-right: $popover-arrow-height;
+
+  > .arrow ***REMOVED***
+    right: subtract(-$popover-arrow-height, $popover-border-width);
+    width: $popover-arrow-height;
+    height: $popover-arrow-width;
+    margin: $popover-border-radius 0; // make sure the arrow does not touch the popover's rounded corners
+
+    &::before ***REMOVED***
+      right: 0;
+      border-width: ($popover-arrow-width / 2) 0 ($popover-arrow-width / 2) $popover-arrow-height;
+      border-left-color: $popover-arrow-outer-color;
+    ***REMOVED***
+
+    &::after ***REMOVED***
+      right: $popover-border-width;
+      border-width: ($popover-arrow-width / 2) 0 ($popover-arrow-width / 2) $popover-arrow-height;
+      border-left-color: $popover-arrow-color;
+    ***REMOVED***
+  ***REMOVED***
+***REMOVED***
+
+.bs-popover-auto ***REMOVED***
+  &[x-placement^="top"] ***REMOVED***
+    @extend .bs-popover-top;
+  ***REMOVED***
+  &[x-placement^="right"] ***REMOVED***
+    @extend .bs-popover-right;
+  ***REMOVED***
+  &[x-placement^="bottom"] ***REMOVED***
+    @extend .bs-popover-bottom;
+  ***REMOVED***
+  &[x-placement^="left"] ***REMOVED***
+    @extend .bs-popover-left;
+  ***REMOVED***
+***REMOVED***
+
+
+// Offset the popover to account for the popover arrow
+.popover-header ***REMOVED***
+  padding: $popover-header-padding-y $popover-header-padding-x;
+  margin-bottom: 0; // Reset the default from Reboot
+  @include font-size($font-size-base);
+  color: $popover-header-color;
+  background-color: $popover-header-bg;
+  border-bottom: $popover-border-width solid darken($popover-header-bg, 5%);
+  @include border-top-radius($popover-inner-border-radius);
+
+  &:empty ***REMOVED***
+    display: none;
+  ***REMOVED***
+***REMOVED***
+
+.popover-body ***REMOVED***
+  padding: $popover-body-padding-y $popover-body-padding-x;
+  color: $popover-body-color;
+***REMOVED***

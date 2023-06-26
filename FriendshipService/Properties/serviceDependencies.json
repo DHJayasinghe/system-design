@@ -2,10 +2,10 @@
   "dependencies": ***REMOVED***
     "***REMOVED***Insights1": ***REMOVED***
       "type": "***REMOVED***Insights"
-***REMOVED***,
+    ***REMOVED***,
     "storage1": ***REMOVED***
       "type": "storage",
       "connectionId": "AzureWebJobsStorage"
-***REMOVED***
+    ***REMOVED***
   ***REMOVED***
 ***REMOVED***

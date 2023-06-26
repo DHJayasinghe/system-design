@@ -18,20 +18,20 @@ module.exports = function (config) ***REMOVED***
         // the possible options are listed at https://jasmine.github.io/api/edge/Configuration.html
         // for example, you can disable the random execution with `random: false`
         // or set a specific seed with `seed: 4321`
-  ***REMOVED***,
+      ***REMOVED***,
       clearContext: false // leave Jasmine Spec Runner output visible in browser
-***REMOVED***,
+    ***REMOVED***,
     jasmineHtmlReporter: ***REMOVED***
       suppressAll: true // removes the duplicated traces
-***REMOVED***,
+    ***REMOVED***,
     coverageReporter: ***REMOVED***
       dir: require('path').join(__dirname, './coverage/facebook-spa'),
       subdir: '.',
       reporters: [
-        ***REMOVED*** type: 'html' ***REMOVED***,
-        ***REMOVED*** type: 'text-summary' ***REMOVED***
+    ***REMOVED*** type: 'html' ***REMOVED***,
+    ***REMOVED*** type: 'text-summary' ***REMOVED***
       ]
-***REMOVED***,
+    ***REMOVED***,
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,

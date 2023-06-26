@@ -1,0 +1,12 @@
+***REMOVED***
+  "profiles": ***REMOVED***
+    "BnA.PM.IAM.Presentation.API": ***REMOVED***
+      "commandName": "Project",
+      "environmentVariables": ***REMOVED***
+        "ASPNETCORE_ENVIRONMENT": "Staging",
+        "USER_IMPERSONATION_ENABLED": "true"
+      ***REMOVED***,
+      "***REMOVED***licationUrl": "https://localhost:8000"
+    ***REMOVED***
+  ***REMOVED***
+***REMOVED***

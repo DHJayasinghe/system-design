@@ -1,0 +1,50 @@
+[
+  ***REMOVED***
+    "ClientId": "144e251b-30ff-4027-be96-0623e40cbc19",
+    "ClientName": "BnA PM SPA",
+    "RequireConsent": false,
+    "RequireClientSecret": false,
+    "RequirePkce": true,
+    "AllowedGrantTypes": [ "authorization_code" ],
+    "AllowOfflineAccess": true,
+    "AllowedScopes": [
+      "https://bricksandagent.com/maintenance.api"
+    ],
+    "RefreshTokenUsage": 1, // "TokenUsage.OneTimeOnly",
+    // refresh tokens will be invalidate for 1 day and after that user would be asked to sign-in again.
+    "AbsoluteRefreshTokenLifetime": 86400, // "TimeSpan.FromDays(1).TotalSeconds",
+    // wait max this time for user to refresh token after being inactive (closed browser)
+    "SlidingRefreshTokenLifetime": 14400, // "TimeSpan.FromHours(4).TotalSeconds",
+    "AccessTokenLifetime": 1800, // TimeSpan.FromMinutes(30).TotalSeconds
+    "AlwaysIncludeUserClaimsInIdToken": true,
+    "RedirectUris": [ "http://localhost:4200/sign-in" ],
+    "AllowedCorsOrigins": [ "http://localhost:4200" ],
+    "FrontChannelLogoutUri": "http://localhost:4200/sign-out",
+    "PostLogoutRedirectUris": [ "http://localhost:4200/sign-out" ],
+    "UpdateAccessTokenClaimsOnRefresh": true,
+    "Enabled": true
+  ***REMOVED***,
+  ***REMOVED***
+    "ClientId": "62b09e58-cccc-4bd2-8f4b-05dabb5c40da",
+    "ClientName": "Property Tree Integration",
+    "RequireConsent": false,
+    "RequireClientSecret": false,
+    "RefreshTokenUsage": 1,
+    "AbsoluteRefreshTokenLifetime": 86400,
+    "SlidingRefreshTokenLifetime": 14400,
+    "AccessTokenLifetime": 1800,
+    "RequirePkce": false,
+    "AllowedGrantTypes": [
+      "password"
+    ],
+    "AllowOfflineAccess": true,
+    "AllowedScopes": [
+      "https://bricksandagent.com/maintenance.api",
+      "IdentityServerApi"
+    ],
+    "AllowedCorsOrigins": [ "http://localhost:4200", "http://localhost:5200" ],
+    "UpdateAccessTokenClaimsOnRefresh": true,
+    "Enabled": true,
+    "LegacyAuthEnabled": true
+  ***REMOVED***
+]

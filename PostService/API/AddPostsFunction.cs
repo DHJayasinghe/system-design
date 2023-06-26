@@ -1,9 +1,9 @@
-***REMOVED***
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-***REMOVED***
-***REMOVED***
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
@@ -21,23 +21,23 @@ public class AddPostsFunction
     private readonly IConfiguration _configuration;
 
     public AddPostsFunction(IHttpClientFactory httpClientFactory, IConfiguration configuration)
-    ***REMOVED***
+***REMOVED***
         _httpClientFactory = httpClientFactory;
         _configuration = configuration;
-***REMOVED***
+    ***REMOVED***
 
     [FunctionName(nameof(AddPostsFunction))]
     public async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "posts")] AddPostRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
-    ***REMOVED***
+***REMOVED***
         log.LogInformation("***REMOVED***0***REMOVED*** HTTP trigger processed a request.", nameof(AddPostsFunction));
 
         var content = new StringContent(JsonConvert.SerializeObject(new
-        ***REMOVED***
+    ***REMOVED***
             Assets = req.Assets
-    ***REMOVED***));
+    ***REMOVED***);
 
 
         using var httpClient = _httpClientFactory.CreateClient();
@@ -54,5 +54,5 @@ public class AddPostsFunction
           .CreateItemAsync(entity, new PartitionKey(entity.PostId));
 
         return new OkObjectResult(result.Resource.PostId);
-***REMOVED***
+    ***REMOVED***
 ***REMOVED***

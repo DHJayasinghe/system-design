@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using PostService.API.Models;
 ***REMOVED***
-***REMOVED***
+using System.Collections.Generic;
 
 namespace PostService.Models;
 
@@ -18,14 +18,14 @@ public record Post
     public DateTime? UpdatedAt ***REMOVED*** get; set; ***REMOVED***
 
     public static Post Map(AddPostRequest request)
-    ***REMOVED***
+***REMOVED***
         var id = Guid.NewGuid().ToString();
         return new()
-        ***REMOVED***
+    ***REMOVED***
             Id = id,
             PostId = id,
             Content = request.Content,
             Assets = request.Assets,
-    ***REMOVED***;
 ***REMOVED***
+    ***REMOVED***
 ***REMOVED***

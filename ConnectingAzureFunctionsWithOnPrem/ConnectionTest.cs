@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 ***REMOVED***
-***REMOVED***
-***REMOVED***
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
 namespace ConnectingAzureFunctionsWithOnPrem;
 
@@ -18,11 +18,11 @@ public static class ConnectionTest
             connectionStringSetting: "SqlConnectionString")]
         IEnumerable<Customer> customers,
         ILogger log)
-    ***REMOVED***
+***REMOVED***
         log.LogInformation("C# HTTP trigger function processed a request.");
 
         return new OkObjectResult(customers);
-***REMOVED***
+    ***REMOVED***
 ***REMOVED***
 
 public record Customer

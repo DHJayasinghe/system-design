@@ -3,12 +3,12 @@
     "AssetService": ***REMOVED***
       "commandName": "Project",
       "commandLineArgs": "--port 8083"
-***REMOVED***,
+    ***REMOVED***,
     "Docker": ***REMOVED***
       "commandName": "Docker",
       "launchUrl": "***REMOVED***Scheme***REMOVED***://***REMOVED***ServiceHost***REMOVED***:***REMOVED***ServicePort***REMOVED***",
       "httpPort": 34244,
       "useSSL": false
-***REMOVED***
+    ***REMOVED***
   ***REMOVED***
 ***REMOVED***

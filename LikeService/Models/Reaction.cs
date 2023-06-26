@@ -17,11 +17,11 @@ public record Reaction
     public DateTime Timestamp ***REMOVED*** get; set; ***REMOVED***
 
     public Reaction WithDefaults()
-    ***REMOVED***
+***REMOVED***
         Id = regex.Replace($"***REMOVED***CommentId ?? PostId***REMOVED******REMOVED***UserId***REMOVED***", string.Empty);
         Timestamp = DateTime.UtcNow;
         return this;
-***REMOVED***
+    ***REMOVED***
 ***REMOVED***
 
 public enum ReactionType

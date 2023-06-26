@@ -21,7 +21,7 @@ export class TimelineComponent implements OnInit ***REMOVED***
       .subscribe(
         (posts) => ***REMOVED***
           this.posts = posts;
-    ***REMOVED***
+        ***REMOVED***
       );
   ***REMOVED*** 
 ***REMOVED***

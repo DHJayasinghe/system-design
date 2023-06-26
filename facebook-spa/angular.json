@@ -11,8 +11,8 @@
       "schematics": ***REMOVED***
         "@schematics/angular:***REMOVED***lication": ***REMOVED***
           "strict": true
-    ***REMOVED***
-  ***REMOVED***,
+        ***REMOVED***
+      ***REMOVED***,
       "root": "",
       "sourceRoot": "src",
       "prefix": "***REMOVED***",
@@ -34,29 +34,29 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": []
-      ***REMOVED***,
+          ***REMOVED***,
           "configurations": ***REMOVED***
             "production": ***REMOVED***
               "budgets": [
-                ***REMOVED***
+            ***REMOVED***
                   "type": "initial",
                   "maximumWarning": "500kb",
                   "maximumError": "1mb"
-            ***REMOVED***,
-                ***REMOVED***
+                ***REMOVED***,
+            ***REMOVED***
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
                   "maximumError": "4kb"
-            ***REMOVED***
+                ***REMOVED***
               ],
               "fileReplacements": [
-                ***REMOVED***
+            ***REMOVED***
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
-            ***REMOVED***
+                ***REMOVED***
               ],
               "outputHashing": "all"
-        ***REMOVED***,
+            ***REMOVED***,
             "development": ***REMOVED***
               "buildOptimizer": false,
               "optimization": false,
@@ -64,28 +64,28 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
-        ***REMOVED***
-      ***REMOVED***,
+            ***REMOVED***
+          ***REMOVED***,
           "defaultConfiguration": "production"
-    ***REMOVED***,
+        ***REMOVED***,
         "serve": ***REMOVED***
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": ***REMOVED***
             "production": ***REMOVED***
               "browserTarget": "facebook-spa:build:production"
-        ***REMOVED***,
+            ***REMOVED***,
             "development": ***REMOVED***
               "browserTarget": "facebook-spa:build:development"
-        ***REMOVED***
-      ***REMOVED***,
+            ***REMOVED***
+          ***REMOVED***,
           "defaultConfiguration": "development"
-    ***REMOVED***,
+        ***REMOVED***,
         "extract-i18n": ***REMOVED***
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": ***REMOVED***
             "browserTarget": "facebook-spa:build"
-      ***REMOVED***
-    ***REMOVED***,
+          ***REMOVED***
+        ***REMOVED***,
         "test": ***REMOVED***
           "builder": "@angular-devkit/build-angular:karma",
           "options": ***REMOVED***
@@ -102,10 +102,9 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": []
+          ***REMOVED***
+        ***REMOVED***
       ***REMOVED***
     ***REMOVED***
   ***REMOVED***
-***REMOVED***
-  ***REMOVED***,
-  "defaultProject": "facebook-spa"
 ***REMOVED***

@@ -1,0 +1,71 @@
+// Framework grid generation
+//
+// Used only by Bootstrap to generate the correct number of grid classes given
+// any value of `$grid-columns`.
+
+@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) ***REMOVED***
+  // Common properties for all breakpoints
+  %grid-column ***REMOVED***
+    position: relative;
+    width: 100%;
+    padding-right: $gutter / 2;
+    padding-left: $gutter / 2;
+  ***REMOVED***
+
+  @each $breakpoint in map-keys($breakpoints) ***REMOVED***
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+    // Allow columns to stretch full width below their breakpoints
+    @for $i from 1 through $columns ***REMOVED***
+      .col#***REMOVED***$infix***REMOVED***-#***REMOVED***$i***REMOVED*** ***REMOVED***
+        @extend %grid-column;
+      ***REMOVED***
+    ***REMOVED***
+    .col#***REMOVED***$infix***REMOVED***,
+    .col#***REMOVED***$infix***REMOVED***-auto ***REMOVED***
+      @extend %grid-column;
+    ***REMOVED***
+
+    @include media-breakpoint-up($breakpoint, $breakpoints) ***REMOVED***
+      // Provide basic `.col-***REMOVED***bp***REMOVED***` classes for equal-width flexbox columns
+      .col#***REMOVED***$infix***REMOVED*** ***REMOVED***
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+      ***REMOVED***
+
+      @for $i from 1 through $grid-row-columns ***REMOVED***
+        .row-cols#***REMOVED***$infix***REMOVED***-#***REMOVED***$i***REMOVED*** ***REMOVED***
+          @include row-cols($i);
+        ***REMOVED***
+      ***REMOVED***
+
+      .col#***REMOVED***$infix***REMOVED***-auto ***REMOVED***
+        @include make-col-auto();
+      ***REMOVED***
+
+      @for $i from 1 through $columns ***REMOVED***
+        .col#***REMOVED***$infix***REMOVED***-#***REMOVED***$i***REMOVED*** ***REMOVED***
+          @include make-col($i, $columns);
+        ***REMOVED***
+      ***REMOVED***
+
+      .order#***REMOVED***$infix***REMOVED***-first ***REMOVED*** order: -1; ***REMOVED***
+
+      .order#***REMOVED***$infix***REMOVED***-last ***REMOVED*** order: $columns + 1; ***REMOVED***
+
+      @for $i from 0 through $columns ***REMOVED***
+        .order#***REMOVED***$infix***REMOVED***-#***REMOVED***$i***REMOVED*** ***REMOVED*** order: $i; ***REMOVED***
+      ***REMOVED***
+
+      // `$columns - 1` because offsetting by the width of an entire row isn't possible
+      @for $i from 0 through ($columns - 1) ***REMOVED***
+        @if not ($infix == "" and $i == 0) ***REMOVED*** // Avoid emitting useless .offset-0
+          .offset#***REMOVED***$infix***REMOVED***-#***REMOVED***$i***REMOVED*** ***REMOVED***
+            @include make-col-offset($i, $columns);
+          ***REMOVED***
+        ***REMOVED***
+      ***REMOVED***
+    ***REMOVED***
+  ***REMOVED***
+***REMOVED***

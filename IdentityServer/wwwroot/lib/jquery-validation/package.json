@@ -1,0 +1,57 @@
+***REMOVED***
+	"name": "jquery-validation",
+	"title": "jQuery Validation Plugin",
+	"description": "Client-side form validation made easy",
+	"version": "1.14.0",
+	"homepage": "http://jqueryvalidation.org/",
+	"license": "MIT",
+	"author": ***REMOVED***
+		"name": "Jörn Zaefferer",
+		"email": "joern.zaefferer@gmail.com",
+		"url": "http://bassistance.de"
+	***REMOVED***,
+	"repository": ***REMOVED***
+		"type": "git",
+		"url": "git://github.com/jzaefferer/jquery-validation.git"
+	***REMOVED***,
+	"bugs": ***REMOVED***
+		"url": "https://github.com/jzaefferer/jquery-validation/issues"
+	***REMOVED***,
+	"licenses": [
+		***REMOVED***
+			"type": "MIT",
+			"url": "http://www.opensource.org/licenses/MIT"
+		***REMOVED***
+	],
+	"scripts": ***REMOVED***
+		"test": "grunt",
+		"prepublish": "grunt"
+	***REMOVED***,
+	"files": [
+		"dist/localization/",
+		"dist/additional-methods.js",
+		"dist/jquery.validate.js"
+	],
+	"main": "dist/jquery.validate.js",
+	"dependencies": ***REMOVED******REMOVED***,
+	"devDependencies": ***REMOVED***
+		"commitplease": "2.0.0",
+		"grunt": "0.4.4",
+		"grunt-contrib-compress": "0.7.0",
+		"grunt-contrib-concat": "0.3.0",
+		"grunt-contrib-copy": "0.5.0",
+		"grunt-contrib-jshint": "^0.10.0",
+		"grunt-contrib-qunit": "0.4.0",
+		"grunt-contrib-uglify": "0.4.0",
+		"grunt-contrib-watch": "0.6.0",
+		"grunt-jscs": "1.0.0",
+		"grunt-text-replace": "0.3.11"
+	***REMOVED***,
+	"keywords": [
+		"jquery",
+		"jquery-plugin",
+		"forms",
+		"validation",
+		"validate"
+	]
+***REMOVED***

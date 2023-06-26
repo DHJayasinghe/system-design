@@ -17,14 +17,14 @@ public record Comment
     public DateTime? UpdatedAt ***REMOVED*** get; set; ***REMOVED***
 
     public static Comment Map(Guid postId, AddCommentRequest request)
-    ***REMOVED***
+***REMOVED***
         var id = Guid.NewGuid().ToString();
         return new()
-        ***REMOVED***
+    ***REMOVED***
             Id = id,
             CommentId = id,
             PostId = postId.ToString(),
             Content = request.Content,
-    ***REMOVED***;
 ***REMOVED***
+    ***REMOVED***
 ***REMOVED***

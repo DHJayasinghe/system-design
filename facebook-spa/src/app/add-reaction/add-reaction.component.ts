@@ -24,8 +24,8 @@ export class AddReactionComponent implements OnInit ***REMOVED***
       next: () => ***REMOVED*** this.changed.emit(true); ***REMOVED***,
       error: (error) => ***REMOVED***
         console.log(error);
-  ***REMOVED***
-***REMOVED***)
+      ***REMOVED***
+***REMOVED***
   ***REMOVED***
 ***REMOVED***
 

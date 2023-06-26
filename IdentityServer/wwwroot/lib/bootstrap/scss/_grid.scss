@@ -1,0 +1,69 @@
+// Container widths
+//
+// Set the container width, and override it for fixed navbars in media queries.
+
+@if $enable-grid-classes ***REMOVED***
+  // Single container class with breakpoint max-widths
+  .container ***REMOVED***
+    @include make-container();
+    @include make-container-max-widths();
+  ***REMOVED***
+
+  // 100% wide container at all breakpoints
+  .container-fluid ***REMOVED***
+    @include make-container();
+  ***REMOVED***
+
+  // Responsive containers that are 100% wide until a breakpoint
+  @each $breakpoint, $container-max-width in $container-max-widths ***REMOVED***
+    .container-#***REMOVED***$breakpoint***REMOVED*** ***REMOVED***
+      @extend .container-fluid;
+    ***REMOVED***
+
+    @include media-breakpoint-up($breakpoint, $grid-breakpoints) ***REMOVED***
+      %responsive-container-#***REMOVED***$breakpoint***REMOVED*** ***REMOVED***
+        max-width: $container-max-width;
+      ***REMOVED***
+
+      @each $name, $width in $grid-breakpoints ***REMOVED***
+        @if ($container-max-width > $width or $breakpoint == $name) ***REMOVED***
+          .container#***REMOVED***breakpoint-infix($name, $grid-breakpoints)***REMOVED*** ***REMOVED***
+            @extend %responsive-container-#***REMOVED***$breakpoint***REMOVED***;
+          ***REMOVED***
+        ***REMOVED***
+      ***REMOVED***
+    ***REMOVED***
+  ***REMOVED***
+***REMOVED***
+
+
+// Row
+//
+// Rows contain your columns.
+
+@if $enable-grid-classes ***REMOVED***
+  .row ***REMOVED***
+    @include make-row();
+  ***REMOVED***
+
+  // Remove the negative margin from default .row, then the horizontal padding
+  // from all immediate children columns (to prevent runaway style inheritance).
+  .no-gutters ***REMOVED***
+    margin-right: 0;
+    margin-left: 0;
+
+    > .col,
+    > [class*="col-"] ***REMOVED***
+      padding-right: 0;
+      padding-left: 0;
+    ***REMOVED***
+  ***REMOVED***
+***REMOVED***
+
+// Columns
+//
+// Common styles for small and large grid columns
+
+@if $enable-grid-classes ***REMOVED***
+  @include make-grid-columns();
+***REMOVED***

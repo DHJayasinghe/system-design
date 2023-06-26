@@ -39,7 +39,7 @@ export class CreatePostComponent implements OnInit ***REMOVED***
       const blockBlobClient = containerClient.getBlockBlobClient(fileName);
       await this.uploadAsChunksAsync(file, blockBlobClient);
       this.assetsToUpload.push(fileName);
-***REMOVED***
+    ***REMOVED***
   ***REMOVED***
 
   private async uploadAsChunksAsync(file: File, blockBlobClient: BlockBlobClient) ***REMOVED***
@@ -50,8 +50,8 @@ export class CreatePostComponent implements OnInit ***REMOVED***
       onProgress: () => ***REMOVED***
         const progress = Math.round((uploadedBytes / file.size) * 100);
         this.progress = progress > 100 ? 100 : progress;
-  ***REMOVED***
-***REMOVED***;
+      ***REMOVED***
+    ***REMOVED***;
 
     let offset = 0;
     let blockNum = 0;
@@ -70,7 +70,7 @@ export class CreatePostComponent implements OnInit ***REMOVED***
 
       offset += chunkSize;
       blockNum++;
-***REMOVED***
+    ***REMOVED***
     await blockBlobClient.commitBlockList(blockIDs);
   ***REMOVED***
 
@@ -81,7 +81,7 @@ export class CreatePostComponent implements OnInit ***REMOVED***
           const ***REMOVED*** container, sasToken ***REMOVED*** = response;
           this.sasToken = sasToken;
           this.container = container;
-    ***REMOVED***
+        ***REMOVED***
       );
   ***REMOVED***
 
@@ -93,22 +93,22 @@ export class CreatePostComponent implements OnInit ***REMOVED***
     const body = ***REMOVED***
       content: this.content,
       assets: this.assetsToUpload
-***REMOVED***;
+    ***REMOVED***;
     const headers = new HttpHeaders(***REMOVED***
       'Content-Type': '***REMOVED***lication/json'
-***REMOVED***);
+***REMOVED***;
 
     this.http.post<any>(`$***REMOVED***environment.baseUrl***REMOVED***/posts`, body, ***REMOVED*** headers ***REMOVED***)
       .subscribe(
-        ***REMOVED***
+    ***REMOVED***
           next: (response) => ***REMOVED***
             console.log(response);
             this.newPost();
-      ***REMOVED***,
+          ***REMOVED***,
           error: (error) => ***REMOVED***
 
-      ***REMOVED***
-    ***REMOVED***
+          ***REMOVED***
+        ***REMOVED***
       );
   ***REMOVED***
 

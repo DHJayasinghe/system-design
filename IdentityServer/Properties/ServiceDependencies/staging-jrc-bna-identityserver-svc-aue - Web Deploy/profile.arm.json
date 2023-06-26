@@ -1,0 +1,113 @@
+***REMOVED***
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": ***REMOVED***
+    "_dependencyType": "compute.***REMOVED***Service.windows"
+  ***REMOVED***,
+  "parameters": ***REMOVED***
+    "resourceGroupName": ***REMOVED***
+      "type": "string",
+      "defaultValue": "staging-jrc-bna-***REMOVED***svc-rg-aue",
+      "metadata": ***REMOVED***
+        "description": "Name of the resource group for the resource. It is recommended to put resources under same resource group for better tracking."
+      ***REMOVED***
+    ***REMOVED***,
+    "resourceGroupLocation": ***REMOVED***
+      "type": "string",
+      "defaultValue": "australiaeast",
+      "metadata": ***REMOVED***
+        "description": "Location of the resource group. Resource groups could have different location than resources, however by default we use API versions from latest hybrid profile which support all locations for resource types we support."
+      ***REMOVED***
+    ***REMOVED***,
+    "resourceName": ***REMOVED***
+      "type": "string",
+      "defaultValue": "staging-jrc-bna-identityserver-svc-aue",
+      "metadata": ***REMOVED***
+        "description": "Name of the main resource to be created by this template."
+      ***REMOVED***
+    ***REMOVED***,
+    "resourceLocation": ***REMOVED***
+      "type": "string",
+      "defaultValue": "[parameters('resourceGroupLocation')]",
+      "metadata": ***REMOVED***
+        "description": "Location of the resource. By default use resource group's location, unless the resource provider is not supported there."
+      ***REMOVED***
+    ***REMOVED***
+  ***REMOVED***,
+  "variables": ***REMOVED***
+    "***REMOVED***ServicePlan_name": "[concat('Plan', uniqueString(concat(parameters('resourceName'), subscription().subscriptionId)))]",
+    "***REMOVED***ServicePlan_ResourceId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', parameters('resourceGroupName'), '/providers/Microsoft.Web/serverFarms/', variables('***REMOVED***ServicePlan_name'))]"
+  ***REMOVED***,
+  "resources": [
+***REMOVED***
+      "type": "Microsoft.Resources/resourceGroups",
+      "name": "[parameters('resourceGroupName')]",
+      "location": "[parameters('resourceGroupLocation')]",
+      "apiVersion": "2019-10-01"
+    ***REMOVED***,
+***REMOVED***
+      "type": "Microsoft.Resources/deployments",
+      "name": "[concat(parameters('resourceGroupName'), 'Deployment', uniqueString(concat(parameters('resourceName'), subscription().subscriptionId)))]",
+      "resourceGroup": "[parameters('resourceGroupName')]",
+      "apiVersion": "2019-10-01",
+      "dependsOn": [
+        "[parameters('resourceGroupName')]"
+      ],
+      "properties": ***REMOVED***
+        "mode": "Incremental",
+        "template": ***REMOVED***
+          "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+        ***REMOVED***
+              "location": "[parameters('resourceLocation')]",
+              "name": "[parameters('resourceName')]",
+              "type": "Microsoft.Web/sites",
+              "apiVersion": "2015-08-01",
+              "tags": ***REMOVED***
+                "[concat('hidden-related:', variables('***REMOVED***ServicePlan_ResourceId'))]": "empty"
+              ***REMOVED***,
+              "dependsOn": [
+                "[variables('***REMOVED***ServicePlan_ResourceId')]"
+              ],
+              "kind": "***REMOVED***",
+              "properties": ***REMOVED***
+                "name": "[parameters('resourceName')]",
+                "kind": "***REMOVED***",
+                "httpsOnly": true,
+                "reserved": false,
+                "serverFarmId": "[variables('***REMOVED***ServicePlan_ResourceId')]",
+                "siteConfig": ***REMOVED***
+                  "metadata": [
+                ***REMOVED***
+                      "name": "CURRENT_STACK",
+                      "value": "dotnetcore"
+                    ***REMOVED***
+                  ]
+                ***REMOVED***
+              ***REMOVED***,
+              "identity": ***REMOVED***
+                "type": "SystemAssigned"
+              ***REMOVED***
+            ***REMOVED***,
+        ***REMOVED***
+              "location": "[parameters('resourceLocation')]",
+              "name": "[variables('***REMOVED***ServicePlan_name')]",
+              "type": "Microsoft.Web/serverFarms",
+              "apiVersion": "2015-08-01",
+              "sku": ***REMOVED***
+                "name": "S1",
+                "tier": "Standard",
+                "family": "S",
+                "size": "S1"
+              ***REMOVED***,
+              "properties": ***REMOVED***
+                "name": "[variables('***REMOVED***ServicePlan_name')]"
+              ***REMOVED***
+            ***REMOVED***
+          ]
+        ***REMOVED***
+      ***REMOVED***
+    ***REMOVED***
+  ]
+***REMOVED***

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 ***REMOVED***
-***REMOVED***
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Security.Cryptography;
 using System.Text;
@@ -21,7 +21,7 @@ public static class UrlShortenFunction
         [HttpTrigger(AuthorizationLevel.Function, "post", Route = "shorten")] HttpRequest req,
         [CosmosDB(databaseName: "url-shortener-service", containerName: "shorten-url", Connection = "CosmosDBConnection", PartitionKey = "/id",CreateIfNotExists = true)] out dynamic document,
         ILogger log)
-    ***REMOVED***
+***REMOVED***
         string requestBody = new StreamReader(req.Body).ReadToEnd();
         dynamic data = JsonConvert.DeserializeObject(requestBody);
         string url = data?.url;
@@ -38,12 +38,12 @@ public static class UrlShortenFunction
         document = new ShortenedUrl ***REMOVED*** Id = shortenedUrl, Value = url ***REMOVED***;
 
         return new OkObjectResult($"***REMOVED***GetAppHostUrl(req)***REMOVED***/***REMOVED***shortenedUrl***REMOVED***");
-***REMOVED***
+    ***REMOVED***
 
     private static string GetAppHostUrl(HttpRequest req) => $"***REMOVED***req.Scheme***REMOVED***://***REMOVED***req.Host.Value***REMOVED***";
 
     private static string GenerateShortUrl(string url)
-    ***REMOVED***
+***REMOVED***
         using var sha256 = SHA256.Create();
         var hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(url));
         var base64String = Convert.ToBase64String(hashBytes);
@@ -52,17 +52,17 @@ public static class UrlShortenFunction
         var shortUrl = alphanumericString.ToString()[..ShortUrlLength];
 
         return shortUrl;
-***REMOVED***
+    ***REMOVED***
 
     private static StringBuilder RemoveNonAlphaNumericCharacters(string base64String)
-    ***REMOVED***
+***REMOVED***
         var alphanumericString = new StringBuilder();
         foreach (var c in base64String)
-        ***REMOVED***
+    ***REMOVED***
             if (!char.IsLetterOrDigit(c)) continue;
             alphanumericString.Append(c);
-    ***REMOVED***
+        ***REMOVED***
 
         return alphanumericString;
-***REMOVED***
+    ***REMOVED***
 ***REMOVED***

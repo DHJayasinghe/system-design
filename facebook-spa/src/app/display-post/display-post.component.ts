@@ -32,15 +32,15 @@ export class DisplayPostComponent implements OnInit ***REMOVED***
 
     if (seconds < 60) ***REMOVED***
       return 'Just now';
-***REMOVED*** else if (minutes < 60) ***REMOVED***
+    ***REMOVED*** else if (minutes < 60) ***REMOVED***
       return `$***REMOVED***minutes***REMOVED*** minutes ago`;
-***REMOVED*** else if (hours < 24) ***REMOVED***
+    ***REMOVED*** else if (hours < 24) ***REMOVED***
       return `$***REMOVED***hours***REMOVED*** hours ago`;
-***REMOVED*** else if (days === 1) ***REMOVED***
+    ***REMOVED*** else if (days === 1) ***REMOVED***
       return 'Yesterday';
-***REMOVED*** else ***REMOVED***
+    ***REMOVED*** else ***REMOVED***
       return `$***REMOVED***days***REMOVED*** days ago`;
-***REMOVED***
+    ***REMOVED***
   ***REMOVED***
 
   public getReactionCount() ***REMOVED***
@@ -48,7 +48,7 @@ export class DisplayPostComponent implements OnInit ***REMOVED***
       console.log(result);
       this.reactionCount = result.filter(d => d.postId == this.post?.id && d.commentId == null)[0];
       console.log(this.reactionCount);
-***REMOVED***);
+***REMOVED***;
   ***REMOVED***
 ***REMOVED***
 

@@ -6,6 +6,6 @@
     "AssetService": "http://localhost:8083/assets"
   ***REMOVED***,
   "ConnectionStrings": ***REMOVED***
-    "CosmosDB": ""
+    "CosmosDB": "CONNECTION_STRING"
   ***REMOVED***
 ***REMOVED***

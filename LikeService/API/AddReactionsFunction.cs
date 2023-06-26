@@ -1,8 +1,8 @@
-***REMOVED***
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-***REMOVED***
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using LikeService.Models;
 using Microsoft.Azure.Cosmos;
@@ -22,7 +22,7 @@ public static class AddReactionsFunction
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         [ServiceBus(ServiceBusConfigs.TopicName, Connection = ServiceBusConfigs.ConnectionName, EntityType = ServiceBusEntityType.Topic)] IAsyncCollector<ServiceBusMessage> serviceBusClient,
         ILogger log)
-    ***REMOVED***
+***REMOVED***
         var currentReaction = req.Map().WithDefaults();
         log.LogInformation("***REMOVED***0***REMOVED*** function processed a request for post: ***REMOVED***1***REMOVED*** from user: ***REMOVED***2***REMOVED***.", nameof(AddReactionsFunction), currentReaction.PostId, currentReaction.UserId);
 
@@ -38,30 +38,30 @@ public static class AddReactionsFunction
         await RaiseIntegrationEvent(serviceBusClient, currentReaction, existingReaction);
 
         return new OkResult();
-***REMOVED***
+    ***REMOVED***
 
     private static async Task<Reaction> GetReactionByIdAsync(CosmosClient cosmosClient, Reaction data)
-    ***REMOVED***
 ***REMOVED***
         ***REMOVED***
+    ***REMOVED***
             return (await cosmosClient
             .GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.ContainerName)
             .ReadItemAsync<Reaction>(data.Id, new PartitionKey(data.PostId.ToString())))
             .Resource;
-    ***REMOVED***
-***REMOVED***
         ***REMOVED***
+        ***REMOVED***
+    ***REMOVED***
             if (!ex.Message.Contains("NotFound (404)")) throw;
             return null;
+        ***REMOVED***
     ***REMOVED***
-***REMOVED***
 
     private static async Task RaiseIntegrationEvent(IAsyncCollector<ServiceBusMessage> serviceBusClient, Reaction curentState, Reaction previousState)
-    ***REMOVED***
+***REMOVED***
         if (curentState.ReactionType == previousState?.ReactionType) return;
 
         var integrationEvent = new ReactionChangedIntegrationEvent()
-        ***REMOVED***
+    ***REMOVED***
             Id = curentState.Id,
             PostId = curentState.PostId,
             UserId = curentState.UserId,
@@ -69,14 +69,14 @@ public static class AddReactionsFunction
             ReactionType = curentState.ReactionType,
             PreviousReactionType = previousState?.ReactionType,
             State = previousState is null ? State.Added : State.Modified,
-    ***REMOVED***;
+***REMOVED***
         await serviceBusClient.AddAsync(new ServiceBusMessage(JsonConvert.SerializeObject(integrationEvent))
-        ***REMOVED***
+    ***REMOVED***
             CorrelationId = Guid.NewGuid().ToString(),
             ContentType = "***REMOVED***lication/json",
             SessionId = curentState.PostId
-    ***REMOVED***);
-***REMOVED***
+    ***REMOVED***;
+    ***REMOVED***
 ***REMOVED***
 
 public record AddReactionRequest

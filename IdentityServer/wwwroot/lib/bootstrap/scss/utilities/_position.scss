@@ -1,0 +1,32 @@
+// stylelint-disable declaration-no-important
+
+// Common values
+@each $position in $positions ***REMOVED***
+  .position-#***REMOVED***$position***REMOVED*** ***REMOVED*** position: $position !important; ***REMOVED***
+***REMOVED***
+
+// Shorthand
+
+.fixed-top ***REMOVED***
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: $zindex-fixed;
+***REMOVED***
+
+.fixed-bottom ***REMOVED***
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $zindex-fixed;
+***REMOVED***
+
+.sticky-top ***REMOVED***
+  @supports (position: sticky) ***REMOVED***
+    position: sticky;
+    top: 0;
+    z-index: $zindex-sticky;
+  ***REMOVED***
+***REMOVED***

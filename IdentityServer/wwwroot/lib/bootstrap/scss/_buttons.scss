@@ -1,0 +1,145 @@
+// stylelint-disable selector-no-qualifying-type
+
+//
+// Base styles
+//
+
+.btn ***REMOVED***
+    display: inline-block;
+    font-family: $btn-font-family;
+    font-weight: $btn-font-weight;
+    color: $body-color;
+    text-align: center;
+    white-space: $btn-white-space;
+    vertical-align: middle;
+    cursor: if($enable-pointer-cursor-for-buttons, pointer, null);
+    user-select: none;
+    background-color: transparent;
+    border: $btn-border-width solid transparent;
+    @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-line-height, $btn-border-radius);
+    @include transition($btn-transition);
+
+    @include hover() ***REMOVED***
+        color: $body-color;
+        text-decoration: none;
+    ***REMOVED***
+
+    &.btn-danger ***REMOVED***
+        color: #fff;
+        background-color: #eb4c4b;
+        width: 100%;
+        margin-bottom: 20px;
+    ***REMOVED***
+
+    &:focus,
+    &.focus ***REMOVED***
+        outline: 0;
+        box-shadow: $btn-focus-box-shadow;
+    ***REMOVED***
+    // Disabled comes first so active can properly restyle
+    &.disabled,
+    &:disabled ***REMOVED***
+        opacity: $btn-disabled-opacity;
+        @include box-shadow(none);
+    ***REMOVED***
+
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active ***REMOVED***
+        @include box-shadow($btn-active-box-shadow);
+
+        &:focus ***REMOVED***
+            @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
+        ***REMOVED***
+    ***REMOVED***
+***REMOVED***
+
+// Future-proof disabling of clicks on `<a>` elements
+a.btn.disabled,
+fieldset:disabled a.btn ***REMOVED***
+  pointer-events: none;
+***REMOVED***
+
+
+//
+// Alternate buttons
+//
+
+@each $color, $value in $theme-colors ***REMOVED***
+  .btn-#***REMOVED***$color***REMOVED*** ***REMOVED***
+    @include button-variant($value, $value);
+  ***REMOVED***
+***REMOVED***
+
+@each $color, $value in $theme-colors ***REMOVED***
+  .btn-outline-#***REMOVED***$color***REMOVED*** ***REMOVED***
+    @include button-outline-variant($value);
+  ***REMOVED***
+***REMOVED***
+
+
+//
+// Link buttons
+//
+
+// Make a button look and behave like a link
+.btn-link ***REMOVED***
+  font-weight: $font-weight-normal;
+  color: $link-color;
+  text-decoration: $link-decoration;
+
+  @include hover() ***REMOVED***
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  ***REMOVED***
+
+  &:focus,
+  &.focus ***REMOVED***
+    text-decoration: $link-hover-decoration;
+    box-shadow: none;
+  ***REMOVED***
+
+  &:disabled,
+  &.disabled ***REMOVED***
+    color: $btn-link-disabled-color;
+    pointer-events: none;
+  ***REMOVED***
+
+  // No need for an active state here
+***REMOVED***
+
+
+//
+// Button Sizes
+//
+
+.btn-lg ***REMOVED***
+  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-line-height-lg, $btn-border-radius-lg);
+***REMOVED***
+
+.btn-sm ***REMOVED***
+  @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-line-height-sm, $btn-border-radius-sm);
+***REMOVED***
+
+
+//
+// Block button
+//
+
+.btn-block ***REMOVED***
+  display: block;
+  width: 100%;
+
+  // Vertically space out multiple block buttons
+  + .btn-block ***REMOVED***
+    margin-top: $btn-block-spacing-y;
+  ***REMOVED***
+***REMOVED***
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] ***REMOVED***
+  &.btn-block ***REMOVED***
+    width: 100%;
+  ***REMOVED***
+***REMOVED***

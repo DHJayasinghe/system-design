@@ -1,0 +1,72 @@
+// stylelint-disable declaration-no-important
+
+//
+// Text
+//
+
+.text-monospace ***REMOVED*** font-family: $font-family-monospace !important; ***REMOVED***
+
+// Alignment
+
+.text-justify  ***REMOVED*** text-align: justify !important; ***REMOVED***
+.text-wrap ***REMOVED*** white-space: normal !important; ***REMOVED***
+.text-nowrap   ***REMOVED*** white-space: nowrap !important; ***REMOVED***
+.text-truncate ***REMOVED*** @include text-truncate(); ***REMOVED***
+
+// Responsive alignment
+
+@each $breakpoint in map-keys($grid-breakpoints) ***REMOVED***
+  @include media-breakpoint-up($breakpoint) ***REMOVED***
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .text#***REMOVED***$infix***REMOVED***-left   ***REMOVED*** text-align: left !important; ***REMOVED***
+    .text#***REMOVED***$infix***REMOVED***-right  ***REMOVED*** text-align: right !important; ***REMOVED***
+    .text#***REMOVED***$infix***REMOVED***-center ***REMOVED*** text-align: center !important; ***REMOVED***
+  ***REMOVED***
+***REMOVED***
+
+// Transformation
+
+.text-lowercase  ***REMOVED*** text-transform: lowercase !important; ***REMOVED***
+.text-uppercase  ***REMOVED*** text-transform: uppercase !important; ***REMOVED***
+.text-capitalize ***REMOVED*** text-transform: capitalize !important; ***REMOVED***
+
+// Weight and italics
+
+.font-weight-light   ***REMOVED*** font-weight: $font-weight-light !important; ***REMOVED***
+.font-weight-lighter ***REMOVED*** font-weight: $font-weight-lighter !important; ***REMOVED***
+.font-weight-normal  ***REMOVED*** font-weight: $font-weight-normal !important; ***REMOVED***
+.font-weight-bold***REMOVED*** font-weight: $font-weight-bold !important; ***REMOVED***
+.font-weight-bolder  ***REMOVED*** font-weight: $font-weight-bolder !important; ***REMOVED***
+.font-italic     ***REMOVED*** font-style: italic !important; ***REMOVED***
+
+// Contextual colors
+
+.text-white ***REMOVED*** color: $white !important; ***REMOVED***
+
+@each $color, $value in $theme-colors ***REMOVED***
+  @include text-emphasis-variant(".text-#***REMOVED***$color***REMOVED***", $value, true);
+***REMOVED***
+
+.text-body ***REMOVED*** color: $body-color !important; ***REMOVED***
+.text-muted ***REMOVED*** color: $text-muted !important; ***REMOVED***
+
+.text-black-50 ***REMOVED*** color: rgba($black, .5) !important; ***REMOVED***
+.text-white-50 ***REMOVED*** color: rgba($white, .5) !important; ***REMOVED***
+
+// Misc
+
+.text-hide ***REMOVED***
+  @include text-hide($ignore-warning: true);
+***REMOVED***
+
+.text-decoration-none ***REMOVED*** text-decoration: none !important; ***REMOVED***
+
+.text-break ***REMOVED***
+  word-break: break-word !important; // IE & < Edge 18
+  overflow-wrap: break-word !important;
+***REMOVED***
+
+// Reset
+
+.text-reset ***REMOVED*** color: inherit !important; ***REMOVED***

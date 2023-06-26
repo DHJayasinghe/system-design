@@ -1,0 +1,75 @@
+// stylelint-disable property-blacklist, declaration-no-important
+
+//
+// Border
+//
+
+.border     ***REMOVED*** border: $border-width solid $border-color !important; ***REMOVED***
+.border-top ***REMOVED*** border-top: $border-width solid $border-color !important; ***REMOVED***
+.border-right   ***REMOVED*** border-right: $border-width solid $border-color !important; ***REMOVED***
+.border-bottom  ***REMOVED*** border-bottom: $border-width solid $border-color !important; ***REMOVED***
+.border-left***REMOVED*** border-left: $border-width solid $border-color !important; ***REMOVED***
+
+.border-0    ***REMOVED*** border: 0 !important; ***REMOVED***
+.border-top-0***REMOVED*** border-top: 0 !important; ***REMOVED***
+.border-right-0  ***REMOVED*** border-right: 0 !important; ***REMOVED***
+.border-bottom-0 ***REMOVED*** border-bottom: 0 !important; ***REMOVED***
+.border-left-0   ***REMOVED*** border-left: 0 !important; ***REMOVED***
+
+@each $color, $value in $theme-colors ***REMOVED***
+  .border-#***REMOVED***$color***REMOVED*** ***REMOVED***
+    border-color: $value !important;
+  ***REMOVED***
+***REMOVED***
+
+.border-white ***REMOVED***
+  border-color: $white !important;
+***REMOVED***
+
+//
+// Border-radius
+//
+
+.rounded-sm ***REMOVED***
+  border-radius: $border-radius-sm !important;
+***REMOVED***
+
+.rounded ***REMOVED***
+  border-radius: $border-radius !important;
+***REMOVED***
+
+.rounded-top ***REMOVED***
+  border-top-left-radius: $border-radius !important;
+  border-top-right-radius: $border-radius !important;
+***REMOVED***
+
+.rounded-right ***REMOVED***
+  border-top-right-radius: $border-radius !important;
+  border-bottom-right-radius: $border-radius !important;
+***REMOVED***
+
+.rounded-bottom ***REMOVED***
+  border-bottom-right-radius: $border-radius !important;
+  border-bottom-left-radius: $border-radius !important;
+***REMOVED***
+
+.rounded-left ***REMOVED***
+  border-top-left-radius: $border-radius !important;
+  border-bottom-left-radius: $border-radius !important;
+***REMOVED***
+
+.rounded-lg ***REMOVED***
+  border-radius: $border-radius-lg !important;
+***REMOVED***
+
+.rounded-circle ***REMOVED***
+  border-radius: 50% !important;
+***REMOVED***
+
+.rounded-pill ***REMOVED***
+  border-radius: $rounded-pill !important;
+***REMOVED***
+
+.rounded-0 ***REMOVED***
+  border-radius: 0 !important;
+***REMOVED***

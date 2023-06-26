@@ -6,6 +6,6 @@ namespace UrlShortenerService;
 public class Startup : FunctionsStartup
 ***REMOVED***
     public override void Configure(IFunctionsHostBuilder builder)
-    ***REMOVED***
 ***REMOVED***
+    ***REMOVED***
 ***REMOVED***

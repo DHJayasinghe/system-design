@@ -1,4 +1,5 @@
 import ***REMOVED*** Component ***REMOVED*** from '@angular/core';
+import ***REMOVED*** LoginResponse, OidcSecurityService ***REMOVED*** from 'angular-auth-oidc-client';
 
 @Component(***REMOVED***
   selector: '***REMOVED***-root',

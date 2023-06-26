@@ -1,9 +1,9 @@
-***REMOVED***
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 ***REMOVED***
-***REMOVED***
+using Microsoft.Extensions.Logging;
 using UserService.Models;
 
 namespace UserService;
@@ -16,11 +16,11 @@ public static class GetUserFunction
         [Table("user", "***REMOVED***id***REMOVED***", "***REMOVED***id***REMOVED***")] UserEntity profile,
         ILogger log, 
         string id)
-    ***REMOVED***
+***REMOVED***
         log.LogInformation("***REMOVED***0***REMOVED*** function processed a request", nameof(GetUserFunction));
 
         if (profile == null) return new BadRequestObjectResult($"Profile not found with Id: ***REMOVED***id***REMOVED***");
 
         return new OkObjectResult(profile.ToUser());
-***REMOVED***
+    ***REMOVED***
 ***REMOVED***

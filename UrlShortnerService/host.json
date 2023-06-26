@@ -3,14 +3,14 @@
   "extensions": ***REMOVED***
     "http": ***REMOVED***
       "routePrefix": ""
-***REMOVED***
+    ***REMOVED***
   ***REMOVED***,
   "logging": ***REMOVED***
     "***REMOVED***licationInsights": ***REMOVED***
       "samplingSettings": ***REMOVED***
         "isEnabled": true,
         "excludedTypes": "Request"
-  ***REMOVED***
-***REMOVED***
+      ***REMOVED***
+    ***REMOVED***
   ***REMOVED***
 ***REMOVED***

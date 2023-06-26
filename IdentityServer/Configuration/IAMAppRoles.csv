@@ -1,0 +1,4 @@
+PartitionKey,RowKey,Id,Value,Description,DisplayName
+httpsbricksandagentcommaintenanceapi,c52d03f5-152d-4f3f-ae10-af556f6d03cb,c52d03f5-152d-4f3f-ae10-af556f6d03cb,job.admin,Admins can do anything,Job Admin
+httpsbricksandagentcommaintenanceapi,e3ff3227-c310-4189-bbe3-4a3e4c580921,e3ff3227-c310-4189-bbe3-4a3e4c580921,job.reader,Readers can read jobs,Job Reader
+httpsbricksandagentcommaintenanceapi,13f48d1e-d974-4839-bd37-df03fd767487,13f48d1e-d974-4839-bd37-df03fd767487,job.writer,Writers can create and modify jobs,Job Writer
