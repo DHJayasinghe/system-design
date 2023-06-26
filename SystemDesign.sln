@@ -30,9 +30,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssetService", "AssetServic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiGateway", "WebApiGateway\WebApiGateway.csproj", "{7ED228EC-2FB4-4052-B5A0-81F39543E27D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "BnA.IAM.Presentation.API\IdentityServer.csproj", "{1111C0C5-0339-44E6-910B-9238FF3D66DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityServer\IdentityServer.csproj", "{1111C0C5-0339-44E6-910B-9238FF3D66DB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.Core", "BnA.IAM.Application\IdentityServer.Core.csproj", "{A6B0C9EC-A433-439D-A615-27DBE3081C24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.Core", "IdentityServer.Core\IdentityServer.Core.csproj", "{A6B0C9EC-A433-439D-A615-27DBE3081C24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

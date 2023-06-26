@@ -46,8 +46,6 @@ import { SignInCheckComponent } from './sign-in-check/sign-in-check.component';
         silentRenew: true,
         useRefreshToken: true,
         logLevel: LogLevel.Debug,
-        disableIdTokenValidation : true,
-        autoUserInfo: false,
         secureRoutes:[environment.baseUrl]
       },
     })

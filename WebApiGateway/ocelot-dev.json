@@ -10,7 +10,11 @@
           "Host": "localhost",
           "Port": "8083"
         }
-      ]
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "JwtBearer",
+        "AllowedScopes": []
+      }
     },
     {
       "UpstreamPathTemplate": "/assets/{catchAll}",
@@ -22,7 +26,11 @@
           "Host": "localhost",
           "Port": "8083"
         }
-      ]
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "JwtBearer",
+        "AllowedScopes": []
+      }
     },
     {
       "UpstreamPathTemplate": "/posts",
@@ -34,7 +42,11 @@
           "Host": "localhost",
           "Port": "8084"
         }
-      ]
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "JwtBearer",
+        "AllowedScopes": []
+      }
     },
     {
       "UpstreamPathTemplate": "/posts/{catchAll}",
@@ -46,7 +58,11 @@
           "Host": "localhost",
           "Port": "8084"
         }
-      ]
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "JwtBearer",
+        "AllowedScopes": []
+      }
     },
     {
       "UpstreamPathTemplate": "/reactions",
@@ -58,7 +74,11 @@
           "Host": "localhost",
           "Port": "8085"
         }
-      ]
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "JwtBearer",
+        "AllowedScopes": []
+      }
     },
     {
       "UpstreamPathTemplate": "/reactions/{catchAll}",
@@ -70,7 +90,11 @@
           "Host": "localhost",
           "Port": "8085"
         }
-      ]
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "JwtBearer",
+        "AllowedScopes": []
+      }
     }
   ],
   "GlobalConfiguration": {

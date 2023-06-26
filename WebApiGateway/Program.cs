@@ -7,23 +7,22 @@ var builder = WebApplication.CreateBuilder(args);
 
 var environment = builder.Environment.EnvironmentName;
 
-builder.Services
-    .AddOcelot(builder.Configuration);
+
 builder.Configuration
     .AddJsonFile(environment == "Development" ? "ocelot-dev.json" : "ocelot.json", optional: false, reloadOnChange: true);
 
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.Authority = builder.Configuration["IdP:Issuer"];
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateLifetime = true,
-            ValidateAudience = false,
-            ValidateIssuer = false
-        };
-    });
+    .AddJwtBearer("JwtBearer", options =>
+     {
+         options.Authority = builder.Configuration["IdP:Issuer"];
+         options.TokenValidationParameters = new TokenValidationParameters
+         {
+             ValidateLifetime = false,
+             ValidateAudience = false,
+             ValidateIssuer = false,
+         };
+     });
 builder.Services
     .AddCors(options =>
     {
@@ -33,6 +32,8 @@ builder.Services
             .AllowAnyHeader()
         );
     });
+builder.Services
+    .AddOcelot(builder.Configuration);
 
 var app = builder.Build();
 

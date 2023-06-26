@@ -5,7 +5,7 @@
     "FUNCTIONS_WORKER_RUNTIME": "dotnet"
   },
   "ConnectionStrings": {
-    "CosmosDB": "AccountEndpoint=https://dev-jrc-bna-cosmos-db-aue.documents.azure.com:443/;AccountKey=7rn1L01xPCmbKs2u8hNyNH2qWk3yQGQTb4gN7FJJrE4mZAGJQcE7wx8FbF1RMLrbdaJgGyQN2pNWaAWNUaNnUw==",
-    "ServiceBus": "Endpoint=sb://staging-jrc-bna-services-aue.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=w/uUf0Ta/UBao4jxjci4SvYEVBdxH/z/L8nrregrNq0="
+    "CosmosDB": "CONNECTION_STRING",
+    "ServiceBus": "CONNECTION_STRING"
   }
 }
