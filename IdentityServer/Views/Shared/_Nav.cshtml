@@ -1,12 +1,12 @@
 ﻿@using Duende.IdentityServer.Extensions
 
-@***REMOVED***
+@{
     string name = null;
     if (!true.Equals(ViewData["signed-out"]))
-***REMOVED***
+    {
         name = Context.User?.GetDisplayName();
-    ***REMOVED***
-***REMOVED***
+    }
+}
 
 @*<div class="nav-page">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -17,7 +17,7 @@
     </a>*@
 
 @if (!string.IsNullOrWhiteSpace(name))
-***REMOVED***
+{
     <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">@name <b class="caret"></b></a>
@@ -27,7 +27,7 @@
             </div>
         </li>
     </ul>
-***REMOVED***
+}
 @*
     </nav>
     </div>

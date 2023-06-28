@@ -1,7 +1,7 @@
-@mixin clearfix() ***REMOVED***
-  &::after ***REMOVED***
+@mixin clearfix() {
+  &::after {
     display: block;
     clear: both;
     content: "";
-  ***REMOVED***
-***REMOVED***
+  }
+}

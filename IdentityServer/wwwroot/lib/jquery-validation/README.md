@@ -4,7 +4,7 @@
 [![Build Status](https://secure.travis-ci.org/jzaefferer/jquery-validation.png)](http://travis-ci.org/jzaefferer/jquery-validation)
 [![devDependency Status](https://david-dm.org/jzaefferer/jquery-validation/dev-status.png?theme=shields.io)](https://david-dm.org/jzaefferer/jquery-validation#info=devDependencies)
 
-The jQuery Validation Plugin provides drop-in validation for your existing forms, while making all kinds of customizations to fit your ***REMOVED***lication really easy.
+The jQuery Validation Plugin provides drop-in validation for your existing forms, while making all kinds of customizations to fit your application really easy.
 
 ## [Help the project](http://pledgie.com/campaigns/18159)
 
@@ -47,9 +47,9 @@ $("form").validate();
 Alternatively include jQuery and the plugin via requirejs in your module.
 
 ```js
-define(["jquery", "jquery.validate"], function( $ ) ***REMOVED***
+define(["jquery", "jquery.validate"], function( $ ) {
 	$("form").validate();
-***REMOVED***);
+});
 ```
 
 For more information on how to setup a rules and customizations, [check the documentation](http://jqueryvalidation.org/documentation/).

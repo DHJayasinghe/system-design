@@ -1,6 +1,6 @@
-***REMOVED***
-  "compilers": ***REMOVED***
-    "less": ***REMOVED***
+{
+  "compilers": {
+    "less": {
       "autoPrefix": "",
       "cssComb": "none",
       "ieCompat": true,
@@ -11,8 +11,8 @@
       "sourceMapRoot": "",
       "sourceMapBasePath": "",
       "sourceMap": false
-    ***REMOVED***,
-    "sass": ***REMOVED***
+    },
+    "sass": {
       "autoPrefix": "",
       "includePath": "",
       "indentType": "space",
@@ -23,19 +23,19 @@
       "sourceMapRoot": "",
       "lineFeed": "",
       "sourceMap": false
-    ***REMOVED***,
-    "stylus": ***REMOVED***
+    },
+    "stylus": {
       "sourceMap": false
-    ***REMOVED***,
-    "babel": ***REMOVED***
+    },
+    "babel": {
       "sourceMap": false
-    ***REMOVED***,
-    "coffeescript": ***REMOVED***
+    },
+    "coffeescript": {
       "bare": false,
       "runtimeMode": "node",
       "sourceMap": false
-    ***REMOVED***,
-    "handlebars": ***REMOVED***
+    },
+    "handlebars": {
       "root": "",
       "noBOM": false,
       "name": "",
@@ -46,18 +46,18 @@
       "commonjs": "",
       "amd": false,
       "sourceMap": false
-    ***REMOVED***
-  ***REMOVED***,
-  "minifiers": ***REMOVED***
-    "css": ***REMOVED***
+    }
+  },
+  "minifiers": {
+    "css": {
       "enabled": true,
       "termSemicolons": true,
       "gzip": false
-    ***REMOVED***,
-    "javascript": ***REMOVED***
+    },
+    "javascript": {
       "enabled": true,
       "termSemicolons": true,
       "gzip": false
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}

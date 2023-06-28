@@ -5,21 +5,21 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BnA.IAM.Presentation.API.Controllers.Diagnostics
-***REMOVED***
+{
     [SecurityHeaders]
     [Authorize]
     public class DiagnosticsController : Controller
-***REMOVED***
+    {
         public async Task<IActionResult> Index()
-    ***REMOVED***
-            var localAddresses = new string[] ***REMOVED*** "127.0.0.1", "::1", HttpContext.Connection.LocalIpAddress.ToString() ***REMOVED***;
+        {
+            var localAddresses = new string[] { "127.0.0.1", "::1", HttpContext.Connection.LocalIpAddress.ToString() };
             if (!localAddresses.Contains(HttpContext.Connection.RemoteIpAddress.ToString()))
-        ***REMOVED***
+            {
                 return NotFound();
-            ***REMOVED***
+            }
 
             var model = new DiagnosticsViewModel(await HttpContext.AuthenticateAsync());
             return View(model);
-        ***REMOVED***
-    ***REMOVED***
-***REMOVED***
+        }
+    }
+}

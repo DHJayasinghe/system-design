@@ -1,19 +1,19 @@
-import ***REMOVED*** Component, OnInit ***REMOVED*** from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-@Component(***REMOVED***
-  selector: '***REMOVED***-dashboard',
+@Component({
+  selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
-***REMOVED***)
-export class DashboardComponent implements OnInit ***REMOVED***
+})
+export class DashboardComponent implements OnInit {
   timelineVersion = 1;
 
-  constructor() ***REMOVED*** ***REMOVED***
+  constructor() { }
 
-  ngOnInit() ***REMOVED***
-  ***REMOVED***
+  ngOnInit() {
+  }
 
-  public refreshTimeline()***REMOVED***
+  public refreshTimeline(){
     this.timelineVersion = new Date().getTime();
-  ***REMOVED***
-***REMOVED***
+  }
+}

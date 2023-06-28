@@ -1,50 +1,50 @@
 [
-  ***REMOVED***
+  {
     "id": "b141d3cc-78df-443d-9da4-d04e92194573",
     "name": "https://bricksandagent.com/maintenance.api",
-    "***REMOVED***Roles": [
-  ***REMOVED***
+    "appRoles": [
+      {
         "id": "c52d03f5-152d-4f3f-ae10-af556f6d03cb",
         "value": "job.admin",
         "description": "Admins can do anything",
         "displayName": "Job Admin"
-      ***REMOVED***,
-  ***REMOVED***
+      },
+      {
         "id": "e3ff3227-c310-4189-bbe3-4a3e4c580921",
         "value": "job.reader",
         "description": "Readers can read jobs",
         "displayName": "Job Reader"
-      ***REMOVED***,
-  ***REMOVED***
+      },
+      {
         "id": "13f48d1e-d974-4839-bd37-df03fd767487",
         "value": "job.writer",
         "description": "Writers can create and modify jobs",
         "displayName": "Job Writer"
-      ***REMOVED***,
-  ***REMOVED***
+      },
+      {
         "id": "86926FA8-2A94-4733-BD27-2EA00AD7E252",
         "value": "property.admin",
         "description": "Admins can do anything",
         "displayName": "Property Admin"
-      ***REMOVED***,
-  ***REMOVED***
+      },
+      {
         "id": "4AE47CD1-DBCC-4683-941D-D359C2FCEA8D",
         "value": "property.reader",
         "description": "Readers can read Properties",
         "displayName": "Property Reader"
-      ***REMOVED***,
-  ***REMOVED***
+      },
+      {
         "id": "B67D38F2-D3D4-453C-BB9C-224818751DAD",
         "value": "property.writer",
         "description": "Writers can create and modify properties",
         "displayName": "Property Writer"
-      ***REMOVED***,
-  ***REMOVED***
+      },
+      {
         "id":"5240178F-6AEB-4211-86F0-EDC211ACDA35",
         "value": "organization.admin",
         "description": "Lead Organization Admins have access to all functionalities",
         "displayName": "Lead Organization Admin"
-      ***REMOVED***
+      }
     ]
-  ***REMOVED***
+  }
 ]

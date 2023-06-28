@@ -8,23 +8,23 @@ using LikeService.Models;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.WebJobs.ServiceBus;
 using Azure.Messaging.ServiceBus;
-***REMOVED***
+using System;
 using LikeService.Events;
 using LikeService.Configs;
 
 namespace LikeService.API;
 
 public static class AddReactionsFunction
-***REMOVED***
+{
     [FunctionName(nameof(AddReactionsFunction))]
     public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "put", Route = "reactions")] AddReactionRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         [ServiceBus(ServiceBusConfigs.TopicName, Connection = ServiceBusConfigs.ConnectionName, EntityType = ServiceBusEntityType.Topic)] IAsyncCollector<ServiceBusMessage> serviceBusClient,
         ILogger log)
-***REMOVED***
+    {
         var currentReaction = req.Map().WithDefaults();
-        log.LogInformation("***REMOVED***0***REMOVED*** function processed a request for post: ***REMOVED***1***REMOVED*** from user: ***REMOVED***2***REMOVED***.", nameof(AddReactionsFunction), currentReaction.PostId, currentReaction.UserId);
+        log.LogInformation("{0} function processed a request for post: {1} from user: {2}.", nameof(AddReactionsFunction), currentReaction.PostId, currentReaction.UserId);
 
         if (!Enum.IsDefined(currentReaction.ReactionType))
             return new BadRequestObjectResult("Provided reaction type is not valid");
@@ -38,30 +38,30 @@ public static class AddReactionsFunction
         await RaiseIntegrationEvent(serviceBusClient, currentReaction, existingReaction);
 
         return new OkResult();
-    ***REMOVED***
+    }
 
     private static async Task<Reaction> GetReactionByIdAsync(CosmosClient cosmosClient, Reaction data)
-***REMOVED***
-        ***REMOVED***
-    ***REMOVED***
+    {
+        try
+        {
             return (await cosmosClient
             .GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.ContainerName)
             .ReadItemAsync<Reaction>(data.Id, new PartitionKey(data.PostId.ToString())))
             .Resource;
-        ***REMOVED***
-        ***REMOVED***
-    ***REMOVED***
+        }
+        catch (Exception ex)
+        {
             if (!ex.Message.Contains("NotFound (404)")) throw;
             return null;
-        ***REMOVED***
-    ***REMOVED***
+        }
+    }
 
     private static async Task RaiseIntegrationEvent(IAsyncCollector<ServiceBusMessage> serviceBusClient, Reaction curentState, Reaction previousState)
-***REMOVED***
+    {
         if (curentState.ReactionType == previousState?.ReactionType) return;
 
         var integrationEvent = new ReactionChangedIntegrationEvent()
-    ***REMOVED***
+        {
             Id = curentState.Id,
             PostId = curentState.PostId,
             UserId = curentState.UserId,
@@ -69,20 +69,20 @@ public static class AddReactionsFunction
             ReactionType = curentState.ReactionType,
             PreviousReactionType = previousState?.ReactionType,
             State = previousState is null ? State.Added : State.Modified,
-***REMOVED***
+        };
         await serviceBusClient.AddAsync(new ServiceBusMessage(JsonConvert.SerializeObject(integrationEvent))
-    ***REMOVED***
+        {
             CorrelationId = Guid.NewGuid().ToString(),
-            ContentType = "***REMOVED***lication/json",
+            ContentType = "application/json",
             SessionId = curentState.PostId
-    ***REMOVED***;
-    ***REMOVED***
-***REMOVED***
+        });
+    }
+}
 
 public record AddReactionRequest
-***REMOVED***
-    public string PostId ***REMOVED*** get; init; ***REMOVED***
-    public string CommentId ***REMOVED*** get; init; ***REMOVED***
-    public string UserId ***REMOVED*** get; init; ***REMOVED***
-    public int ReactionType ***REMOVED*** get; init; ***REMOVED***
-***REMOVED***
+{
+    public string PostId { get; init; }
+    public string CommentId { get; init; }
+    public string UserId { get; init; }
+    public int ReactionType { get; init; }
+}

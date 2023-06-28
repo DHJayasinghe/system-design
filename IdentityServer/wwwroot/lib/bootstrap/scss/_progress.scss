@@ -1,12 +1,12 @@
 // Disable animation if transitions are disabled
-@if $enable-transitions ***REMOVED***
-  @keyframes progress-bar-stripes ***REMOVED***
-    from ***REMOVED*** background-position: $progress-height 0; ***REMOVED***
-    to ***REMOVED*** background-position: 0 0; ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+@if $enable-transitions {
+  @keyframes progress-bar-stripes {
+    from { background-position: $progress-height 0; }
+    to { background-position: 0 0; }
+  }
+}
 
-.progress ***REMOVED***
+.progress {
   display: flex;
   height: $progress-height;
   overflow: hidden; // force rounded corners by cropping it
@@ -14,9 +14,9 @@
   background-color: $progress-bg;
   @include border-radius($progress-border-radius);
   @include box-shadow($progress-box-shadow);
-***REMOVED***
+}
 
-.progress-bar ***REMOVED***
+.progress-bar {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,21 +26,21 @@
   white-space: nowrap;
   background-color: $progress-bar-bg;
   @include transition($progress-bar-transition);
-***REMOVED***
+}
 
-.progress-bar-striped ***REMOVED***
+.progress-bar-striped {
   @include gradient-striped();
   background-size: $progress-height $progress-height;
-***REMOVED***
+}
 
-@if $enable-transitions ***REMOVED***
-  .progress-bar-animated ***REMOVED***
+@if $enable-transitions {
+  .progress-bar-animated {
     animation: progress-bar-stripes $progress-bar-animation-timing;
 
-    @if $enable-prefers-reduced-motion-media-query ***REMOVED***
-      @media (prefers-reduced-motion: reduce) ***REMOVED***
+    @if $enable-prefers-reduced-motion-media-query {
+      @media (prefers-reduced-motion: reduce) {
         animation: none;
-      ***REMOVED***
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+      }
+    }
+  }
+}

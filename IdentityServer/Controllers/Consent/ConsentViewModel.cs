@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 
 namespace BnA.IAM.Presentation.API.Controllers.Consent
-***REMOVED***
+{
     public class ConsentViewModel : ConsentInputModel
-***REMOVED***
-        public string ClientName ***REMOVED*** get; set; ***REMOVED***
-        public string ClientUrl ***REMOVED*** get; set; ***REMOVED***
-        public string ClientLogoUrl ***REMOVED*** get; set; ***REMOVED***
-        public bool AllowRememberConsent ***REMOVED*** get; set; ***REMOVED***
+    {
+        public string ClientName { get; set; }
+        public string ClientUrl { get; set; }
+        public string ClientLogoUrl { get; set; }
+        public bool AllowRememberConsent { get; set; }
 
-        public IEnumerable<ScopeViewModel> IdentityScopes ***REMOVED*** get; set; ***REMOVED***
-        public IEnumerable<ScopeViewModel> ApiScopes ***REMOVED*** get; set; ***REMOVED***
-    ***REMOVED***
-***REMOVED***
+        public IEnumerable<ScopeViewModel> IdentityScopes { get; set; }
+        public IEnumerable<ScopeViewModel> ApiScopes { get; set; }
+    }
+}

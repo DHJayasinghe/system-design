@@ -1,70 +1,70 @@
-***REMOVED***
+{
   "Routes": [
-***REMOVED***
+    {
       "UpstreamPathTemplate": "/assets",
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
       "DownstreamPathTemplate": "/assets",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-    ***REMOVED***
+        {
           "Host": "asset.service",
           "Port": "80"
-        ***REMOVED***
+        }
       ]
-    ***REMOVED***,
-***REMOVED***
-      "UpstreamPathTemplate": "/assets/***REMOVED***catchAll***REMOVED***",
+    },
+    {
+      "UpstreamPathTemplate": "/assets/{catchAll}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
-      "DownstreamPathTemplate": "/assets/***REMOVED***catchAll***REMOVED***",
+      "DownstreamPathTemplate": "/assets/{catchAll}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-    ***REMOVED***
+        {
           "Host": "asset.service",
           "Port": "80"
-        ***REMOVED***
+        }
       ]
-    ***REMOVED***,
-***REMOVED***
+    },
+    {
       "UpstreamPathTemplate": "/posts",
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
       "DownstreamPathTemplate": "/posts",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-    ***REMOVED***
+        {
           "Host": "post.service",
           "Port": "80"
-        ***REMOVED***
+        }
       ]
-    ***REMOVED***,
-***REMOVED***
-      "UpstreamPathTemplate": "/posts/***REMOVED***catchAll***REMOVED***",
+    },
+    {
+      "UpstreamPathTemplate": "/posts/{catchAll}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
-      "DownstreamPathTemplate": "/posts/***REMOVED***catchAll***REMOVED***",
+      "DownstreamPathTemplate": "/posts/{catchAll}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-    ***REMOVED***
+        {
           "Host": "post.service",
           "Port": "80"
-        ***REMOVED***
+        }
       ]
-    ***REMOVED***,
-***REMOVED***
-      "UpstreamPathTemplate": "/reactions/***REMOVED***catchAll***REMOVED***",
+    },
+    {
+      "UpstreamPathTemplate": "/reactions/{catchAll}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
-      "DownstreamPathTemplate": "/reactions/***REMOVED***catchAll***REMOVED***",
+      "DownstreamPathTemplate": "/reactions/{catchAll}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-    ***REMOVED***
+        {
           "Host": "reaction.service",
           "Port": "80"
-        ***REMOVED***
+        }
       ]
-    ***REMOVED***
+    }
   ],
-  "GlobalConfiguration": ***REMOVED***
-    "RateLimitOptions": ***REMOVED***
+  "GlobalConfiguration": {
+    "RateLimitOptions": {
       "DisableRateLimitHeaders": false,
-      "QuotaExceededMessage": "API calls quota exceeded. Please ***REMOVED*** again later."
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+      "QuotaExceededMessage": "API calls quota exceeded. Please try again later."
+    }
+  }
+}

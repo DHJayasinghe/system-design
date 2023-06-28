@@ -9,29 +9,29 @@
 //
 // Issue: https://github.com/twbs/bootstrap/issues/25195
 
-@mixin hover() ***REMOVED***
-  &:hover ***REMOVED*** @content; ***REMOVED***
-***REMOVED***
+@mixin hover() {
+  &:hover { @content; }
+}
 
-@mixin hover-focus() ***REMOVED***
+@mixin hover-focus() {
   &:hover,
-  &:focus ***REMOVED***
+  &:focus {
     @content;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
-@mixin plain-hover-focus() ***REMOVED***
+@mixin plain-hover-focus() {
   &,
   &:hover,
-  &:focus ***REMOVED***
+  &:focus {
     @content;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
-@mixin hover-focus-active() ***REMOVED***
+@mixin hover-focus-active() {
   &:hover,
   &:focus,
-  &:active ***REMOVED***
+  &:active {
     @content;
-  ***REMOVED***
-***REMOVED***
+  }
+}

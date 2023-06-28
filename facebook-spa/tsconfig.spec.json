@@ -1,12 +1,12 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
-***REMOVED***
+{
   "extends": "./tsconfig.json",
-  "compilerOptions": ***REMOVED***
+  "compilerOptions": {
     "outDir": "./out-tsc/spec",
     "types": [
       "jasmine"
     ]
-  ***REMOVED***,
+  },
   "files": [
     "src/test.ts",
     "src/polyfills.ts"
@@ -15,4 +15,4 @@
     "src/**/*.spec.ts",
     "src/**/*.d.ts"
   ]
-***REMOVED***
+}

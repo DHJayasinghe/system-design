@@ -5,16 +5,16 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
-html ***REMOVED***
+html {
   box-sizing: border-box;
   -ms-overflow-style: scrollbar;
-***REMOVED***
+}
 
 *,
 *::before,
-*::after ***REMOVED***
+*::after {
   box-sizing: inherit;
-***REMOVED***
+}
 
 @import "functions";
 @import "variables";

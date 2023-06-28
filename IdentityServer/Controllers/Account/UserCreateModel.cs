@@ -1,16 +1,16 @@
-***REMOVED***
+using System;
 
 namespace BnA.IAM.Presentation.API.Controllers.Account;
 
 public class UserCreateModel
-***REMOVED***
-    public string FirstName ***REMOVED*** get; set; ***REMOVED***
-    public string LastName ***REMOVED*** get; set; ***REMOVED***
-    public string Email ***REMOVED*** get; set; ***REMOVED***  
-    public string PhoneNumber ***REMOVED*** get; set; ***REMOVED***
+{
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }  
+    public string PhoneNumber { get; set; }
 
-    public Guid OrganizationId ***REMOVED*** get; set; ***REMOVED***
+    public Guid OrganizationId { get; set; }
 
-    public Guid? Coun***REMOVED***Id ***REMOVED*** get; set; ***REMOVED***
-    public string Role ***REMOVED*** get; set; ***REMOVED***
-***REMOVED***
+    public Guid? CountryId { get; set; }
+    public string Role { get; set; }
+}

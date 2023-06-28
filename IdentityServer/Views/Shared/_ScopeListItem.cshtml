@@ -12,26 +12,26 @@
                    checked="@Model.Checked"
                    disabled="@Model.Required" />
             @if (Model.Required)
-        ***REMOVED***
+            {
                 <input type="hidden"
                    name="ScopesConsented"
                    value="@Model.Value" />
-            ***REMOVED***
+            }
             <strong>@Model.DisplayName</strong>
             @if (Model.Emphasize)
-        ***REMOVED***
+            {
                 <span class="glyphicon glyphicon-exclamation-sign"></span>
-            ***REMOVED***
+            }
         </label>
         @if (Model.Required)
-    ***REMOVED***
+        {
             <span><em>(required)</em></span>
-        ***REMOVED***
+        }
         @if (Model.Description != null)
-    ***REMOVED***
+        {
             <div class="consent-description">
                 <label for="scopes_@Model.Value">@Model.Description</label>
             </div>
-        ***REMOVED***
+        }
     </li>
 </ul>

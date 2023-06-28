@@ -1,16 +1,16 @@
-﻿***REMOVED***
-***REMOVED***
-***REMOVED***
+﻿using BnA.IAM.Application.Services;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BnA.IAM.Application;
 
 public static class DependencyInjection
-***REMOVED***
-    public static IServiceCollection AddApplication(this IServiceCollection ***REMOVED***, IConfiguration configuration)
-***REMOVED***
-        ***REMOVED***
+{
+    public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
+    {
+        services
            .AddScoped<ITableStorageService, TableStorageService>();
 
-        return ***REMOVED***;
-    ***REMOVED***
-***REMOVED***
+        return services;
+    }
+}

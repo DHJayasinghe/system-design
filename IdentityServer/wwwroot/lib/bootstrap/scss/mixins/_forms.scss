@@ -5,52 +5,52 @@
 //
 // We highly encourage you to not customize the default value, but instead use
 // this to tweak colors on an as-needed basis. This aesthetic change is based on
-// WebKit's default styles, but ***REMOVED***licable to a wider range of browsers. Its
+// WebKit's default styles, but applicable to a wider range of browsers. Its
 // usability and accessibility should be taken into account with any change.
 //
 // Example usage: change the default blue border and shadow to white for better
 // contrast against a dark gray background.
-@mixin form-control-focus($ignore-warning: false) ***REMOVED***
-  &:focus ***REMOVED***
+@mixin form-control-focus($ignore-warning: false) {
+  &:focus {
     color: $input-focus-color;
     background-color: $input-focus-bg;
     border-color: $input-focus-border-color;
     outline: 0;
     // Avoid using mixin so we can pass custom focus shadow properly
-    @if $enable-shadows ***REMOVED***
+    @if $enable-shadows {
       box-shadow: $input-box-shadow, $input-focus-box-shadow;
-    ***REMOVED*** @else ***REMOVED***
+    } @else {
       box-shadow: $input-focus-box-shadow;
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
   @include deprecate("The `form-control-focus()` mixin", "v4.4.0", "v5", $ignore-warning);
-***REMOVED***
+}
 
 // This mixin uses an `if()` technique to be compatible with Dart Sass
 // See https://github.com/sass/sass/issues/1873#issuecomment-152293725 for more details
-@mixin form-validation-state-selector($state) ***REMOVED***
-  @if ($state == "valid" or $state == "invalid") ***REMOVED***
-    .was-validated #***REMOVED***if(&, "&", "")***REMOVED***:#***REMOVED***$state***REMOVED***,
-    #***REMOVED***if(&, "&", "")***REMOVED***.is-#***REMOVED***$state***REMOVED*** ***REMOVED***
+@mixin form-validation-state-selector($state) {
+  @if ($state == "valid" or $state == "invalid") {
+    .was-validated #{if(&, "&", "")}:#{$state},
+    #{if(&, "&", "")}.is-#{$state} {
       @content;
-    ***REMOVED***
-  ***REMOVED*** @else ***REMOVED***
-    #***REMOVED***if(&, "&", "")***REMOVED***.is-#***REMOVED***$state***REMOVED*** ***REMOVED***
+    }
+  } @else {
+    #{if(&, "&", "")}.is-#{$state} {
       @content;
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
-@mixin form-validation-state($state, $color, $icon) ***REMOVED***
-  .#***REMOVED***$state***REMOVED***-feedback ***REMOVED***
+@mixin form-validation-state($state, $color, $icon) {
+  .#{$state}-feedback {
     display: none;
     width: 100%;
     margin-top: $form-feedback-margin-top;
     @include font-size($form-feedback-font-size);
     color: $color;
-  ***REMOVED***
+  }
 
-  .#***REMOVED***$state***REMOVED***-tooltip ***REMOVED***
+  .#{$state}-tooltip {
     position: absolute;
     top: 100%;
     z-index: 5;
@@ -63,115 +63,115 @@
     color: color-yiq($color);
     background-color: rgba($color, $form-feedback-tooltip-opacity);
     @include border-radius($form-feedback-tooltip-border-radius);
-  ***REMOVED***
+  }
 
-  @include form-validation-state-selector($state) ***REMOVED***
-    ~ .#***REMOVED***$state***REMOVED***-feedback,
-    ~ .#***REMOVED***$state***REMOVED***-tooltip ***REMOVED***
+  @include form-validation-state-selector($state) {
+    ~ .#{$state}-feedback,
+    ~ .#{$state}-tooltip {
       display: block;
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
 
-  .form-control ***REMOVED***
-    @include form-validation-state-selector($state) ***REMOVED***
+  .form-control {
+    @include form-validation-state-selector($state) {
       border-color: $color;
 
-      @if $enable-validation-icons ***REMOVED***
+      @if $enable-validation-icons {
         padding-right: $input-height-inner;
         background-image: escape-svg($icon);
         background-repeat: no-repeat;
         background-position: right $input-height-inner-quarter center;
         background-size: $input-height-inner-half $input-height-inner-half;
-      ***REMOVED***
+      }
 
-      &:focus ***REMOVED***
+      &:focus {
         border-color: $color;
         box-shadow: 0 0 0 $input-focus-width rgba($color, .25);
-      ***REMOVED***
-    ***REMOVED***
-  ***REMOVED***
+      }
+    }
+  }
 
   // stylelint-disable-next-line selector-no-qualifying-type
-  textarea.form-control ***REMOVED***
-    @include form-validation-state-selector($state) ***REMOVED***
-      @if $enable-validation-icons ***REMOVED***
+  textarea.form-control {
+    @include form-validation-state-selector($state) {
+      @if $enable-validation-icons {
         padding-right: $input-height-inner;
         background-position: top $input-height-inner-quarter right $input-height-inner-quarter;
-      ***REMOVED***
-    ***REMOVED***
-  ***REMOVED***
+      }
+    }
+  }
 
-  .custom-select ***REMOVED***
-    @include form-validation-state-selector($state) ***REMOVED***
+  .custom-select {
+    @include form-validation-state-selector($state) {
       border-color: $color;
 
-      @if $enable-validation-icons ***REMOVED***
+      @if $enable-validation-icons {
         padding-right: $custom-select-feedback-icon-padding-right;
         background: $custom-select-background, escape-svg($icon) $custom-select-bg no-repeat $custom-select-feedback-icon-position / $custom-select-feedback-icon-size;
-      ***REMOVED***
+      }
 
-      &:focus ***REMOVED***
+      &:focus {
         border-color: $color;
         box-shadow: 0 0 0 $input-focus-width rgba($color, .25);
-      ***REMOVED***
-    ***REMOVED***
-  ***REMOVED***
+      }
+    }
+  }
 
-  .form-check-input ***REMOVED***
-    @include form-validation-state-selector($state) ***REMOVED***
-      ~ .form-check-label ***REMOVED***
+  .form-check-input {
+    @include form-validation-state-selector($state) {
+      ~ .form-check-label {
         color: $color;
-      ***REMOVED***
+      }
 
-      ~ .#***REMOVED***$state***REMOVED***-feedback,
-      ~ .#***REMOVED***$state***REMOVED***-tooltip ***REMOVED***
+      ~ .#{$state}-feedback,
+      ~ .#{$state}-tooltip {
         display: block;
-      ***REMOVED***
-    ***REMOVED***
-  ***REMOVED***
+      }
+    }
+  }
 
-  .custom-control-input ***REMOVED***
-    @include form-validation-state-selector($state) ***REMOVED***
-      ~ .custom-control-label ***REMOVED***
+  .custom-control-input {
+    @include form-validation-state-selector($state) {
+      ~ .custom-control-label {
         color: $color;
 
-        &::before ***REMOVED***
+        &::before {
           border-color: $color;
-        ***REMOVED***
-      ***REMOVED***
+        }
+      }
 
-      &:checked ***REMOVED***
-        ~ .custom-control-label::before ***REMOVED***
+      &:checked {
+        ~ .custom-control-label::before {
           border-color: lighten($color, 10%);
           @include gradient-bg(lighten($color, 10%));
-        ***REMOVED***
-      ***REMOVED***
+        }
+      }
 
-      &:focus ***REMOVED***
-        ~ .custom-control-label::before ***REMOVED***
+      &:focus {
+        ~ .custom-control-label::before {
           box-shadow: 0 0 0 $input-focus-width rgba($color, .25);
-        ***REMOVED***
+        }
 
-        &:not(:checked) ~ .custom-control-label::before ***REMOVED***
+        &:not(:checked) ~ .custom-control-label::before {
           border-color: $color;
-        ***REMOVED***
-      ***REMOVED***
-    ***REMOVED***
-  ***REMOVED***
+        }
+      }
+    }
+  }
 
   // custom file
-  .custom-file-input ***REMOVED***
-    @include form-validation-state-selector($state) ***REMOVED***
-      ~ .custom-file-label ***REMOVED***
+  .custom-file-input {
+    @include form-validation-state-selector($state) {
+      ~ .custom-file-label {
         border-color: $color;
-      ***REMOVED***
+      }
 
-      &:focus ***REMOVED***
-        ~ .custom-file-label ***REMOVED***
+      &:focus {
+        ~ .custom-file-label {
           border-color: $color;
           box-shadow: 0 0 0 $input-focus-width rgba($color, .25);
-        ***REMOVED***
-      ***REMOVED***
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+        }
+      }
+    }
+  }
+}

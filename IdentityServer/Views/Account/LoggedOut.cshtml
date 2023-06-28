@@ -1,10 +1,10 @@
 ﻿@using BnA.IAM.Presentation.API.Controllers.Account
 @model LoggedOutViewModel
 
-@***REMOVED*** 
+@{ 
     // set this so the layout rendering sees an anonymous user
     ViewData["signed-out"] = true;
-***REMOVED***
+}
 
 <div class="logged-out-page d-flex flex-column align-items-center">
         <h1>
@@ -12,23 +12,23 @@
         </h1>
         <p>You will be redirected to the sign in page shortly.</p>
     @if (Model.PostLogoutRedirectUri != null)
-***REMOVED***
+    {
         <div class="d-none">
             Click <a class="PostLogoutRedirectUri" href="@Model.PostLogoutRedirectUri">here</a> to return to the
-            <span>@Model.ClientName</span> ***REMOVED***lication.
+            <span>@Model.ClientName</span> application.
         </div>
-    ***REMOVED***
+    }
 
     @if (Model.SignOutIframeUrl != null)
-***REMOVED***
+    {
         <iframe title="Sign Out" width="0" height="0" class="signout" src="@Model.SignOutIframeUrl"></iframe>
-    ***REMOVED***
+    }
 </div>
 
 @section scripts
-***REMOVED***
+{
     @if (Model.AutomaticRedirectAfterSignOut)
-***REMOVED***
+    {
         <script src="~/js/signout-redirect.js"></script>
-    ***REMOVED***
-***REMOVED***
+    }
+}

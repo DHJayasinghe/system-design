@@ -1,25 +1,25 @@
 @using BnA.IAM.Presentation.API.Controllers.Home
 @model ErrorViewModel
 
-@***REMOVED***
+@{
     var error = GetError(Model?.Error?.Error);
     string GetError(string error) => error.Split(":")[0];
-***REMOVED***
+}
 <div class="text-center">
-    <img src="~/images/***REMOVED***-logo.png" class="mt-5 mb-2" />
+    <img src="~/images/app-logo.png" class="mt-5 mb-2" />
     <p style="font-family: 'Poppins'; font-size: 16px;">The Most Advanced Solution For Property Maintenance.</p>
 </div>
 <div class="error-unauth d-flex justify-content-center text-center">
     <div class="error-msg">
         @*Sorry,*@
         @if (error != null)
-    ***REMOVED***
+        {
             <div class="error-desc">@error</div>
-        ***REMOVED***
+        }
         @*@if (request_id != null)
-        ***REMOVED***
+            {
             <div class="request-id mt-2">Request Id: @request_id</div>
-            ***REMOVED****@
+            }*@
     </div>
 </div>
 <div class="text-center mt-4">

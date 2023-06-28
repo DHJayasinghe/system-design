@@ -1,14 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-***REMOVED***
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 
 namespace ConnectingAzureFunctionsWithOnPrem;
 
 public static class ConnectionTest
-***REMOVED***
+{
     [FunctionName(nameof(ConnectionTest))]
     public static IActionResult Run(
         [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "connection/test")] HttpRequest req,
@@ -18,16 +18,16 @@ public static class ConnectionTest
             connectionStringSetting: "SqlConnectionString")]
         IEnumerable<Customer> customers,
         ILogger log)
-***REMOVED***
+    {
         log.LogInformation("C# HTTP trigger function processed a request.");
 
         return new OkObjectResult(customers);
-    ***REMOVED***
-***REMOVED***
+    }
+}
 
 public record Customer
-***REMOVED***
-    public int CustomerID ***REMOVED*** get; init; ***REMOVED***
-    public string CustomerName ***REMOVED*** get; init; ***REMOVED***
-    public string WebsiteURL ***REMOVED*** get; init; ***REMOVED***
-***REMOVED***
+{
+    public int CustomerID { get; init; }
+    public string CustomerName { get; init; }
+    public string WebsiteURL { get; init; }
+}

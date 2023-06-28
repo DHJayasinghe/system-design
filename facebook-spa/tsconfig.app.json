@@ -1,10 +1,10 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
-***REMOVED***
+{
   "extends": "./tsconfig.json",
-  "compilerOptions": ***REMOVED***
-    "outDir": "./out-tsc/***REMOVED***",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
     "types": []
-  ***REMOVED***,
+  },
   "files": [
     "src/main.ts",
     "src/polyfills.ts"
@@ -12,4 +12,4 @@
   "include": [
     "src/**/*.d.ts"
   ]
-***REMOVED***
+}

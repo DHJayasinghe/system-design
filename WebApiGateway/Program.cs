@@ -3,7 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
-***REMOVED***
+var builder = WebApplication.CreateBuilder(args);
 
 var environment = builder.Environment.EnvironmentName;
 
@@ -14,41 +14,41 @@ builder.Configuration
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer("JwtBearer", options =>
- ***REMOVED***
+     {
          options.Authority = builder.Configuration["IdP:Issuer"];
          options.TokenValidationParameters = new TokenValidationParameters
-     ***REMOVED***
+         {
              ValidateLifetime = false,
              ValidateAudience = false,
              ValidateIssuer = false,
- ***REMOVED***
- ***REMOVED***;
+         };
+     });
 builder.Services
     .AddCors(options =>
-***REMOVED***
+    {
         options.AddDefaultPolicy(policy => policy
             .WithOrigins(builder.Configuration.GetSection("AllowedCors").Get<string[]>())
             .AllowAnyMethod()
             .AllowAnyHeader()
         );
-***REMOVED***;
+    });
 builder.Services
     .AddOcelot(builder.Configuration);
 
-***REMOVED***
+var app = builder.Build();
 
-***REMOVED***
+app
     .UseAuthentication()
-***REMOVED***;
+    .UseAuthorization();
 
-if (***REMOVED***.Environment.IsDevelopment())
-***REMOVED***
-    ***REMOVED***.UseDeveloperExceptionPage();
-***REMOVED***
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
 
-***REMOVED***
+app
     .UseCors()
     .UseOcelot()
     .Wait();
 
-***REMOVED***.Run();
+app.Run();

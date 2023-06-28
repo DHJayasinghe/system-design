@@ -1,10 +1,10 @@
-***REMOVED***
+using System;
 
 namespace BnA.IAM.Presentation.API.Controllers.Account;
 
 public class UserRoleUpdateModel
-***REMOVED***
-    public Guid UserId ***REMOVED*** get; set; ***REMOVED***
-    public Guid OrganizationId ***REMOVED*** get; set; ***REMOVED***
-    public string Role ***REMOVED*** get; set; ***REMOVED***
-***REMOVED***
+{
+    public Guid UserId { get; set; }
+    public Guid OrganizationId { get; set; }
+    public string Role { get; set; }
+}

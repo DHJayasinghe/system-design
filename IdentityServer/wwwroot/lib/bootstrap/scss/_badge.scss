@@ -3,7 +3,7 @@
 // Requires one of the contextual, color modifier classes for `color` and
 // `background-color`.
 
-.badge ***REMOVED***
+.badge {
   display: inline-block;
   padding: $badge-padding-y $badge-padding-x;
   @include font-size($badge-font-size);
@@ -15,40 +15,40 @@
   @include border-radius($badge-border-radius);
   @include transition($badge-transition);
 
-  @at-root a#***REMOVED***&***REMOVED*** ***REMOVED***
-    @include hover-focus() ***REMOVED***
+  @at-root a#{&} {
+    @include hover-focus() {
       text-decoration: none;
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
 
   // Empty badges collapse automatically
-  &:empty ***REMOVED***
+  &:empty {
     display: none;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
 // Quick fix for badges in buttons
-.btn .badge ***REMOVED***
+.btn .badge {
   position: relative;
   top: -1px;
-***REMOVED***
+}
 
 // Pill badges
 //
 // Make them extra rounded with a modifier to replace v3's badges.
 
-.badge-pill ***REMOVED***
+.badge-pill {
   padding-right: $badge-pill-padding-x;
   padding-left: $badge-pill-padding-x;
   @include border-radius($badge-pill-border-radius);
-***REMOVED***
+}
 
 // Colors
 //
 // Contextual variations (linked badges get darker on :hover).
 
-@each $color, $value in $theme-colors ***REMOVED***
-  .badge-#***REMOVED***$color***REMOVED*** ***REMOVED***
+@each $color, $value in $theme-colors {
+  .badge-#{$color} {
     @include badge-variant($value);
-  ***REMOVED***
-***REMOVED***
+  }
+}

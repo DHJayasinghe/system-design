@@ -1,6 +1,6 @@
-﻿window.addEventListener("load", function () ***REMOVED***
+﻿window.addEventListener("load", function () {
     var a = document.querySelector("a.PostLogoutRedirectUri");
-    if (a) ***REMOVED***
+    if (a) {
         window.location = a.href;
-    ***REMOVED***
-***REMOVED***);
+    }
+});

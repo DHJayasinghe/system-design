@@ -1,7 +1,7 @@
 ﻿namespace BnA.IAM.Presentation.API.Controllers.Account;
 
 public class ExternalProvider
-***REMOVED***
-    public string DisplayName ***REMOVED*** get; set; ***REMOVED***
-    public string AuthenticationScheme ***REMOVED*** get; set; ***REMOVED***
-***REMOVED***
+{
+    public string DisplayName { get; set; }
+    public string AuthenticationScheme { get; set; }
+}

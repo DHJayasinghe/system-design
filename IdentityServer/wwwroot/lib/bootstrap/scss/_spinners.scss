@@ -2,11 +2,11 @@
 // Rotating border
 //
 
-@keyframes spinner-border ***REMOVED***
-  to ***REMOVED*** transform: rotate(360deg); ***REMOVED***
-***REMOVED***
+@keyframes spinner-border {
+  to { transform: rotate(360deg); }
+}
 
-.spinner-border ***REMOVED***
+.spinner-border {
   display: inline-block;
   width: $spinner-width;
   height: $spinner-height;
@@ -16,28 +16,28 @@
   // stylelint-disable-next-line property-blacklist
   border-radius: 50%;
   animation: spinner-border .75s linear infinite;
-***REMOVED***
+}
 
-.spinner-border-sm ***REMOVED***
+.spinner-border-sm {
   width: $spinner-width-sm;
   height: $spinner-height-sm;
   border-width: $spinner-border-width-sm;
-***REMOVED***
+}
 
 //
 // Growing circle
 //
 
-@keyframes spinner-grow ***REMOVED***
-  0% ***REMOVED***
+@keyframes spinner-grow {
+  0% {
     transform: scale(0);
-  ***REMOVED***
-  50% ***REMOVED***
+  }
+  50% {
     opacity: 1;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
-.spinner-grow ***REMOVED***
+.spinner-grow {
   display: inline-block;
   width: $spinner-width;
   height: $spinner-height;
@@ -47,9 +47,9 @@
   border-radius: 50%;
   opacity: 0;
   animation: spinner-grow .75s linear infinite;
-***REMOVED***
+}
 
-.spinner-grow-sm ***REMOVED***
+.spinner-grow-sm {
   width: $spinner-width-sm;
   height: $spinner-height-sm;
-***REMOVED***
+}

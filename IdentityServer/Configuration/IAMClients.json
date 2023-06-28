@@ -1,5 +1,5 @@
 [
-  ***REMOVED***
+  {
     "ClientId": "144e251b-30ff-4027-be96-0623e40cbc19",
     "ClientName": "BnA PM SPA",
     "RequireConsent": false,
@@ -23,8 +23,8 @@
     "PostLogoutRedirectUris": [ "http://localhost:4200/sign-out" ],
     "UpdateAccessTokenClaimsOnRefresh": true,
     "Enabled": true
-  ***REMOVED***,
-  ***REMOVED***
+  },
+  {
     "ClientId": "62b09e58-cccc-4bd2-8f4b-05dabb5c40da",
     "ClientName": "Property Tree Integration",
     "RequireConsent": false,
@@ -46,5 +46,5 @@
     "UpdateAccessTokenClaimsOnRefresh": true,
     "Enabled": true,
     "LegacyAuthEnabled": true
-  ***REMOVED***
+  }
 ]

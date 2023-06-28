@@ -1,7 +1,7 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
-***REMOVED***
+{
   "compileOnSave": false,
-  "compilerOptions": ***REMOVED***
+  "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
@@ -22,11 +22,11 @@
       "es2020",
       "dom"
     ]
-  ***REMOVED***,
-  "angularCompilerOptions": ***REMOVED***
+  },
+  "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  ***REMOVED***
-***REMOVED***
+  }
+}

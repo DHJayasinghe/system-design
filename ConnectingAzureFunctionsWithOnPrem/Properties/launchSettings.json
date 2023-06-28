@@ -1,9 +1,9 @@
-***REMOVED***
-  "profiles": ***REMOVED***
-    "ConnectingAzureFunctionsWithOnPrem": ***REMOVED***
+{
+  "profiles": {
+    "ConnectingAzureFunctionsWithOnPrem": {
       "commandName": "Project",
       "commandLineArgs": "--port 7289",
       "launchBrowser": false
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}

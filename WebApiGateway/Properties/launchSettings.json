@@ -1,18 +1,18 @@
-***REMOVED***
+{
   "$schema": "https://json.schemastore.org/launchsettings.json",
-  "profiles": ***REMOVED***
-    "WebApiGateway": ***REMOVED***
+  "profiles": {
+    "WebApiGateway": {
       "commandName": "Project",
-      "environmentVariables": ***REMOVED***
+      "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      ***REMOVED***,
-      "***REMOVED***licationUrl": "http://localhost:8082",
+      },
+      "applicationUrl": "http://localhost:8082",
       "dotnetRunMessages": true
-    ***REMOVED***,
-    "Docker (1)": ***REMOVED***
+    },
+    "Docker (1)": {
       "commandName": "Docker",
-      "launchUrl": "***REMOVED***Scheme***REMOVED***://***REMOVED***ServiceHost***REMOVED***:***REMOVED***ServicePort***REMOVED***",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
       "publishAllPorts": true
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}

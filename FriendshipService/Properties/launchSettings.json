@@ -1,9 +1,9 @@
-***REMOVED***
-  "profiles": ***REMOVED***
-    "FriendshipService": ***REMOVED***
+{
+  "profiles": {
+    "FriendshipService": {
       "commandName": "Project",
       "commandLineArgs": "--port 8083",
       "launchBrowser": false
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}

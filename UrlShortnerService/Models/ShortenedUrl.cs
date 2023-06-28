@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
-***REMOVED***
+using System;
 
 namespace UrlShortenerService.Models;
 
 public record ShortenedUrl
-***REMOVED***
+{
     [JsonProperty("id")]
-    public string Id ***REMOVED*** get; set; ***REMOVED***
-    public string Value ***REMOVED*** get; set; ***REMOVED***
-    public DateTime CreatedDateTime ***REMOVED*** get; set; ***REMOVED*** = DateTime.UtcNow;
-***REMOVED***
+    public string Id { get; set; }
+    public string Value { get; set; }
+    public DateTime CreatedDateTime { get; set; } = DateTime.UtcNow;
+}

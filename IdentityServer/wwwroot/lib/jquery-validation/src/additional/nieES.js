@@ -1,24 +1,24 @@
 /*
  * The número de identidad de extranjero ( NIE )is a code used to identify the non-nationals in Spain
  */
-$.validator.addMethod( "nieES", function( value ) ***REMOVED***
+$.validator.addMethod( "nieES", function( value ) {
 	"use strict";
 
 	value = value.toUpperCase();
 
 	// Basic format test
-	if ( !value.match( "((^[A-Z]***REMOVED***1***REMOVED***[0-9]***REMOVED***7***REMOVED***[A-Z0-9]***REMOVED***1***REMOVED***$|^[T]***REMOVED***1***REMOVED***[A-Z0-9]***REMOVED***8***REMOVED***$)|^[0-9]***REMOVED***8***REMOVED***[A-Z]***REMOVED***1***REMOVED***$)" ) ) ***REMOVED***
+	if ( !value.match( "((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)" ) ) {
 		return false;
-	***REMOVED***
+	}
 
 	// Test NIE
 	//T
-	if ( /^[T]***REMOVED***1***REMOVED***/.test( value ) ) ***REMOVED***
-		return ( value[ 8 ] === /^[T]***REMOVED***1***REMOVED***[A-Z0-9]***REMOVED***8***REMOVED***$/.test( value ) );
-	***REMOVED***
+	if ( /^[T]{1}/.test( value ) ) {
+		return ( value[ 8 ] === /^[T]{1}[A-Z0-9]{8}$/.test( value ) );
+	}
 
 	//XYZ
-	if ( /^[XYZ]***REMOVED***1***REMOVED***/.test( value ) ) ***REMOVED***
+	if ( /^[XYZ]{1}/.test( value ) ) {
 		return (
 			value[ 8 ] === "TRWAGMYFPDXBNJZSQVHLCKE".charAt(
 				value.replace( "X", "0" )
@@ -27,8 +27,8 @@ $.validator.addMethod( "nieES", function( value ) ***REMOVED***
 					.substring( 0, 8 ) % 23
 			)
 		);
-	***REMOVED***
+	}
 
 	return false;
 
-***REMOVED***, "Please specify a valid NIE number." );
+}, "Please specify a valid NIE number." );

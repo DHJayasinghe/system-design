@@ -2,10 +2,10 @@
 // Screenreaders
 //
 
-.sr-only ***REMOVED***
+.sr-only {
   @include sr-only();
-***REMOVED***
+}
 
-.sr-only-focusable ***REMOVED***
+.sr-only-focusable {
   @include sr-only-focusable();
-***REMOVED***
+}

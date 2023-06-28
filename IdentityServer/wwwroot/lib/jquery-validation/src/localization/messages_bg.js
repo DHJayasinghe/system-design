@@ -2,7 +2,7 @@
  * Translated default messages for the jQuery validation plugin.
  * Locale: BG (Bulgarian; български език)
  */
-$.extend($.validator.messages, ***REMOVED***
+$.extend($.validator.messages, {
 	required: "Полето е задължително.",
 	remote: "Моля, въведете правилната стойност.",
 	email: "Моля, въведете валиден email.",
@@ -14,10 +14,10 @@ $.extend($.validator.messages, ***REMOVED***
 	creditcard: "Моля, въведете валиден номер на кредитна карта.",
 	equalTo: "Моля, въведете същата стойност отново.",
 	extension: "Моля, въведете стойност с валидно разширение.",
-	maxlength: $.validator.format("Моля, въведете повече от ***REMOVED***0***REMOVED*** символа."),
-	minlength: $.validator.format("Моля, въведете поне ***REMOVED***0***REMOVED*** символа."),
-	rangelength: $.validator.format("Моля, въведете стойност с дължина между ***REMOVED***0***REMOVED*** и ***REMOVED***1***REMOVED*** символа."),
-	range: $.validator.format("Моля, въведете стойност между ***REMOVED***0***REMOVED*** и ***REMOVED***1***REMOVED***."),
-	max: $.validator.format("Моля, въведете стойност по-малка или равна на ***REMOVED***0***REMOVED***."),
-	min: $.validator.format("Моля, въведете стойност по-голяма или равна на ***REMOVED***0***REMOVED***.")
-***REMOVED***);
+	maxlength: $.validator.format("Моля, въведете повече от {0} символа."),
+	minlength: $.validator.format("Моля, въведете поне {0} символа."),
+	rangelength: $.validator.format("Моля, въведете стойност с дължина между {0} и {1} символа."),
+	range: $.validator.format("Моля, въведете стойност между {0} и {1}."),
+	max: $.validator.format("Моля, въведете стойност по-малка или равна на {0}."),
+	min: $.validator.format("Моля, въведете стойност по-голяма или равна на {0}.")
+});

@@ -1,84 +1,84 @@
 ﻿
-.body-container ***REMOVED***
+.body-container {
     height: 100vh;
     padding-top: 3%;
     font-family: 'Poppins', sans-serif !important;
 
-    .login-page ***REMOVED***
-        .btn ***REMOVED***
+    .login-page {
+        .btn {
             font-size: 14px;
             height: 45px;
-        ***REMOVED***
+        }
 
-        .form-control ***REMOVED***
+        .form-control {
             font-size: 12px;
             font-weight: lighter;
             height: 45px;
             background-color: #F8F9FA !important;
-        ***REMOVED***
+        }
 
-        .form-check ***REMOVED***
+        .form-check {
             font-size: 12px;
 
-            .custom-control-indicator ***REMOVED***
+            .custom-control-indicator {
                 background-color: #ddd;
                 margin-top: 1.5px;
-            ***REMOVED***
+            }
 
-            .form-check-input:checked ~ .custom-control-indicator ***REMOVED***
+            .form-check-input:checked ~ .custom-control-indicator {
                 color: #fff;
                 background-color: #07a35b !important;
                 box-shadow: none;
-            ***REMOVED***
-        ***REMOVED***
+            }
+        }
 
-        .incorrect-pw ***REMOVED***
+        .incorrect-pw {
             font-size: 12px;
             margin: 10px 0 25px 0;
 
-            .validation-summary-errors ul ***REMOVED***
+            .validation-summary-errors ul {
                 list-style: none;
                 margin-left: -40px
-            ***REMOVED***
-        ***REMOVED***
+            }
+        }
 
-        .text-below ***REMOVED***
+        .text-below {
             font-size: 12px;
-        ***REMOVED***
-    ***REMOVED***
-***REMOVED***
+        }
+    }
+}
 
-.welcome-page ***REMOVED***
-    li ***REMOVED***
+.welcome-page {
+    li {
         list-style: none;
         padding: 4px;
-    ***REMOVED***
-***REMOVED***
+    }
+}
 
-.logged-out-page ***REMOVED***
+.logged-out-page {
     font-family: 'Poppins', sans-serif !important;
 
-    iframe ***REMOVED***
+    iframe {
         display: none;
         width: 0;
         height: 0;
-    ***REMOVED***
+    }
 
-    h1 ***REMOVED***
+    h1 {
         font-size: 28px !important;
         font-weight: 600 !important;
-    ***REMOVED***
+    }
 
-    p ***REMOVED***
+    p {
         font-size: 12px !important;
         font-weight: 500 !important;
-    ***REMOVED***
-***REMOVED***
-.error-unauth ***REMOVED***
+    }
+}
+.error-unauth {
     font-family: 'Poppins', sans-serif !important;
     margin: 0 50px;
 
-    .error-msg ***REMOVED***
+    .error-msg {
         color: #eb4c4b;
         font-size: 25px;
         background: #f3f3f382;
@@ -87,48 +87,48 @@
         font-weight: 500;
         margin: 30px 0;
 
-        .error-desc ***REMOVED***
+        .error-desc {
             font-size: 12px;
             font-weight: 400;
             color: black;
             margin-top: 12px;
-        ***REMOVED***
+        }
 
-        .request-id ***REMOVED***
+        .request-id {
             color: black;
             font-size: 10px;
             font-weight: 400;
-        ***REMOVED***
-    ***REMOVED***
-***REMOVED***
-.w-270 ***REMOVED***
+        }
+    }
+}
+.w-270 {
     width: 270px !important;
-***REMOVED***
-.primary-red ***REMOVED***
+}
+.primary-red {
     color: #eb4c4b !important;
-***REMOVED***
-.grants-page ***REMOVED***
-    .card ***REMOVED***
+}
+.grants-page {
+    .card {
         margin-top: 20px;
         border-bottom: 1px solid lightgray;
 
-        .card-title ***REMOVED***
-            img ***REMOVED***
+        .card-title {
+            img {
                 width: 100px;
                 height: 100px;
-            ***REMOVED***
+            }
 
             font-size: 120%;
             font-weight: bold;
-        ***REMOVED***
+        }
 
-        label ***REMOVED***
+        label {
             font-weight: bold;
-        ***REMOVED***
-    ***REMOVED***
-***REMOVED***
+        }
+    }
+}
 
-.custom-check ***REMOVED***
+.custom-check {
     display: block;
     position: relative;
     padding-left: 24px;
@@ -139,17 +139,17 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-***REMOVED***
+}
 
-.custom-check input ***REMOVED***
+.custom-check input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
     height: 0;
     width: 0;
-***REMOVED***
+}
 
-.checkmark ***REMOVED***
+.checkmark {
     border-radius: 3px;
     position: absolute;
     top: 0;
@@ -157,27 +157,27 @@
     height: 17px;
     width: 17px;
     background-color: #d8d3d3;
-***REMOVED***
+}
 
-.custom-check:hover input ~ .checkmark ***REMOVED***
+.custom-check:hover input ~ .checkmark {
     background-color: #d8d3d3;
-***REMOVED***
+}
 
-.custom-check input:checked ~ .checkmark ***REMOVED***
+.custom-check input:checked ~ .checkmark {
     background-color: #27b975 !important;
-***REMOVED***
+}
 
-.checkmark:after ***REMOVED***
+.checkmark:after {
     content: "";
     position: absolute;
     display: none;
-***REMOVED***
+}
 
-.custom-check input:checked ~ .checkmark:after ***REMOVED***
+.custom-check input:checked ~ .checkmark:after {
     display: block;
-***REMOVED***
+}
 
-.custom-check .checkmark:after ***REMOVED***
+.custom-check .checkmark:after {
     left: 7px;
     top: 4px;
     width: 4px;
@@ -187,5 +187,5 @@
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-***REMOVED***
+}
 

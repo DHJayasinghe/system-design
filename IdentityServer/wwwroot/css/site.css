@@ -1,73 +1,73 @@
-﻿.body-container ***REMOVED***
+﻿.body-container {
   height: 100vh;
   padding-top: 3%;
   font-family: "Poppins", sans-serif !important;
-***REMOVED***
-.body-container .login-page .btn ***REMOVED***
+}
+.body-container .login-page .btn {
   font-size: 14px;
   height: 45px;
-***REMOVED***
-.body-container .login-page .form-control ***REMOVED***
+}
+.body-container .login-page .form-control {
   font-size: 12px;
   font-weight: lighter;
   height: 45px;
   background-color: #f8f9fa !important;
-***REMOVED***
-.body-container .login-page .form-check ***REMOVED***
+}
+.body-container .login-page .form-check {
   font-size: 12px;
-***REMOVED***
-.body-container .login-page .form-check .custom-control-indicator ***REMOVED***
+}
+.body-container .login-page .form-check .custom-control-indicator {
   background-color: #ddd;
   margin-top: 1.5px;
-***REMOVED***
+}
 .body-container
   .login-page
   .form-check
   .form-check-input:checked
-  ~ .custom-control-indicator ***REMOVED***
+  ~ .custom-control-indicator {
   color: #fff;
   background-color: #07a35b !important;
   box-shadow: none;
-***REMOVED***
-.body-container .login-page .incorrect-pw ***REMOVED***
+}
+.body-container .login-page .incorrect-pw {
   font-size: 12px;
   margin: 10px 0 25px 0;
-***REMOVED***
-.body-container .login-page .incorrect-pw .validation-summary-errors ul ***REMOVED***
+}
+.body-container .login-page .incorrect-pw .validation-summary-errors ul {
   list-style: none;
   margin-left: -40px;
-***REMOVED***
-.body-container .login-page .text-below ***REMOVED***
+}
+.body-container .login-page .text-below {
   font-size: 12px;
-***REMOVED***
+}
 
-.welcome-page li ***REMOVED***
+.welcome-page li {
   list-style: none;
   padding: 4px;
-***REMOVED***
+}
 
-.logged-out-page ***REMOVED***
+.logged-out-page {
   font-family: "Poppins", sans-serif !important;
-***REMOVED***
-.logged-out-page iframe ***REMOVED***
+}
+.logged-out-page iframe {
   display: none;
   width: 0;
   height: 0;
-***REMOVED***
-.logged-out-page h1 ***REMOVED***
+}
+.logged-out-page h1 {
   font-size: 28px !important;
   font-weight: 600 !important;
-***REMOVED***
-.logged-out-page p ***REMOVED***
+}
+.logged-out-page p {
   font-size: 12px !important;
   font-weight: 500 !important;
-***REMOVED***
+}
 
-.error-unauth ***REMOVED***
+.error-unauth {
   font-family: "Poppins", sans-serif !important;
   margin: 0 50px;
-***REMOVED***
-.error-unauth .error-msg ***REMOVED***
+}
+.error-unauth .error-msg {
   color: #eb4c4b;
   font-size: 25px;
   background: #f3f3f382;
@@ -75,44 +75,44 @@
   border-radius: 10px;
   font-weight: 500;
   margin: 30px 0;
-***REMOVED***
-.error-unauth .error-msg .error-desc ***REMOVED***
+}
+.error-unauth .error-msg .error-desc {
   font-size: 12px;
   font-weight: 400;
   color: black;
   margin-top: 12px;
-***REMOVED***
-.error-unauth .error-msg .request-id ***REMOVED***
+}
+.error-unauth .error-msg .request-id {
   color: black;
   font-size: 10px;
   font-weight: 400;
-***REMOVED***
+}
 
-.w-270 ***REMOVED***
+.w-270 {
   width: 270px !important;
-***REMOVED***
+}
 
-.primary-red ***REMOVED***
+.primary-red {
   color: #eb4c4b !important;
-***REMOVED***
+}
 
-.grants-page .card ***REMOVED***
+.grants-page .card {
   margin-top: 20px;
   border-bottom: 1px solid lightgray;
-***REMOVED***
-.grants-page .card .card-title ***REMOVED***
+}
+.grants-page .card .card-title {
   font-size: 120%;
   font-weight: bold;
-***REMOVED***
-.grants-page .card .card-title img ***REMOVED***
+}
+.grants-page .card .card-title img {
   width: 100px;
   height: 100px;
-***REMOVED***
-.grants-page .card label ***REMOVED***
+}
+.grants-page .card label {
   font-weight: bold;
-***REMOVED***
+}
 
-.custom-check ***REMOVED***
+.custom-check {
   display: block;
   position: relative;
   padding-left: 24px;
@@ -123,17 +123,17 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-***REMOVED***
+}
 
-.custom-check input ***REMOVED***
+.custom-check input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
   height: 0;
   width: 0;
-***REMOVED***
+}
 
-.checkmark ***REMOVED***
+.checkmark {
   border-radius: 3px;
   position: absolute;
   top: 0;
@@ -141,27 +141,27 @@
   height: 17px;
   width: 17px;
   background-color: #d8d3d3;
-***REMOVED***
+}
 
-.custom-check:hover input ~ .checkmark ***REMOVED***
+.custom-check:hover input ~ .checkmark {
   background-color: #d8d3d3;
-***REMOVED***
+}
 
-.custom-check input:checked ~ .checkmark ***REMOVED***
+.custom-check input:checked ~ .checkmark {
   background-color: #27b975 !important;
-***REMOVED***
+}
 
-.checkmark:after ***REMOVED***
+.checkmark:after {
   content: "";
   position: absolute;
   display: none;
-***REMOVED***
+}
 
-.custom-check input:checked ~ .checkmark:after ***REMOVED***
+.custom-check input:checked ~ .checkmark:after {
   display: block;
-***REMOVED***
+}
 
-.custom-check .checkmark:after ***REMOVED***
+.custom-check .checkmark:after {
   left: 7px;
   top: 4px;
   width: 4px;
@@ -171,44 +171,44 @@
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
-***REMOVED***
+}
 
-.font-12 ***REMOVED***
+.font-12 {
   font-size: 12px;
-***REMOVED***
-.font-14 ***REMOVED***
+}
+.font-14 {
   font-size: 14px;
-***REMOVED***
-.font-16 ***REMOVED***
+}
+.font-16 {
   font-size: 16px;
-***REMOVED***
-.txt-underline ***REMOVED***
+}
+.txt-underline {
   text-decoration: underline;
-***REMOVED***
-.sections ***REMOVED***
+}
+.sections {
   background: #fff;
   padding: 20px 10px;
   border-radius: 10px;
   -webkit-box-shadow: 0px 2px 5px 0px rgb(0 0 0 / 10%);
-***REMOVED***
-.mt-30 ***REMOVED***
+}
+.mt-30 {
   margin-top: 30px;
-***REMOVED***
-.container-fluid ***REMOVED***
+}
+.container-fluid {
   margin-right: auto;
   margin-left: auto;
   width: 100%;
   min-height: 70vh;
-***REMOVED***
-.btn-ht ***REMOVED***
+}
+.btn-ht {
   height: 45px;
-***REMOVED***
-.form-input ***REMOVED***
+}
+.form-input {
   font-size: 12px;
   font-weight: lighter;
   height: 45px;
   background-color: #f8f9fa !important;
-***REMOVED***
-.wt-50 ***REMOVED***
+}
+.wt-50 {
   width: 50px;
-***REMOVED***
+}

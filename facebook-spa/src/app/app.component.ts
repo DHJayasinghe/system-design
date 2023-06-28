@@ -1,11 +1,11 @@
-import ***REMOVED*** Component ***REMOVED*** from '@angular/core';
-import ***REMOVED*** LoginResponse, OidcSecurityService ***REMOVED*** from 'angular-auth-oidc-client';
+import { Component } from '@angular/core';
+import { LoginResponse, OidcSecurityService } from 'angular-auth-oidc-client';
 
-@Component(***REMOVED***
-  selector: '***REMOVED***-root',
-  templateUrl: './***REMOVED***.component.html',
-  styleUrls: ['./***REMOVED***.component.css']
-***REMOVED***)
-export class AppComponent ***REMOVED***
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
   title = 'facebook-spa';
-***REMOVED***
+}

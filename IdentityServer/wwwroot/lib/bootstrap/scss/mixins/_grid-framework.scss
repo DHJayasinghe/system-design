@@ -3,69 +3,69 @@
 // Used only by Bootstrap to generate the correct number of grid classes given
 // any value of `$grid-columns`.
 
-@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) ***REMOVED***
+@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
   // Common properties for all breakpoints
-  %grid-column ***REMOVED***
+  %grid-column {
     position: relative;
     width: 100%;
     padding-right: $gutter / 2;
     padding-left: $gutter / 2;
-  ***REMOVED***
+  }
 
-  @each $breakpoint in map-keys($breakpoints) ***REMOVED***
+  @each $breakpoint in map-keys($breakpoints) {
     $infix: breakpoint-infix($breakpoint, $breakpoints);
 
     // Allow columns to stretch full width below their breakpoints
-    @for $i from 1 through $columns ***REMOVED***
-      .col#***REMOVED***$infix***REMOVED***-#***REMOVED***$i***REMOVED*** ***REMOVED***
+    @for $i from 1 through $columns {
+      .col#{$infix}-#{$i} {
         @extend %grid-column;
-      ***REMOVED***
-    ***REMOVED***
-    .col#***REMOVED***$infix***REMOVED***,
-    .col#***REMOVED***$infix***REMOVED***-auto ***REMOVED***
+      }
+    }
+    .col#{$infix},
+    .col#{$infix}-auto {
       @extend %grid-column;
-    ***REMOVED***
+    }
 
-    @include media-breakpoint-up($breakpoint, $breakpoints) ***REMOVED***
-      // Provide basic `.col-***REMOVED***bp***REMOVED***` classes for equal-width flexbox columns
-      .col#***REMOVED***$infix***REMOVED*** ***REMOVED***
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      // Provide basic `.col-{bp}` classes for equal-width flexbox columns
+      .col#{$infix} {
         flex-basis: 0;
         flex-grow: 1;
         max-width: 100%;
-      ***REMOVED***
+      }
 
-      @for $i from 1 through $grid-row-columns ***REMOVED***
-        .row-cols#***REMOVED***$infix***REMOVED***-#***REMOVED***$i***REMOVED*** ***REMOVED***
+      @for $i from 1 through $grid-row-columns {
+        .row-cols#{$infix}-#{$i} {
           @include row-cols($i);
-        ***REMOVED***
-      ***REMOVED***
+        }
+      }
 
-      .col#***REMOVED***$infix***REMOVED***-auto ***REMOVED***
+      .col#{$infix}-auto {
         @include make-col-auto();
-      ***REMOVED***
+      }
 
-      @for $i from 1 through $columns ***REMOVED***
-        .col#***REMOVED***$infix***REMOVED***-#***REMOVED***$i***REMOVED*** ***REMOVED***
+      @for $i from 1 through $columns {
+        .col#{$infix}-#{$i} {
           @include make-col($i, $columns);
-        ***REMOVED***
-      ***REMOVED***
+        }
+      }
 
-      .order#***REMOVED***$infix***REMOVED***-first ***REMOVED*** order: -1; ***REMOVED***
+      .order#{$infix}-first { order: -1; }
 
-      .order#***REMOVED***$infix***REMOVED***-last ***REMOVED*** order: $columns + 1; ***REMOVED***
+      .order#{$infix}-last { order: $columns + 1; }
 
-      @for $i from 0 through $columns ***REMOVED***
-        .order#***REMOVED***$infix***REMOVED***-#***REMOVED***$i***REMOVED*** ***REMOVED*** order: $i; ***REMOVED***
-      ***REMOVED***
+      @for $i from 0 through $columns {
+        .order#{$infix}-#{$i} { order: $i; }
+      }
 
       // `$columns - 1` because offsetting by the width of an entire row isn't possible
-      @for $i from 0 through ($columns - 1) ***REMOVED***
-        @if not ($infix == "" and $i == 0) ***REMOVED*** // Avoid emitting useless .offset-0
-          .offset#***REMOVED***$infix***REMOVED***-#***REMOVED***$i***REMOVED*** ***REMOVED***
+      @for $i from 0 through ($columns - 1) {
+        @if not ($infix == "" and $i == 0) { // Avoid emitting useless .offset-0
+          .offset#{$infix}-#{$i} {
             @include make-col-offset($i, $columns);
-          ***REMOVED***
-        ***REMOVED***
-      ***REMOVED***
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+          }
+        }
+      }
+    }
+  }
+}

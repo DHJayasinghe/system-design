@@ -1,9 +1,9 @@
-***REMOVED***
-  "profiles": ***REMOVED***
-    "UserService": ***REMOVED***
+{
+  "profiles": {
+    "UserService": {
       "commandName": "Project",
       "commandLineArgs": "--port 8081",
       "launchBrowser": false
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}

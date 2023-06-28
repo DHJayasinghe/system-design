@@ -1,4 +1,4 @@
-.toast ***REMOVED***
+.toast {
   max-width: $toast-max-width;
   overflow: hidden; // cheap rounded corners on nested items
   @include font-size($toast-font-size);
@@ -11,25 +11,25 @@
   opacity: 0;
   @include border-radius($toast-border-radius);
 
-  &:not(:last-child) ***REMOVED***
+  &:not(:last-child) {
     margin-bottom: $toast-padding-x;
-  ***REMOVED***
+  }
 
-  &.showing ***REMOVED***
+  &.showing {
     opacity: 1;
-  ***REMOVED***
+  }
 
-  &.show ***REMOVED***
+  &.show {
     display: block;
     opacity: 1;
-  ***REMOVED***
+  }
 
-  &.hide ***REMOVED***
+  &.hide {
     display: none;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
-.toast-header ***REMOVED***
+.toast-header {
   display: flex;
   align-items: center;
   padding: $toast-padding-y $toast-padding-x;
@@ -37,8 +37,8 @@
   background-color: $toast-header-background-color;
   background-clip: padding-box;
   border-bottom: $toast-border-width solid $toast-header-border-color;
-***REMOVED***
+}
 
-.toast-body ***REMOVED***
-  padding: $toast-padding-x; // ***REMOVED***ly to both vertical and horizontal
-***REMOVED***
+.toast-body {
+  padding: $toast-padding-x; // apply to both vertical and horizontal
+}

@@ -6,29 +6,29 @@
       *ngFor="let comment of comments">
       <div class="comment-header">
         <img class="user-avatar"
-          src="https://ui-avatars.com/api/?name=***REMOVED******REMOVED***comment.authorName***REMOVED******REMOVED***&background=random&rounded=true&format=png"
+          src="https://ui-avatars.com/api/?name={{comment.authorName}}&background=random&rounded=true&format=png"
           alt="User Avatar">
-        <span class="user-name">***REMOVED******REMOVED***comment.authorName***REMOVED******REMOVED***</span>
+        <span class="user-name">{{comment.authorName}}</span>
       </div>
       <div class="comment-content">
-        <p>***REMOVED******REMOVED***comment.content***REMOVED******REMOVED***</p>
+        <p>{{comment.content}}</p>
       </div>
       <div class="comment-footer">
         <span class="likes"
-          *ngIf="comment?.totalReactions">***REMOVED******REMOVED***comment?.totalReactions***REMOVED******REMOVED*** likes</span>
+          *ngIf="comment?.totalReactions">{{comment?.totalReactions}} likes</span>
         <button class="like-button"
           (click)="comment.showReactionButtons=!comment.showReactionButtons">Like</button>
-        <***REMOVED***-add-reaction [postId]="comment.postId"
+        <app-add-reaction [postId]="comment.postId"
           [commentId]="comment.id"
           (changed)="getReactionCount()"
-          *ngIf="comment.showReactionButtons"></***REMOVED***-add-reaction>
-        <!-- <span class="like-count">***REMOVED******REMOVED*** likeCount ***REMOVED******REMOVED***</span> -->
+          *ngIf="comment.showReactionButtons"></app-add-reaction>
+        <!-- <span class="like-count">{{ likeCount }}</span> -->
       </div>
     </div>
     <!-- <ul class="comments-list">
       <li class="comment" *ngFor="let comment of comments">
-        <span class="comment-user">***REMOVED******REMOVED***comment.authorName***REMOVED******REMOVED***:</span>
-        <span class="comment-content">***REMOVED******REMOVED***comment.content***REMOVED******REMOVED***</span>
+        <span class="comment-user">{{comment.authorName}}:</span>
+        <span class="comment-content">{{comment.content}}</span>
       </li>
     </ul> -->
   </div>

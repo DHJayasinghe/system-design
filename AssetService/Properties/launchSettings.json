@@ -1,14 +1,14 @@
-***REMOVED***
-  "profiles": ***REMOVED***
-    "AssetService": ***REMOVED***
+{
+  "profiles": {
+    "AssetService": {
       "commandName": "Project",
       "commandLineArgs": "--port 8083"
-    ***REMOVED***,
-    "Docker": ***REMOVED***
+    },
+    "Docker": {
       "commandName": "Docker",
-      "launchUrl": "***REMOVED***Scheme***REMOVED***://***REMOVED***ServiceHost***REMOVED***:***REMOVED***ServicePort***REMOVED***",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
       "httpPort": 34244,
       "useSSL": false
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}

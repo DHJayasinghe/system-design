@@ -1,14 +1,14 @@
-***REMOVED***
+using System;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 
 namespace UrlShortenerService;
 
 public class KeepAppWarmUpFunction
-***REMOVED***
+{
     [FunctionName(nameof(KeepAppWarmUpFunction))]
     public static void Run([TimerTrigger("0 */15 * * * *",UseMonitor = false)] TimerInfo myTimer, ILogger log)
-***REMOVED***
-        log.LogInformation("***REMOVED***0***REMOVED*** function executed at: ***REMOVED***1***REMOVED***", nameof(KeepAppWarmUpFunction), DateTime.UtcNow);
-    ***REMOVED***
-***REMOVED***
+    {
+        log.LogInformation("{0} function executed at: {1}", nameof(KeepAppWarmUpFunction), DateTime.UtcNow);
+    }
+}

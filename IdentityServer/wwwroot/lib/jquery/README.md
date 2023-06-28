@@ -40,9 +40,9 @@ var $ = require( "jquery" );
 AMD is a module format built for the browser. For more information, we recommend [require.js' documentation](http://requirejs.org/docs/whyamd.html).
 
 ```js
-define( [ "jquery" ], function( $ ) ***REMOVED***
+define( [ "jquery" ], function( $ ) {
 
-***REMOVED*** );
+} );
 ```
 
 ### Node
@@ -56,7 +56,7 @@ npm install jquery
 For jQuery to work in Node, a window with a document is required. Since no such window exists natively in Node, one can be mocked by tools such as [jsdom](https://github.com/tmpvar/jsdom). This can be useful for testing purposes.
 
 ```js
-const ***REMOVED*** JSDOM ***REMOVED*** = require( "jsdom" );
-const ***REMOVED*** window ***REMOVED*** = new JSDOM( "" );
+const { JSDOM } = require( "jsdom" );
+const { window } = new JSDOM( "" );
 const $ = require( "jquery" )( window );
 ```

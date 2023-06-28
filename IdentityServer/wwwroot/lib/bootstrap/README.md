@@ -53,7 +53,7 @@ Read the [Getting started page](https://getbootstrap.com/docs/4.4/getting-starte
 
 ## Status
 
-[![Slack](https://bootstrap-slack.heroku***REMOVED***.com/badge.svg)](https://bootstrap-slack.heroku***REMOVED***.com/)
+[![Slack](https://bootstrap-slack.herokuapp.com/badge.svg)](https://bootstrap-slack.herokuapp.com/)
 [![Build Status](https://github.com/twbs/bootstrap/workflows/Tests/badge.svg)](https://github.com/twbs/bootstrap/actions?workflow=Tests)
 [![npm version](https://img.shields.io/npm/v/bootstrap.svg)](https://www.npmjs.com/package/bootstrap)
 [![Gem version](https://img.shields.io/gem/v/bootstrap.svg)](https://rubygems.org/gems/bootstrap)
@@ -146,8 +146,8 @@ Get updates on Bootstrap's development and chat with the project maintainers and
 
 - Follow [@getbootstrap on Twitter](https://twitter.com/getbootstrap).
 - Read and subscribe to [The Official Bootstrap Blog](https://blog.getbootstrap.com/).
-- Join [the official Slack room](https://bootstrap-slack.heroku***REMOVED***.com/).
-- Chat with fellow Bootstr***REMOVED***ers in IRC. On the `irc.freenode.net` server, in the `##bootstrap` channel.
+- Join [the official Slack room](https://bootstrap-slack.herokuapp.com/).
+- Chat with fellow Bootstrappers in IRC. On the `irc.freenode.net` server, in the `##bootstrap` channel.
 - Implementation help may be found at Stack Overflow (tagged [`bootstrap-4`](https://stackoverflow.com/questions/tagged/bootstrap-4)).
 - Developers should use the keyword `bootstrap` on packages which modify or add to the functionality of Bootstrap when distributing through [npm](https://www.npmjs.com/browse/keyword/bootstrap) or similar delivery mechanisms for maximum discoverability.
 

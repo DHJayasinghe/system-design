@@ -1,9 +1,9 @@
-***REMOVED***
-  "profiles": ***REMOVED***
-    "UrlShortnerService": ***REMOVED***
+{
+  "profiles": {
+    "UrlShortnerService": {
       "commandName": "Project",
       "commandLineArgs": "--port 8080",
       "launchBrowser": false
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}

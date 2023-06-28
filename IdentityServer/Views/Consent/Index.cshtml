@@ -4,9 +4,9 @@
 <div class="page-consent">
     <div class="lead">
         @if (Model.ClientLogoUrl != null)
-    ***REMOVED***
+        {
             <div class="client-logo"><img src="@Model.ClientLogoUrl"></div>
-        ***REMOVED***
+        }
         <h1>
             @Model.ClientName
             <small class="text-muted">is requesting your permission</small>
@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-sm-8">
                 @if (Model.IdentityScopes.Any())
-            ***REMOVED***
+                {
                     <div class="form-group">
                         <div class="card">
                             <div class="card-header">
@@ -34,16 +34,16 @@
                             </div>
                             <ul class="list-group list-group-flush">
                                 @foreach (var scope in Model.IdentityScopes)
-                            ***REMOVED***
+                                {
                                     <partial name="_ScopeListItem" model="@scope" />
-                                ***REMOVED***
+                                }
                             </ul>
                         </div>
                     </div>
-                ***REMOVED***
+                }
 
                 @if (Model.ApiScopes.Any())
-            ***REMOVED***
+                {
                     <div class="form-group">
                         <div class="card">
                             <div class="card-header">
@@ -52,13 +52,13 @@
                             </div>
                             <ul class="list-group list-group-flush">
                                 @foreach (var scope in Model.ApiScopes)
-                            ***REMOVED***
+                                {
                                     <partial name="_ScopeListItem" model="scope" />
-                                ***REMOVED***
+                                }
                             </ul>
                         </div>
                     </div>
-                ***REMOVED***
+                }
 
                 <div class="form-group">
                     <div class="card">
@@ -73,7 +73,7 @@
                 </div>
 
                 @if (Model.AllowRememberConsent)
-            ***REMOVED***
+                {
                     <div class="form-group">
                         <div class="form-check">
                             <input class="form-check-input" asp-for="RememberConsent">
@@ -82,7 +82,7 @@
                             </label>
                         </div>
                     </div>
-                ***REMOVED***
+                }
             </div>
         </div>
 
@@ -93,12 +93,12 @@
             </div>
             <div class="col-sm-4 col-lg-auto">
                 @if (Model.ClientUrl != null)
-            ***REMOVED***
+                {
                     <a class="btn btn-outline-info" href="@Model.ClientUrl">
                         <span class="glyphicon glyphicon-info-sign"></span>
                         <strong>@Model.ClientName</strong>
                     </a>
-                ***REMOVED***
+                }
             </div>
         </div>
     </form>

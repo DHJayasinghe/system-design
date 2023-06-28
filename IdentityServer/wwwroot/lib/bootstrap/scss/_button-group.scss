@@ -2,138 +2,138 @@
 
 // Make the div behave like a button
 .btn-group,
-.btn-group-vertical ***REMOVED***
+.btn-group-vertical {
   position: relative;
   display: inline-flex;
   vertical-align: middle; // match .btn alignment given font-size hack above
 
-  > .btn ***REMOVED***
+  > .btn {
     position: relative;
     flex: 1 1 auto;
 
     // Bring the hover, focused, and "active" buttons to the front to overlay
     // the borders properly
-    @include hover() ***REMOVED***
+    @include hover() {
       z-index: 1;
-    ***REMOVED***
+    }
     &:focus,
     &:active,
-    &.active ***REMOVED***
+    &.active {
       z-index: 1;
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
 // Optional: Group multiple button groups together for a toolbar
-.btn-toolbar ***REMOVED***
+.btn-toolbar {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
 
-  .input-group ***REMOVED***
+  .input-group {
     width: auto;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
-.btn-group ***REMOVED***
+.btn-group {
   // Prevent double borders when buttons are next to each other
   > .btn:not(:first-child),
-  > .btn-group:not(:first-child) ***REMOVED***
+  > .btn-group:not(:first-child) {
     margin-left: -$btn-border-width;
-  ***REMOVED***
+  }
 
   // Reset rounded corners
   > .btn:not(:last-child):not(.dropdown-toggle),
-  > .btn-group:not(:last-child) > .btn ***REMOVED***
+  > .btn-group:not(:last-child) > .btn {
     @include border-right-radius(0);
-  ***REMOVED***
+  }
 
   > .btn:not(:first-child),
-  > .btn-group:not(:first-child) > .btn ***REMOVED***
+  > .btn-group:not(:first-child) > .btn {
     @include border-left-radius(0);
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
 // Sizing
 //
 // Remix the default button sizing classes into new ones for easier manipulation.
 
-.btn-group-sm > .btn ***REMOVED*** @extend .btn-sm; ***REMOVED***
-.btn-group-lg > .btn ***REMOVED*** @extend .btn-lg; ***REMOVED***
+.btn-group-sm > .btn { @extend .btn-sm; }
+.btn-group-lg > .btn { @extend .btn-lg; }
 
 
 //
 // Split button dropdowns
 //
 
-.dropdown-toggle-split ***REMOVED***
+.dropdown-toggle-split {
   padding-right: $btn-padding-x * .75;
   padding-left: $btn-padding-x * .75;
 
   &::after,
   .dropup &::after,
-  .dropright &::after ***REMOVED***
+  .dropright &::after {
     margin-left: 0;
-  ***REMOVED***
+  }
 
-  .dropleft &::before ***REMOVED***
+  .dropleft &::before {
     margin-right: 0;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
-.btn-sm + .dropdown-toggle-split ***REMOVED***
+.btn-sm + .dropdown-toggle-split {
   padding-right: $btn-padding-x-sm * .75;
   padding-left: $btn-padding-x-sm * .75;
-***REMOVED***
+}
 
-.btn-lg + .dropdown-toggle-split ***REMOVED***
+.btn-lg + .dropdown-toggle-split {
   padding-right: $btn-padding-x-lg * .75;
   padding-left: $btn-padding-x-lg * .75;
-***REMOVED***
+}
 
 
 // The clickable button for toggling the menu
 // Set the same inset shadow as the :active state
-.btn-group.show .dropdown-toggle ***REMOVED***
+.btn-group.show .dropdown-toggle {
   @include box-shadow($btn-active-box-shadow);
 
   // Show no shadow for `.btn-link` since it has no other button styles.
-  &.btn-link ***REMOVED***
+  &.btn-link {
     @include box-shadow(none);
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
 
 //
 // Vertical button groups
 //
 
-.btn-group-vertical ***REMOVED***
+.btn-group-vertical {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
 
   > .btn,
-  > .btn-group ***REMOVED***
+  > .btn-group {
     width: 100%;
-  ***REMOVED***
+  }
 
   > .btn:not(:first-child),
-  > .btn-group:not(:first-child) ***REMOVED***
+  > .btn-group:not(:first-child) {
     margin-top: -$btn-border-width;
-  ***REMOVED***
+  }
 
   // Reset rounded corners
   > .btn:not(:last-child):not(.dropdown-toggle),
-  > .btn-group:not(:last-child) > .btn ***REMOVED***
+  > .btn-group:not(:last-child) > .btn {
     @include border-bottom-radius(0);
-  ***REMOVED***
+  }
 
   > .btn:not(:first-child),
-  > .btn-group:not(:first-child) > .btn ***REMOVED***
+  > .btn-group:not(:first-child) > .btn {
     @include border-top-radius(0);
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
 
 // Checkbox and radio options
@@ -148,16 +148,16 @@
 // See https://github.com/twbs/bootstrap/pull/12794 and
 // https://github.com/twbs/bootstrap/pull/14559 for more information.
 
-.btn-group-toggle ***REMOVED***
+.btn-group-toggle {
   > .btn,
-  > .btn-group > .btn ***REMOVED***
+  > .btn-group > .btn {
     margin-bottom: 0; // Override default `<label>` value
 
     input[type="radio"],
-    input[type="checkbox"] ***REMOVED***
+    input[type="checkbox"] {
       position: absolute;
       clip: rect(0, 0, 0, 0);
       pointer-events: none;
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}

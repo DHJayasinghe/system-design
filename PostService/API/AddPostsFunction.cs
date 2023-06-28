@@ -10,38 +10,38 @@ using System.Net.Http.Headers;
 using PostService.Configs;
 using PostService.Models;
 using Microsoft.Azure.Cosmos;
-***REMOVED***
+using Microsoft.Extensions.Configuration;
 using PostService.API.Models;
 
 namespace PostService;
 
 public class AddPostsFunction
-***REMOVED***
+{
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly IConfiguration _configuration;
 
     public AddPostsFunction(IHttpClientFactory httpClientFactory, IConfiguration configuration)
-***REMOVED***
+    {
         _httpClientFactory = httpClientFactory;
         _configuration = configuration;
-    ***REMOVED***
+    }
 
     [FunctionName(nameof(AddPostsFunction))]
     public async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "posts")] AddPostRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
-***REMOVED***
-        log.LogInformation("***REMOVED***0***REMOVED*** HTTP trigger processed a request.", nameof(AddPostsFunction));
+    {
+        log.LogInformation("{0} HTTP trigger processed a request.", nameof(AddPostsFunction));
 
         var content = new StringContent(JsonConvert.SerializeObject(new
-    ***REMOVED***
+        {
             Assets = req.Assets
-    ***REMOVED***);
+        }));
 
 
         using var httpClient = _httpClientFactory.CreateClient();
-        content.Headers.ContentType = new MediaTypeHeaderValue("***REMOVED***lication/json");
+        content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
         var response = await httpClient.PostAsync(_configuration.GetValue<string>("AssetService"), content);
         var assets = await response.Content.ReadAsAsync<List<string>>();
@@ -54,5 +54,5 @@ public class AddPostsFunction
           .CreateItemAsync(entity, new PartitionKey(entity.PostId));
 
         return new OkObjectResult(result.Resource.PostId);
-    ***REMOVED***
-***REMOVED***
+    }
+}

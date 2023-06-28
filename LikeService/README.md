@@ -13,7 +13,7 @@ Purpose of this service is to handle users Reactions on Posts and their Comments
 1. Low Latency - There can be millions of reactions per post, Calculating count of reactions should be fast. 
 2. High Availability - There can be millions of reactions per second hitting our service. Therefore our backend service should be highly available.
 3. Consistency - Showing actual reaction count does not required to be real-time. Having a lag on showing it, is Okay. Stronger consistency not required.
-4. Conflicts - There can be multiple concurrent reaction requests per post. We should avoid conflicts where 2 people ***REMOVED***ing to update the same en***REMOVED*** resulting in invalid state if there any to consider (Ex: Calculating and storing some statistics data)
+4. Conflicts - There can be multiple concurrent reaction requests per post. We should avoid conflicts where 2 people trying to update the same entry resulting in invalid state if there any to consider (Ex: Calculating and storing some statistics data)
 
 ## Implementation Considerations
 
@@ -21,15 +21,15 @@ Purpose of this service is to handle users Reactions on Posts and their Comments
 How our model be like to store User Reactions on Post and it's Comments.
 ```
 public record Reaction
-***REMOVED***
+{
   [JsonProperty("id")]
-  public string Id ***REMOVED*** get; set; ***REMOVED***
-  public string PostId ***REMOVED*** get; set; ***REMOVED***
-  public string CommentId ***REMOVED*** get; set; ***REMOVED***
-  public string UserId ***REMOVED*** get; set; ***REMOVED***
-  public LikeType LikeType ***REMOVED*** get; set; ***REMOVED***
-  public DateTime Timestamp ***REMOVED*** get; set; ***REMOVED***
- ***REMOVED***
+  public string Id { get; set; }
+  public string PostId { get; set; }
+  public string CommentId { get; set; }
+  public string UserId { get; set; }
+  public LikeType LikeType { get; set; }
+  public DateTime Timestamp { get; set; }
+ }
 ```
 PartitionKey - /PostId
 
@@ -40,28 +40,28 @@ To get the reaction count we could simply get all the items (documents) in the p
 This is how our denormalized reaction-count data model looks like.
 ```
 public record ReactionCount
-***REMOVED***
+{
     [JsonProperty("id")]
-    public string Id ***REMOVED*** get; set; ***REMOVED***
-    public string PostId ***REMOVED*** get; init; ***REMOVED***
-    public string CommentId ***REMOVED*** get; init; ***REMOVED***
-    public int LikeCount ***REMOVED*** get; set; ***REMOVED*** = 0;
-    public int HeartCount ***REMOVED*** get; set; ***REMOVED*** = 0;
-    public int WowCount ***REMOVED*** get; set; ***REMOVED*** = 0;
-    public int CareCount ***REMOVED*** get; set; ***REMOVED*** = 0;
-    public int LaughCount ***REMOVED*** get; set; ***REMOVED*** = 0;
-    public int SadCount ***REMOVED*** get; set; ***REMOVED*** = 0;
-    public int AngryCount ***REMOVED*** get; set; ***REMOVED*** = 0;
-    public DateTime Timestamp ***REMOVED*** get; set; ***REMOVED***
-***REMOVED***
+    public string Id { get; set; }
+    public string PostId { get; init; }
+    public string CommentId { get; init; }
+    public int LikeCount { get; set; } = 0;
+    public int HeartCount { get; set; } = 0;
+    public int WowCount { get; set; } = 0;
+    public int CareCount { get; set; } = 0;
+    public int LaughCount { get; set; } = 0;
+    public int SadCount { get; set; } = 0;
+    public int AngryCount { get; set; } = 0;
+    public DateTime Timestamp { get; set; }
+}
 ```
 
-Problem with this ***REMOVED***roach is when concurrent users ***REMOVED*** to increment the same ReactionCount item of the same post. Let's say User#1 do Reaction request for the Post#1, User#2 do the same concurrently, when doing that User#1 and User#2 see the current reaction count as 10. So, both do increment the count 10 by 1 and Save it. Which result in invalid stats (count 11) storing in the DB. But the actual count after both requests should be 12. Which breaks our *NFR#4 - Conflicts*. To handle this scenario, there 3 ***REMOVED***roaches.
-1. Distributed Locking - We could use some distributed lock mechanism avoid the conflicts (Ex: Redis Cache). Usually locking *could add latency* to our ***REMOVED***lication API HTTP requests. But we could avoid by processing it using a background job (different process).
-2. Optimistic Concurrency Control - Where we store version number on the Container Item and use that to avoid conflicts update, with a re***REMOVED*** logic. But, this will result in increased round-trip to DB.
-3. Increment count using the same process - In this ***REMOVED***roach we could use some sort of session enabled pub/sub or queue messaging solution, where Reaction count requests per post are **received as messages and make sure they processed by the same process**. Ex: Azure Service Bus session enabled topic or queue. In that case, we won't have any concurrent updates, cause stats update per post and done sequentially by one process. 
+Problem with this approach is when concurrent users try to increment the same ReactionCount item of the same post. Let's say User#1 do Reaction request for the Post#1, User#2 do the same concurrently, when doing that User#1 and User#2 see the current reaction count as 10. So, both do increment the count 10 by 1 and Save it. Which result in invalid stats (count 11) storing in the DB. But the actual count after both requests should be 12. Which breaks our *NFR#4 - Conflicts*. To handle this scenario, there 3 approaches.
+1. Distributed Locking - We could use some distributed lock mechanism avoid the conflicts (Ex: Redis Cache). Usually locking *could add latency* to our application API HTTP requests. But we could avoid by processing it using a background job (different process).
+2. Optimistic Concurrency Control - Where we store version number on the Container Item and use that to avoid conflicts update, with a retry logic. But, this will result in increased round-trip to DB.
+3. Increment count using the same process - In this approach we could use some sort of session enabled pub/sub or queue messaging solution, where Reaction count requests per post are **received as messages and make sure they processed by the same process**. Ex: Azure Service Bus session enabled topic or queue. In that case, we won't have any concurrent updates, cause stats update per post and done sequentially by one process. 
 
-For our design, we will go for #***REMOVED***roach #3# cause it is the cleanest one without locking and processing time overhead. In this case we need to let ServiceBus to identify which messages should be grouped and send to same Process (subscriber) using a *SessionId* provided in the message properties. For that we gonna pick *CommentId*, if not available *PostId*. We don't want the same concumer resposible for processing both Post reaction and all of it's Comment reactions as well. That could delay the stats counter. Cause we want sequential processing for container item level. Not the whole partition key.
+For our design, we will go for #approach #3# cause it is the cleanest one without locking and processing time overhead. In this case we need to let ServiceBus to identify which messages should be grouped and send to same Process (subscriber) using a *SessionId* provided in the message properties. For that we gonna pick *CommentId*, if not available *PostId*. We don't want the same concumer resposible for processing both Post reaction and all of it's Comment reactions as well. That could delay the stats counter. Cause we want sequential processing for container item level. Not the whole partition key.
 
 ### FR #4 - <br>
 To achieve this we need to maintain a unique constraint on `/UserId` and `/CommentId`. NoSQL databases follow BASE model, where S stands for **Soft State**. Which describes due to the lack of immediate consistency, data values may change over time. So there is a very good possibility that data conflicts and data integrity issues could occur. Which must handled by the developers. So, in this case there could be data integrity issue, when user doing multiple API calls which gonna insert duplciate reactions. But in CosmosDB, there is a extra layer of data integrity called **Unique Key Constraint**, which can guarantee uniqueness **within a partition key**. So we could add this Unique Key Constraint policy to achive this requirement. 
@@ -70,14 +70,14 @@ To achieve this we need to maintain a unique constraint on `/UserId` and `/Comme
 ## Solution #1 - CosmosDB Change Feed Processor (Polling)
 ![Change Feed Processor](Solution1.png)
 
-In this solutin, we can use the Azure Cosmos DB **Change Feed** core feature which available with NoSQL API and enable by default for all the accounts. This change feed feature is an Event Sourcing store, which simply track changes (Insert/Update) to a logical partition as an Event objects, and store them seperately in sequence (in-ordered) where they were ***REMOVED***lied. Which then we can use and replay them to restore the state to where they were in during a particular time.  
+In this solutin, we can use the Azure Cosmos DB **Change Feed** core feature which available with NoSQL API and enable by default for all the accounts. This change feed feature is an Event Sourcing store, which simply track changes (Insert/Update) to a logical partition as an Event objects, and store them seperately in sequence (in-ordered) where they were applied. Which then we can use and replay them to restore the state to where they were in during a particular time.  
 
 We can utilize this feature using an Azure Functions CosmosDB trigger, which implements using the Change Feed Processor, which periodically poll for changes of a container (by default it's 5 secs). Also, this feature is capable of distributing traffic accross multiple consumers (Multiple threads or machines), based on the **physical partitions**. This way we could use these information to create total reaction count materialized view.
 
-### Problems with this ***REMOVED***roach
-1. Item Delete actions are not captured in ChangeFeed - Need seperate soft delete ***REMOVED***roach, where we gonna toggle Active state column to false during Delete action. 
-And then use a CosmosDB Trigger to actually remove it based on that soft state. That way we would have an en***REMOVED*** to capture Deletion in ChangeFeed. 
-2. Compute is distributed based on Physical Partition - This way we gonna have huge load on one Function to iterate through all changes h***REMOVED***en during a one physical partition. 
+### Problems with this approach
+1. Item Delete actions are not captured in ChangeFeed - Need seperate soft delete approach, where we gonna toggle Active state column to false during Delete action. 
+And then use a CosmosDB Trigger to actually remove it based on that soft state. That way we would have an entry to capture Deletion in ChangeFeed. 
+2. Compute is distributed based on Physical Partition - This way we gonna have huge load on one Function to iterate through all changes happen during a one physical partition. 
 If we have huge amount of reactions (1M) per post for a short period (Let's say 5sec), then all those reactions would need to be process by one Function. 
 Which may result in Function timeout in consumption plan. Which is not ideal. We need more flexible scaling to handle such huge load. Maybe scale based on logical partition instead of physical partition.
 3. Handling Reaction Type change - If a user change his reaction to a different one, this change feed may not contain the previous reaction type to decrement previous reaction total count. 
@@ -88,7 +88,7 @@ Ex: Post have 10 Likes & 15 Hearts. A user change his reaction from Like to Hear
 ![Service Bus Topic](Solution2.png)
 
 In this solution, what we can do is instead rely on CosmosDB Event Sourcing store (the Change Feed) we manually maintain and publish our changes as Events to some store, where we can utilized this later by our Reaction Counting function. To store that, we can **Azure Service Bus Topics**, which implements Pub/Sub messaging model. 
-In this case, using Pub/Sub model we could scale our ***REMOVED***lications to react to these events not just by one consumer but by multiple consumers. For example, today it's just the ReactionCounter function listen to these events, But tomorrow it gonna be another Service named Notification Service which gonna listen to those events and sending push notifications to the author of the post about reactions. 
+In this case, using Pub/Sub model we could scale our applications to react to these events not just by one consumer but by multiple consumers. For example, today it's just the ReactionCounter function listen to these events, But tomorrow it gonna be another Service named Notification Service which gonna listen to those events and sending push notifications to the author of the post about reactions. 
 And this model will push the data to it's consumers instead of pulling frequently, which greatly increase the responding time for those events. 
 Also, we gonna use sessions, when creating a subscription to this topic, to make sure the producer will send the same events related to the same post/comment to the same consumer. 
-This will make sure, there will be no update conflicts that could h***REMOVED***en during two consumers ***REMOVED*** to update the reaction count for the same post/comment. Which could break our **NR# 4**.
+This will make sure, there will be no update conflicts that could happen during two consumers try to update the reaction count for the same post/comment. Which could break our **NR# 4**.

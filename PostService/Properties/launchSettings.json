@@ -1,9 +1,9 @@
-***REMOVED***
-  "profiles": ***REMOVED***
-    "PostService": ***REMOVED***
+{
+  "profiles": {
+    "PostService": {
       "commandName": "Project",
       "commandLineArgs": "--port 8084",
       "launchBrowser": false
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}

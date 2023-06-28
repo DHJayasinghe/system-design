@@ -5,7 +5,7 @@
     <div class="row" style="font-family: 'Poppins'">
 
         @if (Model.EnableLocalLogin)
-    ***REMOVED***
+        {
             <div class="col-sm-6 mx-auto">
                 <div class="card border-0 mt-3">
                     <div class="card-body">
@@ -28,7 +28,7 @@
                             </div>
                             <button class="btn btn-danger w-100 mb-4 py-2" name="button" value="login" id="btnSignIn">Sign in</button>
                             @if (Model.AllowRememberLogin)
-                        ***REMOVED***
+                            {
                                 <div class="form-group">
                                     <div class="form-check d-flex align-items-center justify-content-between pl-0">
                                         <div class="d-flex text-left">
@@ -47,16 +47,16 @@
                                     </div>
 
                                 </div>
-                            ***REMOVED***
+                            }
                         </form>
                     </div>
                 </div>
             </div>
-        ***REMOVED***
+        }
 
 
         @if (Model.VisibleExternalProviders.Any())
-    ***REMOVED***
+        {
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-header">
@@ -65,7 +65,7 @@
                     <div class="card-body">
                         <ul class="list-inline">
                             @foreach (var provider in Model.VisibleExternalProviders)
-                        ***REMOVED***
+                            {
                                 <li class="list-inline-item">
                                     <a class="btn btn-secondary"
                                asp-controller="External"
@@ -75,18 +75,18 @@
                                         @provider.DisplayName
                                     </a>
                                 </li>
-                            ***REMOVED***
+                            }
                         </ul>
                     </div>
                 </div>
             </div>
-        ***REMOVED***
+        }
         @if (!Model.EnableLocalLogin && !Model.VisibleExternalProviders.Any())
-    ***REMOVED***
+        {
             <div class="alert alert-warning">
                 <strong>Invalid login request</strong>
                 There are no login schemes configured for this request.
             </div>
-        ***REMOVED***
+        }
     </div>
 </div>

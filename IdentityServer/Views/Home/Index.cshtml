@@ -1,8 +1,8 @@
 @using System.Reflection
 
-@***REMOVED***
+@{
     var version = typeof(Duende.IdentityServer.Hosting.IdentityServerMiddleware).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion.Split('+').First();
-***REMOVED***
+}
 
 <div class="welcome-page">
     <h1>

@@ -7,19 +7,19 @@
 //
 // Base class takes care of all the key behavioral aspects.
 
-.custom-control ***REMOVED***
+.custom-control {
   position: relative;
   display: block;
   min-height: $font-size-base * $line-height-base;
   padding-left: $custom-control-gutter + $custom-control-indicator-size;
-***REMOVED***
+}
 
-.custom-control-inline ***REMOVED***
+.custom-control-inline {
   display: inline-flex;
   margin-right: $custom-control-spacer-x;
-***REMOVED***
+}
 
-.custom-control-input ***REMOVED***
+.custom-control-input {
   position: absolute;
   left: 0;
   z-index: -1; // Put the input behind the label so it doesn't overlay text
@@ -27,51 +27,51 @@
   height: ($font-size-base * $line-height-base + $custom-control-indicator-size) / 2;
   opacity: 0;
 
-  &:checked ~ .custom-control-label::before ***REMOVED***
+  &:checked ~ .custom-control-label::before {
     color: $custom-control-indicator-checked-color;
     border-color: $custom-control-indicator-checked-border-color;
     @include gradient-bg($custom-control-indicator-checked-bg);
     @include box-shadow($custom-control-indicator-checked-box-shadow);
-  ***REMOVED***
+  }
 
-  &:focus ~ .custom-control-label::before ***REMOVED***
+  &:focus ~ .custom-control-label::before {
     // the mixin is not used here to make sure there is feedback
-    @if $enable-shadows ***REMOVED***
+    @if $enable-shadows {
       box-shadow: $input-box-shadow, $input-focus-box-shadow;
-    ***REMOVED*** @else ***REMOVED***
+    } @else {
       box-shadow: $custom-control-indicator-focus-box-shadow;
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
 
-  &:focus:not(:checked) ~ .custom-control-label::before ***REMOVED***
+  &:focus:not(:checked) ~ .custom-control-label::before {
     border-color: $custom-control-indicator-focus-border-color;
-  ***REMOVED***
+  }
 
-  &:not(:disabled):active ~ .custom-control-label::before ***REMOVED***
+  &:not(:disabled):active ~ .custom-control-label::before {
     color: $custom-control-indicator-active-color;
     background-color: $custom-control-indicator-active-bg;
     border-color: $custom-control-indicator-active-border-color;
     @include box-shadow($custom-control-indicator-active-box-shadow);
-  ***REMOVED***
+  }
 
   // Use [disabled] and :disabled to work around https://github.com/twbs/bootstrap/issues/28247
   &[disabled],
-  &:disabled ***REMOVED***
-    ~ .custom-control-label ***REMOVED***
+  &:disabled {
+    ~ .custom-control-label {
       color: $custom-control-label-disabled-color;
 
-      &::before ***REMOVED***
+      &::before {
         background-color: $custom-control-indicator-disabled-bg;
-      ***REMOVED***
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+      }
+    }
+  }
+}
 
 // Custom control indicators
 //
 // Build the custom controls out of pseudo-elements.
 
-.custom-control-label ***REMOVED***
+.custom-control-label {
   position: relative;
   margin-bottom: 0;
   color: $custom-control-label-color;
@@ -79,7 +79,7 @@
   cursor: $custom-control-cursor;
 
   // Background-color and (when enabled) gradient
-  &::before ***REMOVED***
+  &::before {
     position: absolute;
     top: ($font-size-base * $line-height-base - $custom-control-indicator-size) / 2;
     left: -($custom-control-gutter + $custom-control-indicator-size);
@@ -91,10 +91,10 @@
     background-color: $custom-control-indicator-bg;
     border: $custom-control-indicator-border-color solid $custom-control-indicator-border-width;
     @include box-shadow($custom-control-indicator-box-shadow);
-  ***REMOVED***
+  }
 
   // Foreground (icon)
-  &::after ***REMOVED***
+  &::after {
     position: absolute;
     top: ($font-size-base * $line-height-base - $custom-control-indicator-size) / 2;
     left: -($custom-control-gutter + $custom-control-indicator-size);
@@ -102,88 +102,88 @@
     width: $custom-control-indicator-size;
     height: $custom-control-indicator-size;
     content: "";
-    background: no-repeat 50% / #***REMOVED***$custom-control-indicator-bg-size***REMOVED***;
-  ***REMOVED***
-***REMOVED***
+    background: no-repeat 50% / #{$custom-control-indicator-bg-size};
+  }
+}
 
 
 // Checkboxes
 //
 // Tweak just a few things for checkboxes.
 
-.custom-checkbox ***REMOVED***
-  .custom-control-label::before ***REMOVED***
+.custom-checkbox {
+  .custom-control-label::before {
     @include border-radius($custom-checkbox-indicator-border-radius);
-  ***REMOVED***
+  }
 
-  .custom-control-input:checked ~ .custom-control-label ***REMOVED***
-    &::after ***REMOVED***
+  .custom-control-input:checked ~ .custom-control-label {
+    &::after {
       background-image: escape-svg($custom-checkbox-indicator-icon-checked);
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
 
-  .custom-control-input:indeterminate ~ .custom-control-label ***REMOVED***
-    &::before ***REMOVED***
+  .custom-control-input:indeterminate ~ .custom-control-label {
+    &::before {
       border-color: $custom-checkbox-indicator-indeterminate-border-color;
       @include gradient-bg($custom-checkbox-indicator-indeterminate-bg);
       @include box-shadow($custom-checkbox-indicator-indeterminate-box-shadow);
-    ***REMOVED***
-    &::after ***REMOVED***
+    }
+    &::after {
       background-image: escape-svg($custom-checkbox-indicator-icon-indeterminate);
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
 
-  .custom-control-input:disabled ***REMOVED***
-    &:checked ~ .custom-control-label::before ***REMOVED***
+  .custom-control-input:disabled {
+    &:checked ~ .custom-control-label::before {
       background-color: $custom-control-indicator-checked-disabled-bg;
-    ***REMOVED***
-    &:indeterminate ~ .custom-control-label::before ***REMOVED***
+    }
+    &:indeterminate ~ .custom-control-label::before {
       background-color: $custom-control-indicator-checked-disabled-bg;
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
 // Radios
 //
 // Tweak just a few things for radios.
 
-.custom-radio ***REMOVED***
-  .custom-control-label::before ***REMOVED***
+.custom-radio {
+  .custom-control-label::before {
     // stylelint-disable-next-line property-blacklist
     border-radius: $custom-radio-indicator-border-radius;
-  ***REMOVED***
+  }
 
-  .custom-control-input:checked ~ .custom-control-label ***REMOVED***
-    &::after ***REMOVED***
+  .custom-control-input:checked ~ .custom-control-label {
+    &::after {
       background-image: escape-svg($custom-radio-indicator-icon-checked);
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
 
-  .custom-control-input:disabled ***REMOVED***
-    &:checked ~ .custom-control-label::before ***REMOVED***
+  .custom-control-input:disabled {
+    &:checked ~ .custom-control-label::before {
       background-color: $custom-control-indicator-checked-disabled-bg;
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
 
 // switches
 //
 // Tweak a few things for switches
 
-.custom-switch ***REMOVED***
+.custom-switch {
   padding-left: $custom-switch-width + $custom-control-gutter;
 
-  .custom-control-label ***REMOVED***
-    &::before ***REMOVED***
+  .custom-control-label {
+    &::before {
       left: -($custom-switch-width + $custom-control-gutter);
       width: $custom-switch-width;
       pointer-events: all;
       // stylelint-disable-next-line property-blacklist
       border-radius: $custom-switch-indicator-border-radius;
-    ***REMOVED***
+    }
 
-    &::after ***REMOVED***
+    &::after {
       top: add(($font-size-base * $line-height-base - $custom-control-indicator-size) / 2, $custom-control-indicator-border-width * 2);
       left: add(-($custom-switch-width + $custom-control-gutter), $custom-control-indicator-border-width * 2);
       width: $custom-switch-indicator-size;
@@ -192,22 +192,22 @@
       // stylelint-disable-next-line property-blacklist
       border-radius: $custom-switch-indicator-border-radius;
       @include transition(transform .15s ease-in-out, $custom-forms-transition);
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
 
-  .custom-control-input:checked ~ .custom-control-label ***REMOVED***
-    &::after ***REMOVED***
+  .custom-control-input:checked ~ .custom-control-label {
+    &::after {
       background-color: $custom-control-indicator-bg;
       transform: translateX($custom-switch-width - $custom-control-indicator-size);
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
 
-  .custom-control-input:disabled ***REMOVED***
-    &:checked ~ .custom-control-label::before ***REMOVED***
+  .custom-control-input:disabled {
+    &:checked ~ .custom-control-label::before {
       background-color: $custom-control-indicator-checked-disabled-bg;
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
 
 // Select
@@ -216,7 +216,7 @@
 // https://primer.github.io/.
 //
 
-.custom-select ***REMOVED***
+.custom-select {
   display: inline-block;
   width: 100%;
   height: $custom-select-height;
@@ -231,18 +231,18 @@
   border: $custom-select-border-width solid $custom-select-border-color;
   @include border-radius($custom-select-border-radius, 0);
   @include box-shadow($custom-select-box-shadow);
-  ***REMOVED***earance: none;
+  appearance: none;
 
-  &:focus ***REMOVED***
+  &:focus {
     border-color: $custom-select-focus-border-color;
     outline: 0;
-    @if $enable-shadows ***REMOVED***
+    @if $enable-shadows {
       box-shadow: $custom-select-box-shadow, $custom-select-focus-box-shadow;
-    ***REMOVED*** @else ***REMOVED***
+    } @else {
       box-shadow: $custom-select-focus-box-shadow;
-    ***REMOVED***
+    }
 
-    &::-ms-value ***REMOVED***
+    &::-ms-value {
       // For visual consistency with other platforms/browsers,
       // suppress the default white text on blue background highlight given to
       // the selected option text when the (still closed) <select> receives focus
@@ -250,63 +250,63 @@
       // See https://github.com/twbs/bootstrap/issues/19398.
       color: $input-color;
       background-color: $input-bg;
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
 
   &[multiple],
-  &[size]:not([size="1"]) ***REMOVED***
+  &[size]:not([size="1"]) {
     height: auto;
     padding-right: $custom-select-padding-x;
     background-image: none;
-  ***REMOVED***
+  }
 
-  &:disabled ***REMOVED***
+  &:disabled {
     color: $custom-select-disabled-color;
     background-color: $custom-select-disabled-bg;
-  ***REMOVED***
+  }
 
   // Hides the default caret in IE11
-  &::-ms-expand ***REMOVED***
+  &::-ms-expand {
     display: none;
-  ***REMOVED***
+  }
 
   // Remove outline from select box in FF
-  &:-moz-focusring ***REMOVED***
+  &:-moz-focusring {
     color: transparent;
     text-shadow: 0 0 0 $custom-select-color;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
-.custom-select-sm ***REMOVED***
+.custom-select-sm {
   height: $custom-select-height-sm;
   padding-top: $custom-select-padding-y-sm;
   padding-bottom: $custom-select-padding-y-sm;
   padding-left: $custom-select-padding-x-sm;
   @include font-size($custom-select-font-size-sm);
-***REMOVED***
+}
 
-.custom-select-lg ***REMOVED***
+.custom-select-lg {
   height: $custom-select-height-lg;
   padding-top: $custom-select-padding-y-lg;
   padding-bottom: $custom-select-padding-y-lg;
   padding-left: $custom-select-padding-x-lg;
   @include font-size($custom-select-font-size-lg);
-***REMOVED***
+}
 
 
 // File
 //
 // Custom file input.
 
-.custom-file ***REMOVED***
+.custom-file {
   position: relative;
   display: inline-block;
   width: 100%;
   height: $custom-file-height;
   margin-bottom: 0;
-***REMOVED***
+}
 
-.custom-file-input ***REMOVED***
+.custom-file-input {
   position: relative;
   z-index: 2;
   width: 100%;
@@ -314,29 +314,29 @@
   margin: 0;
   opacity: 0;
 
-  &:focus ~ .custom-file-label ***REMOVED***
+  &:focus ~ .custom-file-label {
     border-color: $custom-file-focus-border-color;
     box-shadow: $custom-file-focus-box-shadow;
-  ***REMOVED***
+  }
 
   // Use [disabled] and :disabled to work around https://github.com/twbs/bootstrap/issues/28247
   &[disabled] ~ .custom-file-label,
-  &:disabled ~ .custom-file-label ***REMOVED***
+  &:disabled ~ .custom-file-label {
     background-color: $custom-file-disabled-bg;
-  ***REMOVED***
+  }
 
-  @each $lang, $value in $custom-file-text ***REMOVED***
-    &:lang(#***REMOVED***$lang***REMOVED***) ~ .custom-file-label::after ***REMOVED***
+  @each $lang, $value in $custom-file-text {
+    &:lang(#{$lang}) ~ .custom-file-label::after {
       content: $value;
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
 
-  ~ .custom-file-label[data-browse]::after ***REMOVED***
+  ~ .custom-file-label[data-browse]::after {
     content: attr(data-browse);
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
-.custom-file-label ***REMOVED***
+.custom-file-label {
   position: absolute;
   top: 0;
   right: 0;
@@ -353,7 +353,7 @@
   @include border-radius($custom-file-border-radius);
   @include box-shadow($custom-file-box-shadow);
 
-  &::after ***REMOVED***
+  &::after {
     position: absolute;
     top: 0;
     right: 0;
@@ -368,8 +368,8 @@
     @include gradient-bg($custom-file-button-bg);
     border-left: inherit;
     @include border-radius(0 $custom-file-border-radius $custom-file-border-radius 0);
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
 // Range
 //
@@ -377,28 +377,28 @@
 // elements cannot be mixed. As such, there are no shared styles for focus or
 // active states on prefixed selectors.
 
-.custom-range ***REMOVED***
+.custom-range {
   width: 100%;
   height: add($custom-range-thumb-height, $custom-range-thumb-focus-box-shadow-width * 2);
   padding: 0; // Need to reset padding
   background-color: transparent;
-  ***REMOVED***earance: none;
+  appearance: none;
 
-  &:focus ***REMOVED***
+  &:focus {
     outline: none;
 
     // Pseudo-elements must be split across multiple rulesets to have an effect.
     // No box-shadow() mixin for focus accessibility.
-    &::-webkit-slider-thumb ***REMOVED*** box-shadow: $custom-range-thumb-focus-box-shadow; ***REMOVED***
-    &::-moz-range-thumb ***REMOVED*** box-shadow: $custom-range-thumb-focus-box-shadow; ***REMOVED***
-    &::-ms-thumb        ***REMOVED*** box-shadow: $custom-range-thumb-focus-box-shadow; ***REMOVED***
-  ***REMOVED***
+    &::-webkit-slider-thumb { box-shadow: $custom-range-thumb-focus-box-shadow; }
+    &::-moz-range-thumb     { box-shadow: $custom-range-thumb-focus-box-shadow; }
+    &::-ms-thumb            { box-shadow: $custom-range-thumb-focus-box-shadow; }
+  }
 
-  &::-moz-focus-outer ***REMOVED***
+  &::-moz-focus-outer {
     border: 0;
-  ***REMOVED***
+  }
 
-  &::-webkit-slider-thumb ***REMOVED***
+  &::-webkit-slider-thumb {
     width: $custom-range-thumb-width;
     height: $custom-range-thumb-height;
     margin-top: ($custom-range-track-height - $custom-range-thumb-height) / 2; // Webkit specific
@@ -407,14 +407,14 @@
     @include border-radius($custom-range-thumb-border-radius);
     @include box-shadow($custom-range-thumb-box-shadow);
     @include transition($custom-forms-transition);
-    ***REMOVED***earance: none;
+    appearance: none;
 
-    &:active ***REMOVED***
+    &:active {
       @include gradient-bg($custom-range-thumb-active-bg);
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
 
-  &::-webkit-slider-runnable-track ***REMOVED***
+  &::-webkit-slider-runnable-track {
     width: $custom-range-track-width;
     height: $custom-range-track-height;
     color: transparent; // Why?
@@ -423,9 +423,9 @@
     border-color: transparent;
     @include border-radius($custom-range-track-border-radius);
     @include box-shadow($custom-range-track-box-shadow);
-  ***REMOVED***
+  }
 
-  &::-moz-range-thumb ***REMOVED***
+  &::-moz-range-thumb {
     width: $custom-range-thumb-width;
     height: $custom-range-thumb-height;
     @include gradient-bg($custom-range-thumb-bg);
@@ -433,14 +433,14 @@
     @include border-radius($custom-range-thumb-border-radius);
     @include box-shadow($custom-range-thumb-box-shadow);
     @include transition($custom-forms-transition);
-    ***REMOVED***earance: none;
+    appearance: none;
 
-    &:active ***REMOVED***
+    &:active {
       @include gradient-bg($custom-range-thumb-active-bg);
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
 
-  &::-moz-range-track ***REMOVED***
+  &::-moz-range-track {
     width: $custom-range-track-width;
     height: $custom-range-track-height;
     color: transparent;
@@ -449,9 +449,9 @@
     border-color: transparent; // Firefox specific?
     @include border-radius($custom-range-track-border-radius);
     @include box-shadow($custom-range-track-box-shadow);
-  ***REMOVED***
+  }
 
-  &::-ms-thumb ***REMOVED***
+  &::-ms-thumb {
     width: $custom-range-thumb-width;
     height: $custom-range-thumb-height;
     margin-top: 0; // Edge specific
@@ -462,14 +462,14 @@
     @include border-radius($custom-range-thumb-border-radius);
     @include box-shadow($custom-range-thumb-box-shadow);
     @include transition($custom-forms-transition);
-    ***REMOVED***earance: none;
+    appearance: none;
 
-    &:active ***REMOVED***
+    &:active {
       @include gradient-bg($custom-range-thumb-active-bg);
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
 
-  &::-ms-track ***REMOVED***
+  &::-ms-track {
     width: $custom-range-track-width;
     height: $custom-range-track-height;
     color: transparent;
@@ -478,44 +478,44 @@
     border-color: transparent;
     border-width: $custom-range-thumb-height / 2;
     @include box-shadow($custom-range-track-box-shadow);
-  ***REMOVED***
+  }
 
-  &::-ms-fill-lower ***REMOVED***
+  &::-ms-fill-lower {
     background-color: $custom-range-track-bg;
     @include border-radius($custom-range-track-border-radius);
-  ***REMOVED***
+  }
 
-  &::-ms-fill-upper ***REMOVED***
+  &::-ms-fill-upper {
     margin-right: 15px; // arbitrary?
     background-color: $custom-range-track-bg;
     @include border-radius($custom-range-track-border-radius);
-  ***REMOVED***
+  }
 
-  &:disabled ***REMOVED***
-    &::-webkit-slider-thumb ***REMOVED***
+  &:disabled {
+    &::-webkit-slider-thumb {
       background-color: $custom-range-thumb-disabled-bg;
-    ***REMOVED***
+    }
 
-    &::-webkit-slider-runnable-track ***REMOVED***
+    &::-webkit-slider-runnable-track {
       cursor: default;
-    ***REMOVED***
+    }
 
-    &::-moz-range-thumb ***REMOVED***
+    &::-moz-range-thumb {
       background-color: $custom-range-thumb-disabled-bg;
-    ***REMOVED***
+    }
 
-    &::-moz-range-track ***REMOVED***
+    &::-moz-range-track {
       cursor: default;
-    ***REMOVED***
+    }
 
-    &::-ms-thumb ***REMOVED***
+    &::-ms-thumb {
       background-color: $custom-range-thumb-disabled-bg;
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
 .custom-control-label::before,
 .custom-file-label,
-.custom-select ***REMOVED***
+.custom-select {
   @include transition($custom-forms-transition);
-***REMOVED***
+}

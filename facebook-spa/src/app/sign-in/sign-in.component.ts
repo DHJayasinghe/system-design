@@ -1,24 +1,24 @@
-import ***REMOVED*** Component, OnInit ***REMOVED*** from '@angular/core';
-import ***REMOVED*** Router ***REMOVED*** from '@angular/router';
-import ***REMOVED*** LoginResponse, OidcSecurityService ***REMOVED*** from 'angular-auth-oidc-client';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginResponse, OidcSecurityService } from 'angular-auth-oidc-client';
 
-@Component(***REMOVED***
-  selector: '***REMOVED***-sign-in',
+@Component({
+  selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css']
-***REMOVED***)
-export class SignInComponent implements OnInit ***REMOVED***
+})
+export class SignInComponent implements OnInit {
 
-  constructor(public oidcSecurityService: OidcSecurityService, private router:Router) ***REMOVED*** ***REMOVED***
-  ngOnInit() ***REMOVED***
+  constructor(public oidcSecurityService: OidcSecurityService, private router:Router) { }
+  ngOnInit() {
 
-    this.oidcSecurityService.checkAuth().subscribe((loginResponse: LoginResponse) => ***REMOVED***
+    this.oidcSecurityService.checkAuth().subscribe((loginResponse: LoginResponse) => {
       console.log(loginResponse);
-***REMOVED***;
+    });
 
-    this.oidcSecurityService.isAuthenticated().subscribe(isAuthenticated => ***REMOVED***
+    this.oidcSecurityService.isAuthenticated().subscribe(isAuthenticated => {
       if (isAuthenticated) this.router.navigate(['dashboard'])
-***REMOVED***
-  ***REMOVED***
+    })
+  }
 
-***REMOVED***
+}

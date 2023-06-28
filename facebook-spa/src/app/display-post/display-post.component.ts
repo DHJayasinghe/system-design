@@ -1,26 +1,26 @@
-import ***REMOVED*** HttpClient ***REMOVED*** from '@angular/common/http';
-import ***REMOVED*** Component, Input, OnInit ***REMOVED*** from '@angular/core';
-import ***REMOVED*** environment ***REMOVED*** from 'src/environments/environment';
-import ***REMOVED*** Post ***REMOVED*** from '../timeline/timeline.component';
+import { HttpClient } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { Post } from '../timeline/timeline.component';
 
-@Component(***REMOVED***
-  selector: '***REMOVED***-display-post',
+@Component({
+  selector: 'app-display-post',
   templateUrl: './display-post.component.html',
   styleUrls: ['./display-post.component.css']
-***REMOVED***)
-export class DisplayPostComponent implements OnInit ***REMOVED***
+})
+export class DisplayPostComponent implements OnInit {
   @Input() post?: Post;
   showCommentSection = false;
   showReactionButtons = false;
   reactionCount?: ReactionCount;
 
-  constructor(private http: HttpClient) ***REMOVED*** ***REMOVED***
+  constructor(private http: HttpClient) { }
 
-  ngOnInit() ***REMOVED***
+  ngOnInit() {
     this.getReactionCount();
-  ***REMOVED***
+  }
 
-  getPostedTime(date: Date) ***REMOVED***
+  getPostedTime(date: Date) {
     const now = new Date();
     const postedDate = new Date(date);
 
@@ -30,29 +30,29 @@ export class DisplayPostComponent implements OnInit ***REMOVED***
     const hours = Math.floor(minutes / 60);
     const days = Math.floor(hours / 24);
 
-    if (seconds < 60) ***REMOVED***
+    if (seconds < 60) {
       return 'Just now';
-    ***REMOVED*** else if (minutes < 60) ***REMOVED***
-      return `$***REMOVED***minutes***REMOVED*** minutes ago`;
-    ***REMOVED*** else if (hours < 24) ***REMOVED***
-      return `$***REMOVED***hours***REMOVED*** hours ago`;
-    ***REMOVED*** else if (days === 1) ***REMOVED***
+    } else if (minutes < 60) {
+      return `${minutes} minutes ago`;
+    } else if (hours < 24) {
+      return `${hours} hours ago`;
+    } else if (days === 1) {
       return 'Yesterday';
-    ***REMOVED*** else ***REMOVED***
-      return `$***REMOVED***days***REMOVED*** days ago`;
-    ***REMOVED***
-  ***REMOVED***
+    } else {
+      return `${days} days ago`;
+    }
+  }
 
-  public getReactionCount() ***REMOVED***
-    this.http.get<ReactionCount[]>(`$***REMOVED***environment.baseUrl***REMOVED***/reactions?postId=$***REMOVED***this.post?.id***REMOVED***`).subscribe(result => ***REMOVED***
+  public getReactionCount() {
+    this.http.get<ReactionCount[]>(`${environment.baseUrl}/reactions?postId=${this.post?.id}`).subscribe(result => {
       console.log(result);
       this.reactionCount = result.filter(d => d.postId == this.post?.id && d.commentId == null)[0];
       console.log(this.reactionCount);
-***REMOVED***;
-  ***REMOVED***
-***REMOVED***
+    });
+  }
+}
 
-export interface ReactionCount ***REMOVED***
+export interface ReactionCount {
   id: string,
   postId: string,
   commentId: string,
@@ -64,4 +64,4 @@ export interface ReactionCount ***REMOVED***
   sadCount: number,
   angryCount: number,
   totalReactions: number
-***REMOVED***
+}

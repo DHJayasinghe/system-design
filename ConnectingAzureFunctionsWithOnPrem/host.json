@@ -1,11 +1,11 @@
-***REMOVED***
+{
     "version": "2.0",
-    "logging": ***REMOVED***
-        "***REMOVED***licationInsights": ***REMOVED***
-            "samplingSettings": ***REMOVED***
+    "logging": {
+        "applicationInsights": {
+            "samplingSettings": {
                 "isEnabled": true,
                 "excludedTypes": "Request"
-            ***REMOVED***
-        ***REMOVED***
-    ***REMOVED***
-***REMOVED***
+            }
+        }
+    }
+}

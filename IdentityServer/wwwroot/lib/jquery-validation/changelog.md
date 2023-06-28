@@ -74,7 +74,7 @@
 ==================
 
 ## All
-* Add plugin UMD wr***REMOVED***er
+* Add plugin UMD wrapper
 
 ## Core
 * Respect non-error aria-describedby and empty hidden errors
@@ -111,10 +111,10 @@
 * Added NIF, NIE and CIF Spanish documents numbers validation ([#830](https://github.com/jzaefferer/jquery-validation/issues/830), [317c20f](https://github.com/jzaefferer/jquery-validation/commit/317c20fa9bb772770bb9b70d46c7081d7cfc6545))
 * Added the current form to the context of the remote ajax request ([0a18ae6](https://github.com/jzaefferer/jquery-validation/commit/0a18ae65b9b6d877e3d15650a5c2617a9d2b11d5))
 * Additionals: Update IBAN method, trim trailing whitespaces ([#970](https://github.com/jzaefferer/jquery-validation/issues/970), [347b04a](https://github.com/jzaefferer/jquery-validation/commit/347b04a7d4e798227405246a5de3fc57451d52e1))
-* BIC method: Improve RegEx, ***REMOVED***1***REMOVED*** is always redundant. Closes gh-744 ([5cad6b4](https://github.com/jzaefferer/jquery-validation/commit/5cad6b493575e8a9a82470d17e0900c881130873))
+* BIC method: Improve RegEx, {1} is always redundant. Closes gh-744 ([5cad6b4](https://github.com/jzaefferer/jquery-validation/commit/5cad6b493575e8a9a82470d17e0900c881130873))
 * Bower: Add Bower.json for package registration ([e86ccb0](https://github.com/jzaefferer/jquery-validation/commit/e86ccb06e301613172d472cf15dd4011ff71b398))
 * Changes dollar references to 'jQuery', for compability with jQuery.noConflict. Closes gh-754 ([2049afe](https://github.com/jzaefferer/jquery-validation/commit/2049afe46c1be7b3b89b1d9f0690f5bebf4fbf68))
-* Core: Add "method" field to error list en***REMOVED*** ([89a15c7](https://github.com/jzaefferer/jquery-validation/commit/89a15c7a4b17fa2caaf4ff817f09b04c094c3884))
+* Core: Add "method" field to error list entry ([89a15c7](https://github.com/jzaefferer/jquery-validation/commit/89a15c7a4b17fa2caaf4ff817f09b04c094c3884))
 * Core: Added support for generic messages via data-msg attribute ([5bebaa5](https://github.com/jzaefferer/jquery-validation/commit/5bebaa5c55c73f457c0e0181ec4e3b0c409e2a9d))
 * Core: Allow attributes to have a value of zero (eg min='0') ([#854](https://github.com/jzaefferer/jquery-validation/issues/854), [9dc0d1d](https://github.com/jzaefferer/jquery-validation/commit/9dc0d1dd946b2c6178991fb16df0223c76162579))
 * Core: Disable deprecated $.format ([#755](https://github.com/jzaefferer/jquery-validation/issues/755), [bf3b350](https://github.com/jzaefferer/jquery-validation/commit/bf3b3509140ea8ab5d83d3ec58fd9f1d7822efc5))
@@ -124,7 +124,7 @@
 * Core: Make element() handle ignored elements properly. ([3f464a8](https://github.com/jzaefferer/jquery-validation/commit/3f464a8da49dbb0e4881ada04165668e4a63cecb))
 * Core: Switch dataRules parsing to W3C HTML5 spec style ([460fd22](https://github.com/jzaefferer/jquery-validation/commit/460fd22b6c84a74c825ce1fa860c0a9da20b56bb))
 * Core: Trigger success on optional but have other successful validators ([#851](https://github.com/jzaefferer/jquery-validation/issues/851), [f93e1de](https://github.com/jzaefferer/jquery-validation/commit/f93e1deb48ec8b3a8a54e946a37db2de42d3aa2a))
-* Core: Use plain element instead of un-wr***REMOVED***ing the element again ([03cd4c9](https://github.com/jzaefferer/jquery-validation/commit/03cd4c93069674db5415a0bf174a5870da47e5d2))
+* Core: Use plain element instead of un-wrapping the element again ([03cd4c9](https://github.com/jzaefferer/jquery-validation/commit/03cd4c93069674db5415a0bf174a5870da47e5d2))
 * Core: make sure remote is executed last ([#711](https://github.com/jzaefferer/jquery-validation/issues/711), [ad91b6f](https://github.com/jzaefferer/jquery-validation/commit/ad91b6f388b7fdfb03b74e78554cbab9fd8fca6f))
 * Demo: Use correct option in multipart demo. ([#1025](https://github.com/jzaefferer/jquery-validation/issues/1025), [070edc7](https://github.com/jzaefferer/jquery-validation/commit/070edc7be4de564cb74cfa9ee4e3f40b6b70b76f))
 * Fix $/jQuery usage in additional methods. Fixes #839 ([#839](https://github.com/jzaefferer/jquery-validation/issues/839), [59bc899](https://github.com/jzaefferer/jquery-validation/commit/59bc899e4586255a4251903712e813c21d25b3e1))
@@ -165,7 +165,7 @@
   * Improved the UK postcode method to filter out more invalid postcodes. Closes #682
   * Update messages_sv.js. Closes #683
   * Change grunt link to the project website. Closes #684
-  * Move remote method down the list to run last, after all other methods ***REMOVED***lied to a field. Fixes #679
+  * Move remote method down the list to run last, after all other methods applied to a field. Fixes #679
   * Update plugin.json description, should include the word 'validate'
   * Fix typos
   * Fix jQuery loader to use path of itself. Fixes nested demos.
@@ -278,7 +278,7 @@
 ---
 * Added Thai (TH) localization, fixes #85
 * Added Vietnamese (VI) localization, thanks Ngoc
-* Fixed issue #78. Error/Valid styling ***REMOVED***lies to all radio buttons of same group for required validation.
+* Fixed issue #78. Error/Valid styling applies to all radio buttons of same group for required validation.
 * Don't use form.elements as that isn't supported in jQuery 1.6 anymore. Its buggy as hell anyway (IE6-8: form.elements === form).
 
 1.8.0
@@ -340,7 +340,7 @@
 
 1.5.3
 ---
-* Fixed a bug related to the wr***REMOVED***er-option, where all ancestor-elements that matched the wr***REMOVED***er-option where selected (http://plugins.jquery.com/node/7624)
+* Fixed a bug related to the wrapper-option, where all ancestor-elements that matched the wrapper-option where selected (http://plugins.jquery.com/node/7624)
 * Updated multipart demo to use latest jQuery UI accordion
 * Added dateNL and time methods to additionalMethods.js
 * Added Traditional Chinese (Taiwan, tw) and Kazakhstan (KK) localization
@@ -376,12 +376,12 @@
 * Fixed basic validation to pass the untrimmed input value as the first parameter to validation methods, changed required accordingly; breaks existing custom method that rely on the trimming
 * Added norwegian (no), italian (it), hungarian (hu) and romanian (ro) localization
 * Fixed #3195: Two flaws in swedish localization
-* Fixed #3503: Extended rules("add") to accept messages property: use to specify add custom messages to an element via rules("add", ***REMOVED*** messages: ***REMOVED*** required: "Required! " ***REMOVED*** ***REMOVED***);
+* Fixed #3503: Extended rules("add") to accept messages property: use to specify add custom messages to an element via rules("add", { messages: { required: "Required! " } });
 * Fixed #3356: Regression from #2908 when using meta-option
 * Fixed #3370: Added ignoreTitle option, set to skip reading messages from the title attribute, helps to avoid issues with Google Toolbar; default is false for compatibility
 * Fixed #3516: Trigger invalid-form event even when remote validation is involved
-* Added invalidHandler option as a shortcut to bind("invalid-form", function() ***REMOVED******REMOVED***)
-* Fixed Safari issue for loading indicator in ajaxSubmit-integration-demo (***REMOVED***end to body first, then hide)
+* Added invalidHandler option as a shortcut to bind("invalid-form", function() {})
+* Fixed Safari issue for loading indicator in ajaxSubmit-integration-demo (append to body first, then hide)
 * Added test for creditcard validation and improved default message
 * Enhanced remote validation, accepting options to passthrough to $.ajax as parameter (either url string or options, including url property plus everything else that $.ajax supports)
 
@@ -389,7 +389,7 @@
 ---
 * Fixed #2931, validate elements in document order and ignore type=image inputs
 * Fixed usage of $ and jQuery variables, now fully compatible with all variations of noConflict usage
-* Implemented #2908, enabling custom messages via metadata ala class="***REMOVED***required:true,messages:***REMOVED***required:'required field'***REMOVED******REMOVED***", added demo/custom-messages-metadata-demo.html
+* Implemented #2908, enabling custom messages via metadata ala class="{required:true,messages:{required:'required field'}}", added demo/custom-messages-metadata-demo.html
 * Removed deprecated methods minValue (min), maxValue (max), rangeValue (rangevalue), minLength (minlength), maxLength (maxlength), rangeLength (rangelength)
 * Fixed #2215 regression: Call unhighlight only for current elements, not everything
 * Implemented #2989, enabling image button to cancel validation
@@ -404,12 +404,12 @@
 * Fixed invalid-form event, now only triggered when form is invalid
 * Added spanish (es), russian (ru), portuguese brazilian (ptbr), turkish (tr), and polish (pl) localization
 * Added removeAttrs plugin to facilitate adding and removing multiple attributes
-* Added groups option to display a single message for multiple elements, via groups: ***REMOVED*** arbitraryGroupName: "fieldName1 fieldName2[, fieldNameN" ***REMOVED***
-* Enhanced rules() for adding and removing (static) rules: rules("add", "method1[, methodN]"/***REMOVED***method1:param[, method_n:param]***REMOVED***) and rules("remove"[, "method1[, method_n]")
-* Enhanced rules-option, accepts space-separated string-list of methods, eg. ***REMOVED***birthdate: "required date"***REMOVED***
+* Added groups option to display a single message for multiple elements, via groups: { arbitraryGroupName: "fieldName1 fieldName2[, fieldNameN" }
+* Enhanced rules() for adding and removing (static) rules: rules("add", "method1[, methodN]"/{method1:param[, method_n:param]}) and rules("remove"[, "method1[, method_n]")
+* Enhanced rules-option, accepts space-separated string-list of methods, eg. {birthdate: "required date"}
 * Fixed checkbox group validation with inline rules: As long as the rules are specified on the first element, the group is now properly validated on click
 * Fixed #2473, ignoring all rules with an explicit parameter of boolean-false, eg. required:false is the same as not specifying required at all (it was handled as required:true so far)
-* Fixed #2424, with a modified patch from #2473: Methods returning a dependency-mismatch don't stop other rules from being evaluated anymore; still, success isn't ***REMOVED***lied for optional fields
+* Fixed #2424, with a modified patch from #2473: Methods returning a dependency-mismatch don't stop other rules from being evaluated anymore; still, success isn't applied for optional fields
 * Fixed url and email validation to not use trimmed values
 * Fixed creditcard validation to accept only digits and dashes ("asdf" is not a valid creditcard number)
 * Allow both button and input elements for cancel buttons (via class="cancel")
@@ -492,7 +492,7 @@
 ---
 
 * Improved number and numberDE methods to check for correct decimal numbers with delimiters
-* Only elements that have rules are checked (otherwise success-option is ***REMOVED***lied to all elements)
+* Only elements that have rules are checked (otherwise success-option is applied to all elements)
 * Added creditcard number method (thanks to Brian Klug)
 * Added ignore-option, eg. ignore: "[@type=hidden]", using that expression to exclude elements to validate. Default: none, though submit and reset buttons are always ignored
 * Heavily enhanced Functions-as-messages by providing a flexible String.format helper
@@ -501,8 +501,8 @@
 * Fixed custom-method-demo, replaced the alert with message displaying the number of errors
 * Fixed form-submit-prevention when using submitHandler
 * Completely removed dependency on element IDs, though they are still used (when present) to link error labels to inputs. Achieved by using
-  an array with ***REMOVED***name, message, element***REMOVED*** instead of an object with id:message pairs for the internal errorList.
-* Added support for specifying simple rules as simple strings, eg. "required" is equivalent to ***REMOVED***required: true***REMOVED***
+  an array with {name, message, element} instead of an object with id:message pairs for the internal errorList.
+* Added support for specifying simple rules as simple strings, eg. "required" is equivalent to {required: true}
 * Added feature: Add errorClass to invalid field�s parent element, making it easy to style the label/field container or the label for the field.
 * Added feature: focusCleanup - If enabled, removes the errorClass from the invalid elements and hides all errors messages whenever the element is focused.
 * Added success option to show the a field was validated successfully
@@ -527,7 +527,7 @@
 * Modified validation methods to accept empty fields as valid (exception: of course �required� and also �equalTo� methods)
 * Renamed "min" to "minLength", "max" to "maxLength", "length" to "rangeLength"
 * Added "minValue", "maxValue" and "rangeValue"
-* Streamlined API for support of different events. The default, submit, can be disabled. If any event is specified, that is ***REMOVED***lied to each element (instead of the entire form). Combining keyup-validation with submit-validation is now extremely easy to setup
+* Streamlined API for support of different events. The default, submit, can be disabled. If any event is specified, that is applied to each element (instead of the entire form). Combining keyup-validation with submit-validation is now extremely easy to setup
 * Added support for one-message-per-rule when defining messages via plugin settings
 * Added support to wrap metadata in some parent element. Useful when metadata is used for other plugins, too.
 * Refactored tests and demos: Less files, better demos

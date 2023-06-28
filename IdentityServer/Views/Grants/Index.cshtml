@@ -4,31 +4,31 @@
 <div class="grants-page">
     <div class="lead">
         <h1>Client Application Permissions</h1>
-        <p>Below is the list of ***REMOVED***lications you have given permission to and the resources they have access to.</p>
+        <p>Below is the list of applications you have given permission to and the resources they have access to.</p>
     </div>
 
     @if (Model.Grants.Any() == false)
-***REMOVED***
+    {
         <div class="row">
             <div class="col-sm-8">
                 <div class="alert alert-info">
-                    You have not given access to any ***REMOVED***lications
+                    You have not given access to any applications
                 </div>
             </div>
         </div>
-    ***REMOVED***
+    }
     else
-***REMOVED***
+    {
         foreach (var grant in Model.Grants)
-    ***REMOVED***
+        {
             <div class="card">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-sm-8 card-title">
                             @if (grant.ClientLogoUrl != null)
-                        ***REMOVED***
+                            {
                                 <img src="@grant.ClientLogoUrl">
-                            ***REMOVED***
+                            }
                             <strong>@grant.ClientName</strong>
                         </div>
 
@@ -43,46 +43,46 @@
                 
                 <ul class="list-group list-group-flush">
                     @if (grant.Description != null)
-                ***REMOVED***
+                    {
                         <li class="list-group-item">
                             <label>Description:</label> @grant.Description
                         </li>   
-                    ***REMOVED***
+                    }
                     <li class="list-group-item">
                         <label>Created:</label> @grant.Created.ToString("yyyy-MM-dd")
                     </li>
                     @if (grant.Expires.HasValue)
-                ***REMOVED***
+                    {
                         <li class="list-group-item">
                             <label>Expires:</label> @grant.Expires.Value.ToString("yyyy-MM-dd")
                         </li>
-                    ***REMOVED***
+                    }
                     @if (grant.IdentityGrantNames.Any())
-                ***REMOVED***
+                    {
                         <li class="list-group-item">
                             <label>Identity Grants</label>
                             <ul>
                                 @foreach (var name in grant.IdentityGrantNames)
-                            ***REMOVED***
+                                {
                                     <li>@name</li>
-                                ***REMOVED***
+                                }
                             </ul>
                         </li>
-                    ***REMOVED***
+                    }
                     @if (grant.ApiGrantNames.Any())
-                ***REMOVED***
+                    {
                         <li class="list-group-item">
                             <label>API Grants</label>
                             <ul>
                                 @foreach (var name in grant.ApiGrantNames)
-                            ***REMOVED***
+                                {
                                     <li>@name</li>
-                                ***REMOVED***
+                                }
                             </ul>
                         </li>
-                    ***REMOVED***
+                    }
                 </ul>
             </div>
-        ***REMOVED***
-    ***REMOVED***
+        }
+    }
 </div>

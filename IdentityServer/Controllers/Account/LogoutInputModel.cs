@@ -1,7 +1,7 @@
 ﻿namespace BnA.IAM.Presentation.API.Controllers.Account;
 
 public class LogoutInputModel
-***REMOVED***
-    public string LogoutId ***REMOVED*** get; set; ***REMOVED***
-    public string PostLogoutRedirectUri ***REMOVED*** get; set; ***REMOVED***
-***REMOVED***
+{
+    public string LogoutId { get; set; }
+    public string PostLogoutRedirectUri { get; set; }
+}

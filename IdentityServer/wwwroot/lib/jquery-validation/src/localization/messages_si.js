@@ -2,7 +2,7 @@
  * Translated default messages for the jQuery validation plugin.
  * Locale: SI (Slovenian)
  */
-$.extend($.validator.messages, ***REMOVED***
+$.extend($.validator.messages, {
 	required: "To polje je obvezno.",
 	remote: "Vpis v tem polju ni v pravi obliki.",
 	email: "Prosimo, vnesite pravi email naslov.",
@@ -14,10 +14,10 @@ $.extend($.validator.messages, ***REMOVED***
 	creditcard: "Prosimo, vnesite pravo številko kreditne kartice.",
 	equalTo: "Prosimo, ponovno vnesite enako vsebino.",
 	extension: "Prosimo, vnesite vsebino z pravo končnico.",
-	maxlength: $.validator.format("Prosimo, da ne vnašate več kot ***REMOVED***0***REMOVED*** znakov."),
-	minlength: $.validator.format("Prosimo, vnesite vsaj ***REMOVED***0***REMOVED*** znakov."),
-	rangelength: $.validator.format("Prosimo, vnesite od ***REMOVED***0***REMOVED*** do ***REMOVED***1***REMOVED*** znakov."),
-	range: $.validator.format("Prosimo, vnesite vrednost med ***REMOVED***0***REMOVED*** in ***REMOVED***1***REMOVED***."),
-	max: $.validator.format("Prosimo, vnesite vrednost manjšo ali enako ***REMOVED***0***REMOVED***."),
-	min: $.validator.format("Prosimo, vnesite vrednost večjo ali enako ***REMOVED***0***REMOVED***.")
-***REMOVED***);
+	maxlength: $.validator.format("Prosimo, da ne vnašate več kot {0} znakov."),
+	minlength: $.validator.format("Prosimo, vnesite vsaj {0} znakov."),
+	rangelength: $.validator.format("Prosimo, vnesite od {0} do {1} znakov."),
+	range: $.validator.format("Prosimo, vnesite vrednost med {0} in {1}."),
+	max: $.validator.format("Prosimo, vnesite vrednost manjšo ali enako {0}."),
+	min: $.validator.format("Prosimo, vnesite vrednost večjo ali enako {0}.")
+});

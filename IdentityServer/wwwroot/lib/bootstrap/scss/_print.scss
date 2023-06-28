@@ -8,32 +8,32 @@
 // https://www.phpied.com/delay-loading-your-print-css/
 // ==========================================================================
 
-@if $enable-print-styles ***REMOVED***
-  @media print ***REMOVED***
+@if $enable-print-styles {
+  @media print {
     *,
     *::before,
-    *::after ***REMOVED***
+    *::after {
       // Bootstrap specific; comment out `color` and `background`
       //color: $black !important; // Black prints faster
       text-shadow: none !important;
       //background: transparent !important;
       box-shadow: none !important;
-    ***REMOVED***
+    }
 
-    a ***REMOVED***
-      &:not(.btn) ***REMOVED***
+    a {
+      &:not(.btn) {
         text-decoration: underline;
-      ***REMOVED***
-    ***REMOVED***
+      }
+    }
 
     // Bootstrap specific; comment the following selector out
-    //a[href]::after ***REMOVED***
+    //a[href]::after {
     //  content: " (" attr(href) ")";
-    //***REMOVED***
+    //}
 
-    abbr[title]::after ***REMOVED***
+    abbr[title]::after {
       content: " (" attr(title) ")";
-    ***REMOVED***
+    }
 
     // Bootstrap specific; comment the following selector out
     //
@@ -42,100 +42,100 @@
     //
 
     //a[href^="#"]::after,
-    //a[href^="javascript:"]::after ***REMOVED***
+    //a[href^="javascript:"]::after {
     // content: "";
-    //***REMOVED***
+    //}
 
-    pre ***REMOVED***
+    pre {
       white-space: pre-wrap !important;
-    ***REMOVED***
+    }
     pre,
-    blockquote ***REMOVED***
+    blockquote {
       border: $border-width solid $gray-500; // Bootstrap custom code; using `$border-width` instead of 1px
       page-break-inside: avoid;
-    ***REMOVED***
+    }
 
     //
     // Printing Tables:
     // https://web.archive.org/web/20180815150934/http://css-discuss.incutio.com/wiki/Printing_Tables
     //
 
-    thead ***REMOVED***
+    thead {
       display: table-header-group;
-    ***REMOVED***
+    }
 
     tr,
-    img ***REMOVED***
+    img {
       page-break-inside: avoid;
-    ***REMOVED***
+    }
 
     p,
     h2,
-    h3 ***REMOVED***
+    h3 {
       orphans: 3;
       widows: 3;
-    ***REMOVED***
+    }
 
     h2,
-    h3 ***REMOVED***
+    h3 {
       page-break-after: avoid;
-    ***REMOVED***
+    }
 
     // Bootstrap specific changes start
 
     // Specify a size and min-width to make printing closer across browsers.
     // We don't set margin here because it breaks `size` in Chrome. We also
     // don't use `!important` on `size` as it breaks in Chrome.
-    @page ***REMOVED***
+    @page {
       size: $print-page-size;
-    ***REMOVED***
-    body ***REMOVED***
+    }
+    body {
       min-width: $print-body-min-width !important;
-    ***REMOVED***
-    .container ***REMOVED***
+    }
+    .container {
       min-width: $print-body-min-width !important;
-    ***REMOVED***
+    }
 
     // Bootstrap components
-    .navbar ***REMOVED***
+    .navbar {
       display: none;
-    ***REMOVED***
-    .badge ***REMOVED***
+    }
+    .badge {
       border: $border-width solid $black;
-    ***REMOVED***
+    }
 
-    .table ***REMOVED***
+    .table {
       border-collapse: collapse !important;
 
       td,
-      th ***REMOVED***
+      th {
         background-color: $white !important;
-      ***REMOVED***
-    ***REMOVED***
+      }
+    }
 
-    .table-bordered ***REMOVED***
+    .table-bordered {
       th,
-      td ***REMOVED***
+      td {
         border: 1px solid $gray-300 !important;
-      ***REMOVED***
-    ***REMOVED***
+      }
+    }
 
-    .table-dark ***REMOVED***
+    .table-dark {
       color: inherit;
 
       th,
       td,
       thead th,
-      tbody + tbody ***REMOVED***
+      tbody + tbody {
         border-color: $table-border-color;
-      ***REMOVED***
-    ***REMOVED***
+      }
+    }
 
-    .table .thead-dark th ***REMOVED***
+    .table .thead-dark th {
       color: inherit;
       border-color: $table-border-color;
-    ***REMOVED***
+    }
 
     // Bootstrap specific changes end
-  ***REMOVED***
-***REMOVED***
+  }
+}

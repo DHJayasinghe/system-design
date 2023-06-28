@@ -1,75 +1,75 @@
 
-.reaction-button ***REMOVED***
+.reaction-button {
   display: flex;
   gap: 10px;
-***REMOVED***
+}
 
-.reaction-button button ***REMOVED***
+.reaction-button button {
   padding: 5px 6px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
-***REMOVED***
+}
 
-.reaction-button .like ***REMOVED***
+.reaction-button .like {
   background-color: #3b5998;
   color: #fff;
-***REMOVED***
+}
 
-.reaction-button .heart ***REMOVED***
+.reaction-button .heart {
   background-color: #ff395e;
   color: #fff;
-***REMOVED***
+}
 
-.reaction-button .care ***REMOVED***
+.reaction-button .care {
   background-color: #ffad03;
   color: #fff;
-***REMOVED***
+}
 
-.reaction-button .laugh ***REMOVED***
+.reaction-button .laugh {
   background-color: #ffec03;
   color: #000;
-***REMOVED***
+}
 
-.reaction-button .wow ***REMOVED***
+.reaction-button .wow {
   background-color: #f8a100;
   color: #fff;
-***REMOVED***
+}
 
-.reaction-button .sad ***REMOVED***
+.reaction-button .sad {
   background-color: #ff6c03;
   color: #fff;
-***REMOVED***
+}
 
-.reaction-button .angry ***REMOVED***
+.reaction-button .angry {
   background-color: #dc2618;
   color: #fff;
-***REMOVED***
+}
 
-.fa-facebook-square:before ***REMOVED***
+.fa-facebook-square:before {
   content: '\f09a';
-***REMOVED***
+}
 
-.fa-heart:before ***REMOVED***
+.fa-heart:before {
   content: '\f004';
-***REMOVED***
+}
 
-.fa-grin-hearts:before ***REMOVED***
+.fa-grin-hearts:before {
   content: '\f584';
-***REMOVED***
+}
 
-.fa-laugh-beam:before ***REMOVED***
+.fa-laugh-beam:before {
   content: '\f59a';
-***REMOVED***
+}
 
-.fa-surprise:before ***REMOVED***
+.fa-surprise:before {
   content: '\f5c2';
-***REMOVED***
+}
 
-.fa-sad-cry:before ***REMOVED***
+.fa-sad-cry:before {
   content: '\f5b3';
-***REMOVED***
+}
 
-.fa-angry:before ***REMOVED***
+.fa-angry:before {
   content: '\f556';
-***REMOVED***
+}

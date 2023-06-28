@@ -1,17 +1,17 @@
-@mixin badge-variant($bg) ***REMOVED***
+@mixin badge-variant($bg) {
   color: color-yiq($bg);
   background-color: $bg;
 
-  @at-root a#***REMOVED***&***REMOVED*** ***REMOVED***
-    @include hover-focus() ***REMOVED***
+  @at-root a#{&} {
+    @include hover-focus() {
       color: color-yiq($bg);
       background-color: darken($bg, 10%);
-    ***REMOVED***
+    }
 
     &:focus,
-    &.focus ***REMOVED***
+    &.focus {
       outline: 0;
       box-shadow: 0 0 0 $badge-focus-width rgba($bg, .5);
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}

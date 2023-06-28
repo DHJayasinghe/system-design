@@ -14,19 +14,19 @@
 //    md
 //    >> breakpoint-next(sm, $breakpoint-names: (xs sm md lg xl))
 //    md
-@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) ***REMOVED***
+@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
   $n: index($breakpoint-names, $name);
   @return if($n != null and $n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
-***REMOVED***
+}
 
 // Minimum breakpoint width. Null for the smallest (first) breakpoint.
 //
 //    >> breakpoint-min(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
 //    576px
-@function breakpoint-min($name, $breakpoints: $grid-breakpoints) ***REMOVED***
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
   $min: map-get($breakpoints, $name);
   @return if($min != 0, $min, null);
-***REMOVED***
+}
 
 // Maximum breakpoint width. Null for the largest (last) breakpoint.
 // The maximum value is calculated as the minimum of the next one less 0.02px
@@ -37,10 +37,10 @@
 //
 //    >> breakpoint-max(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
 //    767.98px
-@function breakpoint-max($name, $breakpoints: $grid-breakpoints) ***REMOVED***
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
   $next: breakpoint-next($name, $breakpoints);
   @return if($next, breakpoint-min($next, $breakpoints) - .02, null);
-***REMOVED***
+}
 
 // Returns a blank string if smallest breakpoint, otherwise returns the name with a dash in front.
 // Useful for making responsive utilities.
@@ -49,75 +49,75 @@
 //    ""  (Returns a blank string)
 //    >> breakpoint-infix(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
 //    "-sm"
-@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) ***REMOVED***
-  @return if(breakpoint-min($name, $breakpoints) == null, "", "-#***REMOVED***$name***REMOVED***");
-***REMOVED***
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+  @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+}
 
 // Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
-// Makes the @content ***REMOVED***ly to the given breakpoint and wider.
-@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) ***REMOVED***
+// Makes the @content apply to the given breakpoint and wider.
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
   $min: breakpoint-min($name, $breakpoints);
-  @if $min ***REMOVED***
-    @media (min-width: $min) ***REMOVED***
+  @if $min {
+    @media (min-width: $min) {
       @content;
-    ***REMOVED***
-  ***REMOVED*** @else ***REMOVED***
+    }
+  } @else {
     @content;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
 // Media of at most the maximum breakpoint width. No query for the largest breakpoint.
-// Makes the @content ***REMOVED***ly to the given breakpoint and narrower.
-@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) ***REMOVED***
+// Makes the @content apply to the given breakpoint and narrower.
+@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
   $max: breakpoint-max($name, $breakpoints);
-  @if $max ***REMOVED***
-    @media (max-width: $max) ***REMOVED***
+  @if $max {
+    @media (max-width: $max) {
       @content;
-    ***REMOVED***
-  ***REMOVED*** @else ***REMOVED***
+    }
+  } @else {
     @content;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
 // Media that spans multiple breakpoint widths.
-// Makes the @content ***REMOVED***ly between the min and max breakpoints
-@mixin media-breakpoint-between($lower, $upper, $breakpoints: $grid-breakpoints) ***REMOVED***
+// Makes the @content apply between the min and max breakpoints
+@mixin media-breakpoint-between($lower, $upper, $breakpoints: $grid-breakpoints) {
   $min: breakpoint-min($lower, $breakpoints);
   $max: breakpoint-max($upper, $breakpoints);
 
-  @if $min != null and $max != null ***REMOVED***
-    @media (min-width: $min) and (max-width: $max) ***REMOVED***
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
       @content;
-    ***REMOVED***
-  ***REMOVED*** @else if $max == null ***REMOVED***
-    @include media-breakpoint-up($lower, $breakpoints) ***REMOVED***
+    }
+  } @else if $max == null {
+    @include media-breakpoint-up($lower, $breakpoints) {
       @content;
-    ***REMOVED***
-  ***REMOVED*** @else if $min == null ***REMOVED***
-    @include media-breakpoint-down($upper, $breakpoints) ***REMOVED***
+    }
+  } @else if $min == null {
+    @include media-breakpoint-down($upper, $breakpoints) {
       @content;
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
 // Media between the breakpoint's minimum and maximum widths.
 // No minimum for the smallest breakpoint, and no maximum for the largest one.
-// Makes the @content ***REMOVED***ly only to the given breakpoint, not viewports any wider or narrower.
-@mixin media-breakpoint-only($name, $breakpoints: $grid-breakpoints) ***REMOVED***
+// Makes the @content apply only to the given breakpoint, not viewports any wider or narrower.
+@mixin media-breakpoint-only($name, $breakpoints: $grid-breakpoints) {
   $min: breakpoint-min($name, $breakpoints);
   $max: breakpoint-max($name, $breakpoints);
 
-  @if $min != null and $max != null ***REMOVED***
-    @media (min-width: $min) and (max-width: $max) ***REMOVED***
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
       @content;
-    ***REMOVED***
-  ***REMOVED*** @else if $max == null ***REMOVED***
-    @include media-breakpoint-up($name, $breakpoints) ***REMOVED***
+    }
+  } @else if $max == null {
+    @include media-breakpoint-up($name, $breakpoints) {
       @content;
-    ***REMOVED***
-  ***REMOVED*** @else if $min == null ***REMOVED***
-    @include media-breakpoint-down($name, $breakpoints) ***REMOVED***
+    }
+  } @else if $min == null {
+    @include media-breakpoint-down($name, $breakpoints) {
       @content;
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}

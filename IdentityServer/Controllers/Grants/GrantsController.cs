@@ -9,14 +9,14 @@ using Duende.IdentityServer.Events;
 using Duende.IdentityServer.Extensions;
 
 namespace BnA.IAM.Presentation.API.Controllers.Grants
-***REMOVED***
+{
     /// <summary>
     /// This sample controller allows a user to revoke grants given to clients
     /// </summary>
     [SecurityHeaders]
     [Authorize]
     public class GrantsController : Controller
-***REMOVED***
+    {
         private readonly IIdentityServerInteractionService _interaction;
         private readonly IClientStore _clients;
         private readonly IResourceStore _resources;
@@ -26,21 +26,21 @@ namespace BnA.IAM.Presentation.API.Controllers.Grants
             IClientStore clients,
             IResourceStore resources,
             IEventService events)
-    ***REMOVED***
+        {
             _interaction = interaction;
             _clients = clients;
             _resources = resources;
             _events = events;
-        ***REMOVED***
+        }
 
         /// <summary>
         /// Show list of grants
         /// </summary>
         [HttpGet]
         public async Task<IActionResult> Index()
-    ***REMOVED***
+        {
             return View("Index", await BuildViewModelAsync());
-        ***REMOVED***
+        }
 
         /// <summary>
         /// Handle postback to revoke a client
@@ -48,27 +48,27 @@ namespace BnA.IAM.Presentation.API.Controllers.Grants
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Revoke(string clientId)
-    ***REMOVED***
+        {
             await _interaction.RevokeUserConsentAsync(clientId);
             await _events.RaiseAsync(new GrantsRevokedEvent(User.GetSubjectId(), clientId));
 
             return RedirectToAction("Index");
-        ***REMOVED***
+        }
 
         private async Task<GrantsViewModel> BuildViewModelAsync()
-    ***REMOVED***
+        {
             var grants = await _interaction.GetAllUserGrantsAsync();
 
             var list = new List<GrantViewModel>();
             foreach (var grant in grants)
-        ***REMOVED***
+            {
                 var client = await _clients.FindClientByIdAsync(grant.ClientId);
                 if (client != null)
-            ***REMOVED***
+                {
                     var resources = await _resources.FindResourcesByScopeAsync(grant.Scopes);
 
                     var item = new GrantViewModel()
-                ***REMOVED***
+                    {
                         ClientId = client.ClientId,
                         ClientName = client.ClientName ?? client.ClientId,
                         ClientLogoUrl = client.LogoUri,
@@ -78,16 +78,16 @@ namespace BnA.IAM.Presentation.API.Controllers.Grants
                         Expires = grant.Expiration,
                         IdentityGrantNames = resources.IdentityResources.Select(x => x.DisplayName ?? x.Name).ToArray(),
                         ApiGrantNames = resources.ApiScopes.Select(x => x.DisplayName ?? x.Name).ToArray()
-            ***REMOVED***
+                    };
 
                     list.Add(item);
-                ***REMOVED***
-            ***REMOVED***
+                }
+            }
 
             return new GrantsViewModel
-        ***REMOVED***
+            {
                 Grants = list
-    ***REMOVED***
-        ***REMOVED***
-    ***REMOVED***
-***REMOVED***
+            };
+        }
+    }
+}

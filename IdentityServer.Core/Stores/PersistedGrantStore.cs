@@ -1,7 +1,7 @@
-﻿***REMOVED***
+﻿using BnA.IAM.Application.Services;
 using Duende.IdentityServer.Models;
 using Duende.IdentityServer.Stores;
-***REMOVED***
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace BnA.IAM.Application.Stores;
 
 public sealed class PersistedGrantStore : IPersistedGrantStore
-***REMOVED***
+{
     private const string TABLE_STORE = "IAMGrantStore";
     private readonly ITableStorageService _tableStorageService;
 
@@ -30,4 +30,4 @@ public sealed class PersistedGrantStore : IPersistedGrantStore
 
     public async Task StoreAsync(PersistedGrant grant) =>
         await _tableStorageService.WriteAsync(grant.Key, TABLE_STORE, grant);
-***REMOVED***
+}

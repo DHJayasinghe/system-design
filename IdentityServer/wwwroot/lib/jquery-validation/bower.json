@@ -1,10 +1,10 @@
-***REMOVED***
+{
 	"name": "jquery-validation",
 	"homepage": "http://jqueryvalidation.org/",
-	"repository": ***REMOVED***
+	"repository": {
 		"type": "git",
 		"url": "git://github.com/jzaefferer/jquery-validation.git"
-	***REMOVED***,
+	},
 	"authors": [
 		"Jörn Zaefferer <joern.zaefferer@gmail.com>"
 	],
@@ -24,8 +24,8 @@
 		"demo",
 		"lib"
 	],
-	"dependencies": ***REMOVED***
+	"dependencies": {
 		"jquery": ">= 1.7.2"
-	***REMOVED***,
+	},
 	"version": "1.14.0"
-***REMOVED***
+}

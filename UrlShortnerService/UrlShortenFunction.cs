@@ -1,9 +1,9 @@
-***REMOVED***
+using System;
 using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-***REMOVED***
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Security.Cryptography;
@@ -13,7 +13,7 @@ using UrlShortenerService.Models;
 namespace UrlShortenerService;
 
 public static class UrlShortenFunction
-***REMOVED***
+{
     private const int ShortUrlLength = 7;
 
     [FunctionName(nameof(UrlShortenFunction))]
@@ -21,12 +21,12 @@ public static class UrlShortenFunction
         [HttpTrigger(AuthorizationLevel.Function, "post", Route = "shorten")] HttpRequest req,
         [CosmosDB(databaseName: "url-shortener-service", containerName: "shorten-url", Connection = "CosmosDBConnection", PartitionKey = "/id",CreateIfNotExists = true)] out dynamic document,
         ILogger log)
-***REMOVED***
+    {
         string requestBody = new StreamReader(req.Body).ReadToEnd();
         dynamic data = JsonConvert.DeserializeObject(requestBody);
         string url = data?.url;
 
-        log.LogInformation("***REMOVED***0***REMOVED*** function processed a request for url: ***REMOVED***1***REMOVED***.", nameof(UrlShortenFunction), url);
+        log.LogInformation("{0} function processed a request for url: {1}.", nameof(UrlShortenFunction), url);
 
         document = null;
 
@@ -35,15 +35,15 @@ public static class UrlShortenFunction
 
         string shortenedUrl = GenerateShortUrl(url);
 
-        document = new ShortenedUrl ***REMOVED*** Id = shortenedUrl, Value = url ***REMOVED***;
+        document = new ShortenedUrl { Id = shortenedUrl, Value = url };
 
-        return new OkObjectResult($"***REMOVED***GetAppHostUrl(req)***REMOVED***/***REMOVED***shortenedUrl***REMOVED***");
-    ***REMOVED***
+        return new OkObjectResult($"{GetAppHostUrl(req)}/{shortenedUrl}");
+    }
 
-    private static string GetAppHostUrl(HttpRequest req) => $"***REMOVED***req.Scheme***REMOVED***://***REMOVED***req.Host.Value***REMOVED***";
+    private static string GetAppHostUrl(HttpRequest req) => $"{req.Scheme}://{req.Host.Value}";
 
     private static string GenerateShortUrl(string url)
-***REMOVED***
+    {
         using var sha256 = SHA256.Create();
         var hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(url));
         var base64String = Convert.ToBase64String(hashBytes);
@@ -52,17 +52,17 @@ public static class UrlShortenFunction
         var shortUrl = alphanumericString.ToString()[..ShortUrlLength];
 
         return shortUrl;
-    ***REMOVED***
+    }
 
     private static StringBuilder RemoveNonAlphaNumericCharacters(string base64String)
-***REMOVED***
+    {
         var alphanumericString = new StringBuilder();
         foreach (var c in base64String)
-    ***REMOVED***
+        {
             if (!char.IsLetterOrDigit(c)) continue;
             alphanumericString.Append(c);
-        ***REMOVED***
+        }
 
         return alphanumericString;
-    ***REMOVED***
-***REMOVED***
+    }
+}

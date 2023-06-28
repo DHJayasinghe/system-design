@@ -2,7 +2,7 @@
  * Translated default messages for the jQuery validation plugin.
  * Locale: AR (Arabic; العربية)
  */
-$.extend($.validator.messages, ***REMOVED***
+$.extend($.validator.messages, {
 	required: "هذا الحقل إلزامي",
 	remote: "يرجى تصحيح هذا الحقل للمتابعة",
 	email: "رجاء إدخال عنوان بريد إلكتروني صحيح",
@@ -14,10 +14,10 @@ $.extend($.validator.messages, ***REMOVED***
 	creditcard: "رجاء إدخال رقم بطاقة ائتمان صحيح",
 	equalTo: "رجاء إدخال نفس القيمة",
 	extension: "رجاء إدخال ملف بامتداد موافق عليه",
-	maxlength: $.validator.format("الحد الأقصى لعدد الحروف هو ***REMOVED***0***REMOVED***"),
-	minlength: $.validator.format("الحد الأدنى لعدد الحروف هو ***REMOVED***0***REMOVED***"),
-	rangelength: $.validator.format("عدد الحروف يجب أن يكون بين ***REMOVED***0***REMOVED*** و ***REMOVED***1***REMOVED***"),
-	range: $.validator.format("رجاء إدخال عدد قيمته بين ***REMOVED***0***REMOVED*** و ***REMOVED***1***REMOVED***"),
-	max: $.validator.format("رجاء إدخال عدد أقل من أو يساوي (0***REMOVED***"),
-	min: $.validator.format("رجاء إدخال عدد أكبر من أو يساوي (0***REMOVED***")
-***REMOVED***);
+	maxlength: $.validator.format("الحد الأقصى لعدد الحروف هو {0}"),
+	minlength: $.validator.format("الحد الأدنى لعدد الحروف هو {0}"),
+	rangelength: $.validator.format("عدد الحروف يجب أن يكون بين {0} و {1}"),
+	range: $.validator.format("رجاء إدخال عدد قيمته بين {0} و {1}"),
+	max: $.validator.format("رجاء إدخال عدد أقل من أو يساوي (0}"),
+	min: $.validator.format("رجاء إدخال عدد أكبر من أو يساوي (0}")
+});

@@ -1,8 +1,8 @@
-***REMOVED***
-  "dependencies": ***REMOVED***
-    "storage1": ***REMOVED***
+{
+  "dependencies": {
+    "storage1": {
       "type": "storage.emulator",
       "connectionId": "AzureWebJobsStorage"
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}

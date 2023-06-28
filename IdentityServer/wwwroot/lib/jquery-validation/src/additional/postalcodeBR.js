@@ -6,6 +6,6 @@
 * 99.999-999
 * 99999999
 */
-$.validator.addMethod("postalcodeBR", function(cep_value, element) ***REMOVED***
-	return this.optional(element) || /^\d***REMOVED***2***REMOVED***.\d***REMOVED***3***REMOVED***-\d***REMOVED***3***REMOVED***?$|^\d***REMOVED***5***REMOVED***-?\d***REMOVED***3***REMOVED***?$/.test( cep_value );
-***REMOVED***, "Informe um CEP válido.");
+$.validator.addMethod("postalcodeBR", function(cep_value, element) {
+	return this.optional(element) || /^\d{2}.\d{3}-\d{3}?$|^\d{5}-?\d{3}?$/.test( cep_value );
+}, "Informe um CEP válido.");

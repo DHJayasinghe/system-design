@@ -1,62 +1,62 @@
-@mixin caret-down() ***REMOVED***
+@mixin caret-down() {
   border-top: $caret-width solid;
   border-right: $caret-width solid transparent;
   border-bottom: 0;
   border-left: $caret-width solid transparent;
-***REMOVED***
+}
 
-@mixin caret-up() ***REMOVED***
+@mixin caret-up() {
   border-top: 0;
   border-right: $caret-width solid transparent;
   border-bottom: $caret-width solid;
   border-left: $caret-width solid transparent;
-***REMOVED***
+}
 
-@mixin caret-right() ***REMOVED***
+@mixin caret-right() {
   border-top: $caret-width solid transparent;
   border-right: 0;
   border-bottom: $caret-width solid transparent;
   border-left: $caret-width solid;
-***REMOVED***
+}
 
-@mixin caret-left() ***REMOVED***
+@mixin caret-left() {
   border-top: $caret-width solid transparent;
   border-right: $caret-width solid;
   border-bottom: $caret-width solid transparent;
-***REMOVED***
+}
 
-@mixin caret($direction: down) ***REMOVED***
-  @if $enable-caret ***REMOVED***
-    &::after ***REMOVED***
+@mixin caret($direction: down) {
+  @if $enable-caret {
+    &::after {
       display: inline-block;
       margin-left: $caret-spacing;
       vertical-align: $caret-vertical-align;
       content: "";
-      @if $direction == down ***REMOVED***
+      @if $direction == down {
         @include caret-down();
-      ***REMOVED*** @else if $direction == up ***REMOVED***
+      } @else if $direction == up {
         @include caret-up();
-      ***REMOVED*** @else if $direction == right ***REMOVED***
+      } @else if $direction == right {
         @include caret-right();
-      ***REMOVED***
-    ***REMOVED***
+      }
+    }
 
-    @if $direction == left ***REMOVED***
-      &::after ***REMOVED***
+    @if $direction == left {
+      &::after {
         display: none;
-      ***REMOVED***
+      }
 
-      &::before ***REMOVED***
+      &::before {
         display: inline-block;
         margin-right: $caret-spacing;
         vertical-align: $caret-vertical-align;
         content: "";
         @include caret-left();
-      ***REMOVED***
-    ***REMOVED***
+      }
+    }
 
-    &:empty::after ***REMOVED***
+    &:empty::after {
       margin-left: 0;
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}

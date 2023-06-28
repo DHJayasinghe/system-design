@@ -4,72 +4,72 @@
 // Border
 //
 
-.border     ***REMOVED*** border: $border-width solid $border-color !important; ***REMOVED***
-.border-top ***REMOVED*** border-top: $border-width solid $border-color !important; ***REMOVED***
-.border-right   ***REMOVED*** border-right: $border-width solid $border-color !important; ***REMOVED***
-.border-bottom  ***REMOVED*** border-bottom: $border-width solid $border-color !important; ***REMOVED***
-.border-left***REMOVED*** border-left: $border-width solid $border-color !important; ***REMOVED***
+.border         { border: $border-width solid $border-color !important; }
+.border-top     { border-top: $border-width solid $border-color !important; }
+.border-right   { border-right: $border-width solid $border-color !important; }
+.border-bottom  { border-bottom: $border-width solid $border-color !important; }
+.border-left    { border-left: $border-width solid $border-color !important; }
 
-.border-0    ***REMOVED*** border: 0 !important; ***REMOVED***
-.border-top-0***REMOVED*** border-top: 0 !important; ***REMOVED***
-.border-right-0  ***REMOVED*** border-right: 0 !important; ***REMOVED***
-.border-bottom-0 ***REMOVED*** border-bottom: 0 !important; ***REMOVED***
-.border-left-0   ***REMOVED*** border-left: 0 !important; ***REMOVED***
+.border-0        { border: 0 !important; }
+.border-top-0    { border-top: 0 !important; }
+.border-right-0  { border-right: 0 !important; }
+.border-bottom-0 { border-bottom: 0 !important; }
+.border-left-0   { border-left: 0 !important; }
 
-@each $color, $value in $theme-colors ***REMOVED***
-  .border-#***REMOVED***$color***REMOVED*** ***REMOVED***
+@each $color, $value in $theme-colors {
+  .border-#{$color} {
     border-color: $value !important;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
-.border-white ***REMOVED***
+.border-white {
   border-color: $white !important;
-***REMOVED***
+}
 
 //
 // Border-radius
 //
 
-.rounded-sm ***REMOVED***
+.rounded-sm {
   border-radius: $border-radius-sm !important;
-***REMOVED***
+}
 
-.rounded ***REMOVED***
+.rounded {
   border-radius: $border-radius !important;
-***REMOVED***
+}
 
-.rounded-top ***REMOVED***
+.rounded-top {
   border-top-left-radius: $border-radius !important;
   border-top-right-radius: $border-radius !important;
-***REMOVED***
+}
 
-.rounded-right ***REMOVED***
+.rounded-right {
   border-top-right-radius: $border-radius !important;
   border-bottom-right-radius: $border-radius !important;
-***REMOVED***
+}
 
-.rounded-bottom ***REMOVED***
+.rounded-bottom {
   border-bottom-right-radius: $border-radius !important;
   border-bottom-left-radius: $border-radius !important;
-***REMOVED***
+}
 
-.rounded-left ***REMOVED***
+.rounded-left {
   border-top-left-radius: $border-radius !important;
   border-bottom-left-radius: $border-radius !important;
-***REMOVED***
+}
 
-.rounded-lg ***REMOVED***
+.rounded-lg {
   border-radius: $border-radius-lg !important;
-***REMOVED***
+}
 
-.rounded-circle ***REMOVED***
+.rounded-circle {
   border-radius: 50% !important;
-***REMOVED***
+}
 
-.rounded-pill ***REMOVED***
+.rounded-pill {
   border-radius: $rounded-pill !important;
-***REMOVED***
+}
 
-.rounded-0 ***REMOVED***
+.rounded-0 {
   border-radius: 0 !important;
-***REMOVED***
+}

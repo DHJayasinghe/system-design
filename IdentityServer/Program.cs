@@ -1,143 +1,143 @@
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+using BnA.IAM.Application;
+using BnA.IAM.Application.Services;
+using BnA.IAM.Application.Stores;
+using BnA.IAM.Presentation.API.Extensions;
+using Duende.IdentityServer;
+using Duende.IdentityServer.Configuration;
+using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Serilog;
+using System;
 
-***REMOVED***
+var builder = WebApplication.CreateBuilder(args);
 
-***REMOVED***
-***REMOVED***
+var configurations = builder.Configuration;
+var services = builder.Services;
 
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED*** // cookie policy to deal with temporary browser incompatibilities
-***REMOVED***
-***REMOVED***.AddHttpClient();
-
-
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
-***REMOVED***
-
-***REMOVED***
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***;
-
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-        googleOptions.ClientId = "1085351065661-1q46g7icejprtfv42ut9gqdo9hs2249a.***REMOVED***s.googleusercontent.com";
-        googleOptions.ClientSecret = "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";
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***;
-
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***);
+services
+    .AddApplicationInsightsTelemetry(configurations)
+     .AddControllersWithViews();
+services
+    .AddApplication(configurations);
+services // cookie policy to deal with temporary browser incompatibilities
+    .AddSameSiteCookiePolicy();
+services.AddHttpClient();
 
 
-builder.Host.UseSerilog((context, ***REMOVED***, configuration) => configuration
-***REMOVED***
-    .ReadFrom.Services(***REMOVED***)
-***REMOVED***
-    .WriteTo.ApplicationInsights(***REMOVED***.GetRequiredService<Teleme***REMOVED***Configuration>(), Teleme***REMOVED***Converter.Traces));
+services
+    .AddIdentityServer(options =>
+    {
+        options.Events.RaiseSuccessEvents = true;
+        options.Events.RaiseFailureEvents = true;
+        options.Events.RaiseErrorEvents = true;
+        options.Events.RaiseInformationEvents = false;
 
-***REMOVED***
+        options.EmitScopesAsSpaceDelimitedStringInJwt = true;
 
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+        options.Caching = new CachingOptions
+        {
+            ClientStoreExpiration = TimeSpan.FromHours(2),
+            CorsExpiration = TimeSpan.FromHours(1),
+            ResourceStoreExpiration = TimeSpan.FromHours(2),
+        };
+    })
+    .AddInMemoryCaching()
+    .AddJwtBearerClientAuthentication()
+    .AddAppAuthRedirectUriValidator()
+    .AddCorsPolicyService<CorsPolicyService>()
+    .AddCorsPolicyCache<CorsPolicyService>()
+    .AddClientStoreCache<ClientStore>()
+    .AddProfileService<UserProfileService>()
+    .AddResourceStoreCache<ResourceStore>()
+    .AddPersistedGrantStore<PersistedGrantStore>();
 
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***;
+services
+    .AddSession(op =>
+    {
+        op.IdleTimeout = TimeSpan.FromSeconds(60);
+        op.Cookie.SameSite = SameSiteMode.None;
+        op.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+    });
 
-***REMOVED***
-***REMOVED***
-***REMOVED***
-    .WriteTo.ApplicationInsights(***REMOVED***.Services.GetRequiredService<Teleme***REMOVED***Configuration>(), Teleme***REMOVED***Converter.Traces)
-***REMOVED***
+services
+    .AddAuthentication()
+    .AddGoogle(googleOptions =>
+    {
+        googleOptions.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+        googleOptions.ClientId = configurations["Google:ClientId"];
+        googleOptions.ClientSecret = configurations["Google:ClientSecret"];
+        googleOptions.Scope.Clear();
+        googleOptions.Scope.Add("openid");
+        googleOptions.Scope.Add("https://www.googleapis.com/auth/userinfo.email");
+        googleOptions.Scope.Add("https://www.googleapis.com/auth/userinfo.profile");
+    });
 
-string ***REMOVED***lication = ***REMOVED***.Configuration.GetValue<string>("ApplicationName");
+services
+    .AddLocalApiAuthentication();
+services
+    .AddCors(options => options.AddPolicy(name: "AllowAnonymousPolicy", builder =>
+    {
+        builder
+            .WithOrigins(configurations.GetSection("AllowedCors").Get<string[]>())
+            .WithMethods("get", "post")
+            .AllowAnyHeader();
+    }));
 
-***REMOVED***
-***REMOVED***
-    Log.Information($"***REMOVED******REMOVED***lication***REMOVED*** ***REMOVED***lication starting up");
-    ***REMOVED***.Run();
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-    Log.Fatal(ex, $"***REMOVED******REMOVED***lication***REMOVED*** ***REMOVED***lication failed to start");
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+
+builder.Host.UseSerilog((context, services, configuration) => configuration
+    .ReadFrom.Configuration(context.Configuration)
+    .ReadFrom.Services(services)
+    .WriteTo.Console()
+    .WriteTo.ApplicationInsights(services.GetRequiredService<TelemetryConfiguration>(), TelemetryConverter.Traces));
+
+var app = builder.Build();
+
+app
+    .UseForwardedHeaders(new ForwardedHeadersOptions
+    {
+        ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+    })
+    .UseCertificateForwarding()
+    .UseCookiePolicy()
+    .UseSerilogRequestLogging()
+    //.UseDeveloperExceptionPage()
+    .UseStaticFiles();
+
+app
+    .UseRouting()
+    .UseSession()
+    .UseIdentityServer()
+    .UseAuthorization()
+    .UseEndpoints(endpoints =>
+    {
+        endpoints.MapDefaultControllerRoute();
+    });
+
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(configurations)
+    .WriteTo.Console()
+    .WriteTo.ApplicationInsights(app.Services.GetRequiredService<TelemetryConfiguration>(), TelemetryConverter.Traces)
+    .CreateLogger();
+
+string application = app.Configuration.GetValue<string>("ApplicationName");
+
+try
+{
+    Log.Information($"{application} application starting up");
+    app.Run();
+    return 0;
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, $"{application} application failed to start");
+    return 1;
+}
+finally
+{
+    // close and dispose the logging system correctly
+    Log.CloseAndFlush();
+}

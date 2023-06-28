@@ -1,63 +1,63 @@
 ﻿using Azure;
 using Azure.Data.Tables;
-***REMOVED***
+using System;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace UserService.Models;
 
 public class User
-***REMOVED***
-    public string Id ***REMOVED*** get; set; ***REMOVED***
-    public string Email ***REMOVED*** get; set; ***REMOVED***
-    public string PhoneNumber ***REMOVED*** get; set; ***REMOVED***
-    public string FirstName ***REMOVED*** get; set; ***REMOVED***
-    public string Surname ***REMOVED*** get; set; ***REMOVED***
-    public string Username ***REMOVED*** get; set; ***REMOVED***
-    public DateTime? DateOfBirth ***REMOVED*** get; set; ***REMOVED***
-    public string Gender ***REMOVED*** get; set; ***REMOVED***
-    public DateTime CreatedDateTime ***REMOVED*** get; set; ***REMOVED*** = DateTime.UtcNow;
+{
+    public string Id { get; set; }
+    public string Email { get; set; }
+    public string PhoneNumber { get; set; }
+    public string FirstName { get; set; }
+    public string Surname { get; set; }
+    public string Username { get; set; }
+    public DateTime? DateOfBirth { get; set; }
+    public string Gender { get; set; }
+    public DateTime CreatedDateTime { get; set; } = DateTime.UtcNow;
     internal static string HashData(string data)
-***REMOVED***
+    {
         using var sha256 = SHA256.Create();
         var hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(data));
         var base64String = Convert.ToBase64String(hashBytes);
 
         var alphanumericString = new StringBuilder();
         foreach (var c in base64String)
-    ***REMOVED***
+        {
             if (!char.IsLetterOrDigit(c)) continue;
             alphanumericString.Append(c);
-        ***REMOVED***
+        }
 
         return alphanumericString.ToString();
-    ***REMOVED***
-***REMOVED***
+    }
+}
 
 public class UserEntity : BaseTableEntity
-***REMOVED***
-    public string Email ***REMOVED*** get; set; ***REMOVED***
-    public string PhoneNumber ***REMOVED*** get; set; ***REMOVED***
-    public string FirstName ***REMOVED*** get; set; ***REMOVED***
-    public string Surname ***REMOVED*** get; set; ***REMOVED***
-    public string Username ***REMOVED*** get; set; ***REMOVED***
-    public DateTime? DateOfBirth ***REMOVED*** get; set; ***REMOVED***
-    public string Gender ***REMOVED*** get; set; ***REMOVED***
-    public DateTime CreatedDateTime ***REMOVED*** get; set; ***REMOVED***
-    public string NameIdentifier ***REMOVED*** get; internal set; ***REMOVED***
-    public string Name ***REMOVED*** get; internal set; ***REMOVED***
-***REMOVED***
+{
+    public string Email { get; set; }
+    public string PhoneNumber { get; set; }
+    public string FirstName { get; set; }
+    public string Surname { get; set; }
+    public string Username { get; set; }
+    public DateTime? DateOfBirth { get; set; }
+    public string Gender { get; set; }
+    public DateTime CreatedDateTime { get; set; }
+    public string NameIdentifier { get; internal set; }
+    public string Name { get; internal set; }
+}
 
 
-public static class M***REMOVED***ings
-***REMOVED***
+public static class Mappings
+{
     public static UserEntity ToEntity(this User user)
-***REMOVED***
+    {
         string username = user.Email ?? user.PhoneNumber;
         string id = User.HashData(username);
 
         return new UserEntity()
-    ***REMOVED***
+        {
             PartitionKey = id,
             RowKey = id,
             CreatedDateTime = user.CreatedDateTime,
@@ -68,15 +68,15 @@ public static class M***REMOVED***ings
             Email = user.Email,
             PhoneNumber = user.PhoneNumber,
             Username = username,
-***REMOVED***
-    ***REMOVED***
+        };
+    }
 
     public static UserEntity ToEntity(this RegisterUserAccountRequest user)
-***REMOVED***
+    {
         string id = User.HashData(user.Email);
 
         return new UserEntity()
-    ***REMOVED***
+        {
             PartitionKey = id,
             RowKey = id,
             CreatedDateTime = DateTime.UtcNow,
@@ -86,13 +86,13 @@ public static class M***REMOVED***ings
             Surname = user.Surname,
             Email = user.Email,
             Username = user.Email,
-***REMOVED***
-    ***REMOVED***
+        };
+    }
 
     public static User ToUser(this UserEntity todo)
-***REMOVED***
+    {
         return new User()
-    ***REMOVED***
+        {
             Id = todo.PartitionKey,
             CreatedDateTime = todo.CreatedDateTime,
             FirstName = todo.FirstName,
@@ -102,15 +102,15 @@ public static class M***REMOVED***ings
             Email = todo.Email,
             PhoneNumber = todo.PhoneNumber,
             Username = todo.Username,
-***REMOVED***
-    ***REMOVED***
+        };
+    }
 
-***REMOVED***
+}
 
 public class BaseTableEntity : ITableEntity
-***REMOVED***
-    public string PartitionKey ***REMOVED*** get; set; ***REMOVED***
-    public string RowKey ***REMOVED*** get; set; ***REMOVED***
-    public DateTimeOffset? Timestamp ***REMOVED*** get; set; ***REMOVED***
-    public ETag ETag ***REMOVED*** get; set; ***REMOVED***
-***REMOVED***
+{
+    public string PartitionKey { get; set; }
+    public string RowKey { get; set; }
+    public DateTimeOffset? Timestamp { get; set; }
+    public ETag ETag { get; set; }
+}

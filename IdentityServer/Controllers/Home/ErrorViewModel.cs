@@ -5,19 +5,19 @@
 using Duende.IdentityServer.Models;
 
 namespace BnA.IAM.Presentation.API.Controllers.Home
-***REMOVED***
+{
     public class ErrorViewModel
-***REMOVED***
+    {
         public ErrorViewModel()
-    ***REMOVED***
-        ***REMOVED***
+        {
+        }
 
         public ErrorViewModel(string error)
-    ***REMOVED***
-            Error = new ErrorMessage ***REMOVED*** Error = error ***REMOVED***;
-        ***REMOVED***
+        {
+            Error = new ErrorMessage { Error = error };
+        }
 
-        public ErrorMessage Error ***REMOVED*** get; set; ***REMOVED***
-        public string PostLogoutRedirectUri ***REMOVED*** get; set; ***REMOVED***
-    ***REMOVED***
-***REMOVED***
+        public ErrorMessage Error { get; set; }
+        public string PostLogoutRedirectUri { get; set; }
+    }
+}

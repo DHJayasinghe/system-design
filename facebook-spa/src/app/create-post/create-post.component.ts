@@ -1,15 +1,15 @@
-import ***REMOVED*** HttpClient, HttpHeaders ***REMOVED*** from '@angular/common/http';
-import ***REMOVED*** Component, EventEmitter, OnInit, Output ***REMOVED*** from '@angular/core';
-import ***REMOVED*** BlobServiceClient, BlockBlobClient, BlockBlobStageBlockOptions ***REMOVED*** from '@azure/storage-blob';
-import ***REMOVED*** environment ***REMOVED*** from 'src/environments/environment';
-import ***REMOVED*** v4 as uuidv4 ***REMOVED*** from 'uuid';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { BlobServiceClient, BlockBlobClient, BlockBlobStageBlockOptions } from '@azure/storage-blob';
+import { environment } from 'src/environments/environment';
+import { v4 as uuidv4 } from 'uuid';
 
-@Component(***REMOVED***
-  selector: '***REMOVED***-create-post',
+@Component({
+  selector: 'app-create-post',
   templateUrl: './create-post.component.html',
   styleUrls: ['./create-post.component.css']
-***REMOVED***)
-export class CreatePostComponent implements OnInit ***REMOVED***
+})
+export class CreatePostComponent implements OnInit {
   @Output() posted = new EventEmitter<boolean>();
   private sasToken: string = "";
   private container: string = "";
@@ -21,45 +21,45 @@ export class CreatePostComponent implements OnInit ***REMOVED***
   saving: boolean = false;
 
 
-  constructor(private http: HttpClient) ***REMOVED*** ***REMOVED***
+  constructor(private http: HttpClient) { }
 
-  ngOnInit() ***REMOVED***
+  ngOnInit() {
     this.getUploadLink();
-  ***REMOVED***
+  }
 
-  async onFileChange($event: any) ***REMOVED***
+  async onFileChange($event: any) {
     const files = $event.target.files as File[];
 
     const blobServiceClient = new BlobServiceClient(this.sasToken);
     const containerClient = blobServiceClient.getContainerClient(this.container);
 
-    if (files && files.length > 0) ***REMOVED***
+    if (files && files.length > 0) {
       const file = files[0];
-      const fileName = `$***REMOVED***uuidv4()***REMOVED***.$***REMOVED***file.name.split('.').pop()***REMOVED***`;
+      const fileName = `${uuidv4()}.${file.name.split('.').pop()}`;
       const blockBlobClient = containerClient.getBlockBlobClient(fileName);
       await this.uploadAsChunksAsync(file, blockBlobClient);
       this.assetsToUpload.push(fileName);
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
 
-  private async uploadAsChunksAsync(file: File, blockBlobClient: BlockBlobClient) ***REMOVED***
+  private async uploadAsChunksAsync(file: File, blockBlobClient: BlockBlobClient) {
     let uploadedBytes = 0;
     const blockIDs: string[] = [];
     const chunkSize = 1024 * 1024; // 1MB chunk size (adjust as needed)
-    const uploadOptions: BlockBlobStageBlockOptions = ***REMOVED***
-      onProgress: () => ***REMOVED***
+    const uploadOptions: BlockBlobStageBlockOptions = {
+      onProgress: () => {
         const progress = Math.round((uploadedBytes / file.size) * 100);
         this.progress = progress > 100 ? 100 : progress;
-      ***REMOVED***
-    ***REMOVED***;
+      }
+    };
 
     let offset = 0;
     let blockNum = 0;
 
-    while (offset < file.size) ***REMOVED***
+    while (offset < file.size) {
       uploadedBytes += chunkSize;
       const chunk = file.slice(offset, offset + chunkSize);
-      const blockId = btoa(`block-$***REMOVED***blockNum***REMOVED***`);
+      const blockId = btoa(`block-${blockNum}`);
       await blockBlobClient.stageBlock(
         blockId,
         chunk,
@@ -70,57 +70,57 @@ export class CreatePostComponent implements OnInit ***REMOVED***
 
       offset += chunkSize;
       blockNum++;
-    ***REMOVED***
+    }
     await blockBlobClient.commitBlockList(blockIDs);
-  ***REMOVED***
+  }
 
-  private getUploadLink(): void ***REMOVED***
-    this.http.get<any>(`$***REMOVED***environment.baseUrl***REMOVED***/assets/upload-link`)
+  private getUploadLink(): void {
+    this.http.get<any>(`${environment.baseUrl}/assets/upload-link`)
       .subscribe(
-        (response: ***REMOVED*** container: string, sasToken: string ***REMOVED***) => ***REMOVED***
-          const ***REMOVED*** container, sasToken ***REMOVED*** = response;
+        (response: { container: string, sasToken: string }) => {
+          const { container, sasToken } = response;
           this.sasToken = sasToken;
           this.container = container;
-        ***REMOVED***
+        }
       );
-  ***REMOVED***
+  }
 
-  public savePost() ***REMOVED***
+  public savePost() {
     if (this.saving) return;
 
     this.saving = true;
 
-    const body = ***REMOVED***
+    const body = {
       content: this.content,
       assets: this.assetsToUpload
-    ***REMOVED***;
-    const headers = new HttpHeaders(***REMOVED***
-      'Content-Type': '***REMOVED***lication/json'
-***REMOVED***;
+    };
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
 
-    this.http.post<any>(`$***REMOVED***environment.baseUrl***REMOVED***/posts`, body, ***REMOVED*** headers ***REMOVED***)
+    this.http.post<any>(`${environment.baseUrl}/posts`, body, { headers })
       .subscribe(
-    ***REMOVED***
-          next: (response) => ***REMOVED***
+        {
+          next: (response) => {
             console.log(response);
             this.newPost();
-          ***REMOVED***,
-          error: (error) => ***REMOVED***
+          },
+          error: (error) => {
 
-          ***REMOVED***
-        ***REMOVED***
+          }
+        }
       );
-  ***REMOVED***
+  }
 
-  public newPost() ***REMOVED***
+  public newPost() {
     this.posted.emit(true);
     this.saving = false;
     this.assetsToUpload = [];
     this.content = "";
     this.progress = 0;
-  ***REMOVED***
+  }
 
-  public disabled(): boolean ***REMOVED***
+  public disabled(): boolean {
     return this.assetsToUpload.length === 0 || this.saving;
-  ***REMOVED***
-***REMOVED***
+  }
+}

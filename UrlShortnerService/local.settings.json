@@ -1,10 +1,10 @@
-***REMOVED***
+{
   "IsEncrypted": false,
-  "Values": ***REMOVED***
+  "Values": {
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet"
-  ***REMOVED***,
-  "ConnectionStrings": ***REMOVED***
+  },
+  "ConnectionStrings": {
     "CosmosDBConnection": "COSMOSDB_CONNECTION_STRING"
-  ***REMOVED***
-***REMOVED***
+  }
+}

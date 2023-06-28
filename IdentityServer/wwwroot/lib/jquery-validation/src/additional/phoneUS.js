@@ -14,8 +14,8 @@
  * and not
  * 212 123 4567
  */
-$.validator.addMethod("phoneUS", function(phone_number, element) ***REMOVED***
+$.validator.addMethod("phoneUS", function(phone_number, element) {
 	phone_number = phone_number.replace(/\s+/g, "");
 	return this.optional(element) || phone_number.length > 9 &&
-		phone_number.match(/^(\+?1-?)?(\([2-9]([02-9]\d|1[02-9])\)|[2-9]([02-9]\d|1[02-9]))-?[2-9]([02-9]\d|1[02-9])-?\d***REMOVED***4***REMOVED***$/);
-***REMOVED***, "Please specify a valid phone number");
+		phone_number.match(/^(\+?1-?)?(\([2-9]([02-9]\d|1[02-9])\)|[2-9]([02-9]\d|1[02-9]))-?[2-9]([02-9]\d|1[02-9])-?\d{4}$/);
+}, "Please specify a valid phone number");

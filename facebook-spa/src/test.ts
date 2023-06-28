@@ -1,18 +1,18 @@
 // This file is required by karma.conf.js and loads recursively all the .spec and framework files
 
 import 'zone.js/testing';
-import ***REMOVED*** getTestBed ***REMOVED*** from '@angular/core/testing';
-import ***REMOVED***
+import { getTestBed } from '@angular/core/testing';
+import {
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting
-***REMOVED*** from '@angular/platform-browser-dynamic/testing';
+} from '@angular/platform-browser-dynamic/testing';
 
-declare const require: ***REMOVED***
-  context(path: string, deep?: boolean, filter?: RegExp): ***REMOVED***
+declare const require: {
+  context(path: string, deep?: boolean, filter?: RegExp): {
     keys(): string[];
     <T>(id: string): T;
-  ***REMOVED***;
-***REMOVED***;
+  };
+};
 
 // First, initialize the Angular testing environment.
 getTestBed().initTestEnvironment(

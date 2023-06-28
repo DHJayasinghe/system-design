@@ -15,10 +15,10 @@
                 <div class="card-body">
                     <dl>
                         @foreach (var claim in Model.AuthenticateResult.Principal.Claims)
-                    ***REMOVED***
+                        {
                             <dt>@claim.Type</dt>
                             <dd>@claim.Value</dd>
-                        ***REMOVED***
+                        }
                     </dl>
                 </div>
             </div>
@@ -32,27 +32,27 @@
                 <div class="card-body">
                     <dl>
                         @foreach (var prop in Model.AuthenticateResult.Properties.Items)
-                    ***REMOVED***
+                        {
                             <dt>@prop.Key</dt>
                             <dd>@prop.Value</dd>
-                        ***REMOVED***
+                        }
                         @if (Model.Clients.Any())
-                    ***REMOVED***
+                        {
                             <dt>Clients</dt>
                             <dd>
-                            @***REMOVED***
+                            @{
                                 var clients = Model.Clients.ToArray();
                                 for(var i = 0; i < clients.Length; i++)
-                            ***REMOVED***
+                                {
                                     <text>@clients[i]</text>
                                     if (i < clients.Length - 1)
-                                ***REMOVED***
+                                    {
                                         <text>, </text>
-                                    ***REMOVED***
-                                ***REMOVED***
-                            ***REMOVED***
+                                    }
+                                }
+                            }
                             </dd>
-                        ***REMOVED***
+                        }
                     </dl>
                 </div>
             </div>

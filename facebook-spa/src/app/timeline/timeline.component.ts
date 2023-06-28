@@ -1,36 +1,36 @@
-import ***REMOVED*** HttpClient ***REMOVED*** from '@angular/common/http';
-import ***REMOVED*** Component, Input, OnInit, SimpleChanges ***REMOVED*** from '@angular/core';
-import ***REMOVED*** environment ***REMOVED*** from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
-@Component(***REMOVED***
-  selector: '***REMOVED***-timeline',
+@Component({
+  selector: 'app-timeline',
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.css']
-***REMOVED***)
-export class TimelineComponent implements OnInit ***REMOVED***
+})
+export class TimelineComponent implements OnInit {
   @Input() version: number = 1;
   posts: Post[] = [];
 
-  constructor(private http: HttpClient) ***REMOVED*** ***REMOVED***
+  constructor(private http: HttpClient) { }
 
-  ngOnInit() ***REMOVED***
-  ***REMOVED***
+  ngOnInit() {
+  }
 
-  ngOnChanges(changes: SimpleChanges) ***REMOVED***
-    this.http.get<Post[]>(`$***REMOVED***environment.baseUrl***REMOVED***/posts`)
+  ngOnChanges(changes: SimpleChanges) {
+    this.http.get<Post[]>(`${environment.baseUrl}/posts`)
       .subscribe(
-        (posts) => ***REMOVED***
+        (posts) => {
           this.posts = posts;
-        ***REMOVED***
+        }
       );
-  ***REMOVED*** 
-***REMOVED***
+  } 
+}
 
-export interface Post ***REMOVED***
+export interface Post {
   id: string;
   content: string;
   authorName: string;
   createdAt: Date;
   updatedAt: Date;
   assets: string[];
-***REMOVED***
+}

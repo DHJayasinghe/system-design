@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-***REMOVED***
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Azure.Cosmos;
-***REMOVED***
+using Microsoft.Extensions.Configuration;
 using Azure.Messaging.ServiceBus.Administration;
 using System.Collections.Generic;
 using LikeService.Configs;
@@ -13,7 +13,7 @@ using LikeService.Configs;
 namespace LikeService.Infrastructure;
 
 public class RemoveInfrastructure
-***REMOVED***
+{
     private readonly IConfiguration _configuration;
 
     public RemoveInfrastructure(IConfiguration configuration) => _configuration = configuration;
@@ -23,7 +23,7 @@ public class RemoveInfrastructure
         [HttpTrigger(AuthorizationLevel.Function, "delete", Route = "infrastructure")] HttpRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient client,
         ILogger log)
-***REMOVED***
+    {
         log.LogInformation("C# HTTP trigger function processed a request.");
 
         var tasksToProcess = new List<Task>();
@@ -36,5 +36,5 @@ public class RemoveInfrastructure
         await Task.WhenAll(tasksToProcess);
 
         return new OkResult();
-    ***REMOVED***
-***REMOVED***
+    }
+}

@@ -1,9 +1,9 @@
-***REMOVED***
-  "profiles": ***REMOVED***
-    "LikeService": ***REMOVED***
+{
+  "profiles": {
+    "LikeService": {
       "commandName": "Project",
       "commandLineArgs": "--port 8085",
       "launchBrowser": false
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}

@@ -1,30 +1,30 @@
 ﻿using Newtonsoft.Json;
 using PostService.API.Models;
-***REMOVED***
+using System;
 
 namespace PostService.Models;
 
 public record Comment
-***REMOVED***
+{
     [JsonProperty("id")]
-    public string Id ***REMOVED*** get; set; ***REMOVED***
-    public string CommentId ***REMOVED*** get; set; ***REMOVED***
-    public string PostId ***REMOVED*** get; set; ***REMOVED***
-    public string AuthorId ***REMOVED*** get; set; ***REMOVED***
-    public string AuthorName ***REMOVED*** get; set; ***REMOVED*** = "Dhanuka Jayasinghe";
-    public string Content ***REMOVED*** get; set; ***REMOVED***
-    public DateTime CreatedAt ***REMOVED*** get; set; ***REMOVED*** = DateTime.UtcNow;
-    public DateTime? UpdatedAt ***REMOVED*** get; set; ***REMOVED***
+    public string Id { get; set; }
+    public string CommentId { get; set; }
+    public string PostId { get; set; }
+    public string AuthorId { get; set; }
+    public string AuthorName { get; set; } = "Dhanuka Jayasinghe";
+    public string Content { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime? UpdatedAt { get; set; }
 
     public static Comment Map(Guid postId, AddCommentRequest request)
-***REMOVED***
+    {
         var id = Guid.NewGuid().ToString();
         return new()
-    ***REMOVED***
+        {
             Id = id,
             CommentId = id,
             PostId = postId.ToString(),
             Content = request.Content,
-***REMOVED***
-    ***REMOVED***
-***REMOVED***
+        };
+    }
+}

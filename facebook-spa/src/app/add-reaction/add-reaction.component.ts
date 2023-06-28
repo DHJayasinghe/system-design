@@ -1,36 +1,36 @@
-import ***REMOVED*** HttpClient ***REMOVED*** from '@angular/common/http';
-import ***REMOVED*** Component, EventEmitter, Input, OnInit, Output ***REMOVED*** from '@angular/core';
-import ***REMOVED*** environment ***REMOVED*** from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
-@Component(***REMOVED***
-  selector: '***REMOVED***-add-reaction',
+@Component({
+  selector: 'app-add-reaction',
   templateUrl: './add-reaction.component.html',
   styleUrls: ['./add-reaction.component.css']
-***REMOVED***)
-export class AddReactionComponent implements OnInit ***REMOVED***
+})
+export class AddReactionComponent implements OnInit {
   @Input() postId?:string;
   @Input() commentId?: string;
   @Output() changed = new EventEmitter<boolean>();
 
   reactionType = ReactionType;
 
-  constructor(private http: HttpClient) ***REMOVED*** ***REMOVED***
+  constructor(private http: HttpClient) { }
 
-  ngOnInit() ***REMOVED***
-  ***REMOVED***
+  ngOnInit() {
+  }
 
-  react(reactionType: ReactionType) ***REMOVED***
-    this.http.put(`$***REMOVED***environment.baseUrl***REMOVED***/reactions`, ***REMOVED*** postId: this.postId, commentId: this.commentId, reactionType: reactionType, userId: 1 ***REMOVED***).subscribe(***REMOVED***
-      next: () => ***REMOVED*** this.changed.emit(true); ***REMOVED***,
-      error: (error) => ***REMOVED***
+  react(reactionType: ReactionType) {
+    this.http.put(`${environment.baseUrl}/reactions`, { postId: this.postId, commentId: this.commentId, reactionType: reactionType, userId: 1 }).subscribe({
+      next: () => { this.changed.emit(true); },
+      error: (error) => {
         console.log(error);
-      ***REMOVED***
-***REMOVED***
-  ***REMOVED***
-***REMOVED***
+      }
+    })
+  }
+}
 
 
-export enum ReactionType ***REMOVED***
+export enum ReactionType {
   LIKE = 0,
   HEART = 1,
   CARE = 2,
@@ -38,5 +38,5 @@ export enum ReactionType ***REMOVED***
   WOW = 4,
   SAD = 5,
   ANGRY = 6
-***REMOVED***
+}
 

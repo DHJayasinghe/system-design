@@ -2,96 +2,96 @@
 // Basic Bootstrap table
 //
 
-.table ***REMOVED***
+.table {
   width: 100%;
   margin-bottom: $spacer;
   color: $table-color;
   background-color: $table-bg; // Reset for nesting within parents with `background-color`.
 
   th,
-  td ***REMOVED***
+  td {
     padding: $table-cell-padding;
     vertical-align: top;
     border-top: $table-border-width solid $table-border-color;
-  ***REMOVED***
+  }
 
-  thead th ***REMOVED***
+  thead th {
     vertical-align: bottom;
     border-bottom: (2 * $table-border-width) solid $table-border-color;
-  ***REMOVED***
+  }
 
-  tbody + tbody ***REMOVED***
+  tbody + tbody {
     border-top: (2 * $table-border-width) solid $table-border-color;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
 
 //
 // Condensed table w/ half padding
 //
 
-.table-sm ***REMOVED***
+.table-sm {
   th,
-  td ***REMOVED***
+  td {
     padding: $table-cell-padding-sm;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
-.pointer***REMOVED***
+.pointer{
     cursor:pointer;
-***REMOVED***
+}
 // Border versions
 //
 // Add or remove borders all around the table and between all the columns.
 
-.table-bordered ***REMOVED***
+.table-bordered {
   border: $table-border-width solid $table-border-color;
 
   th,
-  td ***REMOVED***
+  td {
     border: $table-border-width solid $table-border-color;
-  ***REMOVED***
+  }
 
-  thead ***REMOVED***
+  thead {
     th,
-    td ***REMOVED***
+    td {
       border-bottom-width: 2 * $table-border-width;
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
-.table-borderless ***REMOVED***
+.table-borderless {
   th,
   td,
   thead th,
-  tbody + tbody ***REMOVED***
+  tbody + tbody {
     border: 0;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
 // Zebra-striping
 //
 // Default zebra-stripe styles (alternating gray and transparent backgrounds)
 
-.table-striped ***REMOVED***
-  tbody tr:nth-of-type(#***REMOVED***$table-striped-order***REMOVED***) ***REMOVED***
+.table-striped {
+  tbody tr:nth-of-type(#{$table-striped-order}) {
     background-color: $table-accent-bg;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
 
 // Hover effect
 //
 // Placed here since it has to come after the potential zebra striping
 
-.table-hover ***REMOVED***
-  tbody tr ***REMOVED***
-    @include hover() ***REMOVED***
+.table-hover {
+  tbody tr {
+    @include hover() {
       color: $table-hover-color;
       background-color: $table-hover-bg;
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
 
 // Table backgrounds
@@ -99,9 +99,9 @@
 // Exact selectors below required to override `.table-striped` and prevent
 // inheritance to nested tables.
 
-@each $color, $value in $theme-colors ***REMOVED***
+@each $color, $value in $theme-colors {
   @include table-row-variant($color, theme-color-level($color, $table-bg-level), theme-color-level($color, $table-border-level));
-***REMOVED***
+}
 
 @include table-row-variant(active, $table-active-bg);
 
@@ -111,53 +111,53 @@
 // Same table markup, but inverted color scheme: dark background and light text.
 
 // stylelint-disable-next-line no-duplicate-selectors
-.table ***REMOVED***
-  .thead-dark ***REMOVED***
-    th ***REMOVED***
+.table {
+  .thead-dark {
+    th {
       color: $table-dark-color;
       background-color: $table-dark-bg;
       border-color: $table-dark-border-color;
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
 
-  .thead-light ***REMOVED***
-    th ***REMOVED***
+  .thead-light {
+    th {
       color: $table-head-color;
       background-color: $table-head-bg;
       border-color: $table-border-color;
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
-.table-dark ***REMOVED***
+.table-dark {
   color: $table-dark-color;
   background-color: $table-dark-bg;
 
   th,
   td,
-  thead th ***REMOVED***
+  thead th {
     border-color: $table-dark-border-color;
-  ***REMOVED***
+  }
 
-  &.table-bordered ***REMOVED***
+  &.table-bordered {
     border: 0;
-  ***REMOVED***
+  }
 
-  &.table-striped ***REMOVED***
-    tbody tr:nth-of-type(#***REMOVED***$table-striped-order***REMOVED***) ***REMOVED***
+  &.table-striped {
+    tbody tr:nth-of-type(#{$table-striped-order}) {
       background-color: $table-dark-accent-bg;
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
 
-  &.table-hover ***REMOVED***
-    tbody tr ***REMOVED***
-      @include hover() ***REMOVED***
+  &.table-hover {
+    tbody tr {
+      @include hover() {
         color: $table-dark-hover-color;
         background-color: $table-dark-hover-bg;
-      ***REMOVED***
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+      }
+    }
+  }
+}
 
 
 // Responsive tables
@@ -165,23 +165,23 @@
 // Generate series of `.table-responsive-*` classes for configuring the screen
 // size of where your table will overflow.
 
-.table-responsive ***REMOVED***
-  @each $breakpoint in map-keys($grid-breakpoints) ***REMOVED***
+.table-responsive {
+  @each $breakpoint in map-keys($grid-breakpoints) {
     $next: breakpoint-next($breakpoint, $grid-breakpoints);
     $infix: breakpoint-infix($next, $grid-breakpoints);
 
-    &#***REMOVED***$infix***REMOVED*** ***REMOVED***
-      @include media-breakpoint-down($breakpoint) ***REMOVED***
+    &#{$infix} {
+      @include media-breakpoint-down($breakpoint) {
         display: block;
         width: 100%;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
 
         // Prevent double border on horizontal scroll due to use of `display: block;`
-        > .table-bordered ***REMOVED***
+        > .table-bordered {
           border: 0;
-        ***REMOVED***
-      ***REMOVED***
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+        }
+      }
+    }
+  }
+}

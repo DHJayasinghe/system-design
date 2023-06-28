@@ -1,30 +1,30 @@
-***REMOVED***
+{
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "cli": ***REMOVED***
+  "cli": {
     "analytics": "884a021c-4a95-49ef-9ce5-011f765aa07c"
-  ***REMOVED***,
+  },
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": ***REMOVED***
-    "facebook-spa": ***REMOVED***
-      "projectType": "***REMOVED***lication",
-      "schematics": ***REMOVED***
-        "@schematics/angular:***REMOVED***lication": ***REMOVED***
+  "projects": {
+    "facebook-spa": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
           "strict": true
-        ***REMOVED***
-      ***REMOVED***,
+        }
+      },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "***REMOVED***",
-      "architect": ***REMOVED***
-        "build": ***REMOVED***
+      "prefix": "app",
+      "architect": {
+        "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "options": ***REMOVED***
+          "options": {
             "outputPath": "dist/facebook-spa",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.***REMOVED***.json",
+            "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -34,61 +34,61 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": []
-          ***REMOVED***,
-          "configurations": ***REMOVED***
-            "production": ***REMOVED***
+          },
+          "configurations": {
+            "production": {
               "budgets": [
-            ***REMOVED***
+                {
                   "type": "initial",
                   "maximumWarning": "500kb",
                   "maximumError": "1mb"
-                ***REMOVED***,
-            ***REMOVED***
+                },
+                {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
                   "maximumError": "4kb"
-                ***REMOVED***
+                }
               ],
               "fileReplacements": [
-            ***REMOVED***
+                {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
-                ***REMOVED***
+                }
               ],
               "outputHashing": "all"
-            ***REMOVED***,
-            "development": ***REMOVED***
+            },
+            "development": {
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
-            ***REMOVED***
-          ***REMOVED***,
+            }
+          },
           "defaultConfiguration": "production"
-        ***REMOVED***,
-        "serve": ***REMOVED***
+        },
+        "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": ***REMOVED***
-            "production": ***REMOVED***
+          "configurations": {
+            "production": {
               "browserTarget": "facebook-spa:build:production"
-            ***REMOVED***,
-            "development": ***REMOVED***
+            },
+            "development": {
               "browserTarget": "facebook-spa:build:development"
-            ***REMOVED***
-          ***REMOVED***,
+            }
+          },
           "defaultConfiguration": "development"
-        ***REMOVED***,
-        "extract-i18n": ***REMOVED***
+        },
+        "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": ***REMOVED***
+          "options": {
             "browserTarget": "facebook-spa:build"
-          ***REMOVED***
-        ***REMOVED***,
-        "test": ***REMOVED***
+          }
+        },
+        "test": {
           "builder": "@angular-devkit/build-angular:karma",
-          "options": ***REMOVED***
+          "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
@@ -102,9 +102,9 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": []
-          ***REMOVED***
-        ***REMOVED***
-      ***REMOVED***
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+          }
+        }
+      }
+    }
+  }
+}

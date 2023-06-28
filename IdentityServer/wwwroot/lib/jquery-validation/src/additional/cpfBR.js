@@ -2,14 +2,14 @@
  * Brazillian CPF number (Cadastrado de Pessoas Físicas) is the equivalent of a Brazilian tax registration number.
  * CPF numbers have 11 digits in total: 9 numbers followed by 2 check numbers that are being used for validation.
  */
-$.validator.addMethod("cpfBR", function(value) ***REMOVED***
+$.validator.addMethod("cpfBR", function(value) {
 	// Removing special characters from value
-	value = value.replace(/([~!@#$%^&*()_+=`***REMOVED******REMOVED***\[\]\-|\\:;'<>,.\/? ])+/g, "");
+	value = value.replace(/([~!@#$%^&*()_+=`{}\[\]\-|\\:;'<>,.\/? ])+/g, "");
 
 	// Checking value to have 11 digits only
-	if (value.length !== 11) ***REMOVED***
+	if (value.length !== 11) {
 		return false;
-	***REMOVED***
+	}
 
 	var sum = 0,
 		firstCN, secondCN, checkResult, i;
@@ -17,11 +17,11 @@ $.validator.addMethod("cpfBR", function(value) ***REMOVED***
 	firstCN = parseInt(value.substring(9, 10), 10);
 	secondCN = parseInt(value.substring(10, 11), 10);
 
-	checkResult = function(sum, cn) ***REMOVED***
+	checkResult = function(sum, cn) {
 		var result = (sum * 10) % 11;
-		if ((result === 10) || (result === 11)) ***REMOVED***result = 0;***REMOVED***
+		if ((result === 10) || (result === 11)) {result = 0;}
 		return (result === cn);
-	***REMOVED***;
+	};
 
 	// Checking for dump data
 	if (value === "" ||
@@ -35,23 +35,23 @@ $.validator.addMethod("cpfBR", function(value) ***REMOVED***
 		value === "77777777777" ||
 		value === "88888888888" ||
 		value === "99999999999"
-	) ***REMOVED***
+	) {
 		return false;
-	***REMOVED***
+	}
 
 	// Step 1 - using first Check Number:
-	for ( i = 1; i <= 9; i++ ) ***REMOVED***
+	for ( i = 1; i <= 9; i++ ) {
 		sum = sum + parseInt(value.substring(i - 1, i), 10) * (11 - i);
-	***REMOVED***
+	}
 
 	// If first Check Number (CN) is valid, move to Step 2 - using second Check Number:
-	if ( checkResult(sum, firstCN) ) ***REMOVED***
+	if ( checkResult(sum, firstCN) ) {
 		sum = 0;
-		for ( i = 1; i <= 10; i++ ) ***REMOVED***
+		for ( i = 1; i <= 10; i++ ) {
 			sum = sum + parseInt(value.substring(i - 1, i), 10) * (12 - i);
-		***REMOVED***
+		}
 		return checkResult(sum, secondCN);
-	***REMOVED***
+	}
 	return false;
 
-***REMOVED***, "Please specify a valid CPF number");
+}, "Please specify a valid CPF number");

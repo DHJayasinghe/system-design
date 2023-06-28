@@ -1,4 +1,4 @@
-***REMOVED***
+{
     "name": "jquery-validation-unobtrusive",
     "version": "3.2.6",
     "homepage": "https://github.com/aspnet/jquery-validation-unobtrusive",
@@ -25,12 +25,12 @@
         "Microsoft"
     ],
     "license": "http://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm",
-    "repository": ***REMOVED***
+    "repository": {
         "type": "git",
         "url": "git://github.com/aspnet/jquery-validation-unobtrusive.git"
-    ***REMOVED***,
-    "dependencies": ***REMOVED***
+    },
+    "dependencies": {
         "jquery-validation": ">=1.8",
         "jquery": ">=1.8"
-    ***REMOVED***
-***REMOVED***
+    }
+}

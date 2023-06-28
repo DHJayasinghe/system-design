@@ -7,54 +7,54 @@
  */
 *,
 *::before,
-*::after ***REMOVED***
+*::after {
   box-sizing: border-box;
-***REMOVED***
+}
 
-html ***REMOVED***
+html {
   font-family: sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-***REMOVED***
+}
 
-article, aside, figcaption, figure, footer, header, hgroup, main, nav, section ***REMOVED***
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
-***REMOVED***
+}
 
-body ***REMOVED***
+body {
   margin: 0;
-  font-family: -***REMOVED***le-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
   text-align: left;
   background-color: #fff;
-***REMOVED***
+}
 
-[tabindex="-1"]:focus:not(:focus-visible) ***REMOVED***
+[tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0 !important;
-***REMOVED***
+}
 
-hr ***REMOVED***
+hr {
   box-sizing: content-box;
   height: 0;
   overflow: visible;
-***REMOVED***
+}
 
-h1, h2, h3, h4, h5, h6 ***REMOVED***
+h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;
-***REMOVED***
+}
 
-p ***REMOVED***
+p {
   margin-top: 0;
   margin-bottom: 1rem;
-***REMOVED***
+}
 
 abbr[title],
-abbr[data-original-title] ***REMOVED***
+abbr[data-original-title] {
   text-decoration: underline;
   -webkit-text-decoration: underline dotted;
   text-decoration: underline dotted;
@@ -62,218 +62,218 @@ abbr[data-original-title] ***REMOVED***
   border-bottom: 0;
   -webkit-text-decoration-skip-ink: none;
   text-decoration-skip-ink: none;
-***REMOVED***
+}
 
-address ***REMOVED***
+address {
   margin-bottom: 1rem;
   font-style: normal;
   line-height: inherit;
-***REMOVED***
+}
 
 ol,
 ul,
-dl ***REMOVED***
+dl {
   margin-top: 0;
   margin-bottom: 1rem;
-***REMOVED***
+}
 
 ol ol,
 ul ul,
 ol ul,
-ul ol ***REMOVED***
+ul ol {
   margin-bottom: 0;
-***REMOVED***
+}
 
-dt ***REMOVED***
+dt {
   font-weight: 700;
-***REMOVED***
+}
 
-dd ***REMOVED***
+dd {
   margin-bottom: .5rem;
   margin-left: 0;
-***REMOVED***
+}
 
-blockquote ***REMOVED***
+blockquote {
   margin: 0 0 1rem;
-***REMOVED***
+}
 
 b,
-strong ***REMOVED***
+strong {
   font-weight: bolder;
-***REMOVED***
+}
 
-small ***REMOVED***
+small {
   font-size: 80%;
-***REMOVED***
+}
 
 sub,
-sup ***REMOVED***
+sup {
   position: relative;
   font-size: 75%;
   line-height: 0;
   vertical-align: baseline;
-***REMOVED***
+}
 
-sub ***REMOVED***
+sub {
   bottom: -.25em;
-***REMOVED***
+}
 
-sup ***REMOVED***
+sup {
   top: -.5em;
-***REMOVED***
+}
 
-a ***REMOVED***
+a {
   color: #007bff;
   text-decoration: none;
   background-color: transparent;
-***REMOVED***
+}
 
-a:hover ***REMOVED***
+a:hover {
   color: #0056b3;
   text-decoration: underline;
-***REMOVED***
+}
 
-a:not([href]) ***REMOVED***
+a:not([href]) {
   color: inherit;
   text-decoration: none;
-***REMOVED***
+}
 
-a:not([href]):hover ***REMOVED***
+a:not([href]):hover {
   color: inherit;
   text-decoration: none;
-***REMOVED***
+}
 
 pre,
 code,
 kbd,
-samp ***REMOVED***
+samp {
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 1em;
-***REMOVED***
+}
 
-pre ***REMOVED***
+pre {
   margin-top: 0;
   margin-bottom: 1rem;
   overflow: auto;
-***REMOVED***
+}
 
-figure ***REMOVED***
+figure {
   margin: 0 0 1rem;
-***REMOVED***
+}
 
-img ***REMOVED***
+img {
   vertical-align: middle;
   border-style: none;
-***REMOVED***
+}
 
-svg ***REMOVED***
+svg {
   overflow: hidden;
   vertical-align: middle;
-***REMOVED***
+}
 
-table ***REMOVED***
+table {
   border-collapse: collapse;
-***REMOVED***
+}
 
-caption ***REMOVED***
+caption {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   color: #6c757d;
   text-align: left;
   caption-side: bottom;
-***REMOVED***
+}
 
-th ***REMOVED***
+th {
   text-align: inherit;
-***REMOVED***
+}
 
-label ***REMOVED***
+label {
   display: inline-block;
   margin-bottom: 0.5rem;
-***REMOVED***
+}
 
-button ***REMOVED***
+button {
   border-radius: 0;
-***REMOVED***
+}
 
-button:focus ***REMOVED***
+button:focus {
   outline: 1px dotted;
   outline: 5px auto -webkit-focus-ring-color;
-***REMOVED***
+}
 
 input,
 button,
 select,
 optgroup,
-textarea ***REMOVED***
+textarea {
   margin: 0;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
-***REMOVED***
+}
 
 button,
-input ***REMOVED***
+input {
   overflow: visible;
-***REMOVED***
+}
 
 button,
-select ***REMOVED***
+select {
   text-transform: none;
-***REMOVED***
+}
 
-select ***REMOVED***
+select {
   word-wrap: normal;
-***REMOVED***
+}
 
 button,
 [type="button"],
 [type="reset"],
-[type="submit"] ***REMOVED***
-  -webkit-***REMOVED***earance: button;
-***REMOVED***
+[type="submit"] {
+  -webkit-appearance: button;
+}
 
 button:not(:disabled),
 [type="button"]:not(:disabled),
 [type="reset"]:not(:disabled),
-[type="submit"]:not(:disabled) ***REMOVED***
+[type="submit"]:not(:disabled) {
   cursor: pointer;
-***REMOVED***
+}
 
 button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
 [type="reset"]::-moz-focus-inner,
-[type="submit"]::-moz-focus-inner ***REMOVED***
+[type="submit"]::-moz-focus-inner {
   padding: 0;
   border-style: none;
-***REMOVED***
+}
 
 input[type="radio"],
-input[type="checkbox"] ***REMOVED***
+input[type="checkbox"] {
   box-sizing: border-box;
   padding: 0;
-***REMOVED***
+}
 
 input[type="date"],
 input[type="time"],
 input[type="datetime-local"],
-input[type="month"] ***REMOVED***
-  -webkit-***REMOVED***earance: listbox;
-***REMOVED***
+input[type="month"] {
+  -webkit-appearance: listbox;
+}
 
-textarea ***REMOVED***
+textarea {
   overflow: auto;
   resize: vertical;
-***REMOVED***
+}
 
-fieldset ***REMOVED***
+fieldset {
   min-width: 0;
   padding: 0;
   margin: 0;
   border: 0;
-***REMOVED***
+}
 
-legend ***REMOVED***
+legend {
   display: block;
   width: 100%;
   max-width: 100%;
@@ -283,45 +283,45 @@ legend ***REMOVED***
   line-height: inherit;
   color: inherit;
   white-space: normal;
-***REMOVED***
+}
 
-progress ***REMOVED***
+progress {
   vertical-align: baseline;
-***REMOVED***
+}
 
 [type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button ***REMOVED***
+[type="number"]::-webkit-outer-spin-button {
   height: auto;
-***REMOVED***
+}
 
-[type="search"] ***REMOVED***
+[type="search"] {
   outline-offset: -2px;
-  -webkit-***REMOVED***earance: none;
-***REMOVED***
+  -webkit-appearance: none;
+}
 
-[type="search"]::-webkit-search-decoration ***REMOVED***
-  -webkit-***REMOVED***earance: none;
-***REMOVED***
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
 
-::-webkit-file-upload-button ***REMOVED***
+::-webkit-file-upload-button {
   font: inherit;
-  -webkit-***REMOVED***earance: button;
-***REMOVED***
+  -webkit-appearance: button;
+}
 
-output ***REMOVED***
+output {
   display: inline-block;
-***REMOVED***
+}
 
-summary ***REMOVED***
+summary {
   display: list-item;
   cursor: pointer;
-***REMOVED***
+}
 
-template ***REMOVED***
+template {
   display: none;
-***REMOVED***
+}
 
-[hidden] ***REMOVED***
+[hidden] {
   display: none !important;
-***REMOVED***
-/*# sourceM***REMOVED***ingURL=bootstrap-reboot.css.map */
+}
+/*# sourceMappingURL=bootstrap-reboot.css.map */
