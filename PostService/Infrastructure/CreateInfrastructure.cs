@@ -21,7 +21,7 @@ public class CreateInfrastructure
     [FunctionName(nameof(CreateInfrastructure))]
     public async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "posts/infrastructure")] HttpRequest req,
-        [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
+        [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.PostsContainer, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
     {
         log.LogInformation("C# HTTP trigger function processed a request.");
@@ -29,7 +29,13 @@ public class CreateInfrastructure
         var tasks = new List<Task>();
         await cosmosClient.CreateDatabaseIfNotExistsAsync(CosmosDbConfigs.DatabaseName);
         tasks.Add(cosmosClient.GetDatabase(CosmosDbConfigs.DatabaseName)
-            .DefineContainer(name: CosmosDbConfigs.ContainerName, partitionKeyPath: $"/{nameof(Post.PostId)}")
+            .DefineContainer(name: CosmosDbConfigs.PostsContainer, partitionKeyPath: $"/{nameof(Post.PostId)}")
+            .WithUniqueKey()
+                .Path($"/{nameof(Post.AuthorId)}")
+            .Attach()
+            .CreateIfNotExistsAsync());
+        tasks.Add(cosmosClient.GetDatabase(CosmosDbConfigs.DatabaseName)
+            .DefineContainer(name: CosmosDbConfigs.TimelineContainer, partitionKeyPath: $"/{nameof(Timeline.Key)}")
             .WithUniqueKey()
                 .Path($"/{nameof(Post.AuthorId)}")
             .Attach()

@@ -35,7 +35,7 @@ public class AddPostsFunction
     [FunctionName(nameof(AddPostsFunction))]
     public async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "posts")] AddPostRequest req,
-        [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
+        [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.PostsContainer, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
     {
         log.LogInformation("{0} HTTP trigger processed a request.", nameof(AddPostsFunction));
@@ -57,7 +57,7 @@ public class AddPostsFunction
         entity.AuthorId = _currentUser.Id;
 
         var result = await cosmosClient
-          .GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.ContainerName)
+          .GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.PostsContainer)
           .CreateItemAsync(entity, new PartitionKey(entity.PostId));
 
         return new OkObjectResult(result.Resource.PostId);

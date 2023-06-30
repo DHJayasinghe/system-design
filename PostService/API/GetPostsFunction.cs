@@ -17,7 +17,7 @@ public static class GetPostsFunction
     [FunctionName(nameof(GetPostsFunction))]
     public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "posts")] HttpRequest req,
-        [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
+        [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.PostsContainer, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
     {
         log.LogInformation("{0} HTTP trigger processed a request.", nameof(GetPostsFunction));
@@ -37,8 +37,8 @@ public static class GetPostsFunction
 
     private static FeedIterator<Post> GetRecentPosts(CosmosClient cosmosClient)
     {
-        var container = cosmosClient.GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.ContainerName);
-        var query = $"SELECT * FROM {nameof(CosmosDbConfigs.ContainerName)}";
+        var container = cosmosClient.GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.PostsContainer);
+        var query = $"SELECT * FROM {nameof(CosmosDbConfigs.PostsContainer)}";
 
         return container.GetItemQueryIterator<Post>(
                      queryDefinition: new QueryDefinition(

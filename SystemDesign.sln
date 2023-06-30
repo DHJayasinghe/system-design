@@ -34,7 +34,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.Core", "IdentityServer.Core\IdentityServer.Core.csproj", "{A6B0C9EC-A433-439D-A615-27DBE3081C24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedKernal", "SharedKernal\SharedKernal.csproj", "{F4C82775-A599-4054-8568-3218467F4F07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernal", "SharedKernal\SharedKernal.csproj", "{F4C82775-A599-4054-8568-3218467F4F07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
