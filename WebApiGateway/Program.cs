@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using WebApiGateway;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,9 +32,12 @@ builder.Services
             .AllowAnyMethod()
             .AllowAnyHeader()
         );
-    });
+    })
+    .AddScoped<CurrentUser>()
+    .AddHttpContextAccessor();
 builder.Services
-    .AddOcelot(builder.Configuration);
+    .AddOcelot(builder.Configuration)
+    .AddDelegatingHandler<DownstreamRequestHandler>(global: true);
 
 var app = builder.Build();
 
