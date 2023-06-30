@@ -12,6 +12,7 @@ using PostService.Models;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
 using PostService.API.Models;
+using SharedKernal;
 
 namespace PostService;
 
@@ -19,11 +20,16 @@ public class AddPostsFunction
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly IConfiguration _configuration;
+    private readonly ICurrentUser _currentUser;
 
-    public AddPostsFunction(IHttpClientFactory httpClientFactory, IConfiguration configuration)
+    public AddPostsFunction(
+        IHttpClientFactory httpClientFactory,
+        IConfiguration configuration,
+        ICurrentUser currentUser)
     {
         _httpClientFactory = httpClientFactory;
         _configuration = configuration;
+        _currentUser = currentUser;
     }
 
     [FunctionName(nameof(AddPostsFunction))]
@@ -48,6 +54,7 @@ public class AddPostsFunction
 
         var entity = Post.Map(req);
         entity.Assets = assets;
+        entity.AuthorId = _currentUser.Id;
 
         var result = await cosmosClient
           .GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.ContainerName)

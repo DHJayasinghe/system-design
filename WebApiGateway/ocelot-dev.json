@@ -12,7 +12,7 @@
         }
       ],
       "AuthenticationOptions": {
-        "AuthenticationProviderKey": "JwtBearer",
+        "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
       }
     },
@@ -28,7 +28,7 @@
         }
       ],
       "AuthenticationOptions": {
-        "AuthenticationProviderKey": "JwtBearer",
+        "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
       }
     },
@@ -44,7 +44,7 @@
         }
       ],
       "AuthenticationOptions": {
-        "AuthenticationProviderKey": "JwtBearer",
+        "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
       }
     },
@@ -60,7 +60,7 @@
         }
       ],
       "AuthenticationOptions": {
-        "AuthenticationProviderKey": "JwtBearer",
+        "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
       }
     },
@@ -76,7 +76,7 @@
         }
       ],
       "AuthenticationOptions": {
-        "AuthenticationProviderKey": "JwtBearer",
+        "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
       }
     },
@@ -92,7 +92,7 @@
         }
       ],
       "AuthenticationOptions": {
-        "AuthenticationProviderKey": "JwtBearer",
+        "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
       }
     }
