@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using UserService.Models;
 using System.Collections.Generic;
-using System.Linq;
 using Azure.Data.Tables;
 using Azure;
 

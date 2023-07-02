@@ -1,0 +1,13 @@
+<div class="add-friends-container">
+  <h2>Add Friends</h2>
+  <div class="friend-suggestions">
+    <div *ngFor="let suggestion of friendSuggestions" class="friend-suggestion">
+      <img [src]="suggestion.profilePic" alt="Profile Picture" class="profile-pic">
+      <div class="friend-details">
+        <h3>{{ suggestion.name }}</h3>
+        <p>{{ suggestion.mutualFriends }} mutual friends</p>
+        <button (click)="addFriend(suggestion)">Add Friend</button>
+      </div>
+    </div>
+  </div>
+</div>
