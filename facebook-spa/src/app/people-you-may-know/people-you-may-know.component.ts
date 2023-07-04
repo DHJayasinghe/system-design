@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-people-you-may-know',
@@ -6,10 +8,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./people-you-may-know.component.css']
 })
 export class PeopleYouMayKnowComponent implements OnInit {
-  friendSuggestions= [{ profilePic: '', name: 'Jane', mutualFriends:'John'}]
-  constructor() { }
+  friendSuggestions: User[] = [];
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.http.get<User[]>(`${environment.baseUrl}/users`).subscribe(result => {
+      console.log(result);
+      this.friendSuggestions = result;
+    });
   }
-  addFriend(d:any){}
+
+  addFriend(d: User) {
+    this.http.post(`${environment.baseUrl}/friends`, {
+      friendId: d.id
+    }).subscribe({
+      next: () => { },
+      error: (error) => {
+
+      }
+    })
+
+  }
+}
+
+export interface User {
+  id: string,
+  email: string,
+  phoneNumber: string,
+  firstName: string,
+  surname: string,
+  profilePic: string,
+  mutualFriends: string[]
 }

@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Gremlin.Net.Driver;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
@@ -13,11 +16,19 @@ public class AddFriendsFunction
 {
     private readonly ILogger _logger;
     private readonly GremlinService _gremlinService;
+    private readonly HttpClient _httpClient;
+    private readonly IConfiguration _configuration;
 
-    public AddFriendsFunction(ILoggerFactory loggerFactory, GremlinService gremlinService)
+    public AddFriendsFunction(
+        ILoggerFactory loggerFactory,
+        IHttpClientFactory httpClientFactory,
+        GremlinService gremlinService,
+        IConfiguration configuration)
     {
         _gremlinService = gremlinService;
-        _logger = loggerFactory.CreateLogger<GetFriendsFunction>();
+        _logger = loggerFactory.CreateLogger<AddFriendsFunction>();
+        _httpClient = httpClientFactory.CreateClient();
+        _configuration = configuration;
     }
 
     [Function(nameof(AddFriendsFunction))]
@@ -26,14 +37,21 @@ public class AddFriendsFunction
     {
         _logger.LogInformation("C# HTTP trigger function processed a {0} request.", nameof(AddFriendsFunction));
 
+        var requesterId = GetNameIdentifier(req);
         var request = JsonConvert.DeserializeObject<AddFriendRequest>(await new StreamReader(req.Body).ReadToEndAsync());
+
+        var requesterResponse = await _httpClient.GetAsync($"{_configuration["UserServiceBaseUrl"]}/users/{requesterId}");
+        var friendResponse = await _httpClient.GetAsync($"{_configuration["UserServiceBaseUrl"]}/users/{request.FriendId}");
+
+        var requester = JsonConvert.DeserializeObject<UserAccount>(await requesterResponse.Content.ReadAsStringAsync());
+        var friend = JsonConvert.DeserializeObject<UserAccount>(await friendResponse.Content.ReadAsStringAsync());
 
         var persons = new string[]
         {
-            string.Format(_gremlinService.UpsertPersonQuery,request.UserId,request.UserName,request.UserEmail),
-            string.Format(_gremlinService.UpsertPersonQuery,request.FriendId,request.FriendName,request.FriendEmail)
+            string.Format(_gremlinService.UpsertPersonQuery,requester.Id,requester.Username, requester.Email),
+            string.Format(_gremlinService.UpsertPersonQuery,friend.Id,friend.Username, friend.Email)
         };
-        var friendship = string.Format(_gremlinService.AddFriendshipQuery, request.UserId, request.FriendId);
+        var friendship = string.Format(_gremlinService.AddFriendshipQuery, requester.Id, friend.Id);
 
         using (var gremlinClient = _gremlinService.CreateClient())
         {
@@ -44,14 +62,25 @@ public class AddFriendsFunction
 
         return req.OkResult();
     }
+
+    private static string GetNameIdentifier(HttpRequestData req)
+    {
+        var headers = req.Headers;
+        headers.TryGetValues("user-id", out IEnumerable<string> userId);
+        return userId.First();
+    }
 }
 
 internal record AddFriendRequest
 {
-    public string UserId { get; init; }
-    public string UserEmail { get; init; }
-    public string UserName { get; init; }
     public string FriendId { get; init; }
-    public string FriendName { get; init; }
-    public string FriendEmail { get; init; }
+}
+
+internal record UserAccount
+{
+    public string Id { get; init; }
+    public string Email { get; init; }
+    public string FirstName { get; init; }
+    public string Surname { get; init; }
+    public string Username { get; init; }
 }

@@ -36,6 +36,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.Core", "Iden
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernal", "SharedKernal\SharedKernal.csproj", "{F4C82775-A599-4054-8568-3218467F4F07}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FriendshipService", "FriendshipService\FriendshipService.csproj", "{87E74190-1F6D-4999-906A-0EDE5F39F76D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -132,6 +134,14 @@ Global
 		{F4C82775-A599-4054-8568-3218467F4F07}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F4C82775-A599-4054-8568-3218467F4F07}.Release|x64.ActiveCfg = Release|Any CPU
 		{F4C82775-A599-4054-8568-3218467F4F07}.Release|x64.Build.0 = Release|Any CPU
+		{87E74190-1F6D-4999-906A-0EDE5F39F76D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87E74190-1F6D-4999-906A-0EDE5F39F76D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87E74190-1F6D-4999-906A-0EDE5F39F76D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{87E74190-1F6D-4999-906A-0EDE5F39F76D}.Debug|x64.Build.0 = Debug|Any CPU
+		{87E74190-1F6D-4999-906A-0EDE5F39F76D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87E74190-1F6D-4999-906A-0EDE5F39F76D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87E74190-1F6D-4999-906A-0EDE5F39F76D}.Release|x64.ActiveCfg = Release|Any CPU
+		{87E74190-1F6D-4999-906A-0EDE5F39F76D}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -147,6 +157,7 @@ Global
 		{1111C0C5-0339-44E6-910B-9238FF3D66DB} = {45345C67-3148-40BF-9C6C-5473D1DB28A5}
 		{A6B0C9EC-A433-439D-A615-27DBE3081C24} = {45345C67-3148-40BF-9C6C-5473D1DB28A5}
 		{F4C82775-A599-4054-8568-3218467F4F07} = {45345C67-3148-40BF-9C6C-5473D1DB28A5}
+		{87E74190-1F6D-4999-906A-0EDE5F39F76D} = {45345C67-3148-40BF-9C6C-5473D1DB28A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0DF83925-0942-497F-BA27-4F22C7B65EBE}
