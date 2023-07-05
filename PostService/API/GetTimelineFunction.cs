@@ -39,7 +39,7 @@ public class GetTimelineFunction
         var posts = await GetTimelinePostsAsync(cosmosClient, activities);
         posts.ForEach(post => post.Assets = post.Assets?.Select(asset => $"{_configuration["AssetsBaseUrl"]}/{asset}").ToList());
 
-        return new OkObjectResult(posts);
+        return new OkObjectResult(posts.OrderByDescending(post=>post.CreatedAt));
     }
 
     private static async Task<List<Post>> GetTimelinePostsAsync(CosmosClient cosmosClient, List<TimelineActivity> activities)

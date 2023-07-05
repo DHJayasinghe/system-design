@@ -19,6 +19,8 @@ import { SignInCheckComponent } from './sign-in-check/sign-in-check.component';
 import { PeopleYouMayKnowComponent } from './people-you-may-know/people-you-may-know.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list'
+import { MatCardModule } from '@angular/material/card'
+import { MatButtonModule } from '@angular/material/button'
 
 @NgModule({
   declarations: [									
@@ -54,7 +56,9 @@ import { MatGridListModule } from '@angular/material/grid-list'
       },
     }),
     BrowserAnimationsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true } ],
   bootstrap: [AppComponent]

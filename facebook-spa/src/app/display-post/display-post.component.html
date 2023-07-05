@@ -1,28 +1,30 @@
 <div class="post"
   *ngIf="post">
-  <div class="post-header">
-    <img src="https://ui-avatars.com/api/?name={{post.authorName}}&background=random&rounded=true&format=png"
-      alt="User Avatar"
-      class="avatar">
-    <div class="post-author">
-      <h4>{{post.authorName}}</h4>
-      <p>Posted {{getPostedTime(post.createdAt)}}</p>
-    </div>
-  </div>
-  <div class="post-content">
-    <img *ngFor="let asset of post.assets"
-      [src]="asset"
-      alt="Posted Asset"
-      class="post-asset">
-    <p>{{post.content}}</p>
-  </div>
-  <div class="post-actions">
-    <span class="likes" *ngIf="reactionCount?.totalReactions">{{reactionCount?.totalReactions}} likes</span>
-    <button class="like-button" (click)="showReactionButtons=!showReactionButtons">Like</button>
-    <button class="comment-button"
-      (click)="showCommentSection=true">Comment</button>
-  </div>
-  <app-add-reaction [postId]="post.id" *ngIf="showReactionButtons" (changed)="getReactionCount()"></app-add-reaction>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar><img
+          src="https://ui-avatars.com/api/?name={{post.authorName}}&background=random&rounded=true&format=png"></div>
+      <mat-card-title>{{post.authorName}}</mat-card-title>
+      <mat-card-subtitle>Posted {{getPostedTime(post.createdAt)}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image
+      *ngFor="let asset of post.assets"
+      [src]="asset">
+    <mat-card-content>
+      <p>{{post.content}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <span class="likes"
+        *ngIf="reactionCount?.totalReactions">{{reactionCount?.totalReactions}} likes</span>
+      <button mat-button
+        (click)="showReactionButtons=!showReactionButtons">LIKE</button>
+      <button mat-button
+        (click)="showCommentSection=true">Comment</button>
+      <app-add-reaction [postId]="post.id"
+        *ngIf="showReactionButtons"
+        (changed)="getReactionCount()"></app-add-reaction>
+    </mat-card-actions>
+  </mat-card>
 </div>
 <app-view-comments *ngIf="showCommentSection"
   [postId]="post?.id"
