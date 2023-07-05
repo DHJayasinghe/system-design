@@ -35,13 +35,10 @@ public class CreateInfrastructure
             .Attach()
             .CreateIfNotExistsAsync());
         tasks.Add(cosmosClient.GetDatabase(CosmosDbConfigs.DatabaseName)
-            .DefineContainer(name: CosmosDbConfigs.TimelineContainer, partitionKeyPath: $"/{nameof(Timeline.Key)}")
-            .WithUniqueKey()
-                .Path($"/{nameof(Post.AuthorId)}")
-            .Attach()
+            .DefineContainer(name: CosmosDbConfigs.TimelineContainer, partitionKeyPath: $"/{nameof(TimelineActivity.Key)}")
             .CreateIfNotExistsAsync());
         tasks.Add(cosmosClient.GetDatabase(CosmosDbConfigs.DatabaseName)
-            .DefineContainer(name: nameof(Comment), partitionKeyPath: $"/{nameof(Comment.PostId)}")
+            .DefineContainer(name: CosmosDbConfigs.CommentContainer, partitionKeyPath: $"/{nameof(Comment.PostId)}")
             .WithUniqueKey()
                 .Path($"/{nameof(Comment.CommentId)}")
             .Attach()
