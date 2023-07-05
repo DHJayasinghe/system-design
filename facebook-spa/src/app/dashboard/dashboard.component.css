@@ -1,22 +1,21 @@
 .scrollable-container {
-  max-height: 300px; /* Set the desired maximum height */
+  max-height: 70vh; /* Set the desired maximum height */
   overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .container {
-  display: grid;
-  grid-template-columns: 1fr 2fr; /* Divide the container into two columns */
-  height: 100vh; /* Set the container height to full window height */
+    display: flex;
+  flex-wrap: wrap;
+  height: 100vh; 
 }
 
 .friends-section {
+     flex: 1 1 30%;
   background-color: #e1e1e1;
 }
 
-.right-section {
-  display: grid;
-  grid-template-rows: min-content 1fr; /* Divide the right section into two rows */
-  grid-gap: 10px; /* Set the gap between the two rows */
+.left-section {
+ flex: 1 1 70%;
 }
 
 .post-section {
