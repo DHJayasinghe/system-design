@@ -13,7 +13,6 @@ export class PeopleYouMayKnowComponent implements OnInit {
 
   ngOnInit() {
     this.http.get<User[]>(`${environment.baseUrl}/users`).subscribe(result => {
-      console.log(result);
       this.friendSuggestions = result;
     });
   }

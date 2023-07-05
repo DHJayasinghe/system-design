@@ -60,6 +60,6 @@ public class AddPostsFunction
           .GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.PostsContainer)
           .CreateItemAsync(entity, new PartitionKey(entity.PostId));
 
-        return new OkObjectResult(result.Resource.PostId);
+        return new OkObjectResult(new { result.Resource.PostId });
     }
 }
