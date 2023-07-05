@@ -17,7 +17,7 @@ export class TimelineComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.http.get<Post[]>(`${environment.baseUrl}/posts`)
+    this.http.get<Post[]>(`${environment.baseUrl}/posts/timeline`)
       .subscribe(
         (posts) => {
           this.posts = posts;

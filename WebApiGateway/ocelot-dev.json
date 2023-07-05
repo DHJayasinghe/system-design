@@ -12,7 +12,7 @@
         }
       ],
       "AuthenticationOptions": {
-        "AuthenticationProviderKey": "JwtBearer",
+        "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
       }
     },
@@ -28,7 +28,7 @@
         }
       ],
       "AuthenticationOptions": {
-        "AuthenticationProviderKey": "JwtBearer",
+        "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
       }
     },
@@ -44,7 +44,7 @@
         }
       ],
       "AuthenticationOptions": {
-        "AuthenticationProviderKey": "JwtBearer",
+        "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
       }
     },
@@ -60,7 +60,7 @@
         }
       ],
       "AuthenticationOptions": {
-        "AuthenticationProviderKey": "JwtBearer",
+        "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
       }
     },
@@ -76,7 +76,7 @@
         }
       ],
       "AuthenticationOptions": {
-        "AuthenticationProviderKey": "JwtBearer",
+        "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
       }
     },
@@ -92,7 +92,55 @@
         }
       ],
       "AuthenticationOptions": {
-        "AuthenticationProviderKey": "JwtBearer",
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/users",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamPathTemplate": "/users",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8086"
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/users/{catchAll}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamPathTemplate": "/users/{catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8086"
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/friends",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamPathTemplate": "/friends",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8087"
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
       }
     }

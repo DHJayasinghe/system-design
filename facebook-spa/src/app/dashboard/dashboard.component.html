@@ -1,2 +1,31 @@
-<app-create-post (posted)="refreshTimeline()"></app-create-post>
-<app-timeline [version]="timelineVersion"></app-timeline>
+<!-- <mat-grid-list cols="4">
+    <mat-grid-tile colspan="3"
+        rowspan="1">
+        <app-create-post (posted)="refreshTimeline()"></app-create-post>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1"
+        rowspan="2">
+        <app-people-you-may-know></app-people-you-may-know>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3"
+        rowspan="1">
+        <div class="scrollable-container">
+            <app-timeline [version]="timelineVersion"></app-timeline>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list> -->
+<div class="container">
+    <div class="right-section">
+        <div class="post-section">
+            <app-create-post (posted)="refreshTimeline()"></app-create-post>
+        </div>
+        <div class="timeline-section">
+            <div class="scrollable-container">
+                <app-timeline [version]="timelineVersion"></app-timeline>
+            </div>
+        </div>
+    </div>
+    <div class="friends-section">
+        <app-people-you-may-know></app-people-you-may-know>
+    </div>
+</div>

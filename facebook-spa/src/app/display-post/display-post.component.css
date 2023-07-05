@@ -115,4 +115,8 @@
   margin-top: 10px;
 }
 
+.example-card {
+  max-width: 600px;
+}
+
 

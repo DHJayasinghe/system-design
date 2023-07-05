@@ -12,6 +12,7 @@ public class Program
             .ConfigureFunctionsWorkerDefaults((builderContext, builder) =>
             {
                 builder.Services.AddSingleton<GremlinService>();
+                builder.Services.AddHttpClient();
             })
             .Build();
 

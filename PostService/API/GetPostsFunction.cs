@@ -9,15 +9,20 @@ using Microsoft.Azure.Cosmos;
 using PostService.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Extensions.Configuration;
 
 namespace PostService.API;
 
-public static class GetPostsFunction
+public class GetPostsFunction
 {
+    private readonly IConfiguration _configuration;
+
+    public GetPostsFunction(IConfiguration configuration) => _configuration = configuration;
+
     [FunctionName(nameof(GetPostsFunction))]
-    public static async Task<IActionResult> Run(
+    public async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "posts")] HttpRequest req,
-        [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
+        [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.PostsContainer, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
     {
         log.LogInformation("{0} HTTP trigger processed a request.", nameof(GetPostsFunction));
@@ -29,7 +34,7 @@ public static class GetPostsFunction
             var response = await feed.ReadNextAsync();
             foreach (var post in response) posts.Add(post);
         }
-        posts.ForEach(post => post.Assets = post.Assets?.Select(asset => "https://simadfutilityfuncaue.blob.core.windows.net/" + asset).ToList());
+        posts.ForEach(post => post.Assets = post.Assets?.Select(asset => $"{_configuration["AssetsBaseUrl"]}/{asset}").ToList());
 
         return new OkObjectResult(posts.OrderByDescending(post => post.CreatedAt));
     }
@@ -37,8 +42,8 @@ public static class GetPostsFunction
 
     private static FeedIterator<Post> GetRecentPosts(CosmosClient cosmosClient)
     {
-        var container = cosmosClient.GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.ContainerName);
-        var query = $"SELECT * FROM {nameof(CosmosDbConfigs.ContainerName)}";
+        var container = cosmosClient.GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.PostsContainer);
+        var query = $"SELECT * FROM {nameof(CosmosDbConfigs.PostsContainer)}";
 
         return container.GetItemQueryIterator<Post>(
                      queryDefinition: new QueryDefinition(

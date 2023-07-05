@@ -1,0 +1,28 @@
+.scrollable-container {
+  max-height: 300px; /* Set the desired maximum height */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* Divide the container into two columns */
+  height: 100vh; /* Set the container height to full window height */
+}
+
+.friends-section {
+  background-color: #e1e1e1;
+}
+
+.right-section {
+  display: grid;
+  grid-template-rows: min-content 1fr; /* Divide the right section into two rows */
+  grid-gap: 10px; /* Set the gap between the two rows */
+}
+
+.post-section {
+  background-color: #f1f1f1;
+}
+
+.timeline-section {
+  background-color: #d1d1d1;
+}

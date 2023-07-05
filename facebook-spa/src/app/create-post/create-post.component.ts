@@ -101,12 +101,12 @@ export class CreatePostComponent implements OnInit {
     this.http.post<any>(`${environment.baseUrl}/posts`, body, { headers })
       .subscribe(
         {
-          next: (response) => {
+          next: response => {
             console.log(response);
             this.newPost();
           },
-          error: (error) => {
-
+          error: error => {
+            console.error(error);
           }
         }
       );

@@ -7,6 +7,7 @@
     "CosmosDB:Host": "localhost",
     "CosmosDB:Port": "8901",
     "CosmosDB:EnableSSL": false,
-    "CosmosDB:ContainerLink": "/dbs/db1/colls/friends"
+    "CosmosDB:ContainerLink": "/dbs/db1/colls/friends",
+    "UserServiceBaseUrl": "http://localhost:8086"
   }
 }

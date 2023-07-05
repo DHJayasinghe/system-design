@@ -29,7 +29,7 @@ public class GetCommentsFunction
     public async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "posts/{postId}/comments")] HttpRequest req,
         Guid postId,
-        [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: nameof(Comment), Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
+        [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.CommentContainer, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
     {
         log.LogInformation("{0} HTTP trigger processed a request.", nameof(GetCommentsFunction));

@@ -16,9 +16,14 @@ import { AuthInterceptor, AuthModule, LogLevel } from 'angular-auth-oidc-client'
 import { environment } from 'src/environments/environment';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignInCheckComponent } from './sign-in-check/sign-in-check.component';
+import { PeopleYouMayKnowComponent } from './people-you-may-know/people-you-may-know.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatGridListModule } from '@angular/material/grid-list'
+import { MatCardModule } from '@angular/material/card'
+import { MatButtonModule } from '@angular/material/button'
 
 @NgModule({
-  declarations: [								
+  declarations: [									
     AppComponent,
       CreatePostComponent,
       DisplayPostComponent,
@@ -27,7 +32,8 @@ import { SignInCheckComponent } from './sign-in-check/sign-in-check.component';
       ViewCommentsComponent,
       AddReactionComponent,
       SignInComponent,
-      SignInCheckComponent
+      SignInCheckComponent,
+      PeopleYouMayKnowComponent
    ],
   imports: [
     BrowserModule,
@@ -48,7 +54,11 @@ import { SignInCheckComponent } from './sign-in-check/sign-in-check.component';
         logLevel: LogLevel.Debug,
         secureRoutes:[environment.baseUrl]
       },
-    })
+    }),
+    BrowserAnimationsModule,
+    MatGridListModule,
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true } ],
   bootstrap: [AppComponent]

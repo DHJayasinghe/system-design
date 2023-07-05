@@ -45,9 +45,7 @@ export class DisplayPostComponent implements OnInit {
 
   public getReactionCount() {
     this.http.get<ReactionCount[]>(`${environment.baseUrl}/reactions?postId=${this.post?.id}`).subscribe(result => {
-      console.log(result);
       this.reactionCount = result.filter(d => d.postId == this.post?.id && d.commentId == null)[0];
-      console.log(this.reactionCount);
     });
   }
 }

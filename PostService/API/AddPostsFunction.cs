@@ -12,6 +12,7 @@ using PostService.Models;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
 using PostService.API.Models;
+using SharedKernal;
 
 namespace PostService;
 
@@ -19,17 +20,22 @@ public class AddPostsFunction
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly IConfiguration _configuration;
+    private readonly ICurrentUser _currentUser;
 
-    public AddPostsFunction(IHttpClientFactory httpClientFactory, IConfiguration configuration)
+    public AddPostsFunction(
+        IHttpClientFactory httpClientFactory,
+        IConfiguration configuration,
+        ICurrentUser currentUser)
     {
         _httpClientFactory = httpClientFactory;
         _configuration = configuration;
+        _currentUser = currentUser;
     }
 
     [FunctionName(nameof(AddPostsFunction))]
     public async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "posts")] AddPostRequest req,
-        [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.ContainerName, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
+        [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.PostsContainer, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
         ILogger log)
     {
         log.LogInformation("{0} HTTP trigger processed a request.", nameof(AddPostsFunction));
@@ -48,11 +54,12 @@ public class AddPostsFunction
 
         var entity = Post.Map(req);
         entity.Assets = assets;
+        entity.AuthorId = _currentUser.Id;
 
         var result = await cosmosClient
-          .GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.ContainerName)
+          .GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.PostsContainer)
           .CreateItemAsync(entity, new PartitionKey(entity.PostId));
 
-        return new OkObjectResult(result.Resource.PostId);
+        return new OkObjectResult(new { result.Resource.PostId });
     }
 }
