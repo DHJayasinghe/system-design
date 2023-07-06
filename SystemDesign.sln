@@ -12,11 +12,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserService", "UserService\UserService.csproj", "{AED95450-A1AF-430A-81B2-EEDA3E209AEA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LikeService", "LikeService\LikeService.csproj", "{2925CAF9-4DA3-467F-888F-53A9F81BC262}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactionService", "LikeService\ReactionService.csproj", "{2925CAF9-4DA3-467F-888F-53A9F81BC262}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "IntegrationTests", "{481BB67A-8038-45BA-B759-1B66A877CCA4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LikeServiceIntegrationTest", "LikeServiceIntegrationTest\LikeServiceIntegrationTest.csproj", "{576A7794-1C20-475F-97D8-B6B7C26E3AB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactionServiceIntegrationTest", "LikeServiceIntegrationTest\ReactionServiceIntegrationTest.csproj", "{576A7794-1C20-475F-97D8-B6B7C26E3AB2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConnectingAzureFunctionsWithOnPrem", "ConnectingAzureFunctionsWithOnPrem\ConnectingAzureFunctionsWithOnPrem.csproj", "{200C5F10-DF96-4837-9FA7-A4D31B7EFC4E}"
 EndProject
