@@ -2,6 +2,8 @@
 
 This repository is about Facebook system design on core functionalities using Azure technologies.
 
+![Architecture Diagram](architecture.png)
+
 ## Functional Requirements
 1. Post (Text + Image + Video) - Should be able to do a Post with a Video or Image
 2. Add Friends - Should be able to Add other users as Friends
