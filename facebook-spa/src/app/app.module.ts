@@ -21,20 +21,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list'
 import { MatCardModule } from '@angular/material/card'
 import { MatButtonModule } from '@angular/material/button'
+import { TopToolbarComponent } from './layout/top-toolbar/top-toolbar.component';
 
 @NgModule({
-  declarations: [									
+  declarations: [
     AppComponent,
-      CreatePostComponent,
-      DisplayPostComponent,
-      TimelineComponent,
-      DashboardComponent,
-      ViewCommentsComponent,
-      AddReactionComponent,
-      SignInComponent,
-      SignInCheckComponent,
-      PeopleYouMayKnowComponent
-   ],
+    CreatePostComponent,
+    DisplayPostComponent,
+    TimelineComponent,
+    DashboardComponent,
+    ViewCommentsComponent,
+    AddReactionComponent,
+    SignInComponent,
+    SignInCheckComponent,
+    PeopleYouMayKnowComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -51,16 +52,17 @@ import { MatButtonModule } from '@angular/material/button'
         responseType: 'code',
         silentRenew: true,
         useRefreshToken: true,
-        logLevel: LogLevel.Debug,
-        secureRoutes:[environment.baseUrl]
+        logLevel: LogLevel.Error,
+        secureRoutes: [environment.baseUrl]
       },
     }),
     BrowserAnimationsModule,
     MatGridListModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    TopToolbarComponent
   ],
-  providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true } ],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

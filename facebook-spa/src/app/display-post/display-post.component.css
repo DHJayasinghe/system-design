@@ -1,16 +1,3 @@
-.post {
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin-bottom: 20px;
-  background-color: #fff;
-}
-
-.post-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
 .avatar {
   width: 40px;
   height: 40px;
@@ -35,6 +22,7 @@
 .likes {
   font-weight: bold;
   margin-right: 10px;
+  margin-left: 10px;
 }
 
 .like-button,
@@ -115,8 +103,22 @@
   margin-top: 10px;
 }
 
-.example-card {
+.post-card {
   max-width: 600px;
+  margin: 10px;
 }
 
+.mat-mdc-card-avatar img{
+  width: 100%;
+}
 
+.image-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+
+.image-container .image{
+ width: 100%;
+  height: auto;
+}

@@ -25,7 +25,8 @@ builder
                 ValidateIssuer = false,
             };
         });
-builder.Services
+builder
+    .Services
        .AddCors(options =>
        {
            options.AddDefaultPolicy(policy => policy
@@ -34,7 +35,6 @@ builder.Services
                .AllowAnyHeader()
            );
        })
-
        .AddOcelot(builder.Configuration);
 
 var app = builder.Build();

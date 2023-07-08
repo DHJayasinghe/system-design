@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginResponse, OidcSecurityService } from 'angular-auth-oidc-client';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,11 +9,10 @@ import { LoginResponse, OidcSecurityService } from 'angular-auth-oidc-client';
 })
 export class SignInComponent implements OnInit {
 
-  constructor(public oidcSecurityService: OidcSecurityService, private router:Router) { }
+  constructor(public oidcSecurityService: OidcSecurityService, private router: Router) { }
   ngOnInit() {
 
-    this.oidcSecurityService.checkAuth().subscribe((loginResponse: LoginResponse) => {
-      console.log(loginResponse);
+    this.oidcSecurityService.checkAuth().subscribe(() => {
     });
 
     this.oidcSecurityService.isAuthenticated().subscribe(isAuthenticated => {
