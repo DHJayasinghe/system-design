@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using PostService.Models;
 using PostService.API.Models;
 using SharedKernal;
+using Microsoft.Azure.WebJobs.ServiceBus;
+using PostService.Events;
 
 namespace PostService.API;
 
@@ -21,7 +23,7 @@ public class AddCommentsFunction
     private readonly ICurrentUser _currentUser;
 
     public AddCommentsFunction(
-        IHttpClientFactory httpClientFactory, 
+        IHttpClientFactory httpClientFactory,
         IConfiguration configuration,
         ICurrentUser currentUser)
     {
@@ -35,6 +37,7 @@ public class AddCommentsFunction
         [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "posts/{postId}/comments")] AddCommentRequest req,
         Guid postId,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.CommentContainer, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
+        [ServiceBus(queueOrTopicName: "post", entityType: ServiceBusEntityType.Topic, Connection = "ServiceBus")] IAsyncCollector<EventBusMessageWrapper> eventBus,
         ILogger log)
     {
         log.LogInformation("{0} HTTP trigger processed a request.", nameof(AddCommentsFunction));
@@ -43,8 +46,10 @@ public class AddCommentsFunction
         entity.AuthorId = _currentUser.Id;
 
         var result = await cosmosClient
-          .GetContainer(CosmosDbConfigs.DatabaseName, nameof(Comment))
+          .GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.CommentContainer)
           .CreateItemAsync(entity, new PartitionKey(entity.PostId));
+
+        await eventBus.AddAsync(new EventBusMessageWrapper(new PostCommentedIntegrationEvent(entity)));
 
         return new OkObjectResult(new { Id = result.Resource.Id });
     }

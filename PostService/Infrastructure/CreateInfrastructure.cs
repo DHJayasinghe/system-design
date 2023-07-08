@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using PostService.Configs;
 using PostService.Models;
+using Azure.Messaging.ServiceBus.Administration;
 
 namespace PostService.Infrastructure;
 
@@ -45,6 +46,22 @@ public class CreateInfrastructure
             .CreateIfNotExistsAsync());
 
         await Task.WhenAll(tasks);
+
+
+        var serviceBusClient = new ServiceBusAdministrationClient(_configuration.GetConnectionString(ServiceBusConfigs.ConnectionName));
+        if (!await serviceBusClient.TopicExistsAsync(ServiceBusConfigs.TopicName))
+            await serviceBusClient.CreateTopicAsync(new CreateTopicOptions(ServiceBusConfigs.TopicName)
+            {
+                DefaultMessageTimeToLive = System.TimeSpan.FromDays(7),
+
+            });
+        if (!await serviceBusClient.SubscriptionExistsAsync(ServiceBusConfigs.TopicName, ServiceBusConfigs.SubscriptionName))
+        {
+            await serviceBusClient.CreateSubscriptionAsync(new CreateSubscriptionOptions(ServiceBusConfigs.TopicName, ServiceBusConfigs.SubscriptionName)
+            {
+                DefaultMessageTimeToLive = System.TimeSpan.FromDays(7)
+            });
+        }
 
         return new OkResult();
     }

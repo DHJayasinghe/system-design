@@ -13,6 +13,8 @@ using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
 using PostService.API.Models;
 using SharedKernal;
+using Microsoft.Azure.WebJobs.ServiceBus;
+using PostService.Events;
 
 namespace PostService;
 
@@ -36,6 +38,7 @@ public class AddPostsFunction
     public async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "posts")] AddPostRequest req,
         [CosmosDB(databaseName: CosmosDbConfigs.DatabaseName, containerName: CosmosDbConfigs.PostsContainer, Connection = CosmosDbConfigs.ConnectionName)] CosmosClient cosmosClient,
+        [ServiceBus(queueOrTopicName: "post", entityType: ServiceBusEntityType.Topic, Connection = "ServiceBus")] IAsyncCollector<EventBusMessageWrapper> eventBus,
         ILogger log)
     {
         log.LogInformation("{0} HTTP trigger processed a request.", nameof(AddPostsFunction));
@@ -59,6 +62,8 @@ public class AddPostsFunction
         var result = await cosmosClient
           .GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.PostsContainer)
           .CreateItemAsync(entity, new PartitionKey(entity.PostId));
+
+        await eventBus.AddAsync(new EventBusMessageWrapper(new PostCreatedIntegrationEvent(entity)));
 
         return new OkObjectResult(new { result.Resource.PostId });
     }
