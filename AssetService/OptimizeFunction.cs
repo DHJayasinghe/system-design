@@ -16,12 +16,15 @@ namespace AssetService;
 
 public class OptimizeFunction
 {
+    public const string OptimizedImageContainer = "optimized-images";
+    public static readonly string[] Resolutions = { "800x600", "400x300", "200x150" };
+
     [FunctionName(nameof(OptimizeFunction))]
     public void Run(
         [BlobTrigger("images/{name}", Connection = "AzureWebJobsStorage")] Stream imageStream,
-        [Blob("optimized-images/800x600/{name}", FileAccess.Write, Connection = "AzureWebJobsStorage")] Stream outputImageStream800x600,
-        [Blob("optimized-images/400x300/{name}", FileAccess.Write, Connection = "AzureWebJobsStorage")] Stream outputImageStream400x300,
-        [Blob("optimized-images/200x150/{name}", FileAccess.Write, Connection = "AzureWebJobsStorage")] Stream outputImageStream200x150,
+        [Blob(OptimizedImageContainer + "/800x600/{name}", FileAccess.Write, Connection = "AzureWebJobsStorage")] Stream outputImageStream800x600,
+        [Blob(OptimizedImageContainer + "/400x300/{name}", FileAccess.Write, Connection = "AzureWebJobsStorage")] Stream outputImageStream400x300,
+        [Blob(OptimizedImageContainer + "/200x150/{name}", FileAccess.Write, Connection = "AzureWebJobsStorage")] Stream outputImageStream200x150,
         string name,
         ILogger log)
     {

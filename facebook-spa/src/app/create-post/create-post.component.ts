@@ -15,11 +15,9 @@ export class CreatePostComponent implements OnInit {
   private container: string = "";
   private assetsToUpload: string[] = [];
 
-
   content: string = "";
   progress: number = 0;
   saving: boolean = false;
-
 
   constructor(private http: HttpClient) { }
 
@@ -102,7 +100,6 @@ export class CreatePostComponent implements OnInit {
       .subscribe(
         {
           next: response => {
-            console.log(response);
             this.newPost();
           },
           error: error => {

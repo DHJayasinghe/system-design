@@ -1,31 +1,31 @@
-<div class="post"
+<mat-card class="post-card"
   *ngIf="post">
-  <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar><img
-          src="https://ui-avatars.com/api/?name={{post.authorName}}&background=random&rounded=true&format=png"></div>
-      <mat-card-title>{{post.authorName}}</mat-card-title>
-      <mat-card-subtitle>Posted {{getPostedTime(post.createdAt)}}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image
+  <mat-card-header>
+    <div mat-card-avatar><img
+        src="https://ui-avatars.com/api/?name={{post.authorName}}&background=random&rounded=true&format=png"></div>
+    <mat-card-title>{{post.authorName}}</mat-card-title>
+    <mat-card-subtitle>Posted {{getPostedTime(post.createdAt)}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{post.content}}</p>
+    <div class="image-container">
+    <img class="image" mat-card-image
       *ngFor="let asset of post.assets"
-      [src]="asset">
-    <mat-card-content>
-      <p>{{post.content}}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <span class="likes"
-        *ngIf="reactionCount?.totalReactions">{{reactionCount?.totalReactions}} likes</span>
-      <button mat-button
-        (click)="showReactionButtons=!showReactionButtons">LIKE</button>
-      <button mat-button
-        (click)="showCommentSection=true">Comment</button>
-      <app-add-reaction [postId]="post.id"
-        *ngIf="showReactionButtons"
-        (changed)="getReactionCount()"></app-add-reaction>
-    </mat-card-actions>
-  </mat-card>
-</div>
+      [src]="asset" />
+      </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <span class="likes"
+      *ngIf="reactionCount?.totalReactions">{{reactionCount?.totalReactions}} likes</span>
+    <button mat-button
+      (click)="showReactionButtons=!showReactionButtons">LIKE</button>
+    <button mat-button
+      (click)="showCommentSection=true">Comment</button>
+    <app-add-reaction [postId]="post.id"
+      *ngIf="showReactionButtons"
+      (changed)="getReactionCount()"></app-add-reaction>
+  </mat-card-actions>
+</mat-card>
 <app-view-comments *ngIf="showCommentSection"
   [postId]="post?.id"
   (dismissed)="showCommentSection=false"></app-view-comments>

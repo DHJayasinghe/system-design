@@ -34,7 +34,6 @@ public class GetPostsFunction
             var response = await feed.ReadNextAsync();
             foreach (var post in response) posts.Add(post);
         }
-        posts.ForEach(post => post.Assets = post.Assets?.Select(asset => $"{_configuration["AssetsBaseUrl"]}/{asset}").ToList());
 
         return new OkObjectResult(posts.OrderByDescending(post => post.CreatedAt));
     }
