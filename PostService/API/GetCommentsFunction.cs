@@ -37,7 +37,7 @@ public class GetCommentsFunction
         QueryDefinition queryDefinition = new QueryDefinition("SELECT * FROM c WHERE c.PostId = @postId ORDER BY c.CreatedAt DESC")
               .WithParameter("@postId", postId);
 
-        var container = cosmosClient.GetContainer(CosmosDbConfigs.DatabaseName, nameof(Comment));
+        var container = cosmosClient.GetContainer(CosmosDbConfigs.DatabaseName, CosmosDbConfigs.CommentContainer);
         using var feedIterator = container.GetItemQueryIterator<Comment>(queryDefinition);
 
         var comments = new List<Comment>();

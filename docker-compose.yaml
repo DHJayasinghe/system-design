@@ -1,5 +1,14 @@
 version: "3.9"
 services:
+  mailserver:
+    container_name: dummy.mailserver
+    image: jijiechen/papercut:latest
+    networks:
+      - system-design
+    ports:
+      - 25:25
+      - 37408:37408
+
   post.service:
     container_name: post.service
     image: ${DOCKER_REGISTRY-}postservice

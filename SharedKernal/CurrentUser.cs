@@ -16,7 +16,3 @@ public record class CurrentUser : ICurrentUser
     public string Id => GetNameIdentifier();
 
 }
-public interface ICurrentUser
-{
-    string Id { get; }
-}
