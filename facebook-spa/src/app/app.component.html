@@ -1,2 +1,11 @@
-<app-top-toolbar></app-top-toolbar>
-<router-outlet></router-outlet>
+<app-top-toolbar (notificationPaneToggled)="notificationPaneToggled($event)"></app-top-toolbar>
+<mat-drawer-container class="example-container"
+    hasBackdrop="false">
+    <mat-drawer mode="over"
+        [opened]="notificationPaneVisibility">
+        <app-notification-pane *ngIf="notificationPaneVisibility"></app-notification-pane>
+    </mat-drawer>
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>

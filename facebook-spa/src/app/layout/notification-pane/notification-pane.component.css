@@ -1,0 +1,46 @@
+/* Container for the notification */
+.notification-container {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  width: 300px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Individual notification item */
+.notification {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.notification .icon {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.notification .message {
+  font-size: 14px;
+}
+
+.notification .time {
+  font-size: 12px;
+  color: #999;
+  margin-left: auto;
+}
+
+/* Styling for different types of notifications */
+.notification.success {
+  color: #28a745;
+}
+
+.notification.error {
+  color: #dc3545;
+}
+
+.notification.warning {
+  color: #ffc107;
+}

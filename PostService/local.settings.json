@@ -4,10 +4,10 @@
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
     "AssetService": "http://localhost:8083/assets",
-    "FriendshipService": "http://localhost:8087/friends",
-    "AssetsBaseUrl": ""
+    "FriendshipService": "http://localhost:8087/friends"
   },
   "ConnectionStrings": {
-    "CosmosDB": ""
+    "CosmosDB": "",
+    "ServiceBus": ""
   }
 }

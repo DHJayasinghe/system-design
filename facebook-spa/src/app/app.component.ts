@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'facebook-spa';
+  notificationPaneVisibility = false;
+
+  notificationPaneToggled(state: boolean) {
+    this.notificationPaneVisibility = state;
+  }
 }

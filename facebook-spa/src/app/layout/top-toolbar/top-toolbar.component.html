@@ -7,14 +7,10 @@
     </button> -->
     <span>Facebook System Design</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon">
+    <button [matBadge]="notificationService.unreadNotifications" matBadgeColor="warn" [matBadgeHidden]="notificationService.unreadNotifications == 0" mat-icon-button (click)="toggleNotificationPane()">
       <mat-icon>notifications</mat-icon>
     </button>
-    <button mat-icon-button
-      class="example-icon"
-      aria-label="Example icon-button with share icon">
+    <button mat-icon-button>
       <mat-icon>person</mat-icon>
     </button>
   </mat-toolbar>

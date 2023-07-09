@@ -22,6 +22,8 @@ import { MatGridListModule } from '@angular/material/grid-list'
 import { MatCardModule } from '@angular/material/card'
 import { MatButtonModule } from '@angular/material/button'
 import { TopToolbarComponent } from './layout/top-toolbar/top-toolbar.component';
+import { NotificationPaneComponent } from './layout/notification-pane/notification-pane.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { TopToolbarComponent } from './layout/top-toolbar/top-toolbar.component'
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
-    TopToolbarComponent
+    MatSidenavModule,
+    TopToolbarComponent,
+    NotificationPaneComponent
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
