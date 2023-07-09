@@ -8,15 +8,15 @@ public record PostCreatedIntegrationEvent : BaseEvent<string>
     public AuthorEventData Author { get; init; }
     public string Summary { get; set; }
 
-    public PostCreatedIntegrationEvent(Post entity)
+    public PostCreatedIntegrationEvent(Post post)
     {
-        Id = entity.PostId;
+        Id = post.PostId;
         Author = new AuthorEventData
         {
-            Id = entity.AuthorId,
-            Name = entity.AuthorName
+            Id = post.AuthorId,
+            Name = post.AuthorName
         };
-        Summary = entity.Content.Length > 200 ? entity.Content[..200] : entity.Content;
+        Summary = post.Content.Length > 200 ? post.Content[..200] : post.Content;
     }
 }
 

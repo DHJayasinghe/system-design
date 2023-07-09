@@ -1,0 +1,8 @@
+<div class="notification-container">
+  <div *ngIf="activities.length == 0">No activities are available</div>
+  <div class="notification success" *ngFor="let item of activities">
+    <i class="icon fas fa-check-circle"></i>
+    <span class="message">{{item.content}}</span>
+    <span class="time">{{getPostedTime(item.createdAt)}}</span>
+  </div>
+</div>

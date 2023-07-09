@@ -33,6 +33,7 @@ builder
                .WithOrigins(builder.Configuration.GetSection("AllowedCors").Get<string[]>())
                .AllowAnyMethod()
                .AllowAnyHeader()
+               .AllowCredentials()
            );
        })
        .AddOcelot(builder.Configuration);
