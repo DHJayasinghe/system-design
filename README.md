@@ -1,8 +1,8 @@
-# Facebook System Design
+# .NET Microservices Sample Application for Facebook System Design
 
-This repository is about Facebook system design on core functionalities using Azure technologies.
+Sample .NET Core reference application, based on a simplified microservices architecture and Azure Serverless + PaaS technologies. Implements facebook core functionalities
 
-![Architecture Diagram](architecture.png)
+![Architecture Diagram](architecture.jpg)
 
 ## Functional Requirements
 1. Post (Text + Image + Video) - Should be able to do a Post with a Video or Image
