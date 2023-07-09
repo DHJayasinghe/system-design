@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AssetsService } from 'src/services/assets.service';
+import { NotificationService } from 'src/services/notification.service';
 
 @Component({
   selector: 'app-timeline',
@@ -12,7 +13,10 @@ export class TimelineComponent implements OnInit {
   @Input() version: number = 1;
   posts: Post[] = [];
 
-  constructor(private http: HttpClient, private assetsService: AssetsService) { }
+  constructor(
+    private http: HttpClient,
+    private assetsService: AssetsService,
+    private notificationService: NotificationService) { }
 
   ngOnInit() {
   }

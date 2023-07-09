@@ -1,0 +1,12 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "FriendshipService": "http://localhost:8087/friends",
+    "AzureSignalRConnectionString": "Endpoint=https://facebook-system-design.service.signalr.net;AccessKey=kZHOhj3CJyyfdXf9bSqHXHwByydSm/6S0rVPHgzAEO8=;Version=1.0;"
+  },
+  "ConnectionStrings": {
+    "ServiceBus": "Endpoint=sb://staging-jrc-bna-services-aue.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=w/uUf0Ta/UBao4jxjci4SvYEVBdxH/z/L8nrregrNq0="
+  }
+}
